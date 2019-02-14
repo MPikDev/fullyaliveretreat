@@ -1,1 +1,1 @@
-web: gunicorn personal_code.wsgi --log-file -
+web: gunicorn personal_code.wsgi
