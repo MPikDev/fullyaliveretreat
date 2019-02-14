@@ -2,3 +2,4 @@ Django==1.11.18
 pytz==2018.9
 gunicorn
 django-heroku
+whitenoise
