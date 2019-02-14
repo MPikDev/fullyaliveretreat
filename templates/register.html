@@ -12,238 +12,238 @@
 <body>
 <h2>we registering!</h2>
 
-<form id="form-create-user">
-    <div class="contentWrapper hideTree">
-        <!-- the signup form -->
-        <div class="content signupcontent fadeOut">
-            <div class="container">
-                <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h3><b>Register</b></h3>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h5>Personal Info</h5>
-                            <div class="separator bigMarginBottom"></div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">FIRST_NAME_LABEL: *</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_firstname" name="signup_firstname" type="text"
-                                       class="form-control light name-field" value="{{ invite.firstname }}"
-                                       placeholder="FIRST_NAME_LABEL"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.firstname }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">LAST_NAME_LABEL: *</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_secondname" name="signup_secondname" type="text"
-                                       class="form-control light name-field" value="{{ invite.secondname }}"
-                                       placeholder="LAST_NAME_LABEL"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.secondname }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">EMAIL_ADDRESS *</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_email" name="signup_email" type="text"
-                                       class="form-control light email-field" value="{{ invite.email }}"
-                                       placeholder="EMAIL_PLACEHOLDER"
-                                       maxlength="{% verbatim %}{{ EmailField.EWVUser.email }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">VERIFY_EMAIL: *</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_email_again" name="signup_email_again" type="text"
-                                       class="form-control light email-field" placeholder="VERIFY_EMAIL"
-                                       maxlength="{% verbatim %}{{ EmailField.EWVUser.email }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h5>PASSWORD_INFO</h5>
-                            <div class="separator bigMarginBottom"></div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">PASSWORD_LABEL *</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_password" name="signup_password" type="password"
-                                       class="form-control light password-field" placeholder=""
-                                       maxlength="{% verbatim %}{{ CharField.EWVUser.password }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">VERIFY_PASSWORD*</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input type="password" id="signup_password_again" name="signup_password_again"
-                                       class="form-control light password-field" placeholder=""
-                                       maxlength="{% verbatim %}{{ CharField.EWVUser.password }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h5>CONTACT_INFO</h5>
-                            <div class="separator bigMarginBottom"></div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">COMPANY_LABEL</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_company" name="signup_company" type="text"
-                                       class="form-control light ignore" placeholder=""
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.company }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">STREET</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_street1" name="signup_street1" type="text"
-                                       class="form-control light ignore" placeholder=""
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.street1 }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">STREET_OPTIONAL</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_street2" name="signup_street2" type="text"
-                                       class="form-control light ignore" placeholder=""
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.street2 }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">COUNTRY_LABEL</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div id="dropdown-country" class="dropdown">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">STATE_LABEL</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_state" name="signup_state" type="text"
-                                       class="form-control light ignore" placeholder="STATE_LABEL"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.state }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">ZIP_CODE_LABEL / CITY_LABEL:</div>
-                        </div>
-                        <div class="col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-0 col-md-2">
-                            <div class="form-group">
-                                <input id="signup_zip" name="signup_zip" type="text" class="form-control light ignore"
-                                       placeholder="ZIP_CODE_LABEL"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.zip }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 col-sm-3 col-sm-offset-0 col-md-2 noPaddingLeft">
-                            <div class="form-group">
-                                <input id="signup_city" name="signup_city" type="text" class="form-control light ignore"
-                                       placeholder="CITY_LABEL"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.city }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">PHONE</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_phone" name="signup_phone" type="text"
-                                       class="form-control light ignore" placeholder="(+01)"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.phone }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                            <div class="form-label">MOBILE</div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                            <div class="form-group">
-                                <input id="signup_mobile" name="signup_mobile" type="text"
-                                       class="form-control light ignore" placeholder="(+01)"
-                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.mobile }}{% endverbatim %}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <div class="separator bigMarginBottom bigMarginTop"></div>
-                        </div>
-
-                    </div>
-                    <div class="row panel-row flexHeight center-vertically">
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1">
-                            <div class="formCheckbox inline-block">
-                                <div class="form-group validation-checkbox" style="display: inline-block;">
-                                    <input type="checkbox" id="chbxTerms" name="chbxTerms"/>
-                                    <label for="chbxTerms">I_ACCEPT_THE <a id="show-eula-login"
-                                                                           class="mouse-pointer inlinelink">TERMS_AND_CONDITIONS</a>.
-                                        *</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
-                            <button type="button" class="btn btn-primary btn-block validation-checkbox" id="register">
-                                SIGN_UP
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-< /body>
-< /html>
+{#<form id="form-create-user">#}
+{#    <div class="contentWrapper hideTree">#}
+{#        <!-- the signup form -->#}
+{#        <div class="content signupcontent fadeOut">#}
+{#            <div class="container">#}
+{#                <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">#}
+{#                    <div class="row">#}
+{#                        <div class="col-xs-10 col-xs-offset-1">#}
+{#                            <h3><b>Register</b></h3>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1">#}
+{#                            <h5>Personal Info</h5>#}
+{#                            <div class="separator bigMarginBottom"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">FIRST_NAME_LABEL: *</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_firstname" name="signup_firstname" type="text"#}
+{#                                       class="form-control light name-field" value="{{ invite.firstname }}"#}
+{#                                       placeholder="FIRST_NAME_LABEL"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.firstname }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">LAST_NAME_LABEL: *</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_secondname" name="signup_secondname" type="text"#}
+{#                                       class="form-control light name-field" value="{{ invite.secondname }}"#}
+{#                                       placeholder="LAST_NAME_LABEL"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.secondname }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">EMAIL_ADDRESS *</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_email" name="signup_email" type="text"#}
+{#                                       class="form-control light email-field" value="{{ invite.email }}"#}
+{#                                       placeholder="EMAIL_PLACEHOLDER"#}
+{#                                       maxlength="{% verbatim %}{{ EmailField.EWVUser.email }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">VERIFY_EMAIL: *</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_email_again" name="signup_email_again" type="text"#}
+{#                                       class="form-control light email-field" placeholder="VERIFY_EMAIL"#}
+{#                                       maxlength="{% verbatim %}{{ EmailField.EWVUser.email }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1">#}
+{#                            <h5>PASSWORD_INFO</h5>#}
+{#                            <div class="separator bigMarginBottom"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">PASSWORD_LABEL *</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_password" name="signup_password" type="password"#}
+{#                                       class="form-control light password-field" placeholder=""#}
+{#                                       maxlength="{% verbatim %}{{ CharField.EWVUser.password }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">VERIFY_PASSWORD*</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input type="password" id="signup_password_again" name="signup_password_again"#}
+{#                                       class="form-control light password-field" placeholder=""#}
+{#                                       maxlength="{% verbatim %}{{ CharField.EWVUser.password }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1">#}
+{#                            <h5>CONTACT_INFO</h5>#}
+{#                            <div class="separator bigMarginBottom"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">COMPANY_LABEL</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_company" name="signup_company" type="text"#}
+{#                                       class="form-control light ignore" placeholder=""#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.company }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">STREET</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_street1" name="signup_street1" type="text"#}
+{#                                       class="form-control light ignore" placeholder=""#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.street1 }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">STREET_OPTIONAL</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_street2" name="signup_street2" type="text"#}
+{#                                       class="form-control light ignore" placeholder=""#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.street2 }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">COUNTRY_LABEL</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div id="dropdown-country" class="dropdown">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">STATE_LABEL</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_state" name="signup_state" type="text"#}
+{#                                       class="form-control light ignore" placeholder="STATE_LABEL"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.state }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">ZIP_CODE_LABEL / CITY_LABEL:</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-0 col-md-2">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_zip" name="signup_zip" type="text" class="form-control light ignore"#}
+{#                                       placeholder="ZIP_CODE_LABEL"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.zip }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-5 col-sm-3 col-sm-offset-0 col-md-2 noPaddingLeft">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_city" name="signup_city" type="text" class="form-control light ignore"#}
+{#                                       placeholder="CITY_LABEL"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.city }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">PHONE</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_phone" name="signup_phone" type="text"#}
+{#                                       class="form-control light ignore" placeholder="(+01)"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.phone }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">#}
+{#                            <div class="form-label">MOBILE</div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                            <div class="form-group">#}
+{#                                <input id="signup_mobile" name="signup_mobile" type="text"#}
+{#                                       class="form-control light ignore" placeholder="(+01)"#}
+{#                                       maxlength="{% verbatim %}{{ CharField.ContactInfo.mobile }}{% endverbatim %}"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1">#}
+{#                            <div class="separator bigMarginBottom bigMarginTop"></div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                    <div class="row panel-row flexHeight center-vertically">#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1">#}
+{#                            <div class="formCheckbox inline-block">#}
+{#                                <div class="form-group validation-checkbox" style="display: inline-block;">#}
+{#                                    <input type="checkbox" id="chbxTerms" name="chbxTerms"/>#}
+{#                                    <label for="chbxTerms">I_ACCEPT_THE <a id="show-eula-login"#}
+{#                                                                           class="mouse-pointer inlinelink">TERMS_AND_CONDITIONS</a>.#}
+{#                                        *</label>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">#}
+{#                            <button type="button" class="btn btn-primary btn-block validation-checkbox" id="register">#}
+{#                                SIGN_UP#}
+{#                            </button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</form>#}
+{##}
+{#< /body>#}
+{#< /html>#}
