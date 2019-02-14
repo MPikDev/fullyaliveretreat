@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
 
@@ -22,15 +23,18 @@
         }
 
         .scrolltest {
-            background-image: url("static/registration/Dscroll.png")
+            {#background-image: url("static/registration/Dscroll.png")#}
+            {#background-image: url("{% static 'Dscroll.png'%}")#}
+
         }
 
         .intro {
-            background-image: url("static/registration/Dname.png")
+            {#background-image: url("static/registration/Dname.png")#}
+            background-image: url("{% static 'registration/Dname.png'%}")
         }
 
         .verse {
-            background-image: url("static/registration/Dverse.png")
+            background-image: url("{% static 'registration/Dverse.png'%}")
         }
 
         .dates {
