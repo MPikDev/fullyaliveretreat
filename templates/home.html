@@ -23,18 +23,16 @@
         }
 
         .scrolltest {
-            {#background-image: url("static/registration/Dscroll.png")#}
-            {#background-image: url("{% static 'Dscroll.png'%}")#}
+        {#background-image: url("static/registration/Dscroll.png")#}{#background-image: url("{% static 'Dscroll.png'%}")#}
 
         }
 
         .intro {
-            {#background-image: url("static/registration/Dname.png")#}
-            background-image: url("{% static 'registration/Dname.png'%}")
+            background-image: url("{% static 'registration/Dname2.png'%}")
         }
 
         .verse {
-            background-image: url("{% static 'registration/Dverse.png'%}")
+            background-image: url("{% static 'registration/Dverse2.png'%}")
         }
 
         .dates {
@@ -43,6 +41,10 @@
 
         .more {
             background-image: url("static/registration/4k.jpg")
+        }
+
+        .register-pic {
+            background-image: url("static/registration/register.jpg")
         }
 
         {# tablets #}
@@ -61,6 +63,10 @@
 
             .more {
                 background-image: url("static/registration/4kipad.jpg") !important;
+            }
+
+            .register-pic {
+                background-image: url("static/registration/.jpg") !important;
             }
         }
 
@@ -94,6 +100,28 @@
             height: 47px;
             left: 0;
             top: 98%;
+            width: 100%;
+            text-align: center;
+            background: white;
+            opacity: .5;
+        }
+
+        .trasparent-bar-1 {
+            position: absolute;
+            height: 47px;
+            left: 0;
+            top: 198%;
+            width: 100%;
+            text-align: center;
+            background: white;
+            opacity: .5;
+        }
+
+        .trasparent-bar-2 {
+            position: absolute;
+            height: 47px;
+            left: 0;
+            top: 298%;
             width: 100%;
             text-align: center;
             background: white;
@@ -151,11 +179,24 @@
         }
 
         .reg-button {
+            margin-top: 0px;
+            font-size: 36px;
             position: absolute;
             height: 72px;
-            left: 49%;
-            top: 400%;
-            width: 100px;
+            top: 234%;
+            width: 100%;
+            opacity: .5;
+                        background-color: lightslategray;
+
+            background: white;
+        }
+        .info-button {
+            margin-top: 0px;
+            font-size: 36px;
+            position: absolute;
+            height: 72px;
+            top: 265%;
+            width: 100%;
             opacity: .5;
             background: white;
 
@@ -173,33 +214,23 @@
     </style>
 </head>
 <body>
-{#<div class="parallax scrolltest"></div>#}
-{#<div class="trasparent-bar"></div>#}
 
 <div class="parallax intro"></div>
 <div class="caption">
-    {#    <div class="text-box">#}
-    {#        <span class="no-margin">S C R O L L        D O W N</span>#}
     <span class="no-margin">S C R O L L</span>
     <span class="no-margin">D O W N</span>
-    {#    </div>#}
 </div>
-{#<div class="bar"></div>#}
 <div class="trasparent-bar"></div>
 
 <div class="parallax verse"></div>
-<div class="bar"></div>
+<div class="trasparent-bar-1"></div>
 
-<div class="parallax dates"></div>
-<div class="bar"></div>
+{#<div class="parallax dates"></div>#}
+{#<div class="trasparent-bar trasparent-bar-2"></div>#}
 
-<div class="parallax more"></div>
-<button class="reg-button">Register</button>
+<div class="parallax register-pic"></div>
+<button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
+<button class="info-button" onclick="window.location.href='/info'">MORE INFO</button>
 
-<div class="bar"></div>
-
-
-<h2>yep we here </h2>
-<button onclick="window.location.href='/registration'"> Register</button>
 </body>
 </html>

@@ -9,3 +9,6 @@ def home(request):
 
 def register(request):
     return render(request, 'register.html')
+
+def info(request):
+    return render(request, 'info.html')
