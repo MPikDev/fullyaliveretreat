@@ -10,5 +10,400 @@
     <title></title>
 </head>
 <body>
-<h2>we registering!</h2>
+<h2>Registration is currently not open</h2>
 
+<form id="form-create-user">
+    <div class="contentWrapper hideTree">
+        <!-- the signup form -->
+        <div class="content signupcontent fadeOut">
+            <div class="container">
+                <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <h3><b>Register </b></h3>
+                        </div>
+
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">First Name:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_firstname" name="signup_firstname" type="text"
+                                           class="form-control light name-field" value="{{ invite.firstname }}"
+                                           placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Last Name:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_secondname" name="signup_secondname" type="text"
+                                           class="form-control light name-field" value="{{ invite.secondname }}"
+                                           placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Email:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_email" name="signup_email" type="text"
+                                           class="form-control light email-field" value="{{ invite.email }}"
+                                           placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Verify Email:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_email_again" name="signup_email_again" type="text"
+                                           class="form-control light email-field" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        {#                    <div class="row panel-row flexHeight center-vertically">#}
+                        {#                        <div class="col-xs-10 col-xs-offset-1">#}
+                        {#                            <h5>CONTACT_INFO</h5>#}
+                        {#                            <div class="separator bigMarginBottom"></div>#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Street:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_street1" name="signup_street1" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Additional Street:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_street2" name="signup_street2" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Country:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_country" name="signup_country" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">State:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_state" name="signup_state" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">City:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_state" name="signup_state" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Zip Code:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_state" name="signup_state" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Home Phone:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_phone" name="signup_phone" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                                <div class="form-label">Cell Phone:</div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                                <div class="form-group">
+                                    <input id="signup_mobile" name="signup_mobile" type="text"
+                                           class="form-control light ignore" placeholder=""
+                                           maxlength="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="separator bigMarginBottom bigMarginTop"></div>
+                            </div>
+
+                        </div>
+                        <div class="row panel-row flexHeight center-vertically">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
+                                <button type="button" class="btn btn-block" id="register">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <style>#}
+{#        /* Parallax base styles#}
+{#        --------------------------------------------- */#}
+{##}
+{#        .parallax {#}
+{#            height: 500px; /* fallback for older browsers */#}
+{#            height: 100vh;#}
+{#            overflow-x: hidden;#}
+{#            overflow-y: auto;#}
+{#            -webkit-perspective: 300px;#}
+{#            perspective: 300px;#}
+{#        }#}
+{##}
+{#        .parallax__group {#}
+{#            position: relative;#}
+{#            height: 500px; /* fallback for older browsers */#}
+{#            height: 100vh;#}
+{#            -webkit-transform-style: preserve-3d;#}
+{#            transform-style: preserve-3d;#}
+{#        }#}
+{##}
+{#        .parallax__layer {#}
+{#            position: absolute;#}
+{#            top: 0;#}
+{#            left: 0;#}
+{#            right: 0;#}
+{#            bottom: 0;#}
+{#        }#}
+{##}
+{#        .parallax__layer--fore {#}
+{#            -webkit-transform: translateZ(90px) scale(.7);#}
+{#            transform: translateZ(90px) scale(.7);#}
+{#            z-index: 1;#}
+{#        }#}
+{##}
+{#        .parallax__layer--base {#}
+{#            -webkit-transform: translateZ(0);#}
+{#            transform: translateZ(0);#}
+{#            z-index: 4;#}
+{#        }#}
+{##}
+{#        .parallax__layer--back {#}
+{#            -webkit-transform: translateZ(-300px) scale(2);#}
+{#            transform: translateZ(-300px) scale(2);#}
+{#            z-index: 3;#}
+{#        }#}
+{##}
+{#        .parallax__layer--deep {#}
+{#            -webkit-transform: translateZ(-600px) scale(3);#}
+{#            transform: translateZ(-600px) scale(3);#}
+{#            z-index: 2;#}
+{#        }#}
+{##}
+{#        /* Debugger styles - used to show the effect#}
+{#        --------------------------------------------- */#}
+{##}
+{#        .debug {#}
+{#            position: fixed;#}
+{#            top: 0;#}
+{#            left: .5em;#}
+{#            z-index: 999;#}
+{#            background: rgba(0, 0, 0, .85);#}
+{#            color: #fff;#}
+{#            padding: .5em;#}
+{#            border-radius: 0 0 5px 5px;#}
+{#        }#}
+{##}
+{#        .debug-on .parallax__group {#}
+{#            -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);#}
+{#            transform: translate3d(700px, 0, -800px) rotateY(30deg);#}
+{#        }#}
+{##}
+{#        .debug-on .parallax__layer {#}
+{#            box-shadow: 0 0 0 2px #000;#}
+{#            opacity: 0.9;#}
+{#        }#}
+{##}
+{#        .parallax__group {#}
+{#            -webkit-transition: -webkit-transform 0.5s;#}
+{#            transition: transform 0.5s;#}
+{#        }#}
+{##}
+{#        /* demo styles#}
+{#        --------------------------------------------- */#}
+{##}
+{#        body, html {#}
+{#            overflow: hidden;#}
+{#        }#}
+{##}
+{#        body {#}
+{#            font: 100% / 1.5 Arial;#}
+{#        }#}
+{##}
+{#        * {#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#        }#}
+{##}
+{#        .parallax {#}
+{#            font-size: 200%;#}
+{#        }#}
+{##}
+{#        /* centre the content in the parallax layers */#}
+{#        .title {#}
+{#            text-align: center;#}
+{#            position: absolute;#}
+{#            left: 50%;#}
+{#            top: 50%;#}
+{#            -webkit-transform: translate(-50%, -50%);#}
+{#            transform: translate(-50%, -50%);#}
+{#        }#}
+{##}
+{#        /* style the groups#}
+{#        --------------------------------------------- */#}
+{##}
+{#        #group1 {#}
+{#            z-index: 5; /* slide over group 2 */#}
+{#        }#}
+{##}
+{#        #group1 .parallax__layer--base {#}
+{#            background: rgb(102, 204, 102);#}
+{#        }#}
+{##}
+{#        #group2 {#}
+{#            z-index: 3; /* slide under groups 1 and 3 */#}
+{#        }#}
+{##}
+{#        #group2 .parallax__layer--back {#}
+{#            background: rgb(123, 210, 102);#}
+{#        }#}
+{##}
+{#        #group3 {#}
+{#            z-index: 4; /* slide over group 2 and 4 */#}
+{#        }#}
+{##}
+{#        #group3 .parallax__layer--base {#}
+{#            background: rgb(153, 216, 101);#}
+{#        }#}
+{##}
+{#        #group4 {#}
+{#            z-index: 2; /* slide under group 3 and 5 */#}
+{#        }#}
+{##}
+{#        #group4 .parallax__layer--deep {#}
+{#            background: rgb(184, 223, 101);#}
+{#        }#}
+{##}
+{#        #group5 {#}
+{#            z-index: 3; /* slide over group 4 and 6 */#}
+{#        }#}
+{##}
+{#        #group5 .parallax__layer--base {#}
+{#            background: rgb(214, 229, 100);#}
+{#        }#}
+{##}
+{#        #group6 {#}
+{#            z-index: 2; /* slide under group 5 and 7 */#}
+{#        }#}
+{##}
+{#        #group6 .parallax__layer--back {#}
+{#            background: rgb(245, 235, 100);#}
+{#        }#}
+{##}
+{#        #group7 {#}
+{#            z-index: 3; /* slide over group 7 */#}
+{#        }#}
+{##}
+{#        #group7 .parallax__layer--base {#}
+{#            background: rgb(255, 241, 100);#}
+{#        }#}
+{##}
+{#        /* misc#}
+{#        --------------------------------------------- */#}
+{#        .demo__info {#}
+{#            position: absolute;#}
+{#            z-index: 100;#}
+{#            bottom: 1vh;#}
+{#            top: auto;#}
+{#            font-size: 80%;#}
+{#            text-align: center;#}
+{#            width: 100%;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<div class="parallax">#}
+{#    <div id="group1" class="parallax__group">#}
+{#        <div class="parallax__layer parallax__layer--base">#}
+{#            <div class="title">base layer</div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div id="group2" class="parallax__group">#}
+{#        <div class="parallax__layer parallax__layer--base">#}
+{#            <div class="title">base layer</div>#}
+{#        </div>#}
+{#        <div class="parallax__layer parallax__layer--back">#}
+{#                        <div class="title">back layer</div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#</body>#}
