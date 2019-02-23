@@ -21,7 +21,6 @@ from registration import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
-    url(r'^home2/', views.home2),
     url(r'^registration', views.register),
     url(r'^info', views.info),
 
