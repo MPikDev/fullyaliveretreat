@@ -30,23 +30,23 @@
         }
 
         .intro {
-            background-image: url("{% static 'registration/Dname2.png'%}");
+            background-image: url("{% static 'registration/S1.png'%}");
         }
 
         .verse {
-            background-image: url("{% static 'registration/Dverse3.png'%}")
+            background-image: url("{% static 'registration/S2.png'%}")
         }
 
         .dates {
-            background-image: url("static/registration/Ddate.png")
+            background-image: url("{% static 'registration/S4.png'%}")
         }
 
         .invite {
-            background-image: url("static/registration/Dinvite.png")
+            background-image: url("{% static 'registration/S3_2.png'%}")
         }
 
         .register-pic {
-            background-image: url("static/registration/Dreg.png")
+            background-image: url("{% static 'registration/S5.png'%}")
         }
 
         {##}
@@ -249,8 +249,8 @@
 
         @font-face {
             font-family: 'pennaregular';
-            src: url('static/registration/webfontkit-20190207-020242/penna.woff2') format('woff2'),
-            url('static/registration/webfontkit-20190207-020242/penna.woff') format('woff');
+            src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
+            url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
             font-weight: normal;
             font-style: normal;
 
@@ -279,50 +279,7 @@
 <div class="parallax register-pic"></div>
 <button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
 <button class="info-button" onclick="window.location.href='/info'">MORE INFO</button>
-<button class="home2-button" onclick="window.location.href='/home2'">Home 2</button>
 <script>
-
-    {##}
-    {#    var ismobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)#}
-    {#    console.log(ismobile)#}
-    {##}
-    {#    // Create cross browser requestAnimationFrame method:#}
-    {#    window.requestAnimationFrame = window.requestAnimationFrame#}
-    {#        || window.mozRequestAnimationFrame#}
-    {#        || window.webkitRequestAnimationFrame#}
-    {#        || window.msRequestAnimationFrame#}
-    {#        || function (f) {#}
-    {#            setTimeout(f, 1000 / 60)#}
-    {#        }#}
-    {##}
-    {#    var $intro = $('#intro')[0]#}
-    {#    var $verse = $('.verse')[0]#}
-    {#    var $register_pic = $('.register-pic')#}
-    {##}
-    {#    var scrollheight = document.body.scrollHeight // height of entire document#}
-    {#    var windowheight = window.innerHeight // height of browser window#}
-    {##}
-    {##}
-    {#    function parallaxImage() {#}
-    {#        var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically#}
-    {#        var scrollamount = (scrolltop / (scrollheight - windowheight)) * 100 // get amount scrolled (in %)#}
-    {#        $intro.style.top = -scrolltop * .9 + 'px' // move bubble1 at 20% of scroll speed#}
-    {#        $verse.style.top = -scrolltop * .5 + 500 + 'px' // move bubble2 at 50% of scroll speed#}
-    {#$register_pic.style.top = -scrolltop * .7 + 'px' // move bubble2 at 50% of scroll speed#}
-    {#fish.style.left = -100 + scrollamount + '%'#}
-    {##}
-    {#    }#}
-    {##}
-    {#    if (ismobile) {#}
-    {#        window.addEventListener('scroll', function () { // on page scroll#}
-    {#            requestAnimationFrame(parallaxImage) // call parallaxbubbles() on next available screen repaint#}
-    {#        }, false)#}
-    {##}
-    {#        window.addEventListener('resize', function () { // on window resize#}
-    {#            var scrollamount = (scrolltop / (scrollheight - windowheight)) * 100 // get amount scrolled (in %)#}
-    {#fish.style.left = -100 + scrollamount + '%'#}
-    {#        }, false)#}
-    {#    }#}
 
 
 </script>
