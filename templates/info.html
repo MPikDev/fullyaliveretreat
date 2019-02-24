@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <title></title>
+    <title>More Info</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'pennaregular';
+            src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
+            url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        .camp_font {
+            font-family: "pennaregular";
+            font-size: 36px;
+            font-weight: 900;
+        }
+    </style>
 </head>
 <body>
 
@@ -54,7 +86,7 @@
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-4">
             <h2>Things to bring:</h2>
             <ul>
-                <li>Bedding for cabins (Mattress are provide)</li>
+                <li>Bedding for cabins (Mattresses are provide)</li>
                 <li>Warm Clothes</li>
                 <li>Bible & Journal</li>
                 <li>Essential Hygiene Items</li>
@@ -142,7 +174,7 @@
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-4">
             <h2>THINGS TO BRING:</h2>
             <ul>
-                <li>Bedding for cabins (Mattress are provide)</li>
+                <li>Bedding for cabins (Mattresses are provide)</li>
                 <li>Warm Clothes</li>
                 <li>Bible & Journal</li>
                 <li>Essential Hygiene Items</li>

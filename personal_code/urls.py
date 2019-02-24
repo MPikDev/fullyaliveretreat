@@ -18,10 +18,12 @@ from django.contrib import admin
 from registration import views
 
 
+# app_name = 'retreat'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^registration', views.register),
     url(r'^info', views.info),
-
+    url(r'^reg', views.reg),
 ]
