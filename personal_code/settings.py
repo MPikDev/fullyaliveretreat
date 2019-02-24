@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fullyalive2019.apps.Fullyalive2019Config',
-    'registration'
+    'registration.apps.RegistrationConfig'
 ]
 
 MIDDLEWARE = [

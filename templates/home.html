@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
     {% load static %}
+    <title>Fully Alive Retreat</title>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
 
     <style>
+
         body, html {
             height: 100%;
-
             -moz-osx-font-smoothing: grayscale;
-
         }
 
         .parallax {
@@ -22,11 +35,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-        }
-
-        .scrolltest {
-        {#background-image: url("static/registration/Dscroll.png")#}{#background-image: url("{% static 'Dscroll.png'%}")#}
-
         }
 
         .intro {
@@ -158,94 +166,50 @@
             position: absolute;
             left: 0;
             top: 87%;
-        {#top: 13%;#} width: 100%;
+            width: 100%;
             text-align: center;
             margin-bottom: 0px;
-        }
-
-        .scroll-caption {
-            font-family: "pennaregular";
-        {#font-weight: bold;#} position: absolute;
-            height: 37px;
-            left: 46.5%;
-            top: 88%;
-            width: 120px;
-            text-align: center;
         }
 
         .no-margin {
             font-family: "pennaregular";
             margin-top: 0px;
             font-size: 36px;
-        {#background: white;#}{#opacity: .5;#} padding-left: 10px;
-            padding-right: 10px;
-            color: white;
-
-        }
-
-        .test-no-margin {
-            font-family: "pennaregular";
-            margin-top: 0px;
-            font-size: 36px;
-            background: white;
-            opacity: .5;
             padding-left: 10px;
             padding-right: 10px;
-        }
-
-        .text-box {
-            background: white;
-            opacity: .5;
-        }
-
-        .bar {
-            height: 100px;
-            background-color: lightslategray;
-            font-size: 36px;
+            color: white;
         }
 
         .reg-button {
-            margin-top: 0px;
-            font-size: 36px;
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
             position: absolute;
+            margin-top: 0px;
             height: 72px;
             left: 50%;
             top: 434%;
             margin-left: -337px;
             width: 675px;
-            opacity: .5;
-            background-color: lightslategray;
-
-            background: white;
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .info-button {
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
             margin-top: 0px;
-            font-size: 36px;
             position: absolute;
             height: 72px;
             left: 50%;
             top: 465%;
             margin-left: -337px;
             width: 675px;
-            opacity: .5;
-            background: white;
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
 
         }
-        .home2-button {
-            margin-top: 0px;
-            font-size: 36px;
-            position: absolute;
-            height: 72px;
-            left: 50%;
-            top: 480%;
-            margin-left: -337px;
-            width: 675px;
-            opacity: .5;
-            background: white;
-
-        }
-
 
         @font-face {
             font-family: 'pennaregular';
@@ -253,7 +217,6 @@
             url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
             font-weight: normal;
             font-style: normal;
-
         }
 
     </style>
