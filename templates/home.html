@@ -24,7 +24,8 @@
 
         body, html {
             height: 100%;
-            -moz-osx-font-smoothing: grayscale;
+             margin: 0;
+            {#-moz-osx-font-smoothing: grayscale;#}
         }
 
         .parallax {
@@ -57,29 +58,33 @@
             background-image: url("{% static 'registration/S5.png'%}")
         }
 
-        {##}
         {#tablets #}
-        {#@media (min-width: 500px) and (max-width: 786px) {#}
-        {#    .intro {#}
-        {#        background-image: url("static/registration/4kipad.jpg") !important;#}
-        {#    }#}
-        {##}
-        {#    .verse {#}
-        {#        background-image: url("static/registration/4kipad.jpg") !important;#}
-        {#    }#}
-        {##}
-        {#    .dates {#}
-        {#        background-image: url("static/registration/4kipad.jpg") !important;#}
-        {#    }#}
-        {##}
-        {#    .more {#}
-        {#        background-image: url("static/registration/4kipad.jpg") !important;#}
-        {#    }#}
-        {##}
-        {#    .register-pic {#}
-        {#        background-image: url("static/registration/register.jpg") !important;#}
-        {#    }#}
-        {##}
+        {#@media (min-width: 500px ) and (max-width: 786px) {#}
+        @media (max-width: 786px) {
+            .intro {
+                background-image: url("{% static 'registration/m1.jpg'%}");
+            }
+
+            .verse {
+                background-image: url("{% static 'registration/m2.jpg'%}")
+            }
+
+            .dates {
+                background-image: url("{% static 'registration/m4.jpg'%}")
+            }
+
+            .invite {
+                background-image: url("{% static 'registration/m3.jpg'%}")
+            }
+
+            .register-pic {
+                background-image: url("{% static 'registration/m5.jpg'%}")
+            }
+             .parallax {
+                 background-attachment: scroll;
+             }
+        }
+
         {#phones #}
         {#@media (max-width: 499px) {#}
         {#    .intro {#}
@@ -115,6 +120,8 @@
         {#    top: 0px;#}
         {#        left: 0px;#}
         {#        position: fixed;#}
+        {#    background-attachment: scroll;#}
+
         {#    }#}
         {##}
 
@@ -178,6 +185,18 @@
             padding-left: 10px;
             padding-right: 10px;
             color: white;
+        }
+
+        @media (max-width: 786px) {
+            .no-margin {
+                font-family: "pennaregular";
+                margin-top: 0px;
+                font-size: 36px;
+                padding-left: 10px;
+                padding-right: 10px;
+                color: black;
+                font-weight: 900;
+            }
         }
 
         .reg-button {
