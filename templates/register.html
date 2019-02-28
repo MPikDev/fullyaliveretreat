@@ -35,189 +35,211 @@
 <div class=" no-margin row">
     <div class="col-xs-12 col-md-offset-3 col-md-6 ">
         <h2>Registration is currently not open</h2>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% if error_message %}<p style="color: red"><strong>{{ error_message }}</strong></p>{% endif %}
     </div>
 </div>
+
 <form action="/reg" method="post">
     {% csrf_token %}
-    <div class="contentWrapper hideTree">
-        <!-- the signup form -->
-        <div class="content signupcontent fadeOut">
-            <div class="container">
-                <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h3><b>Register </b></h3>
-                        </div>
+    <!-- the signup form -->
+    <div class="container">
+        <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <h3><b>Register </b></h3>
+                </div>
 
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">First Name: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_first_name" name="camper_first_name" type="text"
-                                           class="form-control light name-field" value="{{ first_name }}"
-                                           placeholder=""
-                                           maxlength="48"/>
-                                </div>
-                            </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">First Name: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_first_name" name="camper_first_name" type="text"
+                                   class="form-control light name-field" value="{{ first_name }}"
+                                   placeholder=""
+                                   maxlength="48"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Last Name: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_last_name" name="camper_last_name" type="text"
-                                           class="form-control light name-field" value="{{ last_name }}"
-                                           placeholder=""
-                                           maxlength="48"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Last Name: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_last_name" name="camper_last_name" type="text"
+                                   class="form-control light name-field" value="{{ last_name }}"
+                                   placeholder=""
+                                   maxlength="48"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Date of Birth: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_date_of_birth" name="camper_date_of_birth" type="date"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="" value="{{ date_of_birth }}"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Date of Birth: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_date_of_birth" name="camper_date_of_birth" type="date"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="" value="{{ date_of_birth }}"/>
                         </div>
-                        <div class=" row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Email: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_email" name="camper_email" type="email"
-                                           class="form-control light email-field" value="{{ email }}"
-                                           placeholder=""
-                                           maxlength="100"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class=" row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Email: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_email" name="camper_email" type="email"
+                                   class="form-control light email-field" value="{{ email }}"
+                                   placeholder=""
+                                   maxlength="100"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Verify Email: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_email_again" name="camper_email_again" type="email"
-                                           class="form-control light email-field" value="{{ email_v }}"
-                                           maxlength="100"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Verify Email: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_email_again" name="camper_email_again" type="email"
+                                   class="form-control light email-field" value="{{ email_v }}"
+                                   maxlength="100"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Phone:</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_phone" name="camper_phone" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="15" value="{{ phone }}"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Phone:</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_phone" name="camper_phone" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="15" value="{{ phone }}"/>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">City: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_city" name="camper_city" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="48" value="{{ city }}"/>
-                                </div>
-                            </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">City: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_city" name="camper_city" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="48" value="{{ city }}"/>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">State: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_state" name="camper_state" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="48" value="{{ state }}"/>
-                                </div>
-                            </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">State: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_state" name="camper_state" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="48" value="{{ state }}"/>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Medical Notes:</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_med_notes" name="camper_med_notes" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="400" value="{{ med_notes }}"/>
-                                </div>
-                            </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Medical Notes:</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_med_notes" name="camper_med_notes" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="400" value="{{ med_notes }}"/>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Church: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_chruch" name="camper_church" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="100" value="{{ church }}"/>
-                                </div>
-                            </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Church: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_chruch" name="camper_church" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="100" value="{{ church }}"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Pastor's Name: *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <div class="form-group">
-                                    <input id="camper_pastor" name="camper_pastor" type="text"
-                                           class="form-control light ignore" placeholder=""
-                                           maxlength="100" value="{{ pastor }}"/>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">Pastor's Name: *</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <input id="camper_pastor" name="camper_pastor" type="text"
+                                   class="form-control light ignore" placeholder=""
+                                   maxlength="100" value="{{ pastor }}"/>
                         </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1">
-                                <div class="form-label">Are you a church member? *</div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                                <input id="camper_church_member" name="camper_church_member" type="checkbox"
-                                       class=" light ignore" placeholder="" value="True" {% if church_member %}
-                                       checked {% endif %}
-                                       maxlength="30"/>
-                            </div>
-                        </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <div class="separator bigMarginBottom bigMarginTop"></div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                        <div class="form-label">You a church member? *</div>
+                    </div>
+                    <div class="col-xs-2  col-sm-6 col-sm-offset-0 col-md-4">
+                        <input id="camper_church_member" name="camper_church_member" type="checkbox"
+                               class=" light ignore" placeholder="" value="True" {% if church_member %}
+                               checked {% endif %}
+                               maxlength="30"/>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-1 col-xs-offset-1">
+                        <div class="separator bigMarginBottom bigMarginTop"></div>
+                    </div>
 
-                        </div>
-                        <div class="row panel-row flexHeight center-vertically">
-                            <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
-                                <input type="submit" style=" border-color: rgb(0, 0, 0); " class="btn btn-block"
-                                       id="register" value="Register">
-                                </input>
-                            </div>
-                        </div>
+                </div>
+                <br>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-2">
+                        <input type="submit" style=" border-color: rgb(0, 0, 0); " class="btn btn-block"
+                               id="register" value="Register">
+                        </input>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-3">
+                        <br>
+
                     </div>
                 </div>
             </div>
         </div>
 </form>
+<div class="container">
+    <div class=" no-margin row">
+        <div class="col-xs-3 col-xs-offset-3">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="RWRBZDY8YWYK6">
+                <input type="image"
+                       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+                       border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+                     width="1" height="1">
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
 
 
 {#<html lang="en">#}

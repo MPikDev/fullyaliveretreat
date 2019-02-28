@@ -48,7 +48,12 @@ def reg(request):
                 break
 
     if camper['email'] != camper['email_v']:
-        error_message += "The emails are not the same\n"
+        error_message += "The emails are not the same \n"
+        invalid_post = True
+
+    year = camper['date_of_birth'].split('-')[0]
+    if int(year) > 1996:
+        error_message += "Not old enough to go to camp\n"
         invalid_post = True
 
     camper_check = Camper.objects.filter(email=camper['email'])
