@@ -11,7 +11,13 @@ def home(request):
 
 
 def register(request):
-    return render(request, 'register.html')
+    total_campers = Camper.objects.all().count()
+
+    if total_campers > 200:
+        return render(request, 'full.html')
+
+    camper = {'total_campers': total_campers}
+    return render(request, 'register.html', camper)
 
 
 def info(request):
@@ -19,6 +25,8 @@ def info(request):
 
 
 def reg(request):
+    total_campers = Camper.objects.all().count()
+
     camper = dict(
     first_name = request.POST['camper_first_name'],
     last_name = request.POST['camper_last_name'],
@@ -38,31 +46,33 @@ def reg(request):
     )
 
     invalid_post = False
-    error_message = ''
+    error_message = []
 
     for key, item in camper.iteritems():
         if item is u"":
             if key != "med_notes":
-                error_message += "Fill in all the info with * \n"
+                error_message.append("Fill in all the info with *")
                 invalid_post = True
                 break
 
     if camper['email'] != camper['email_v']:
-        error_message += "The emails are not the same \n"
+        error_message.append("The emails are not the same")
         invalid_post = True
 
     year = camper['date_of_birth'].split('-')[0]
-    if int(year) > 1996:
-        error_message += "Not old enough to go to camp\n"
-        invalid_post = True
+    if year != "":
+        if int(year) > 1996:
+            error_message.append("Not old enough to go to camp")
+            invalid_post = True
 
     camper_check = Camper.objects.filter(email=camper['email'])
     if camper_check:
-        error_message += "This email is already in use\n"
+        error_message.append("This email is already in use")
         invalid_post = True
 
     if invalid_post:
         camper["error_message"] = error_message
+        camper["total_campers"] = total_campers
         return render(request, 'register.html', camper)
 
     del camper['email_v']
