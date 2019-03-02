@@ -25,6 +25,12 @@
     </script>
 
     <style>
+
+        br {
+           display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+        }
+
         @font-face {
             font-family: 'pennaregular';
             src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
@@ -39,15 +45,40 @@
             font-size: 36px;
             font-weight: 900;
         }
+
+        .md-padding {
+            padding-left: 48px;
+            padding-top: 20px;
+            padding-bottom: 60px;
+        }
+
+        @media (max-width: 786px) {
+            .md-padding {
+                padding-left: 29px;
+            }
+        }
+
+        .logo {
+            position: fixed;
+            width: 160px;
+            right: 20px;
+            bottom: 20px;
+        }
+
+
     </style>
 </head>
 <body>
+
+<img src="{% static 'registration/NWASBC Logo Full Wording Horizontal.png' %}" class="logo visible-lg">
+<img src="{% static 'registration/NWASBC Logo Acronym Horizontal.png' %}" class="logo hidden-lg ">
 
 <div class="container">
 
     <div class="col-xs-12 col-sm-6 col-md-offset-3 col-md-9">
         <h1>FULLY ALIVE RETREAT 2019</h1>
     </div>
+
 
     <!-- Dates & Cost-->
     <div class="row">
@@ -57,6 +88,10 @@
             <br>Check In: 4 PM - 6 PM
             <br>Check Out: 11 AM
 
+            <h2>Topics:</h2>
+            <br>Day 1 - Living a life with purpose.
+            <br>Day 2 - Spiritual discipline & discipline with time/money abilities.
+            <br>Day 3 - Living abundantly.
 
             <h2>ADDITIONAL INFO</h2>
             <br>Online registration only
@@ -71,9 +106,7 @@
             <br>Essential Hygiene Items
             <br>Church Clothes
 
-            <h2>QUESTIONS?</h2>
-            <br>Registration: Mark 509-979-5419
-            <br>All Other: Andrey 509-290-1133‬
+
             <!--<ul>
                 <li>Bedding for cabins (Mattresses are provide)</li>
                 <li>Warm Clothes</li>
@@ -111,17 +144,28 @@
                 </li>
             </ul>
             -->
-            <br>Clothes should be representative of who we are as Christians
-            <br>No use of drugs, alcohol or tobacco products
+            <br>Clothes should be representative of who we are as Christians.
+            <br>No use of drugs, alcohol or tobacco products.
             <br>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
-            and other time-related instructions
+            and other time-related instructions.
 
-            <br>No sexual misconduct
+            <br>No sexual misconduct.
             <br>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
-            puts down, makes fun of, or stereotypes other persons or groups
+            puts down, makes fun of, or stereotypes other persons or groups.
+
+            <h2>QUESTIONS?</h2>
+            <br>Registration: Mark 509-979-5419
+            <br>All Other: Andrey 509-290-1133‬
+
         </div>
     </div>
 
+            <br>
+            <br>
+            <br>
+    <div class="col-xs-10 col-sm-6 col-md-offset-3 col-md-9 md-padding">
+        <h5>This retreat is organized by the Department of NWASBC Union</h5>
+    </div>
 
     <!-- question -->
     <div class="row">
