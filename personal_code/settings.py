@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ml6jd5!%0@!as&3p9fzf1nluv!2alchgps%fn4ubpm#96ax41*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 PAYPAL_TEST = True
 
 ALLOWED_HOSTS = ['*']
@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'fullyalive2019.apps.Fullyalive2019Config',
     'registration.apps.RegistrationConfig',
     'paypal.standard.ipn'
