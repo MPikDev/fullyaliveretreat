@@ -3,8 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration is Full</title>
-</head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+
+    <style>
+        body, html {
+            height: 100%;
+        {#width: 100%;#}
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("{% static 'registration/S5.png'%}")
+        }
+
+        @font-face {
+            font-family: 'pennaregular';
+            src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
+            url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .home-button {
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
+            position: absolute;
+            margin-top: 0px;
+            height: 72px;
+            left: 50%;
+            top: 69%;
+            margin-left: -337px;
+            width: 675px;
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .paid-title {
+            text-align: center;
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
+        }
+
+        .successBox {
+            margin-top: 28%;
+            background: white;
+        }
+
+        @media (max-width: 786px) {
+            body, html {
+                background-attachment: scroll;
+                background-image: url("{% static 'registration/m5.jpg'%}")
+
+            }
+
+            .home-button {
+                position: absolute;
+                margin-top: 0px;
+                height: 72px;
+                left: 0px;
+                margin-left: 0px;
+                top: 66%;
+                width: 100%;
+            }
+        }
+    </style>
 <body>
-<h1>We have reached the maximum limit for campers and are not taking any more campers registrations at this time</h1>
+<div class="container">
+    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
+        <h1 class="paid-title">REGISTRATION IS FULL</h1>
+        <p style="text-align: center;">
+            We have reached the maximum limit for campers and are not taking any more camper registrations at this time.
+        </p>
+    </div>
+
+</div>
+<button class="home-button" onclick="window.location.href='/'">HOME</button>
+
 </body>
 </html>

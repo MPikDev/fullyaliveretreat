@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django.views.decorators.csrf import csrf_exempt
-import datetime
 from registration.models import Camper
-
-# Create your views here.
 
 
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 
 
 def home(request):
     return render(request, 'home.html')
+
+def full(request):
+    return render(request, 'full.html')
 
 
 def register(request):
@@ -47,7 +46,7 @@ def reg(request):
     church = request.POST['camper_church'],
     pastor = request.POST['camper_pastor'],
     church_member = request.POST.get('camper_church_member', False),
-    # paid = request.POST['camper_paid']
+    paypal = 'reg',
     paid = False
     # timestamp = datetime.datetime.now()
     )
@@ -58,7 +57,7 @@ def reg(request):
     for key, item in camper.iteritems():
         if item is u"":
             if key != "med_notes":
-                error_message.append("Fill in all the info with *")
+                error_message.append("Not all info with * is filled in")
                 invalid_post = True
                 break
 
@@ -101,7 +100,6 @@ def pay_now(request, *args, **kwargs):
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
         "return": request.build_absolute_uri(reverse('your-return-view')),
         "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
-        # "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
 
     # Create the instance.
@@ -111,26 +109,9 @@ def pay_now(request, *args, **kwargs):
 
 @csrf_exempt
 def return_url(request):
-    args = {'post': request.POST, 'get': request.GET}
-
-    camper = None
-    camper_id = request.POST.get('invoice', '')
-    if camper_id != '':
-        camper = Camper.objects.filter(id=camper_id)
-        if camper:
-            camper.paypal = "used_paypal"
-            camper.save()
-    return render(request, 'success.html', args)
+    return render_to_response('success.html')
 
 @csrf_exempt
 def canceled_url(request):
-    args = {'post': request.POST, 'get': request.GET}
-    camper = None
-    camper_id = request.POST.get('invoice', '')
-    if camper_id != '':
-        camper = Camper.objects.filter(id=camper_id)
-        if camper:
-            camper.paypal = "used_paypal_but_canceled"
-            camper.save()
-    return render(request, 'cancel.html', args)
+    return render_to_response('cancel.html')
 
