@@ -18,6 +18,7 @@ class Camper(models.Model):
     church = models.CharField(max_length=100)
     pastor = models.CharField(max_length=100)
     church_member = models.BooleanField()
+    paypal = models.CharField(max_length=48, default='earlier')
     paid = models.BooleanField()
     timestamp = models.DateTimeField(auto_now=True)
 

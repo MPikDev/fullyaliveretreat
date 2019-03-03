@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^registration', views.register),
     url(r'^info', views.info),
     url(r'^reg', views.reg),
-    # url(r'^ipn', views.ipn),
-    # url(r'^paypal/', include('paypal.standard.ipn.urls')),
+    url(r'^return', views.return_url, name='your-return-view'),
+    url(r'^cancel', views.canceled_url, name='your-cancel-view'),
+    url(r'^REMOVED/', include('paypal.standard.ipn.urls')),
 
 ]

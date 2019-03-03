@@ -20,6 +20,7 @@ SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+PAYPAL_TEST = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fullyalive2019.apps.Fullyalive2019Config',
     'registration.apps.RegistrationConfig',
-    # 'paypal.standard.ipn'
+    'paypal.standard.ipn'
 
 ]
 
