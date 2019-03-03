@@ -24,8 +24,8 @@
 
         body, html {
             height: 100%;
-             margin: 0;
-            {#-moz-osx-font-smoothing: grayscale;#}
+            margin: 0;
+        {#-moz-osx-font-smoothing: grayscale;#}
         }
 
         .parallax {
@@ -58,7 +58,6 @@
             background-image: url("{% static 'registration/S5.png'%}")
         }
 
-
         {#tablets #}
         {#@media (min-width: 500px ) and (max-width: 786px) {#}
         @media (max-width: 786px) {
@@ -81,9 +80,11 @@
             .register-pic {
                 background-image: url("{% static 'registration/m5.jpg'%}")
             }
-             .parallax {
-                 background-attachment: scroll;
-             }
+
+            .parallax {
+                background-attachment: scroll;
+            }
+
         }
 
         {#phones #}
@@ -229,6 +230,29 @@
             background: rgba(255, 255, 255, 0.5);
             border-color: rgba(255, 255, 255, 0.5);
 
+        }
+
+        @media (max-width: 786px) {
+
+            .reg-button {
+                position: absolute;
+                margin-top: 0px;
+                height: 72px;
+                left: 0px;
+                margin-left: 0px;
+            top: 434%;
+                width: 100%;
+            }
+
+            .info-button {
+                position: absolute;
+                margin-top: 0px;
+                height: 72px;
+                left: 0px;
+                margin-left: 0px;
+            top: 465%;
+                width: 100%;
+            }
         }
 
         @font-face {

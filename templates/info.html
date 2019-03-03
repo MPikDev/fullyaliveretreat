@@ -25,9 +25,20 @@
     </script>
 
     <style>
+        body {
+            height: 100%;
+            width: 100%;
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("{% static 'registration/S5.png'%}")
+
+        }
 
         br {
-           display: block; /* makes it have a width */
+            display: block; /* makes it have a width */
             content: ""; /* clears default height */
         }
 
@@ -60,9 +71,23 @@
 
         .logo {
             position: fixed;
-            width: 160px;
+            width: 120px;
             right: 20px;
             bottom: 20px;
+            z-index: 100;
+        }
+
+        .logo-xs {
+            position: fixed;
+            width: 98px;
+            right: 20px;
+            bottom: 20px;
+            z-index: 100;
+        }
+
+        .moreinfoBox {
+            margin-top: 50px;
+            background: white;
         }
 
 
@@ -70,122 +95,122 @@
 </head>
 <body>
 
-<img src="{% static 'registration/NWASBC Logo Full Wording Horizontal.png' %}" class="logo visible-lg">
-<img src="{% static 'registration/NWASBC Logo Acronym Horizontal.png' %}" class="logo hidden-lg ">
+<img src="{% static 'registration/NWASBC Logo FINAL Full Wording Vertical White.png' %}" class="logo visible-lg">
+<img src="{% static 'registration/NWASBC Logo Acronym Horizontal.png' %}" class="logo-xs hidden-lg ">
 
 <div class="container">
-
-    <div class="col-xs-12 col-sm-6 col-md-offset-3 col-md-9">
-        <h1>FULLY ALIVE RETREAT 2019</h1>
-    </div>
-
-
-    <!-- Dates & Cost-->
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-3">
-            <h2>DATES</h2>
-            <br>June 14<sup>th</sup> - 16<sup>th</sup>
-            <br>Check In: 4 PM - 6 PM
-            <br>Check Out: 11 AM
-
-            <h2>Topics:</h2>
-            <br>Day 1 - Living a life with purpose.
-            <br>Day 2 - Spiritual discipline & discipline with time/money abilities.
-            <br>Day 3 - Living abundantly.
-
-            <h2>ADDITIONAL INFO</h2>
-            <br>Online registration only
-            <br>Deadline to register: May 26<sup>th</sup>
-            <br>Capacity: 200 people
-            <br>Age: 23 and older
-
-            <h2>THINGS TO BRING:</h2>
-            <br>Bedding for cabins (Mattresses are provide)
-            <br>Warm Clothes
-            <br>Bible & Journal
-            <br>Essential Hygiene Items
-            <br>Church Clothes
-
-
-            <!--<ul>
-                <li>Bedding for cabins (Mattresses are provide)</li>
-                <li>Warm Clothes</li>
-                <li>Bible & Journal</li>
-                <li>Essential Hygiene Items</li>
-                <li>Church Clothes</li>
-            </ul>
-            -->
+    <div class="moreinfoBox col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="col-xs-12 col-sm-6 col-md-offset-3 col-md-9">
+            <h1>FULLY ALIVE RETREAT 2019</h1>
         </div>
 
-        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-1 col-md-4">
+
+        <!-- Dates & Cost-->
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-3">
+                <h2>DATES</h2>
+                <br>June 14<sup>th</sup> - 16<sup>th</sup>
+                <br>Check In: 4 PM - 6 PM
+                <br>Check Out: 11 AM
+
+                <h2>Topics:</h2>
+                <br>Day 1 - Living a life with purpose.
+                <br>Day 2 - Spiritual discipline & discipline with time/money abilities.
+                <br>Day 3 - Living abundantly.
+
+                <h2>ADDITIONAL INFO</h2>
+                <br>Online registration only
+                <br>Deadline to register: May 26<sup>th</sup>
+                <br>Capacity: 200 people
+                <br>Age: 23 and older
+
+                <h2>THINGS TO BRING:</h2>
+                <br>Bedding for cabins (Mattresses are provide)
+                <br>Warm Clothes
+                <br>Bible & Journal
+                <br>Essential Hygiene Items
+                <br>Church Clothes
 
 
-            <h2>COST</h2>
-            <br>$170 - Before May 1<sup>st</sup>
-            <br>$180 - After May 1<sup>st</sup>
+                <!--<ul>
+                    <li>Bedding for cabins (Mattresses are provide)</li>
+                    <li>Warm Clothes</li>
+                    <li>Bible & Journal</li>
+                    <li>Essential Hygiene Items</li>
+                    <li>Church Clothes</li>
+                </ul>
+                -->
+            </div>
 
-            <h2>ADDRESS</h2>
-            <br><a href="http://www.twinrocks.org" target="_blank">Link: Twin Rock Camp</a>
-            <br>18705 N Hwy 101
-            <br>Rockaway Beach, OR 97136
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-1 col-md-4">
 
-            <h2>NON-NEGOTIABLE RULES</h2>
 
-            <!--
-            <ul>
-                <li>Clothes should be representative of who we are as Christians</li>
-                <li>No use of drugs, alcohol or tobacco products</li>
-                <li>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
-                    and other time-related instructions
-                </li>
-                <li>No sexual misconduct</li>
-                <li>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
-                    puts down, makes fun of, or stereotypes other persons or groups
-                </li>
-            </ul>
-            -->
-            <br>Clothes should be representative of who we are as Christians.
-            <br>No use of drugs, alcohol or tobacco products.
-            <br>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
-            and other time-related instructions.
+                <h2>COST</h2>
+                <br>$170 - Before May 1<sup>st</sup>
+                <br>$180 - After May 1<sup>st</sup>
 
-            <br>No sexual misconduct.
-            <br>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
-            puts down, makes fun of, or stereotypes other persons or groups.
+                <h2>ADDRESS</h2>
+                <br><a href="http://www.twinrocks.org" target="_blank">Link: Twin Rock Camp</a>
+                <br>18705 N Hwy 101
+                <br>Rockaway Beach, OR 97136
 
-            <h2>QUESTIONS?</h2>
-            <br>Registration: Mark 509-979-5419
-            <br>All Other: Andrey 509-290-1133‬
+                <h2>NON-NEGOTIABLE RULES</h2>
 
+                <!--
+                <ul>
+                    <li>Clothes should be representative of who we are as Christians</li>
+                    <li>No use of drugs, alcohol or tobacco products</li>
+                    <li>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
+                        and other time-related instructions
+                    </li>
+                    <li>No sexual misconduct</li>
+                    <li>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
+                        puts down, makes fun of, or stereotypes other persons or groups
+                    </li>
+                </ul>
+                -->
+                <br>Clothes should be representative of who we are as Christians.
+                <br>No use of drugs, alcohol or tobacco products.
+                <br>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
+                and other time-related instructions.
+
+                <br>No sexual misconduct.
+                <br>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
+                puts down, makes fun of, or stereotypes other persons or groups.
+
+                <h2>QUESTIONS?</h2>
+                <br>Registration: Mark 509-979-5419
+                <br>All Other: Andrey 509-290-1133‬
+
+            </div>
         </div>
-    </div>
 
-            <br>
-            <br>
-            <br>
-    <div class="col-xs-10 col-sm-6 col-md-offset-3 col-md-9 md-padding">
-        <h5>This retreat is organized by the Department of NWASBC Union</h5>
-    </div>
-
-    <!-- question -->
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-4 col-md-4">
-
+        <br>
+        <br>
+        <br>
+        <div class="col-xs-10 col-sm-6 col-md-offset-3 col-md-9 md-padding">
+            <h5>This retreat is organized by the Department of NWASBC Union</h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-4 col-md-4">
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        <!-- question -->
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-4 col-md-4">
+
+            </div>
         </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-4 col-md-4">
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+
+
     </div>
-
-
-</div>
 
 </body>

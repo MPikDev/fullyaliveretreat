@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ml6jd5!%0@!as&3p9fzf1nluv!2alchgps%fn4ubpm#96ax41*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 PAYPAL_TEST = True
 
 ALLOWED_HOSTS = ['*']
