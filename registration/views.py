@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 import datetime
 from registration.models import Camper
 
@@ -108,7 +109,7 @@ def pay_now(request, *args, **kwargs):
     context = {"form": form}
     return render(request, "pay_now.html", context)
 
-
+@csrf_exempt
 def return_url(request):
     args = {'post': request.POST, 'get': request.GET}
 
@@ -121,6 +122,7 @@ def return_url(request):
             camper.save()
     return render(request, 'success.html', args)
 
+@csrf_exempt
 def canceled_url(request):
     args = {'post': request.POST, 'get': request.GET}
     camper = None
