@@ -7,28 +7,10 @@ from registration.models import Camper
 # Create your views here.
 
 
-# from django.core.urlresolvers import reverse
-# from django.shortcuts import render
-# from paypal.standard.forms import PayPalPaymentsForm
-#
-# def view_that_asks_for_money(request):
-#
-#     # What you want the button to do.
-#     paypal_dict = {
-#         "business": "receiver_email@example.com",
-#         "amount": "10000000.00",
-#         "item_name": "name of the item",
-#         "invoice": "unique-invoice-id",
-#         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-#         "return": request.build_absolute_uri(reverse('your-return-view')),
-#         "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
-#         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
-#     }
-#
-#     # Create the instance.
-#     form = PayPalPaymentsForm(initial=paypal_dict)
-#     context = {"form": form}
-#     return render(request, "payment.html", context)
+from django.core.urlresolvers import reverse
+from django.shortcuts import render
+from paypal.standard.forms import PayPalPaymentsForm
+
 
 def home(request):
     return render(request, 'home.html')
@@ -101,51 +83,52 @@ def reg(request):
 
     del camper['email_v']
     camper = Camper.objects.create(**camper)
+    data = dict(camper_id=camper.id)
+    return pay_now(request, 'pay_now.html', data)
 
-    return render(request, 'success.html')
+
+def pay_now(request, *args, **kwargs):
+    data = args
+    camper_id = data[1]['camper_id']
+
+    # What you want the button to do.
+    paypal_dict = {
+        "business": "pikulik.mark@gmail.com",
+        "amount": "1.00",
+        "item_name": "registration for camp",
+        "invoice": camper_id,
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "return": request.build_absolute_uri(reverse('your-return-view')),
+        "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
+        # "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+    }
+
+    # Create the instance.
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {"form": form}
+    return render(request, "pay_now.html", context)
 
 
-# def ipn(request, *args, **kwargs):
-#     import pdb
-#     pdb.set_trace()
-#
-# def paypal():
-#     # !/usr/bin/python
-#
-#     '''This module processes PayPal Instant Payment Notification messages (IPNs).'''
-#
-#     import sys
-#     import urllib.parse
-#     import requests
-#
-#     VERIFY_URL_PROD = 'https://ipnpb.paypal.com/cgi-bin/webscr'
-#     VERIFY_URL_TEST = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr'
-#
-#     # Switch as appropriate
-#     VERIFY_URL = VERIFY_URL_TEST
-#
-#     # CGI preamble
-#     print ('content-type: text/plain')
-#     print ()
-#
-#     # Read and parse query string
-#     param_str = sys.stdin.readline().strip()
-#     params = urllib.parse.parse_qsl(param_str)
-#
-#     # Add '_notify-validate' parameter
-#     params.append(('cmd', '_notify-validate'))
-#
-#     # Post back to PayPal for validation
-#
-#     headers = {'content-type': 'application/x-www-form-urlencoded',
-#                'user-agent': 'Python-IPN-Verification-Script'}
-#     r = requests.post(VERIFY_URL, params=params, headers=headers, verify=True)
-#     r.raise_for_status()
-#
-#     # Check return message and take action as needed
-#     if r.text == 'VERIFIED':
-#         pass
-#     elif r.text == 'INVALID':
-#         pass
-#     else:
-#         pass
+def return_url(request):
+    args = {'post': request.POST, 'get': request.GET}
+
+    camper = None
+    camper_id = request.POST.get('invoice', '')
+    if camper_id != '':
+        camper = Camper.objects.filter(id=camper_id)
+        if camper:
+            camper.paypal = "used_paypal"
+            camper.save()
+    return render(request, 'success.html', args)
+
+def canceled_url(request):
+    args = {'post': request.POST, 'get': request.GET}
+    camper = None
+    camper_id = request.POST.get('invoice', '')
+    if camper_id != '':
+        camper = Camper.objects.filter(id=camper_id)
+        if camper:
+            camper.paypal = "used_paypal_but_canceled"
+            camper.save()
+    return render(request, 'cancel.html', args)
+
