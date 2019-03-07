@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Successfully Processed Payment</title>
+    <title>Canceled Payment</title>
 
     {% load static %}
 
@@ -37,7 +37,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-image: url("{% static 'registration/L5.jpg'%}")
+            background-image: url("{% static 'registration/LL5.jpg'%}")
         }
 
         @font-face {
@@ -46,21 +46,6 @@
             url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
             font-weight: normal;
             font-style: normal;
-        }
-
-        .home-button {
-            font-size: 55px;
-            font-family: "pennaregular";
-            font-weight: 900;
-            position: absolute;
-            margin-top: 0px;
-            height: 72px;
-            left: 50%;
-            top: 69%;
-            margin-left: -337px;
-            width: 675px;
-            background: rgba(255, 255, 255, 0.5);
-            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .paid-title {
@@ -75,6 +60,27 @@
             background: white;
         }
 
+        .button-row {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+
+        .button-row.button-row-1 {
+            top: 69%;
+        }
+
+        .home-button {
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
+            margin-top: 0px;
+            height: 72px;
+            width: 675px;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
         @media (max-width: 786px) {
             body, html {
                 background-attachment: scroll;
@@ -82,14 +88,15 @@
 
             }
 
+            .button-row.button-row-1 {
+                top: 66%;
+            }
+
             .home-button {
-                position: absolute;
                 margin-top: 0px;
-                height: 72px;
                 left: 0px;
-                margin-left: 0px;
-                top: 69%;
-                width: 100%;
+                top: 66%;
+                width: 93%;
             }
         }
     </style>
@@ -106,7 +113,8 @@
     </div>
 
 </div>
-<button class="home-button" onclick="window.location.href='/'">HOME</button>
-
+<div class="button-row button-row-1">
+    <button class="home-button" onclick="window.location.href='/'">HOME</button>
+</div>
 </body>
 </html>
