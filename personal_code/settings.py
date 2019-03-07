@@ -20,7 +20,10 @@ SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
 PAYPAL_TEST = True
+# PAYPAL_RECEIVER_EMAIL = 'het7ga@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'het7ga-facilitator@gmail.com'
 
 ALLOWED_HOSTS = ['*']
 

@@ -107,7 +107,8 @@ def pay_now(request, *args, **kwargs):
 
     # What you want the button to do.
     paypal_dict = {
-        "business": "het7ga@gmail.com",
+        # "business": "het7ga@gmail.com",
+        "business": 'het7ga-facilitator@gmail.com',
         "amount": "170.00",
         "item_name": "registration for camp",
         "invoice": camper_id,
