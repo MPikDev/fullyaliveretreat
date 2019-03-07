@@ -19,6 +19,8 @@ from registration import views
 
 
 # app_name = 'retreat'
+handler404 = 'registration.views.not_found'
+handler500 = 'registration.views.error'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,5 +32,6 @@ urlpatterns = [
     url(r'^return', views.return_url, name='your-return-view'),
     url(r'^cancel', views.canceled_url, name='your-cancel-view'),
     url(r'^REMOVED/', include('paypal.standard.ipn.urls')),
+
 
 ]

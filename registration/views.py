@@ -3,10 +3,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render,render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from registration.models import Camper
-
-
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
+import datetime
 
 
 def home(request):
@@ -65,11 +64,26 @@ def reg(request):
         error_message.append("The emails are not the same")
         invalid_post = True
 
-    year = camper['date_of_birth'].split('-')[0]
-    if year != "":
-        if int(year) > 1996:
-            error_message.append("Not old enough to go to camp")
-            invalid_post = True
+    # check if from jquery datetime
+
+    if camper['date_of_birth'].find('/') == 2:
+        year = camper['date_of_birth'].split('/')[2]
+        if year != "":
+            if int(year) > 1996:
+                error_message.append("Not old enough to go to camp")
+                invalid_post = True
+            else:
+                camper['date_of_birth'] = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
+    elif camper['date_of_birth'].find('-') == 4:
+        year = camper['date_of_birth'].split('-')[0]
+        if year != "":
+            if int(year) > 1996:
+                error_message.append("Not old enough to go to camp")
+                invalid_post = True
+    else:
+        error_message.append("Format of date is wrong")
+        invalid_post = True
+
 
     camper_check = Camper.objects.filter(email=camper['email'])
     if camper_check:
@@ -93,8 +107,8 @@ def pay_now(request, *args, **kwargs):
 
     # What you want the button to do.
     paypal_dict = {
-        "business": "pikulik.mark@gmail.com",
-        "amount": "1.00",
+        "business": "het7ga@gmail.com",
+        "amount": "170.00",
         "item_name": "registration for camp",
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
@@ -115,3 +129,8 @@ def return_url(request):
 def canceled_url(request):
     return render_to_response('cancel.html')
 
+def error(request):
+    return render_to_response('error.html')
+
+def not_found(request):
+    return render_to_response('not_found.html')

@@ -39,23 +39,23 @@
         }
 
         .intro {
-            background-image: url("{% static 'registration/L1.jpg'%}");
+            background-image: url("{% static 'registration/LL1.jpg'%}");
         }
 
         .verse {
-            background-image: url("{% static 'registration/L2.jpg'%}")
+            background-image: url("{% static 'registration/LL2.jpg'%}")
         }
 
         .dates {
-            background-image: url("{% static 'registration/L4.jpg'%}")
+            background-image: url("{% static 'registration/LL4.jpg'%}")
         }
 
         .invite {
-            background-image: url("{% static 'registration/L3.jpg'%}")
+            background-image: url("{% static 'registration/LL3.jpg'%}")
         }
 
         .register-pic {
-            background-image: url("{% static 'registration/L5.jpg'%}")
+            background-image: url("{% static 'registration/LL5.jpg'%}")
         }
 
         {#tablets #}
@@ -189,15 +189,37 @@
             color: white;
         }
 
+        .button-row {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+
+        }
+
+        .button-row.button-row-1 {
+            top: 434%;
+        }
+
+        .button-row.button-row-2 {
+            top: 465%;
+        }
+
         @media (max-width: 786px) {
             .no-margin {
                 font-family: "pennaregular";
                 margin-top: 0px;
-                font-size: 36px;
+                font-size: 19px;
                 padding-left: 10px;
                 padding-right: 10px;
-                color: black;
+                color: white;
                 font-weight: 900;
+            }
+
+            .caption {
+                top: 67%;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 0px;
             }
         }
 
@@ -205,54 +227,37 @@
             font-size: 55px;
             font-family: "pennaregular";
             font-weight: 900;
-            position: absolute;
             margin-top: 0px;
             height: 72px;
-            left: 50%;
             top: 434%;
-            margin-left: -337px;
             width: 675px;
             background: rgba(255, 255, 255, 0.5);
-            border-color: rgba(255, 255, 255, 0.5);
+            border: none;
         }
 
         .info-button {
-            font-size: 55px;
+            white-space: nowrap;
+            font-size: 46px;
             font-family: "pennaregular";
             font-weight: 900;
             margin-top: 0px;
-            position: absolute;
             height: 72px;
-            left: 50%;
             top: 465%;
-            margin-left: -337px;
             width: 675px;
             background: rgba(255, 255, 255, 0.5);
-            border-color: rgba(255, 255, 255, 0.5);
-
+            border: none;
         }
 
         @media (max-width: 786px) {
 
             .reg-button {
-                position: absolute;
-                margin-top: 0px;
-                height: 72px;
-                left: 0px;
-                margin-left: 0px;
-            top: 434%;
-                width: 100%;
+                width: 80%;
             }
 
             .info-button {
-                position: absolute;
-                margin-top: 0px;
-                height: 72px;
-                left: 0px;
-                margin-left: 0px;
-            top: 465%;
-                width: 100%;
+                width: 80%;
             }
+
         }
 
         @font-face {
@@ -284,8 +289,12 @@
 <div class="trasparent-bar-3 trasparent-bar-3"></div>
 
 <div class="parallax register-pic"></div>
-<button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
-<button class="info-button" onclick="window.location.href='/info'">MORE INFO</button>
+<div class="button-row button-row-1">
+    <button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
+</div>
+<div class="button-row button-row-2">
+    <button class="info-button" onclick="window.location.href='/info'">MORE INFO</button>
+</div>
 <script>
 
 

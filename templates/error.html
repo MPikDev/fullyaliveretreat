@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Successfully Processed Payment</title>
+    <title>Server Error</title>
 
     {% load static %}
 
@@ -12,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <title>More Info</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
     <script>
@@ -60,27 +59,60 @@
             background: white;
         }
 
+        .button-row {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+
+        .button-row.button-row-1 {
+            top: 69%;
+        }
+
+        .home-button {
+            font-size: 55px;
+            font-family: "pennaregular";
+            font-weight: 900;
+            margin-top: 0px;
+            height: 72px;
+            width: 675px;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
         @media (max-width: 786px) {
             body, html {
                 background-attachment: scroll;
                 background-image: url("{% static 'registration/m5.jpg'%}")
 
             }
+
+            .button-row.button-row-1 {
+                top: 66%;
+            }
+
+            .home-button {
+                margin-top: 0px;
+                left: 0px;
+                top: 66%;
+                width: 93%;
+            }
         }
     </style>
 <body>
 <div class="container">
     <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">SUCCESSFULLY REGISTERED</h1>
-        <br>
+        <h1 class="paid-title">SERVER ERROR</h1>
         <p style="text-align: center;">
-You have registered but you have not secured a spot for this retreat. Please continue and pay through PayPal to secure your spot. If you leave this page you will need to re-register.        </p>
-        <br>
-        <div style="text-align: center;">{{ form.render }}</div>
-        <br>
+            If you are have received this error, please email pikulik.mark@gmail.com with the following information:
+            what steps you took to arrive at server error, what browser you are using, and from what device you are
+            using to access this website (computer/mobile). We apologize for the inconvenience.
+        </p>
     </div>
 
 </div>
-
+<div class="button-row button-row-1">
+    <button class="home-button" onclick="window.location.href='/'">HOME</button>
+</div>
 </body>
 </html>
