@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
 import datetime
 
 
@@ -107,10 +108,10 @@ def pay_now(request, *args, **kwargs):
 
     # What you want the button to do.
     paypal_dict = {
-        # "business": "het7ga@gmail.com",
-        "business": 'het7ga-facilitator@gmail.com',
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount": "170.00",
         "item_name": "registration for camp",
+        'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
         "return": request.build_absolute_uri(reverse('your-return-view')),
