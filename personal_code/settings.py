@@ -21,9 +21,9 @@ SECRET_KEY = 'ml6jd5!%0@!as&3p9fzf1nluv!2alchgps%fn4ubpm#96ax41*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-PAYPAL_TEST = False
-PAYPAL_RECEIVER_EMAIL = 'het7ga@gmail.com'
-# PAYPAL_RECEIVER_EMAIL = 'het7ga-facilitator@gmail.com'
+PAYPAL_TEST = True
+# PAYPAL_RECEIVER_EMAIL = 'het7ga@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'het7ga-facilitator@gmail.com'
 
 ALLOWED_HOSTS = ['*']
 
