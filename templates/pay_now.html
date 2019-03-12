@@ -5,6 +5,8 @@
     <title>Registered</title>
 
     {% load static %}
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,56 +29,16 @@
         gtag('config', 'UA-135068928-1');
     </script>
 
-    <style>
-        body, html {
-            height: 100%;
-        {#width: 100%;#}
-
-            /* Create the parallax scrolling effect */
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("{% static 'registration/LL5.jpg'%}")
-        }
-
-        @font-face {
-            font-family: 'pennaregular';
-            src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
-            url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .paid-title {
-            text-align: center;
-            font-size: 55px;
-            font-family: "pennaregular";
-            font-weight: 900;
-        }
-
-        .successBox {
-            margin-top: 28%;
-            background: white;
-        }
-
-        @media (max-width: 786px) {
-            body, html {
-                background-attachment: scroll;
-                background-image: url("{% static 'registration/m5.jpg'%}")
-
-            }
-        }
-    </style>
-<body>
+<body class="wave-backgroud">
 <div class="container">
     <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
         <h1 class="paid-title">REGISTERED</h1>
         <br>
-        <p style="text-align: center;">
-You have registered but you have not secured a spot for this retreat. Please continue and pay through PayPal to secure your spot. If you leave this page you will need to re-register.        </p>
+        <p class="center">
+            You have registered but you have not secured a spot for this retreat. Please continue and pay through PayPal
+            to secure your spot. If you leave this page you will need to re-register. </p>
         <br>
-        <div style="text-align: center;">{{ form.render }}</div>
+        <div class="center">{{ form.render }}</div>
         <br>
     </div>
 

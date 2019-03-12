@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     {% load static %}
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,80 +27,15 @@
     </script>
 
     <style>
-        body {
-            height: 100%;
-            width: 100%;
-            /* Create the parallax scrolling effect */
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("{% static 'registration/LL5.jpg'%}")
-
-        }
 
         br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */
         }
 
-        @font-face {
-            font-family: 'pennaregular';
-            src: url({% static 'registration/webfontkit-20190207-020242/penna.woff2'%}) format('woff2'),
-            url({% static 'registration/webfontkit-20190207-020242/penna.woff'%}) format('woff');
-            font-weight: normal;
-            font-style: normal;
-
-        }
-
-        .camp_font {
-            font-family: "pennaregular";
-            font-size: 36px;
-            font-weight: 900;
-        }
-
-        .md-padding {
-            padding-top: 20px;
-            padding-bottom: 60px;
-        }
-
-        .logo {
-            position: fixed;
-            width: 120px;
-            right: 20px;
-            bottom: 20px;
-            z-index: 100;
-        }
-
-        .logo-xs {
-            position: fixed;
-            width: 98px;
-            right: 20px;
-            bottom: 20px;
-            z-index: 100;
-        }
-
-        .moreinfoBox {
-            margin-top: 50px;
-            background: white;
-        }
-
-        @media (max-width: 786px) {
-            body, html {
-                background-attachment: scroll;
-                background-repeat: repeat;
-                background-image: url("{% static 'registration/m5.jpg'%}")
-
-            }
-        }
-
-        .center {
-            text-align: center;
-        }
-
     </style>
 </head>
-<body>
+<body class="wave-backgroud">
 
 <img src="{% static 'registration/NWASBC Logo FINAL Full Wording Vertical White.png' %}" class="logo hidden-xs">
 <img src="{% static 'registration/NWASBC Logo Acronym Horizontal.png' %}" class="logo-xs visible-xs">
