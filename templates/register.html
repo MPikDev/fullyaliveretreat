@@ -4,6 +4,8 @@
     <title>Register</title>
 
     {% load static %}
+        <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,45 +26,8 @@
 
         gtag('config', 'UA-135068928-1');
     </script>
-
-    <style>
-        body, html {
-            height: 100%;
-            width: 100%;
-            /* Create the parallax scrolling effect */
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("{% static 'registration/LL5.jpg'%}");
-        }
-
-        .no-margin {
-            margin-top: 0px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .signupBox {
-            margin-top: 100px;
-            background: white;
-        }
-
-        @media (max-width: 786px) {
-            body, html {
-                background-attachment: scroll;
-                background-repeat: repeat;
-                background-image: url("{% static 'registration/m5.jpg'%}")
-            }
-        }
-
-        .center {
-            text-align: center;
-        }
-
-    </style>
 </head>
-<body>
+<body class="wave-backgroud">
 
 <form action="/register" method="post">
     {% csrf_token %}
@@ -74,7 +39,7 @@
                     <h2>Registration</h2>
                     <h5>{{ total_campers }} out of 200 have registered</h5>
                     {% for error in error_message %}
-                        <p style="color: red"><strong>{{ error }}</strong></p>
+                        <p class="error-text"><strong>{{ error }}</strong></p>
                     {% endfor %}
                 </div>
 
@@ -237,7 +202,7 @@
                 <br>
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-                        <input type="submit" style=" border-color: rgb(0, 0, 0); " class="btn btn-block"
+                        <input type="submit" class="btn btn-block black-boarder"
                                id="register" value="Register">
                         </input>
                     </div>
