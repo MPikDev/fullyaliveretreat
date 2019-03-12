@@ -109,8 +109,8 @@ def pay_now(request, *args, **kwargs):
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": "1.00",
-        "item_name": "registration for camp test",
+        "amount": "170.00",
+        "item_name": "registration for camp",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),

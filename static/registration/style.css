@@ -160,6 +160,7 @@ body, html {
 }
 
 .reg-button {
+    text-align: center;
     font-size: 55px;
     font-family: "pennaregular";
     font-weight: 900;
@@ -172,6 +173,7 @@ body, html {
 }
 
 .info-button {
+    text-align: center;
     white-space: nowrap;
     font-size: 46px;
     font-family: "pennaregular";
