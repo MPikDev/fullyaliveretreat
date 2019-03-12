@@ -61,48 +61,7 @@ body, html {
     .parallax {
         background-attachment: scroll;
     }
-
 }
-
-/*{#phones #}*/
-/*{#@media (max-width: 499px) {#}*/
-/*{#    .intro {#}*/
-/*{#        background-image: url("static/registration/kside.jpg");#}*/
-/*{#    }#}*/
-/*{##}*/
-/*{#    .verse {#}*/
-/*{#        background-image: url("static/registration/kside.jpg");#}*/
-/*{#    }#}*/
-/*{##}*/
-/*{##}*/
-/*{#.intro {#}*/
-/*{#    background: url("static/registration/kside.jpg") 100% 100% no-repeat;#}*/
-/*{#    top: 0px;#}*/
-/*{##}*/
-/*{##}*/
-/*{#.verse {#}*/
-/*{#    background: url("static/registration/kside.jpg") 0% 0% no-repeat;#}*/
-/*{#    top: 500px;#}*/
-/*{##}*/
-/*{##}*/
-/*{#    .dates {#}*/
-/*{#        background-image: url("static/registration/kside.jpg") !important;#}*/
-/*{#    }#}*/
-/*{##}*/
-/*{#    .more {#}*/
-/*{#        background-image: url("static/registration/kside.jpg") !important;#}*/
-/*{#    }#}*/
-/*{##}*/
-/*{#    .parallax {#}*/
-/*{#        width: 100%;#}*/
-/*{#        height: 100%;#}*/
-/*{#    top: 0px;#}*/
-/*{#        left: 0px;#}*/
-/*{#        position: fixed;#}*/
-/*{#    background-attachment: scroll;#}*/
-
-/*{#    }#}*/
-/*{##}*/
 
 .trasparent-bar {
     position: absolute;
@@ -340,6 +299,6 @@ body, html {
     color: red;
 }
 
-.black-boarder{
+.black-boarder {
     border-color: rgb(0, 0, 0) !important;
 }
