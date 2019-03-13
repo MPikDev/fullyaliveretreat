@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.ipn.models import PayPalIPN
+from paypal.standard.models import ST_PP_COMPLETED
 from django.conf import settings
 import datetime
 
@@ -17,7 +19,7 @@ def full(request):
 
 
 def register(request):
-    total_campers = Camper.objects.all().count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
 
     if total_campers > 200:
         return render(request, 'full.html')
@@ -31,7 +33,7 @@ def info(request):
 
 
 def reg(request):
-    total_campers = Camper.objects.all().count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
 
     camper = dict(
     first_name = request.POST['camper_first_name'],
@@ -66,30 +68,37 @@ def reg(request):
         invalid_post = True
 
     # check if from jquery datetime
-
+    date_of_birth_limit = datetime.datetime(1997, 6, 14, 0, 0)
     if camper['date_of_birth'].find('/') == 2:
-        year = camper['date_of_birth'].split('/')[2]
-        if year != "":
-            if int(year) > 1996:
+        split_date = camper['date_of_birth'].split('/')
+        year = split_date[2]
+        day = split_date[1]
+        month = split_date[0]
+        if year != "" and day != "" and month != "":
+            dob = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
+            if dob > date_of_birth_limit:
                 error_message.append("Not old enough to go to camp")
                 invalid_post = True
-            else:
                 camper['date_of_birth'] = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
     elif camper['date_of_birth'].find('-') == 4:
-        year = camper['date_of_birth'].split('-')[0]
-        if year != "":
-            if int(year) > 1996:
+        split_date = camper['date_of_birth'].split('-')
+        year = split_date[0]
+        day = split_date[2]
+        month = split_date[1]
+        if year != "" and day != "" and month != "":
+            dob = datetime.datetime.strptime(camper['date_of_birth'], '%Y-%m-%d')
+            if dob > date_of_birth_limit:
                 error_message.append("Not old enough to go to camp")
                 invalid_post = True
     else:
         error_message.append("Format of date is wrong")
         invalid_post = True
 
-
-    camper_check = Camper.objects.filter(email=camper['email'])
-    if camper_check:
-        error_message.append("This email is already in use")
-        invalid_post = True
+    # removed email check because will check just check who paid instead
+    # camper_check = Camper.objects.filter(email=camper['email'])
+    # if camper_check:
+    #     error_message.append("This email is already in use")
+    #     invalid_post = True
 
     if invalid_post:
         camper["error_message"] = error_message
