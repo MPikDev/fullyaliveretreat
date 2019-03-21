@@ -23,6 +23,8 @@ handler404 = 'registration.views.not_found'
 handler500 = 'registration.views.error'
 
 urlpatterns = [
+    # url('^', include('django.contrib.auth.urls')),
+    url(r'^accounts/login/$', views.log_in),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^registration', views.register),
@@ -32,6 +34,9 @@ urlpatterns = [
     url(r'^return', views.return_url, name='your-return-view'),
     url(r'^cancel', views.canceled_url, name='your-cancel-view'),
     url(r'^REMOVED/', include('paypal.standard.ipn.urls')),
-
+    url(r'^login', views.log_in),
+    url(r'^camper_login', views.camper_login),
+    url(r'^logout', views.camper_logout),
+    url(r'^camper_info', views.camper_info),
 
 ]
