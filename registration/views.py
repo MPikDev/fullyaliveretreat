@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render,render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 from registration.models import Camper
 from django.core.urlresolvers import reverse
@@ -11,6 +11,7 @@ from django.conf import settings
 import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -147,24 +148,21 @@ def error(request):
 def not_found(request):
     return render_to_response('not_found.html')
 
-def camper_login(request):
-    username = request.POST['username']
-    password = request.POST['password']
+def log_in(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return camper_info(request)
+        return HttpResponseRedirect('/camper_info')
     else:
         return render(request, 'login.html')
-
-def log_in(request):
-    return render(request, 'login.html')
 
 def camper_logout(request):
     logout(request)
     return render(request, 'logout.html')
 
-@login_required
+@login_required(redirect_field_name='login')
 def camper_info(request):
     total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice', flat=True)
     int_pks = []
