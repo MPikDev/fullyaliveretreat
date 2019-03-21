@@ -167,8 +167,12 @@ def camper_logout(request):
 @login_required
 def camper_info(request):
     total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice', flat=True)
-    paid_campers_info = Camper.objects.filter(id__in=total_paid_campers_pk)
-    not_campers_info = Camper.objects.all().exclude(id__in=total_paid_campers_pk)
+    int_pks = []
+    for pk in total_paid_campers_pk:
+        int_pks.append(int(pk))
+
+    paid_campers_info = Camper.objects.filter(id__in=int_pks)
+    not_campers_info = Camper.objects.all().exclude(id__in=int_pks)
     data = {'paid_campers_info': paid_campers_info,
             'not_campers_info': not_campers_info,
             'paid_count': len(paid_campers_info),
