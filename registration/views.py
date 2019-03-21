@@ -9,6 +9,8 @@ from paypal.standard.ipn.models import PayPalIPN
 from paypal.standard.models import ST_PP_COMPLETED
 from django.conf import settings
 import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -16,7 +18,6 @@ def home(request):
 
 def full(request):
     return render(request, 'full.html')
-
 
 def register(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
@@ -145,3 +146,31 @@ def error(request):
 
 def not_found(request):
     return render_to_response('not_found.html')
+
+def camper_login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return camper_info(request)
+    else:
+        return render(request, 'login.html')
+
+def log_in(request):
+    return render(request, 'login.html')
+
+def camper_logout(request):
+    logout(request)
+    return render(request, 'logout.html')
+
+@login_required
+def camper_info(request):
+    total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice', flat=True)
+    paid_campers_info = Camper.objects.filter(pk__in=total_paid_campers_pk)
+    not_campers_info = Camper.objects.all().exclude(pk__in=total_paid_campers_pk)
+    data = {'paid_campers_info': paid_campers_info,
+            'not_campers_info': not_campers_info,
+            'paid_count': len(paid_campers_info),
+            'not_count': len(not_campers_info),}
+    return render(request, 'camper_info.html', data)
