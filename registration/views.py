@@ -169,10 +169,35 @@ def camper_info(request):
     for pk in total_paid_campers_pk:
         int_pks.append(int(pk))
 
-    paid_campers_info = Camper.objects.filter(id__in=int_pks)
-    not_campers_info = Camper.objects.all().exclude(id__in=int_pks)
+    # slow query
+    # paid_campers_info = Camper.objects.filter(id__in=int_pks)
+    # not_campers_info = Camper.objects.all().exclude(id__in=int_pks)
+
+    all_campers = Camper.objects.all()
+    print len(all_campers)
+
+    paid_campers_info = []
+    not_campers_info = []
+    not_paid_email_info = []
+    emails = []
+    for camper in all_campers:
+        if camper.id in int_pks:
+            paid_campers_info.append(camper)
+            emails.append(camper.email)
+
+        else:
+            not_campers_info.append(camper)
+            if camper.email not in emails:
+                emails.append(camper.email)
+                not_paid_email_info.append(camper)
+
+
     data = {'paid_campers_info': paid_campers_info,
             'not_campers_info': not_campers_info,
+            'not_paid_email_info': not_paid_email_info,
             'paid_count': len(paid_campers_info),
-            'not_count': len(not_campers_info),}
+            'not_count': len(not_campers_info),
+            'not_email_count': len(not_paid_email_info),}
+
+
     return render(request, 'camper_info.html', data)
