@@ -185,10 +185,10 @@ def camper_info(request):
             paid_campers_info.append(camper)
             emails.append(camper.email)
 
-        else:
+    for camper in all_campers:
+        if camper.id not in int_pks:
             not_campers_info.append(camper)
             if camper.email not in emails:
-                emails.append(camper.email)
                 not_paid_email_info.append(camper)
 
 
