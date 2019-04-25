@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from registration.models import Camper
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.models import PayPalIPN
+from registration.views import filter_campers
 import yagmail
 import time
 
@@ -37,22 +38,9 @@ def reg_not_paid():
     all_campers = Camper.objects.all()
     print len(all_campers)
 
-    paid_campers_info = []
-    not_campers_info = []
-    not_paid_email_info = []
-    emails = []
-    for camper in all_campers:
-        if camper.id in int_pks:
-            paid_campers_info.append(camper)
-            emails.append(camper.email)
+    paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
 
-    for camper in all_campers:
-        if camper.id not in int_pks:
-            not_campers_info.append(camper)
-            if camper.email not in emails:
-                emails.append(camper.email)
-                not_paid_email_info.append(camper)
-
+    print 'emails going to send out:', len(not_paid_email_info)
     send_email(not_paid_email_info)
 
 

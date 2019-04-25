@@ -176,6 +176,21 @@ def camper_info(request):
     all_campers = Camper.objects.all()
     print len(all_campers)
 
+    paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
+
+
+    data = {'paid_campers_info': paid_campers_info,
+            'not_campers_info': not_campers_info,
+            'not_paid_email_info': not_paid_email_info,
+            'paid_count': len(paid_campers_info),
+            'not_count': len(not_campers_info),
+            'not_email_count': len(not_paid_email_info),}
+
+
+    return render(request, 'camper_info.html', data)
+
+
+def filter_campers(all_campers, int_pks):
     paid_campers_info = []
     not_campers_info = []
     not_paid_email_info = []
@@ -189,15 +204,7 @@ def camper_info(request):
         if camper.id not in int_pks:
             not_campers_info.append(camper)
             if camper.email not in emails:
+                emails.append(camper.email)
                 not_paid_email_info.append(camper)
 
-
-    data = {'paid_campers_info': paid_campers_info,
-            'not_campers_info': not_campers_info,
-            'not_paid_email_info': not_paid_email_info,
-            'paid_count': len(paid_campers_info),
-            'not_count': len(not_campers_info),
-            'not_email_count': len(not_paid_email_info),}
-
-
-    return render(request, 'camper_info.html', data)
+    return paid_campers_info, not_campers_info, not_paid_email_info
