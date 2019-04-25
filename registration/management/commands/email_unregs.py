@@ -50,6 +50,7 @@ def reg_not_paid():
         if camper.id not in int_pks:
             not_campers_info.append(camper)
             if camper.email not in emails:
+                emails.append(camper.email)
                 not_paid_email_info.append(camper)
 
     send_email(not_paid_email_info)
