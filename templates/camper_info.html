@@ -21,27 +21,27 @@
 <body>
 <h1>Campers that Paid: {{ paid_count }}</h1>
 <table style="width:100%">
-        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td></tr>
+        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td><td>PK</td></tr>
 
 {% for camper in paid_campers_info %}
-        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td></tr>
+        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td><td>{{ camper.pk }}</td></tr>
 {% endfor %}
 </table>
 <h1>Campers that didnt Pay: {{ not_count }}</h1>
 <table style="width:100%">
-        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td></tr>
+        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td><td>PK</td></tr>
 
 {% for camper in not_campers_info %}
-        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td></tr>
+        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td><td>{{ camper.pk }}</td></tr>
 {% endfor %}
 </table>
 </table>
 <h1>Campers that didnt Pay and no duplicates: {{ not_email_count }}</h1>
 <table style="width:100%">
-        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td></tr>
+        <tr><td>First Name</td><td>Last Name</td><td>Date of Birth</td><td>Email</td><td>Phone</td><td>City</td><td>State</td><td>Medical Notes</td><td>Church</td><td>Paster</td><td>Member</td><td>PK</td></tr>
 
 {% for camper in not_paid_email_info %}
-        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td></tr>
+        <tr><td>{{ camper.first_name }}</td><td>{{ camper.last_name }}</td><td>{{ camper.date_of_birth }}</td><td>{{ camper.email }}</td><td>{{ camper.phone }}</td><td>{{ camper.city }}</td><td>{{ camper.state }}</td><td>{{ camper.med_notes }}</td><td>{{ camper.church }}</td><td>{{ camper.pastor }}</td><td>{{ camper.church_member }}</td><td>{{ camper.pk }}</td></tr>
 {% endfor %}
 </table>
 
