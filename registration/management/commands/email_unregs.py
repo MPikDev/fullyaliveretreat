@@ -7,8 +7,9 @@ import yagmail
 import time
 
 def send_email(list_campers):
-    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "Fulllluf")
-    dont_send_list = [171, 98, 106]
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "lluFfull")
+    # dont_send_list = [171, 98, 106]
+    dont_send_list = [23]
     for camper in list_campers:
         if camper.id not in dont_send_list:
             receiver_email = camper.email
