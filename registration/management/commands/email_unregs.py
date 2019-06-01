@@ -10,23 +10,24 @@ def send_email(list_campers):
     yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "Fulllluf")
 
     for camper in list_campers:
-        receiver_email = camper.email
+        if camper.id != 171:
+            receiver_email = camper.email
 
-        body = """\
-            Hello %s,
+            body = """\
+                Hello %s,
 
-            You are receiving this email because you have not yet paid for the Fully Alive Retreat after having registered. Also, this is a reminder that starting May 1st, the price of registration increases. 
+                You are receiving this email because you have not yet paid for the Fully Alive Retreat after having registered. The registration closes today at midnight.
 
-            If you have paid and have received a PayPal confirmation, please disregard this email. However, if you have paid and have not gotten a confirmation from PayPal, please notify us by email.
+                If you have paid and have received a PayPal confirmation, please disregard this email. However, if you have paid and have not gotten a confirmation from PayPal, please notify us by email.
 
-            We ask that you spread the news about the Fully Alive Retreat by sharing the website www.fullyaliveretreat.com, dates and deadlines with friends and family. Thank you and God bless! We look forward to seeing June 14th.
+                Thank you and God bless! We look forward to seeing June 14th.
 
-        """ % camper.first_name
-        yag.send(
-            to=receiver_email,
-            subject="Payment Reminder - Fully Alive Retreat",
-            contents=body,
-        )
+            """ % camper.first_name
+            yag.send(
+                to=receiver_email,
+                subject="Deadline Reminder - Fully Alive Retreat",
+                contents=body,
+            )
 
 
 def reg_not_paid():
