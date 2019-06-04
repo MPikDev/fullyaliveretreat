@@ -26,7 +26,7 @@ def register(request):
     if total_campers > 200:
         return render(request, 'full.html')
     
-    if datetime.datetime.now() > datetime.datetime(2019, 6, 3, 8, 0):
+    if datetime.datetime.now() > datetime.datetime(2019, 6, 5, 8, 0):
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
