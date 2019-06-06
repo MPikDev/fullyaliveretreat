@@ -23,7 +23,7 @@ class Camper(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return u"{0} {1}, church member: {2}".format(self.first_name, self.last_name, self.church_member)
+        return u"{0} {1}, church member: {2}, paided: {3}".format(self.first_name, self.last_name, self.church_member, self.paid)
 
 
     # first default for paypal was

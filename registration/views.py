@@ -25,7 +25,8 @@ def register(request):
 
     if total_campers > 200:
         return render(request, 'full.html')
-    
+    import pdb
+    pdb.set_trace()
     if datetime.datetime.now() > datetime.datetime(2019, 6, 5, 8, 0):
         return render(request, 'closed.html')
 
@@ -180,14 +181,16 @@ def camper_info(request):
     print len(all_campers)
 
     paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
-
+    final_paid_campers_info = Camper.objects.filter(paid=True)
 
     data = {'paid_campers_info': paid_campers_info,
             'not_campers_info': not_campers_info,
             'not_paid_email_info': not_paid_email_info,
             'paid_count': len(paid_campers_info),
             'not_count': len(not_campers_info),
-            'not_email_count': len(not_paid_email_info),}
+            'not_email_count': len(not_paid_email_info),
+            'final_paid_campers_info':final_paid_campers_info,
+            'final_paid_count': len(final_paid_campers_info) }
 
 
     return render(request, 'camper_info.html', data)
