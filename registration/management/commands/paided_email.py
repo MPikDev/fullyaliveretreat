@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from registration.models import Camper
-from personal_code.settings import STATIC_URL, STATIC_ROOT, STATICFILES_DIRS
+from personal_code.settings import STATIC_ROOT
 import yagmail
 import time
 
@@ -15,16 +15,17 @@ def send_email(list_campers):
             Fully Alive Retreat is around the corner and we wanted to remind you that registration is Friday June 14th from 4 - 6 PM. The building in which registration will be held is the Welcome Center. The location is indicated on the map attached to this email. During registration you will get a map of the camp, told where your cabin will be, and you will have to sign a camp waiver form. If you are not able to register 4-6 PM, please reply to this email or contact Mark (509-979-5419) and mention when you will be arriving. Thank you.
 
         """ % camper.first_name
-        img = yagmail.inline( STATIC_URL + 'registration/camp_map_reg.png')
         yag.send(
             to=receiver_email,
-            subject="Deadline Reminder - Fully Alive Retreat",
-            contents=[yagmail.inline( STATIC_URL + 'registration/camp_map_reg.png')],
+            subject="Check-in Details - Fully Alive Retreat",
+            contents=body,
+            attachments= STATIC_ROOT +'/registration/camp_map_reg.pdf'
         )
 
 
 def email_paided():
-    final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
+    # final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
+    final_paid_campers_info = Camper.objects.filter(pk=122)
 
     print 'emails going to send out:', len(final_paid_campers_info)
     send_email(final_paid_campers_info)

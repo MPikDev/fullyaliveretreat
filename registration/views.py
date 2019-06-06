@@ -175,7 +175,7 @@ def camper_info(request):
     # paid_campers_info = Camper.objects.filter(id__in=int_pks)
     # not_campers_info = Camper.objects.all().exclude(id__in=int_pks)
 
-    all_campers = Camper.objects.all()
+    all_campers = Camper.objects.all().order_by('pk')
     print len(all_campers)
 
     paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
