@@ -27,7 +27,7 @@ def register(request):
         return render(request, 'full.html')
     import pdb
     pdb.set_trace()
-    if datetime.datetime.now() > datetime.datetime(2019, 6, 5, 8, 0):
+    if datetime.datetime.now() > datetime.datetime(2019, 6, 6, 7, 0):
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
