@@ -19,7 +19,7 @@ def send_email(list_campers):
         yag.send(
             to=receiver_email,
             subject="Deadline Reminder - Fully Alive Retreat",
-            contents=[body, img],
+            contents=[yagmail.inline( STATIC_URL + 'registration/camp_map_reg.png')],
         )
 
 
