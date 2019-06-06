@@ -181,7 +181,7 @@ def camper_info(request):
     print len(all_campers)
 
     paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
-    final_paid_campers_info = Camper.objects.filter(paid=True)
+    final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
 
     data = {'paid_campers_info': paid_campers_info,
             'not_campers_info': not_campers_info,
