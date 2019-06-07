@@ -25,7 +25,7 @@ def send_email(list_campers):
 
 
 def email_paided():
-    final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=141).order_by('pk')
+    final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=155).order_by('pk')
     # final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=23).order_by('pk')
     # final_paid_campers_info = Camper.objects.filter(pk=122)
 
