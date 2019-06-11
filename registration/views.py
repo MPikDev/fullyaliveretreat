@@ -23,7 +23,7 @@ def full(request):
 def register(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
 
-    if total_campers > 135:
+    if total_campers > 134:
         return render(request, 'full.html')
     if datetime.datetime.now() > datetime.datetime(2019, 6, 12, 7, 0):
         return render(request, 'closed.html')
