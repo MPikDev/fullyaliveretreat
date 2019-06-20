@@ -12,7 +12,9 @@ def send_email(list_campers):
         body = """\
             Hello %s,
 
-           Thank you for coming out and joining us at the Fully Alive Retreat. We hope you had a good and blessed time. You already might have filled out the survey, but if not, this is a reminder. We would appreciate any feedback, thoughts and suggestions. Here is the link <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeBRWi8hnqLVPvrwJChocqKDxWa00pDlfzCKEWZlF-Hr2HJw/viewform?usp=pp_url" target="_blank">Survey</a>.        """ % camper.first_name
+           Thank you for coming out and joining us at the Fully Alive Retreat. We hope you had a good and blessed time. You already might have filled out the survey, but if not, this is a reminder. We would appreciate any feedback, thoughts and suggestions. Here is the link <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeBRWi8hnqLVPvrwJChocqKDxWa00pDlfzCKEWZlF-Hr2HJw/viewform?usp=pp_url" target="_blank">Survey</a>.     
+              
+              """ % camper.first_name
         yag.send(
             to=receiver_email,
             subject="Survey - Fully Alive Retreat",
@@ -22,9 +24,8 @@ def send_email(list_campers):
 
 
 def email_survey():
-    final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
-    # final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=155).order_by('pk')
-    # final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=23).order_by('pk')
+    # final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
+    final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=176).order_by('pk')
     # final_paid_campers_info = Camper.objects.filter(pk=4)
 
     print 'emails going to send out:', len(final_paid_campers_info)
