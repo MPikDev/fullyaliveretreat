@@ -140,6 +140,10 @@ body, html {
     top: 465%;
 }
 
+.button-row.button-row-pic{
+    top: 76%;
+}
+
 @media (max-width: 786px) {
     .no-margin {
         font-family: "pennaregular";
@@ -157,6 +161,9 @@ body, html {
         text-align: center;
         margin-bottom: 0px;
     }
+    .button-row.button-row-pic{
+    top: 72%;
+}
 }
 
 .reg-button {
@@ -190,6 +197,18 @@ body, html {
     width: 675px;
     background: rgba(255, 255, 255, 0.5);
     border: none;
+}
+
+.pic-button {
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 36px;
+    padding-left: 10px;
+    padding-right: 10px;
+        background: none;
+    border: none;
+
+    color: white;
 }
 
 @media (max-width: 786px) {
