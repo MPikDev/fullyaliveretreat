@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Fully Alive Retreat</title>
+        <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+</head>
+<body>
+
+<div class="parallax wave-test" id="intro"></div>
+
+<div class="title-2020">
+    <span class="title-2020-text-date">2 0 2 0</span>
+   <p class="title-2020-text">
+       <br><span class="title-2020-text">F U L L Y</span>
+       <span class="title-2020-text">A L I V E</span>
+      <br> R E T R E A T
+   <br> <span class="title-2020-text-date"> JUNE 11th - 14th</span>
+   </p>
+
+
+</div>
+<div class="caption">
+    <span class="no-margin">S C R O L L</span>
+    <span class="no-margin">D O W N</span>
+</div>
+<div class="trasparent-bar"></div>
+
+<div class="parallax verse"></div>
+<div class="trasparent-bar-1"></div>
+
+<div class="parallax invite"></div>
+<div class="trasparent-bar-2 trasparent-bar-2"></div>
+
+<div class="parallax wave-test"></div>
+<div class="date-2020">
+   <p> <span class="date-2020-text-title">PNW YOUTH RETREAT</span>
+      <br> <span class="date-2020-text-location">LOCATION: TWIN ROCKS FRIENDS CAMP
+           <br> <span style="padding-left: 209px"> ROCKAWAY BEACH, OREGON </span></span>
+<!-- <br> <span class="date-2020-text"> JUNE <span style="font-family: 'Times New Roman'">11</span>th - <span style="font-family: 'Times New Roman'">14</span>th -->
+       <br> <span class="date-2020-text"> JUNE 11th - 14th</span>
+           <br><span class="date-2020-text"> <span class="date-2020-text">SPACE</span> <span class="date-2020-text">IS </span>
+           <span class="date-2020-text">LIMITED</span> AGE: 23+ </span>
+   </p>
+</div>
+<div class="trasparent-bar-3 trasparent-bar-3"></div>
+
+<div class="parallax register-pic"></div>
+<div class="button-row button-row-1">
+    <button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
+</div>
+<div class="button-row button-row-2">
+    <button class="info-button" onclick="window.location.href='/infotwo'">MORE INFO</button>
+</div>
+<script>
+
+var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+"
+"
+if (!isiOS){
+ window.addEventListener('scroll', function(){ // on page scroll
+  requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
+ }, false)
+
+ window.addEventListener('resize', function(){ // on window resize
+  var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
+  var scrollamount = (scrolltop / (scrollheight-windowheight)) * 100 // get amount scrolled (in %)
+  intro.style.left = -100 + scrollamount + '%' // set position of fish in percentage (starts at -100%)
+ }, false)
+}
+
+</script>
+</body>
+</html>

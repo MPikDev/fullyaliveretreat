@@ -329,3 +329,83 @@ body, html {
 .black-boarder {
     border-color: rgb(0, 0, 0) !important;
 }
+
+.title-2020 {
+    margin-left: 10%;
+text-shadow: 13px -14px grey;
+        background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    top: 24%;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 0px;
+     }
+
+.title-2020-text-date {
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 120px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.title-2020-text {
+    margin-top: -100px !important;
+    font-family: "pennaregular";
+    margin-top: 0px;
+    /*font-weight: 900;*/
+    font-size: 82px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.date-2020 {
+    margin-left: 10%;
+text-shadow: 6px -7px grey;
+        background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    top: 324%;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 0px;
+     }
+
+.date-2020-text-title {
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 67px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.date-2020-text-location {
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.date-2020-text {
+    margin-top: -100px !important;
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.title-2020-text-date {
+    margin-top: -100px !important;
+    font-family: "pennaregular";
+    margin-top: 0px;
+    font-size: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.wave-test {
+    background-image: url("LL5.jpg")
+}
