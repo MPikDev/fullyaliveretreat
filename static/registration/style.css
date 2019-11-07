@@ -361,6 +361,10 @@ body, html {
     font-size: 82px;
 }
 
+.text-2020.title-date {
+    font-size: 60px;
+}
+
 .date-2020 {
     margin-left: 10%;
     text-shadow: 6px -7px grey;
@@ -373,25 +377,25 @@ body, html {
     margin-bottom: 0px;
 }
 
-.text-2020.date-title {
+.date-2020.date-title {
     font-size: 67px;
 }
 
-.text-2020.date-location {
+.date-2020.date-location {
     font-size: 40px;
 }
 
-.text-2020.date-location-offset {
+.date-2020.date-location-offset {
     font-size: 40px;
     padding-left: 209px;
 }
 
-.text-2020.date {
+.date-2020.date {
     margin-left: -335px !important;
     font-size: 50px;
 }
 
-.text-2020.title-date {
+.date-2020.date-limit {
     font-size: 60px;
 }
 
@@ -402,7 +406,7 @@ body, html {
 @media (max-width: 786px) {
 
     .text-2020.title-year {
-        font-size: 50px;
+        font-size: 55px;
     }
 
     .text-2020.title {
@@ -412,7 +416,7 @@ body, html {
     }
 
     .text-2020.title-date {
-        font-size: 27px;
+        font-size: 30px;
     }
 
     .date-2020 {
@@ -441,9 +445,12 @@ body, html {
     }
 
     .text-2020.date {
-        margin-left: -126px !important;
-        font-size: 20px;
+        margin-left: -103px !important;
+        font-size: 25px;
     }
 
+    .text-2020.date-limit {
+        font-size: 18px;
+    }
 
 }
