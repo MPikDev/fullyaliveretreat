@@ -17,6 +17,9 @@ from django.http import HttpResponseRedirect
 def home(request):
     return render(request, 'home.html')
 
+def home2(request):
+    return render(request, 'home2.html')
+
 def full(request):
     return render(request, 'full.html')
 
@@ -32,8 +35,11 @@ def register(request):
     return render(request, 'register.html', camper)
 
 
-def info(request):
-    return render(request, 'info.html')
+# def info(request):
+    # return render(request, 'info.html')
+
+def info_two(request):
+    return render(request, 'info_two.html')
 
 
 def reg(request):
