@@ -140,7 +140,7 @@ body, html {
     top: 465%;
 }
 
-.button-row.button-row-pic{
+.button-row.button-row-pic {
     top: 76%;
 }
 
@@ -161,9 +161,10 @@ body, html {
         text-align: center;
         margin-bottom: 0px;
     }
-    .button-row.button-row-pic{
-    top: 72%;
-}
+
+    .button-row.button-row-pic {
+        top: 72%;
+    }
 }
 
 .reg-button {
@@ -205,7 +206,7 @@ body, html {
     font-size: 36px;
     padding-left: 10px;
     padding-right: 10px;
-        background: none;
+    background: none;
     border: none;
 
     color: white;
@@ -332,80 +333,117 @@ body, html {
 
 .title-2020 {
     margin-left: 10%;
-text-shadow: 13px -14px grey;
-        background: rgba(0, 0, 0, 0.4);
+    text-shadow: 13px -14px grey;
+    background: rgba(0, 0, 0, 0.4);
     position: absolute;
     left: 0;
     top: 24%;
     width: 80%;
     text-align: center;
     margin-bottom: 0px;
-     }
+}
 
-.title-2020-text-date {
+.text-2020 {
     font-family: "pennaregular";
     margin-top: 0px;
-    font-size: 120px;
     padding-left: 10px;
     padding-right: 10px;
     color: white;
 }
-.title-2020-text {
+
+.text-2020.title-year {
+    font-size: 120px;
+}
+
+.text-2020.title {
     margin-top: -100px !important;
-    font-family: "pennaregular";
-    margin-top: 0px;
     /*font-weight: 900;*/
     font-size: 82px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
 }
+
 .date-2020 {
     margin-left: 10%;
-text-shadow: 6px -7px grey;
-        background: rgba(0, 0, 0, 0.4);
+    text-shadow: 6px -7px grey;
+    background: rgba(0, 0, 0, 0.4);
     position: absolute;
     left: 0;
     top: 324%;
     width: 80%;
     text-align: center;
     margin-bottom: 0px;
-     }
+}
 
-.date-2020-text-title {
-    font-family: "pennaregular";
-    margin-top: 0px;
+.text-2020.date-title {
     font-size: 67px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
 }
-.date-2020-text-location {
-    font-family: "pennaregular";
-    margin-top: 0px;
+
+.text-2020.date-location {
     font-size: 40px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
 }
-.date-2020-text {
-    margin-top: -100px !important;
-    font-family: "pennaregular";
-    margin-top: 0px;
+
+.text-2020.date-location-offset {
+    font-size: 40px;
+    padding-left: 209px;
+}
+
+.text-2020.date {
+    margin-left: -335px !important;
     font-size: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
 }
-.title-2020-text-date {
-    margin-top: -100px !important;
-    font-family: "pennaregular";
-    margin-top: 0px;
+
+.text-2020.title-date {
     font-size: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
 }
+
 .wave-test {
     background-image: url("LL5.jpg")
+}
+
+@media (max-width: 786px) {
+
+    .text-2020.title-year {
+        font-size: 50px;
+    }
+
+    .text-2020.title {
+        margin-top: -40px !important;
+        /*font-weight: 900;*/
+        font-size: 33px;
+    }
+
+    .text-2020.title-date {
+        font-size: 27px;
+    }
+
+    .date-2020 {
+        margin-left: 10%;
+        text-shadow: 3px -2px grey;
+        background: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        left: 0;
+        top: 339%;
+        width: 80%;
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    .text-2020.date-title {
+        font-size: 28px;
+    }
+
+    .text-2020.date-location {
+        font-size: 15px;
+    }
+
+    .text-2020.date-location-offset {
+        font-size: 15px;
+        padding-left: 79px;
+    }
+
+    .text-2020.date {
+        margin-left: -126px !important;
+        font-size: 20px;
+    }
+
+
 }
