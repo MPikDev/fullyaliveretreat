@@ -24,9 +24,61 @@
     </script>
 </head>
 <body>
+<!--    Made by Erik Terwan    -->
+<!--   24th of November 2015   -->
+<!--        MIT License        -->
+<nav role="navigation">
+  <div id="menuToggle">
+    <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+    <input type="checkbox" />
 
-<div class="parallax wave-test" id="intro"></div>
+    <!--
+    Some spans to act as a hamburger.
 
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+    <ul id="menu">
+      <a href="#"><li>Home</li></a>
+      <a href="#"><li>About</li></a>
+      <a href="#"><li>Info</li></a>
+      <a href="#"><li>Contact</li></a>
+      <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
+    </ul>
+  </div>
+</nav>
+
+<div class="picture test-header-pic"></div>
+<div class="main-title">
+    <h1 class="main_title_text" style="color: green">
+        FULLY
+    </h1>
+    <h1 class="main_title_text" style="color: white">
+        ALIVE
+    </h1>
+    <h1 class="main2_title_text" style="color: white"> PNW Youth Retreat</h1>
+</div>
+<p>This example creates a full page background image. Try to resize the browser window to see how it always will cover
+    the full screen (when scrolled to top), and that it scales nicely on all screen sizes.</p>
+
+<h3>
+    Whoever pursues righteousness and love finds life, prosperity and honor.
+    <br>Proverbs 21:21
+</h3>
+
+
+<!--
 <div class="title-2020">
     <span class="text-2020 title-year">2 0 2 0</span>
     <p class="text-2020 title">
@@ -55,39 +107,30 @@
     <p><span class="text-2020 date-title">PNW YOUTH RETREAT</span>
         <br> <span class="text-2020 date-location">LOCATION: TWIN ROCKS FRIENDS CAMP</span>
         <br> <span class="text-2020 date-location-offset"> ROCKAWAY BEACH, OREGON </span>
-        <!-- <br> <span class="date-2020-text"> JUNE <span style="font-family: 'Times New Roman'">11</span>th - <span style="font-family: 'Times New Roman'">14</span>th -->
-        <br> <span class="text-2020 date"> JUNE 11th - 14th</span>
-        <br><span class="text-2020 date-limit"> <span class="text-2020 date-limit">SPACE</span> <span
-                class="text-2020 date-limit">IS </span>
-           <span class="text-2020 date-limit">LIMITED</span> AGE: 23+ </span>
-    </p>
+        -->
+<!-- <br> <span class="date-2020-text"> JUNE <span style="font-family: 'Times New Roman'">11</span>th - <span style="font-family: 'Times New Roman'">14</span>th -->
+<!--
+ <br> <span class="text-2020 date"> JUNE 11th - 14th</span>
+ <br><span class="text-2020 date-limit"> <span class="text-2020 date-limit">SPACE</span> <span
+         class="text-2020 date-limit">IS </span>
+    <span class="text-2020 date-limit">LIMITED</span> AGE: 23+ </span>
+</p>
 </div>
 <div class="trasparent-bar-3 trasparent-bar-3"></div>
 
 <div class="parallax register-pic"></div>
 <div class="button-row button-row-1">
-    <button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
+<button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
 </div>
 <div class="button-row button-row-2">
-    <button class="info-button" onclick="window.location.href='/infotwo'">MORE INFO</button>
+<button class="info-button" onclick="window.location.href='/infotwo'">MORE INFO</button>
 </div>
 <script>
 
-    var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
-    "
-    "
-    if (!isiOS) {
-        window.addEventListener('scroll', function () { // on page scroll
-            requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
-        }, false)
-
-        window.addEventListener('resize', function () { // on window resize
-            var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
-            var scrollamount = (scrolltop / (scrollheight - windowheight)) * 100 // get amount scrolled (in %)
-            intro.style.left = -100 + scrollamount + '%' // set position of fish in percentage (starts at -100%)
-        }, false)
-    }
+</script>
+-->
+<script>
 
 </script>
 </body>
