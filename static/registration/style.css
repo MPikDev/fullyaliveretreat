@@ -24,8 +24,14 @@ body, html {
     width: 340px;
     padding: 20px;
 }
+.date_loc_div{
+padding: 20px;
+        padding-top: 100px;
+
+}
 
 .countdown{
+    margin-top: 40px;
   position: absolute;
   /*top: 50%;*/
   left: 50%;
@@ -110,7 +116,9 @@ h3:after {
     margin-right: 0;
 
 }
-
+.map {
+    background-image: url("map.png");
+}
 
 .intro {
     background-image: url("LL1.jpg");
