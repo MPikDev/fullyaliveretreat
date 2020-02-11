@@ -16,12 +16,25 @@ body, html {
 }
 
 .test-header-pic {
-    background-image: url("hay.png");
+    background-image: url("sunset_2020.png");
+}
+
+.verse-div {
+    height: 280px;
+    width: 340px;
+    padding: 20px;
+}
+
+.countdown{
+  position: absolute;
+  /*top: 50%;*/
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .picture {
     /* The image used */
-    margin-top: 100px;
+    /*margin-top: 100px;*/
     /* Full height */
     width: 100%;
     height: 100%;
@@ -558,7 +571,7 @@ body {
 
 #menuToggle {
     display: block;
-    position: relative;
+    position: fixed;
     top: 50px;
     left: 50px;
 
@@ -657,7 +670,7 @@ body {
  */
 #menu {
     position: absolute;
-    width: 300px;
+    width: 190px;
     margin: -100px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
