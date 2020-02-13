@@ -547,10 +547,6 @@ h3:after {
     font-size: 60px;
 }
 
-.wave-test {
-    background-image: url("LL5.jpg")
-}
-
 @media (max-width: 786px) {
 
     .text-2020.title-year {
