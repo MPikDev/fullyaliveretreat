@@ -16,7 +16,7 @@ body, html {
     color: white;
     position: absolute;
     /*z-index: 1;*/
-    top: 220px;
+    top: 132px;
     width: 100%;
     text-align: center;
 
@@ -27,7 +27,7 @@ body, html {
 }
 
 .test-header-pic {
-    margin-top: 70px;
+    /*margin-top: 70px;*/
     background-image: url("main.jpg");
 }
 
@@ -99,13 +99,14 @@ body, html {
     /* Full height */
     width: 100%;
     height: 100%;
-    display: inline-block;
-    vertical-align: middle;
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
 
     /* Center and scale the image nicely */
-    background-position: center;
+    /*background-position: center;*/
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    /*background-size: cover;*/
 }
 
 .main_title_text {
@@ -116,10 +117,16 @@ body, html {
 }
 .main2_title_text{
     margin-top: 7px;
-    font-size: 41px;
+    font-size: 37px;
+        font-family:  "Avenir", sans-serif;
+
 }
 .main3_title_text{
-    margin-top: -10px;
+    margin-top: -19px;
+        font-size: 25px;
+
+        font-family: "Avenir", sans-serif;
+
 }
 
 h3:before {
@@ -617,7 +624,7 @@ h3:after {
     position: fixed;
     background: white;
     width: 100%;
-    height: 70px;
+    /*height: 70px;*/
     z-index: 2;
 }
 
@@ -625,7 +632,7 @@ h3:after {
     display: block;
     position: fixed;
     top: 30px;
-    left: 30px;
+    right: 30px;
 
     z-index: 2;
 
@@ -723,7 +730,7 @@ h3:after {
 #menu {
     position: absolute;
     width: 190px;
-    margin: -100px 0 0 -50px;
+    margin: -100px 0 0 -150px;
     padding: 50px;
     padding-top: 125px;
 
@@ -733,7 +740,8 @@ h3:after {
     /* to stop flickering of text in safari */
 
     transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
+    /*transform: translate(-100%, 0);*/
+    transform: translate(79%, 0);
 
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
