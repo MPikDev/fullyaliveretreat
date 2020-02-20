@@ -89,7 +89,7 @@
         <div class="verse1">BY HUMILITY</div>
         <div class="verse2"> & THE FEAF OF THE</div>
 
-        <div class="verse3 row">
+        <div class="verse3 custom-row">
             <div class="column_verse_40">LORD</div>
             <div class="column_verse_60"> ARE RICHES,</div>
         </div>
@@ -102,81 +102,66 @@
 <div class="picture mess4"></div>
 
 
-{#<div class="countdown">#}
-{#    <span>Time left until Camp</span>#}
-{#    <iframe src="http://free.timeanddate.com/countdown/i75du29o/n137/cf11/cm0/cu4/ct0/cs0/cac000/co0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/iso2020-06-11T18:00:00"#}
-{#            allowTransparency="true" frameborder="0" width="289" height="18"></iframe>#}
-{#</div>#}
-{##}
-{#<div class="date_loc_div">#}
-{#    <h2>#}
-{#        LOCATION: TWIN ROCKS FRIENDS CAMP ROCKAWAY BEACH, OREGON#}
-{#        <br>DATE: JUNE 11th - 14th#}
-{#        <br>SPACE IS LIMITED#}
-{#        <br>AGE: 23+#}
-{#    </h2>#}
-{#</div>#}
-{#<div class="picture map"></div>#}
-<!--
-slide show
-calender
-schedule
-map
--->
+<h2>Automatic Slideshow</h2>
+<p>Change image every 2 seconds:</p>
 
+<div class="slideshow-container">
 
-<!--
-<div class="title-2020">
-    <span class="text-2020 title-year">2 0 2 0</span>
-    <p class="text-2020 title">
-        <br><span class="text-2020 title">F U L L Y</span>
-        <span class="text-2020 title">A L I V E</span>
-        <br> R E T R E A T
-        <br> <span class="text-2020 title-date"> JUNE 11th - 14th</span>
-    </p>
+<div class="mySlides fade">
+  <div class="numbertext">1 / </div>
+  <img src="{% static "registration/Picture1.jpg" %}" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
 
+<div class="mySlides fade">
+  <div class="numbertext">2 / </div>
+  <img src="{% static "registration/Picture2.png" %}" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / </div>
+  <img src="{% static "registration/Picture3.png" %}" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / </div>
+  <img src="{% static "registration/Picture6.png" %}" style="width:100%">
+  <div class="text">Caption Four</div>
+</div>
 
 </div>
-<div class="caption">
-    <span class="no-margin">S C R O L L</span>
-    <span class="no-margin">D O W N</span>
-</div>
-<div class="trasparent-bar"></div>
+<br>
 
-<div class="parallax verse"></div>
-<div class="trasparent-bar-1"></div>
-
-<div class="parallax invite"></div>
-<div class="trasparent-bar-2 trasparent-bar-2"></div>
-
-<div class="parallax wave-test"></div>
-<div class="date-2020">
-    <p><span class="text-2020 date-title">PNW YOUTH RETREAT</span>
-        <br> <span class="text-2020 date-location">LOCATION: TWIN ROCKS FRIENDS CAMP</span>
-        <br> <span class="text-2020 date-location-offset"> ROCKAWAY BEACH, OREGON </span>
-        -->
-<!-- <br> <span class="date-2020-text"> JUNE <span style="font-family: 'Times New Roman'">11</span>th - <span style="font-family: 'Times New Roman'">14</span>th -->
-<!--
- <br> <span class="text-2020 date"> JUNE 11th - 14th</span>
- <br><span class="text-2020 date-limit"> <span class="text-2020 date-limit">SPACE</span> <span
-         class="text-2020 date-limit">IS </span>
-    <span class="text-2020 date-limit">LIMITED</span> AGE: 23+ </span>
-</p>
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
 </div>
-<div class="trasparent-bar-3 trasparent-bar-3"></div>
 
-<div class="parallax register-pic"></div>
-<div class="button-row button-row-1">
-<button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
-</div>
-<div class="button-row button-row-2">
-<button class="info-button" onclick="window.location.href='/infotwo'">MORE INFO</button>
-</div>
 <script>
+var slideIndex = 0;
+showSlides();
 
-
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
 </script>
--->
 <script>
 
 </script>
