@@ -22,7 +22,7 @@ body, html {
 
 }
 
-.row {
+.custom-row {
     display: flex;
 }
 
@@ -434,7 +434,7 @@ h3:after {
 
 @media (max-width: 786px) {
     .wave-backgroud {
-        background-attachment: scroll;
+        /*background-attachment: scroll;*/
         background-image: url("main.jpg")
 
     }
