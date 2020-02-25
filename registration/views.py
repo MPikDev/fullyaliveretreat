@@ -40,6 +40,10 @@ def register(request):
 
 def info_two(request):
     return render(request, 'info_two.html')
+def hamburger(request):
+    return render(request, 'hamburger.html')
+def photos(request):
+    return render(request, 'photos.html')
 
 
 def reg(request):
