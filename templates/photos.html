@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Fully Alive Retreat</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+</head>
+<body>
+<button class="hamburger" onclick="window.location.href = '/hamburger';"type="button"></button>
+
+
+
+<div id="clock"></div>
+
+<h2>Automatic Slideshow</h2>
+<p>Change image every 2 seconds:</p>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / </div>
+  <img src="{% static "registration/Picture1.jpg" %}" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / </div>
+  <img src="{% static "registration/Picture2.png" %}" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / </div>
+  <img src="{% static "registration/Picture3.png" %}" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/ztPhKAuXx5I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+console.clear();
+
+function CountdownTracker(label, value){
+
+  var el = document.createElement('span');
+
+  el.className = 'flip-clock__piece';
+  el.innerHTML = '<b class="flip-clock__card card"><b class="card__top"></b><b class="card__bottom"></b><b class="card__back"><b class="card__bottom"></b></b></b>' +
+    '<span class="flip-clock__slot">' + label + '</span>';
+
+  this.el = el;
+
+  var top = el.querySelector('.card__top'),
+      bottom = el.querySelector('.card__bottom'),
+      back = el.querySelector('.card__back'),
+      backBottom = el.querySelector('.card__back .card__bottom');
+
+  this.update = function(val){
+    val = ( '0' + val ).slice(-2);
+    if ( val !== this.currentValue ) {
+
+      if ( this.currentValue >= 0 ) {
+        back.setAttribute('data-value', this.currentValue);
+        bottom.setAttribute('data-value', this.currentValue);
+      }
+      this.currentValue = val;
+      top.innerText = this.currentValue;
+      backBottom.setAttribute('data-value', this.currentValue);
+
+      this.el.classList.remove('flip');
+      void this.el.offsetWidth;
+      this.el.classList.add('flip');
+    }
+  }
+
+  this.update(value);
+}
+
+
+</script>
+<script>
+
+</script>
+</body>
+</html>

@@ -24,54 +24,13 @@
     </script>
 </head>
 <body>
-<!--    Made by Erik Terwan    -->
-<!--   24th of November 2015   -->
-<!--        MIT License        -->
-<div id="menuBody"></div>
-<nav role="navigation">
-    <div id="menuToggle">
-        <!--
-        A fake / hidden checkbox is used as click reciever,
-        so you can use the :checked selector on it.
-        -->
-        <input type="checkbox"/>
 
-        <!--
-        Some spans to act as a hamburger.
-
-        They are acting like a real hamburger,
-        not that McDonalds stuff.
-        -->
-        <span></span>
-        <span></span>
-        <span></span>
-
-        <!--
-        Too bad the menu has to be inside of the button
-        but hey, it's pure CSS magic.
-        -->
-        <ul id="menu">
-            <a href="/">
-                <li>Home</li>
-            </a>
-{#            <a href="/infotwo">#}
-{#                <li>About</li>#}
-{#            </a>#}
-            <a href="/infotwo">
-                <li>Info</li>
-            </a>
-{#            <a href="/infotwo">#}
-{#                <li>Contact</li>#}
-{#            </a>#}
-
-        </ul>
-    </div>
-</nav>
-<div>
+<div style="z-index: 2">
 <video autoplay muted loop playsinline id="myVideo">
   <source src="{% static "registration/fire.MOV" %}" type="video/mp4">
 </video>
 </div>
+<button class="hamburger" onclick="window.location.href = '/hamburger';"type="button"></button>
 {#<div class="picture test-header-pic"></div>#}
 {#<div class="main-title">#}
 {#    <div class=" main_title_text">#}
@@ -101,72 +60,15 @@
 {#    </div>#}
 </div>
 <div class="picture schedule"></div>
-{#<div class="picture mess2"></div>#}
+<div class="picture locaiton"></div>
 {#<div class="picture mess3"></div>#}
 {#<div class="picture mess4"></div>#}
 
 <div id="clock"></div>
 
-<h2>Automatic Slideshow</h2>
-<p>Change image every 2 seconds:</p>
-
-<div class="slideshow-container">
-
-<div class="mySlides fade">
-  <div class="numbertext">1 / </div>
-  <img src="{% static "registration/Picture1.jpg" %}" style="width:100%">
-  <div class="text">Caption Text</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / </div>
-  <img src="{% static "registration/Picture2.png" %}" style="width:100%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / </div>
-  <img src="{% static "registration/Picture3.png" %}" style="width:100%">
-  <div class="text">Caption Three</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">4 / </div>
-  <img src="{% static "registration/Picture6.png" %}" style="width:100%">
-  <div class="text">Caption Four</div>
-</div>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
 
 <div class="reg-pic picture"></div>
 <script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
 
 console.clear();
 
