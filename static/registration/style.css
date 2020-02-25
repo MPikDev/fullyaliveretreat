@@ -20,7 +20,7 @@ body, html {
     z-index: 1000;
     width: 45px;
     /*background: red;*/
-    opacity: 50%;
+    opacity: 0;
 }
 
 .back-button {
@@ -31,7 +31,7 @@ body, html {
     z-index: 1000;
     width: 45px;
     background: red;
-    opacity: 50%;
+    opacity: .5;
 }
 
 .main-title {
