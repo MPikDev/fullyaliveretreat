@@ -12,17 +12,18 @@ body, html {
     src: url(8483.ttf);
 }
 
-.hamburger{
+.hamburger {
     position: absolute;
     top: 23px;
     right: 20px;
     height: 37px;
     z-index: 1000;
     width: 45px;
-    background: red;
+    /*background: red;*/
     opacity: 50%;
 }
-.back-button{
+
+.back-button {
     position: absolute;
     top: 23px;
     left: 20px;
@@ -183,7 +184,13 @@ h3:after {
     top: 20vw;
     z-index: 3;
 }
-.photo-button{
+
+#clock {
+    position: absolute;
+    top: 3585px;
+}
+
+.photo-button {
     background: blue;
     height: 50px;
     top: 100px;
