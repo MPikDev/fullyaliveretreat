@@ -28,7 +28,7 @@ def register(request):
 
     if total_campers > 137:
         return render(request, 'closed.html')
-    if datetime.datetime.now() > datetime.datetime(2019, 6, 24, 7, 0):
+    if datetime.datetime.now() > datetime.datetime(2020, 5, 31, 7, 0):
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -40,10 +40,26 @@ def register(request):
 
 def info_two(request):
     return render(request, 'info_two.html')
+
+
 def hamburger(request):
     return render(request, 'hamburger.html')
+
+
 def photos(request):
     return render(request, 'photos.html')
+
+
+def fellowship(request):
+    return render(request, 'fellowship.html')
+
+
+def nature(request):
+    return render(request, 'nature.html')
+
+
+def activities(request):
+    return render(request, 'activities.html')
 
 
 def reg(request):
