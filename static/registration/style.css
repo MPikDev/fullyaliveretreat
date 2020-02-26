@@ -21,7 +21,7 @@ body, html {
 
 .hamburger {
     top: 23px;
-    left: 287px;
+    left: 76%;
     height: 37px;
     width: 45px;
 }
@@ -31,25 +31,32 @@ body, html {
     z-index: 1000;
     background: red;
     opacity: .5;
+    position: absolute;
+}
+
+.invis-button-div-t {
+    z-index: 1000;
+    background: red;
+    opacity: .5;
     position: relative;
 }
 
 .hamburger-low {
-    top: 17px;
-    left: 287px;
+    top: 503%;
+    left: 76%;
     height: 55px;
     width: 68px;
 }
 
 .register-button {
-    top: 236px;
+    top: 544%;
     left: 61px;
     height: 50px;
     width: 238px;
 }
 
 .scroll-up-button {
-    top: 500px;
+    top: 590%;
     left: 152px;
     height: 55px;
     width: 68px;
