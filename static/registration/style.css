@@ -12,26 +12,76 @@ body, html {
     src: url(8483.ttf);
 }
 
-.hamburger {
-    position: absolute;
-    top: 23px;
-    right: 20px;
-    height: 37px;
+.invis-button {
     z-index: 1000;
+    background: red;
+    opacity: .5;
+    position: absolute;
+}
+
+.hamburger {
+    top: 23px;
+    left: 287px;
+    height: 37px;
     width: 45px;
-    /*background: red;*/
-    opacity: 0;
+}
+
+
+.invis-button-div {
+    z-index: 1000;
+    background: red;
+    opacity: .5;
+    position: relative;
+}
+
+.hamburger-low {
+    top: 17px;
+    left: 287px;
+    height: 55px;
+    width: 68px;
+}
+
+.register-button {
+    top: 236px;
+    left: 61px;
+    height: 50px;
+    width: 238px;
+}
+
+.scroll-up-button {
+    top: 500px;
+    left: 152px;
+    height: 55px;
+    width: 68px;
 }
 
 .back-button {
-    position: absolute;
     top: 23px;
     left: 20px;
     height: 37px;
-    z-index: 1000;
     width: 45px;
-    background: red;
-    opacity: .5;
+}
+
+
+.fellowship {
+    top: 202px;
+    left: 70px;
+    height: 76px;
+    width: 238px;
+}
+
+.nature {
+    top: 236px;
+    left: 70px;
+    height: 76px;
+    width: 238px;
+}
+
+.activities {
+    top: 272px;
+    left: 70px;
+    height: 76px;
+    width: 238px;
 }
 
 .main-title {
@@ -239,9 +289,9 @@ h3:after {
 .test-header-pic {
     /*margin-top: 70px;*/
     /*background-image: url("main.jpg");*/
-    position: absolute;
-    top: 0px;
-    z-index: 0;
+    /*position: absolute;*/
+    /*top: 0px;*/
+    /*z-index: 0;*/
     background-image: url("main_text.jpg");
     /*background-image: url("fire.MOV");*/
 }
@@ -265,12 +315,16 @@ h3:after {
     background-image: url("location.jpg");
 }
 
-.mess3 {
-    background-image: url("mess3.gif");
+.activ {
+    background-image: url("activ.gif");
 }
 
-.mess4 {
-    background-image: url("mess4.gif");
+.fellow {
+    background-image: url("fellow.gif");
+}
+
+.nature-pic {
+    background-image: url("nature.gif");
 }
 
 .reg-pic {
