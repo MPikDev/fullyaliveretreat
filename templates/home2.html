@@ -23,6 +23,16 @@
         gtag('config', 'UA-135068928-1');
     </script>
 </head>
+<script>
+    if (screen.width < 786) {
+        alert('Less than 786');
+        {#window.location.href = '/home';#}
+
+    } else {
+        alert('More than 786');
+        {#window.location.href = '/pleasemobile';#}
+    }
+</script>
 <body>
 
 <div style="z-index: 2">
@@ -203,6 +213,8 @@
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
+
+
 
 </script>
 <script>
