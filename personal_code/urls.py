@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^photos', views.photos),
     url(r'^infotwo', views.info_two),
     url(r'^register', views.reg),
+    url(r'^mobile', views.mobile),
     url(r'^full', views.full),
     url(r'^return', views.return_url, name='your-return-view'),
     url(r'^cancel', views.canceled_url, name='your-cancel-view'),

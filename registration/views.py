@@ -61,6 +61,9 @@ def nature(request):
 def activities(request):
     return render(request, 'activities.html')
 
+def mobile(request):
+    return render(request, 'pleasemobile.html')
+
 
 def reg(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()

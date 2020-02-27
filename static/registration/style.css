@@ -31,33 +31,27 @@ body, html {
     z-index: 1000;
     background: red;
     opacity: .5;
-    position: absolute;
-}
-
-.invis-button-div-t {
-    z-index: 1000;
-    background: red;
-    opacity: .5;
     position: relative;
 }
 
 .hamburger-low {
-    top: 503%;
+    top: 2%;
     left: 74%;
     height: 55px;
     width: 68px;
 }
 
 .register-button {
-    top: 544%;
-    left: 61px;
+    top: 41%;
+    left: -6%;
     height: 50px;
     width: 238px;
 }
 
 .scroll-up-button {
-    top: 590%;
-    left: 152px;
+    top: 80%;
+    /*left: 152px;*/
+    left: 41%;
     height: 55px;
     width: 68px;
 }
@@ -71,22 +65,28 @@ body, html {
 
 
 .fellowship {
-    top: 202px;
-    left: 70px;
+    /*top: 202px;*/
+    top: 29%;
+    /*left: 70px;*/
+    left: 14%;
     height: 76px;
     width: 238px;
 }
 
 .nature {
-    top: 236px;
-    left: 70px;
+    /*top: 236px;*/
+    top: 33%;
+    /*left: 70px;*/
+    left: 14%;
     height: 76px;
     width: 238px;
 }
 
 .activities {
-    top: 272px;
-    left: 70px;
+    /*top: 272px;*/
+    top: 37%;
+    /*left: 70px;*/
+    left: 14%;
     height: 76px;
     width: 238px;
 }
@@ -182,6 +182,7 @@ body, html {
     /* Full height */
     width: 100%;
     height: 100%;
+    /*height: -webkit-fill-available;*/
     /*display: inline-block;*/
     /*vertical-align: middle;*/
 
