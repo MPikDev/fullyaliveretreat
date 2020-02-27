@@ -265,7 +265,7 @@ h3:after {
 
 .photo-button {
     height: 79px;
-    top: 101px;
+    top: 15%;
     position: absolute;
     width: 244px;
     left: 63px;
@@ -273,7 +273,7 @@ h3:after {
 
 .moreinfo-button{
     height: 79px;
-    top: 409px;
+    top: 60%;
     position: absolute;
     width: 244px;
     left: 63px;
@@ -281,7 +281,7 @@ h3:after {
 
 .reg-ham-btn{
     height: 79px;
-    top: 507px;
+    top: 74%;
     position: absolute;
     width: 244px;
     left: 63px;
