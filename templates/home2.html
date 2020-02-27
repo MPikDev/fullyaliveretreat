@@ -30,7 +30,7 @@
 
     } else {
         {#alert('More than 786');#}
-        window.location.href = '/mobile';
+        {#window.location.href = '/mobile';#}
     }
 </script>
 <body>
@@ -73,8 +73,10 @@
 
 
 <div class="reg-pic picture">
+    <div class="hamburger-low-div">
     <button class="invis-button-div hamburger-low" onclick="window.location.href = '/hamburger';"
             type="button"></button>
+    </div>
     <div class="register-div">
         <button class="invis-button-div register-button" onclick="window.location.href = '/registration';"
                 type="button"></button>
