@@ -67,9 +67,14 @@
 
 </div>
 
-<div class="picture locaiton"></div>
+<div class="picture locaiton">
+    <div class="flip-clock-div">
+        <h1>Until the Retreat!</h1>
+            <div id="clock"></div>
 
-{#<div id="clock"></div>#}
+    </div>
+</div>
+
 
 
 <div class="reg-pic picture">
@@ -200,7 +205,8 @@
         setTimeout(updateClock, 500);
     }
 
-    var deadline = new Date(Date.parse(new Date()) + 12 * 24 * 60 * 60 * 1000);
+    var deadline = new Date("June 11 2020 18:00");
+    console.log(deadline)
     var c = new Clock(deadline, function () {
         alert('countdown complete')
     });

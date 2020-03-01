@@ -116,6 +116,13 @@ body, html {
 
 }
 
+.flip-clock-div {
+    color: rgba(169, 196, 191, 1);
+    top: 64%;
+    position: relative;
+    text-align: center;
+}
+
 .custom-row {
     display: flex;
 }
@@ -259,8 +266,7 @@ h3:after {
 }
 
 #clock {
-    position: absolute;
-    top: 3085px;
+
 }
 
 .photo-button {
@@ -270,6 +276,7 @@ h3:after {
     width: 244px;
     left: 63px;
 }
+
 .video-button {
     height: 79px;
     top: 31%;
@@ -277,6 +284,7 @@ h3:after {
     width: 244px;
     left: 63px;
 }
+
 .schedule-button {
     height: 79px;
     top: 46%;
@@ -285,7 +293,7 @@ h3:after {
     left: 63px;
 }
 
-.moreinfo-button{
+.moreinfo-button {
     height: 79px;
     top: 60%;
     position: absolute;
@@ -293,13 +301,14 @@ h3:after {
     left: 63px;
 }
 
-.reg-ham-btn{
+.reg-ham-btn {
     height: 79px;
     top: 76%;
     position: absolute;
     width: 244px;
     left: 63px;
 }
+
 .parallax {
     width: 100%;
     height: 100%;
@@ -336,9 +345,11 @@ h3:after {
     height: 100%;
     z-index: 2;
 }
-.slideshow-container{
+
+.slideshow-container {
     top: 27%;
 }
+
 .test-header-pic {
     /*margin-top: 70px;*/
     /*background-image: url("main.jpg");*/
@@ -383,6 +394,7 @@ h3:after {
 .reg-pic {
     background-image: url("final.jpg");
 }
+
 .hamburger-pic {
     background-image: url("hamblue.jpg");
 }
@@ -784,101 +796,112 @@ h3:after {
     }
 
 }
+
 /*Slide show */
 
-* {box-sizing:border-box}
+* {
+    box-sizing: border-box
+}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
 }
 
 /* Hide the images by default */
 .mySlides {
-  display: none;
+    display: none;
 }
 
 /* Next & previous buttons */
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 /* Position the "next button" to the right */
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+    right: 0;
+    border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
 }
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
 }
 
 /* The dots/bullets/indicators */
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: white;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+    background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 /* this is the flip clock that i need to get in to the website but idk why its not workin good */
@@ -889,6 +912,13 @@ h3:after {
     perspective: 400px;
     margin: 20px auto;
 }
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 
 .flip-clock:after {
     box-sizing: border-box;
@@ -906,12 +936,22 @@ h3:after {
 
 /*@halfHeight: 0.72em;*/
 /*@borderRadius: 0.15em;*/
+:root {
+    --halfHeight: 0.72em;
+    --borderRadius: 0.15em;
+}
+
+/*#div1 {*/
+/*  background-color: var(--main-bg-color);*/
+/*}*/
+
 
 .card {
     display: block;
     position: relative;
     /*padding-bottom: @halfHeight;*/
-    padding-bottom: 0.72em;
+    padding-bottom: var(--halfHeight);
+    /*padding-bottom: 0.72em;*/
     font-size: 9vw;
     line-height: 0.95;
 }
@@ -922,15 +962,19 @@ h3:after {
 .card__back::after {
     display: block;
     /*height: @halfHeight;*/
-    height: 0.72em;
-    color: #ccc;
-    background: #222;
+    height: var(--halfHeight);
+    /*height: 0.72em;*/
+    /*color: #ccc;*/
+    color: white;
+    /*background: #222;*/
+    background: rgba(169, 196, 191, 1);
     padding: 0.25em 0.25em;
-    border-radius: 0.15em 0.15em 0 0;
+    /*border-radius: 0.15em 0.15em 0 0;*/
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
     /*border-radius: @borderRadius @borderRadius 0 0;*/
     backface-visiblity: hidden;
     transform-style: preserve-3d;
-    width: 1.8em;
+    /*width: 1.8em;*/
     transform: translateZ(0);
 }
 
@@ -939,10 +983,12 @@ h3:after {
     position: absolute;
     top: 50%;
     left: 0;
-    border-top: solid 1px #000;
-    background: #393939;
+    border-top: solid 1px rgba(169, 196, 191, 1);
+    /*background: #393939;*/
+    background: rgba(169, 196, 191, 1);
     /*border-radius: 0 0 @borderRadius @borderRadius;*/
-    border-radius: 0 0 0.15em 0.15em;
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    /*border-radius: 0 0 0.15em 0.15em;*/
     pointer-events: none;
     overflow: hidden;
 }
@@ -950,6 +996,7 @@ h3:after {
 .card__bottom::after {
     display: block;
     /*margin-top: -@halfHeight;*/
+    /*margin-top: (var(--halfHeight);*/
     margin-top: -0.72em;
 }
 
@@ -982,7 +1029,6 @@ h3:after {
     transform-origin: center top;
     animation-fill-mode: both;
     animation: flipBottom 0.6s cubic-bezier(.15, .45, .28, 1);
-/ / 0.3 s;
 }
 
 @keyframes flipTop {
