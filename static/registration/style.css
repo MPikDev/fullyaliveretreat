@@ -21,7 +21,7 @@ body, html {
 
 .hamburger {
     top: 2%;
-    left: 76%;
+    left: 74%;
     height: 52px;
     width: 69px;
 }
@@ -41,7 +41,7 @@ body, html {
 
 .hamburger-low {
 
-    left: 67%;
+    left: 69%;
     height: 55px;
     width: 68px;
 }
@@ -83,7 +83,7 @@ body, html {
     /*top: 202px;*/
     top: 31%;
     /*left: 70px;*/
-    left: 14%;
+    left: 18%;
     height: 76px;
     width: 238px;
 }
@@ -92,7 +92,7 @@ body, html {
     /*top: 236px;*/
     top: 35%;
     /*left: 70px;*/
-    left: 14%;
+    left: 18%;
     height: 76px;
     width: 238px;
 }
@@ -101,7 +101,7 @@ body, html {
     /*top: 272px;*/
     top: 40%;
     /*left: 70px;*/
-    left: 14%;
+    left: 18%;
     height: 76px;
     width: 238px;
 }
@@ -351,7 +351,7 @@ h3:after {
 
 .mission {
     /*background-image: url("info.gif");*/
-    background-image: url("misson.jpg");
+    background-image: url("mission.jpg");
 }
 
 .verse {
