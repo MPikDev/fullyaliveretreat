@@ -202,7 +202,7 @@ body, html {
     /*vertical-align: middle;*/
 
     /* Center and scale the image nicely */
-    /*background-position: center;*/
+    background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     /*background-size: cover;*/
@@ -270,6 +270,20 @@ h3:after {
     width: 244px;
     left: 63px;
 }
+.video-button {
+    height: 79px;
+    top: 31%;
+    position: absolute;
+    width: 244px;
+    left: 63px;
+}
+.schedule-button {
+    height: 79px;
+    top: 46%;
+    position: absolute;
+    width: 244px;
+    left: 63px;
+}
 
 .moreinfo-button{
     height: 79px;
@@ -281,7 +295,7 @@ h3:after {
 
 .reg-ham-btn{
     height: 79px;
-    top: 74%;
+    top: 76%;
     position: absolute;
     width: 244px;
     left: 63px;
@@ -322,7 +336,9 @@ h3:after {
     height: 100%;
     z-index: 2;
 }
-
+.slideshow-container{
+    top: 27%;
+}
 .test-header-pic {
     /*margin-top: 70px;*/
     /*background-image: url("main.jpg");*/
@@ -768,236 +784,104 @@ h3:after {
     }
 
 }
+/*Slide show */
 
-
-/*Hamburger menu*/
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- https://codepen.io/erikterwan/pen/EVzeRP
- */
-
-#menuBody {
-    position: fixed;
-    background: white;
-    width: 100%;
-    /*height: 70px;*/
-    z-index: 2;
-}
-
-#menuToggle {
-    display: block;
-    position: fixed;
-    top: 30px;
-    right: 30px;
-
-    z-index: 2;
-
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-#menuToggle a {
-    text-decoration: none;
-    color: #232323;
-
-    transition: color 0.3s ease;
-}
-
-#menuToggle a:hover {
-    color: tomato;
-}
-
-
-#menuToggle input {
-    display: block;
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-
-    cursor: pointer;
-
-    opacity: 0; /* hide this */
-    z-index: 2; /* and place it over the hamburger */
-
-    -webkit-touch-callout: none;
-}
-
-/*
- * Just a quick hamburger
- */
-#menuToggle span {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-
-    background: rgb(96, 126, 159);
-    border-radius: 3px;
-
-    z-index: 1;
-
-    transform-origin: 4px 0px;
-
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    opacity 0.55s ease;
-}
-
-#menuToggle span:first-child {
-    transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-}
-
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
-}
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu {
-    position: absolute;
-    width: 190px;
-    margin: -100px 0 0 -150px;
-    padding: 50px;
-    padding-top: 125px;
-
-    background: #ededed;
-    list-style-type: none;
-    -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
-
-    transform-origin: 0% 0%;
-    /*transform: translate(-100%, 0);*/
-    transform: translate(79%, 0);
-
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-}
-
-#menu li {
-    padding: 10px 0;
-    font-size: 22px;
-}
-
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ ul {
-    transform: none;
-}
-
+* {box-sizing:border-box}
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
 }
 
 /* Caption text */
 .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    /*padding: 8px 12px;*/
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
 }
 
 /* Number text (1/3 etc) */
 .numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
 }
 
 /* The dots/bullets/indicators */
 .dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
-.active {
-    background-color: #717171;
+.active, .dot:hover {
+  background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-    /*-webkit-animation-name: fade;*/
-    /*-webkit-animation-duration: 1.5s;*/
-    /*animation-name: fade;*/
-    /*animation-duration: 1.5s;*/
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
+  from {opacity: .4}
+  to {opacity: 1}
 }
 
 @keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
+  from {opacity: .4}
+  to {opacity: 1}
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-    .text {
-        font-size: 11px
-    }
-}
-
-
+/* this is the flip clock that i need to get in to the website but idk why its not workin good */
 /* https://codepen.io/shshaw/pen/vKzoLL */
 
 .flip-clock {
