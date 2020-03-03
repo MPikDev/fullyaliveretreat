@@ -27,13 +27,13 @@ body, html {
 }
 
 
-
 .invis-button-div {
     z-index: 1000;
     background: red;
     opacity: .5;
     position: relative;
 }
+
 .hamburger-low-div {
     top: 2%;
     position: relative;
@@ -41,7 +41,8 @@ body, html {
 
 .hamburger-low {
 
-    left: 69%;
+    /*left: 69%;*/
+    left: 113px;
     height: 55px;
     width: 68px;
 }
@@ -53,7 +54,7 @@ body, html {
 
 .register-button {
 
-    left: 14%;
+    /*left: 14%;*/
     height: 50px;
     width: 238px;
 }
@@ -66,7 +67,7 @@ body, html {
 
 .scroll-up-button {
     /*left: 152px;*/
-    left: 36%;
+    /*left: 36%;*/
     height: 55px;
     width: 68px;
 }
@@ -78,21 +79,41 @@ body, html {
     width: 68px;
 }
 
+.schedule-div {
+    position: absolute;
+    width: 100%;
+}
+
+.schedule-div.fellow-div {
+    top: 31%;
+}
+
+.schedule-div.nature-div {
+    top: 48%;
+}
+
+.schedule-div.act {
+    top: 65%;
+}
+
+.schedule-btn {
+    height: 76px;
+    width: 238px;
+}
 
 .fellowship {
     /*top: 202px;*/
-    top: 31%;
+    /*top: 31%;*/
     /*left: 70px;*/
-    left: 18%;
-    height: 76px;
-    width: 238px;
+    /*left: 18%;*/
+
 }
 
 .nature {
     /*top: 236px;*/
     top: 35%;
     /*left: 70px;*/
-    left: 18%;
+    /*left: 18%;*/
     height: 76px;
     width: 238px;
 }
@@ -101,7 +122,7 @@ body, html {
     /*top: 272px;*/
     top: 40%;
     /*left: 70px;*/
-    left: 18%;
+    /*left: 18%;*/
     height: 76px;
     width: 238px;
 }
@@ -268,25 +289,32 @@ h3:after {
 #clock {
 
 }
-.ham-btn-div{
-        position: absolute;
+
+.ham-btn-div {
+    position: absolute;
     width: 100%;
 }
-.ham-btn-div.photo{
-        top: 16%;
+
+.ham-btn-div.photo {
+    top: 16%;
 }
-.ham-btn-div.vdieo{
-        top: 31%;
+
+.ham-btn-div.vdieo {
+    top: 31%;
 }
-.ham-btn-div.schedule-div{
-        top: 46%;
+
+.ham-btn-div.schedule-div {
+    top: 46%;
 }
-.ham-btn-div.moreinfo{
-        top: 60%;
+
+.ham-btn-div.moreinfo {
+    top: 60%;
 }
-.ham-btn-div.reg{
-        top: 76%;
+
+.ham-btn-div.reg {
+    top: 76%;
 }
+
 .ham-button {
     height: 79px;
     width: 244px;
@@ -382,6 +410,7 @@ h3:after {
 .hamburger-pic {
     background-image: url("hamblue.jpg");
 }
+
 .bkgrd-pic {
     background-image: url("back1.jpg");
 }
