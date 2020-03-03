@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script>
+    if (screen.width < 786) {
+        {#alert('Less than 786');#}
+        window.location.href = '/home';
+
+    } else {
+        {#alert('More than 786');#}
+        {#window.location.href = '/mobile';#}
+    }
+</script>
 <body>
 <h1> This website is currently not support on desktop or landscape. Please visit this website on your mobile device or wait for further updates. Thank you for understanding.</h1>
 </body>
