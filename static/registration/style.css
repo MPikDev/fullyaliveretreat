@@ -118,7 +118,7 @@ body, html {
 
 .flip-clock-div {
     color: rgba(169, 196, 191, 1);
-    top: 64%;
+    top: 58%;
     position: relative;
     text-align: center;
 }
@@ -397,6 +397,9 @@ h3:after {
 
 .hamburger-pic {
     background-image: url("hamblue.jpg");
+}
+.bkgrd-pic {
+    background-image: url("back1.jpg");
 }
 
 
