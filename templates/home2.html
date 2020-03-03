@@ -150,10 +150,6 @@
 
     function getTimeRemaining(endtime) {
         var t = Date.parse(endtime) - Date.parse(new Date());
-        console.log("diggerent", Date.parse(new Date()), Date.parse(endtime))
-        console.log("diggerent", new Date(), endtime)
-        console.log("diggerent", new Date(), endtime, Math.floor(t / (1000 * 60 * 60 * 24)))
-
         return {
             'Total': t,
             'Days': Math.floor(t / (1000 * 60 * 60 * 24)),
@@ -226,8 +222,6 @@
     }
 
     var deadline = new Date("June 11 2020 18:00");
-    {#var deadline = new Date("March 3 2020 18:00");#}
-    console.log(deadline)
     var c = new Clock(deadline, function () {
         alert('countdown complete')
     });

@@ -237,8 +237,6 @@ def filter_campers(all_campers, int_pks):
     emails = []
     for camper in all_campers:
         if camper.id in int_pks:
-            import pdb
-            pdb.set_trace()
             if camper.timestamp.year == 2020:
                 paid_campers_info_2020.append(camper)
                 emails_2020.append(camper.email)
