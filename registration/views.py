@@ -26,7 +26,7 @@ def full(request):
 def register(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
 
-    if total_campers > 137:
+    if total_campers > 200:
         return render(request, 'closed.html')
     if datetime.datetime.now() > datetime.datetime(2020, 5, 31, 7, 0):
         return render(request, 'closed.html')
@@ -104,7 +104,7 @@ def reg(request):
         invalid_post = True
 
     # check if from jquery datetime
-    date_of_birth_limit = datetime.datetime(1997, 6, 14, 0, 0)
+    date_of_birth_limit = datetime.datetime(1998, 6, 11, 0, 0)
     if camper['date_of_birth'].find('/') == 2:
         split_date = camper['date_of_birth'].split('/')
         year = split_date[2]
@@ -154,8 +154,8 @@ def pay_now(request, *args, **kwargs):
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": "90.00",
-        "item_name": "registration for camp",
+        "amount": "1.00",
+        "item_name": "registration for Fully Alive Retreat 2020",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
@@ -210,15 +210,15 @@ def camper_info(request):
     all_campers = Camper.objects.all().order_by('pk')
     print len(all_campers)
 
-    paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
+    paid_campers_info_2020, not_campers_info_2020, not_paid_email_info_2020, paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
     final_paid_campers_info = Camper.objects.filter(paid=True).order_by('pk')
 
-    data = {'paid_campers_info': paid_campers_info,
-            'not_campers_info': not_campers_info,
-            'not_paid_email_info': not_paid_email_info,
-            'paid_count': len(paid_campers_info),
-            'not_count': len(not_campers_info),
-            'not_email_count': len(not_paid_email_info),
+    data = {'paid_campers_info': paid_campers_info_2020,
+            'not_campers_info': not_campers_info_2020,
+            'not_paid_email_info': not_paid_email_info_2020,
+            'paid_count': len(paid_campers_info_2020),
+            'not_count': len(not_campers_info_2020),
+            'not_email_count': len(not_paid_email_info_2020),
             'final_paid_campers_info':final_paid_campers_info,
             'final_paid_count': len(final_paid_campers_info) }
 
@@ -227,20 +227,36 @@ def camper_info(request):
 
 
 def filter_campers(all_campers, int_pks):
+    paid_campers_info_2020 = []
+    not_campers_info_2020 = []
+    not_paid_email_info_2020 = []
     paid_campers_info = []
     not_campers_info = []
     not_paid_email_info = []
+    emails_2020 = []
     emails = []
     for camper in all_campers:
         if camper.id in int_pks:
-            paid_campers_info.append(camper)
-            emails.append(camper.email)
+            import pdb
+            pdb.set_trace()
+            if camper.timestamp.year == 2020:
+                paid_campers_info_2020.append(camper)
+                emails_2020.append(camper.email)
+            else:
+                paid_campers_info.append(camper)
+                emails.append(camper.email)
 
     for camper in all_campers:
         if camper.id not in int_pks:
-            not_campers_info.append(camper)
-            if camper.email not in emails:
-                emails.append(camper.email)
-                not_paid_email_info.append(camper)
+            if camper.timestamp.year == 2020:
+                not_campers_info_2020.append(camper)
+                if camper.email not in emails:
+                    emails_2020.append(camper.email)
+                    not_paid_email_info_2020.append(camper)
+            else:
+                not_campers_info.append(camper)
+                if camper.email not in emails:
+                    emails.append(camper.email)
+                    not_paid_email_info.append(camper)
 
-    return paid_campers_info, not_campers_info, not_paid_email_info
+    return paid_campers_info_2020, not_campers_info_2020, not_paid_email_info_2020, paid_campers_info, not_campers_info, not_paid_email_info
