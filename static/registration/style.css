@@ -27,13 +27,13 @@ body, html {
 }
 
 
+
 .invis-button-div {
     z-index: 1000;
     background: red;
     opacity: .5;
     position: relative;
 }
-
 .hamburger-low-div {
     top: 2%;
     position: relative;
@@ -73,7 +73,7 @@ body, html {
 
 .back-button {
     top: 23px;
-    left: 15px;
+    left: -113px;
     height: 54px;
     width: 68px;
 }
@@ -268,46 +268,30 @@ h3:after {
 #clock {
 
 }
-
-.photo-button {
+.ham-btn-div{
+        position: absolute;
+    width: 100%;
+}
+.ham-btn-div.photo{
+        top: 18%;
+}
+.ham-btn-div.vdieo{
+        top: 31%;
+}
+.ham-btn-div.schedule-div{
+        top: 46%;
+}
+.ham-btn-div.moreinfo{
+        top: 60%;
+}
+.ham-btn-div.reg{
+        top: 76%;
+}
+.ham-button {
     height: 79px;
-    top: 15%;
-    position: absolute;
     width: 244px;
-    left: 63px;
 }
 
-.video-button {
-    height: 79px;
-    top: 31%;
-    position: absolute;
-    width: 244px;
-    left: 63px;
-}
-
-.schedule-button {
-    height: 79px;
-    top: 46%;
-    position: absolute;
-    width: 244px;
-    left: 63px;
-}
-
-.moreinfo-button {
-    height: 79px;
-    top: 60%;
-    position: absolute;
-    width: 244px;
-    left: 63px;
-}
-
-.reg-ham-btn {
-    height: 79px;
-    top: 76%;
-    position: absolute;
-    width: 244px;
-    left: 63px;
-}
 
 .parallax {
     width: 100%;

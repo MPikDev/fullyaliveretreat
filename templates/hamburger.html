@@ -24,22 +24,42 @@
     </script>
 </head>
 <body>
-<div class="picture hamburger-pic">
-    <button class="invis-button-div back-button" onclick="goBack()"type="button"></button>
-<button class="invis-button-div photo-button" onclick="window.location.href = '/photos';"type="button"></button>
-<button class="invis-button video-button" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';"type="button"></button>
-<button class="invis-button schedule-button" onclick="window.location.href = 'schedule';"type="button"></button>
-<button class="invis-button moreinfo-button" onclick="window.location.href = '/infotwo';"type="button"></button>
-<button class="invis-button reg-ham-btn" onclick="window.location.href = '/registration';"type="button"></button>
+<div class="picture hamburger-pic" style="text-align: center">
+    <div>
+        <button class="invis-button-div back-button" onclick="goBack()" type="button"></button>
+    </div>
 
+    <div class="ham-btn-div photo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/photos';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div vdieo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div schedule-div">
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'schedule';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div moreinfo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/infotwo';" type="button"></button>
+    </div>
+
+    <div class="ham-btn-div reg">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/registration';"
+                type="button"></button>
+    </div>
 
 </div>
 
 
 <script>
-function goBack() {
-  window.history.back();
-}
+    function goBack() {
+        window.history.back();
+    }
 </script>
 </body>
 </html>
