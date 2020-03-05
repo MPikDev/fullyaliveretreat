@@ -235,8 +235,8 @@ body, html {
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    /*background-size: contain;*/
-    background-size: cover;
+    background-size: contain;
+    /*background-size: cover;*/
 }
 
 .main_title_text {
@@ -357,7 +357,7 @@ h3:after {
 /* Style the video: 100% width and height to cover the entire window */
 #myVideo {
     width: 100%;
-    /*height: 100%;*/
+    height: 100%;
     z-index: 2;
 }
 
