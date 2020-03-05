@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    {% load static %}
+    <title>Fully Alive Retreat</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
 </head>
+<body>
+<div class="picture mobileonly">
+</div>
+
 <script>
-    if (screen.width < 786) {
+        if (screen.width < 786) {
         {#alert('Less than 786');#}
         window.location.href = '/home';
 
@@ -14,7 +37,5 @@
         {#window.location.href = '/mobile';#}
     }
 </script>
-<body>
-<h1> This website is currently not support on desktop or landscape. Please visit this website on your mobile device or wait for further updates. Thank you for understanding.</h1>
 </body>
 </html>

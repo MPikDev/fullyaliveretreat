@@ -14,9 +14,9 @@ body, html {
 
 .invis-button {
     z-index: 1000;
-    /*background: red;*/
-    /*opacity: .5;*/
-    opacity: 0;
+    background: red;
+    opacity: .5;
+    /*opacity: 0;*/
     position: absolute;
 }
 
@@ -30,9 +30,9 @@ body, html {
 
 .invis-button-div {
     z-index: 1000;
-    /*background: red;*/
-    /*opacity: .5;*/
-    opacity: 0;
+    background: red;
+    opacity: .5;
+    /*opacity: 0;*/
     position: relative;
 }
 
@@ -235,8 +235,8 @@ body, html {
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    /*background-size: cover;*/
+    /*background-size: contain;*/
+    background-size: cover;
 }
 
 .main_title_text {
@@ -382,8 +382,10 @@ h3:after {
 
 .verse {
     position: relative;
-    /*background-image: url("verse.gif");*/
-    background-image: url("verse_text.jpg");
+    background-image: url("verse.jpg");
+}
+.mobileonly {
+    background-image: url("mobileonly.jpg");
 }
 
 .schedule {
