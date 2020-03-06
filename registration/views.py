@@ -24,8 +24,7 @@ def full(request):
     return render(request, 'full.html')
 
 def register(request):
-    import pdb
-    pdb.set_trace()
+
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2020).count()
 
     if total_campers > 200:
