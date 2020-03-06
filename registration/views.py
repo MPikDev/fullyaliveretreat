@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-
+FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
 def home(request):
     return render(request, 'home.html')
 
@@ -24,7 +24,9 @@ def full(request):
     return render(request, 'full.html')
 
 def register(request):
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
+    import pdb
+    pdb.set_trace()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2020).count()
 
     if total_campers > 200:
         return render(request, 'closed.html')
@@ -69,7 +71,9 @@ def schedule(request):
 
 
 def reg(request):
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).count()
+
+
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2020).count()
 
     camper = dict(
     first_name = request.POST['camper_first_name'],
