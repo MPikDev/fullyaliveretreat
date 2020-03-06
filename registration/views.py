@@ -154,8 +154,7 @@ def pay_now(request, *args, **kwargs):
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        # "amount": "225.00",
-        "amount": "1.00",
+        "amount": "225.00",
         "item_name": "Registration for Fully Alive Retreat 2020",
         'currency_code': 'USD',
         "invoice": camper_id,
