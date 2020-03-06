@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Fully Alive Retreat</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+</head>
+<body>
+<div class="picture hamburger-pic" style="text-align: center">
+    <div>
+        <button class="invis-button-div back-button" onclick="goBack()" type="button"></button>
+    </div>
+
+    <div class="ham-btn-div photo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/photos';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div vdieo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div schedule-div">
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'schedule';"
+                type="button"></button>
+    </div>
+
+    <div class="ham-btn-div moreinfo">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/infotwo';" type="button"></button>
+    </div>
+
+    <div class="ham-btn-div reg">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/registration';"
+                type="button"></button>
+    </div>
+
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>
