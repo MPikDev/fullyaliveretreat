@@ -23,7 +23,8 @@ SECRET_KEY = 'REMOVED'
 DEBUG = False
 
 PAYPAL_TEST = False
-PAYPAL_RECEIVER_EMAIL = 'lotgchurch@hotmail.com'
+PAYPAL_RECEIVER_EMAIL = 'events@nwasbc.com'
+# PAYPAL_RECEIVER_EMAIL = 'lotgchurch@hotmail.com'
 # PAYPAL_RECEIVER_EMAIL = 'lotgchurch-facilitator@hotmail.com'
 # PAYPAL_RECEIVER_EMAIL = 'het7ga-facilitator@gmail.com'
 

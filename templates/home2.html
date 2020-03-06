@@ -23,71 +23,225 @@
         gtag('config', 'UA-135068928-1');
     </script>
 </head>
-<body>
+<script>
+    if (screen.width < 786) {
+        {#alert('Less than 786');#}
+        {#window.location.href = '/home';#}
 
-<div class="parallax wave-test" id="intro"></div>
+    } else {
+        {#alert('More than 786');#}
+        window.location.href = '/mobile';
+    }
+</script>
+<body style="text-align: center">
 
-<div class="title-2020">
-    <span class="text-2020 title-year">2 0 2 0</span>
-    <p class="text-2020 title">
-        <br><span class="text-2020 title">F U L L Y</span>
-        <span class="text-2020 title">A L I V E</span>
-        <br> R E T R E A T
-        <br> <span class="text-2020 title-date"> JUNE 11th - 14th</span>
-    </p>
+{#<div style="z-index: 2">#}
+<video autoplay muted loop playsinline id="myVideo">
+    <source src="{% static "registration/fireHD.mp4" %}" type="video/mp4">
 
+</video>
+<div>
+    <button class="invis-button hamburger" onclick="window.location.href = '/hamburger';" type="button"></button>
 
 </div>
-<div class="caption">
-    <span class="no-margin">S C R O L L</span>
-    <span class="no-margin">D O W N</span>
-</div>
-<div class="trasparent-bar"></div>
 
-<div class="parallax verse"></div>
-<div class="trasparent-bar-1"></div>
-
-<div class="parallax invite"></div>
-<div class="trasparent-bar-2 trasparent-bar-2"></div>
-
-<div class="parallax wave-test"></div>
-<div class="date-2020">
-    <p><span class="text-2020 date-title">PNW YOUTH RETREAT</span>
-        <br> <span class="text-2020 date-location">LOCATION: TWIN ROCKS FRIENDS CAMP</span>
-        <br> <span class="text-2020 date-location-offset"> ROCKAWAY BEACH, OREGON </span>
-        <!-- <br> <span class="date-2020-text"> JUNE <span style="font-family: 'Times New Roman'">11</span>th - <span style="font-family: 'Times New Roman'">14</span>th -->
-        <br> <span class="text-2020 date"> JUNE 11th - 14th</span>
-        <br><span class="text-2020 date-limit"> <span class="text-2020 date-limit">SPACE</span> <span
-                class="text-2020 date-limit">IS </span>
-           <span class="text-2020 date-limit">LIMITED</span> AGE: 23+ </span>
-    </p>
+{#</div>#}
+{#<div class="picture test-header-pic"></div>#}
+{#<div class="main-title">#}
+{#    <div class=" main_title_text">#}
+{#        FULLY#}
+{#    </div>#}
+{#    <div class="custom-row">#}
+{#        <div class="main_title_text column60">#}
+{#            ALIVE#}
+{#        </div>#}
+{#        <div class="column40">#}
+{#            <div class="main2_title_text ">2020</div>#}
+{#            <div class="main3_title_text">Retreat</div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+<div class="picture mission"></div>
+<div class="picture verse">
 </div>
-<div class="trasparent-bar-3 trasparent-bar-3"></div>
+<div class="picture schedule" style="position: relative">
+    <div class="schedule-div fellow-div">
+        <button class="invis-button-div schedule-btn" onclick="window.location.href = '/fellowship';"
+                type="button"></button>
 
-<div class="parallax register-pic"></div>
-<div class="button-row button-row-1">
-    <button class="reg-button" onclick="window.location.href='/registration'">REGISTER</button>
+    </div>
+    <div class="schedule-div nature-div">
+        <button class="invis-button-div schedule-btn" onclick="window.location.href = '/nature';"
+                type="button"></button>
+
+    </div>
+    <div class="schedule-div act">
+        <button class="invis-button-div schedule-btn" onclick="window.location.href = '/activities';"
+                type="button"></button>
+
+    </div>
+
 </div>
-<div class="button-row button-row-2">
-    <button class="info-button" onclick="window.location.href='/infotwo'">MORE INFO</button>
+
+<div class="picture locaiton">
+    <div class="flip-clock-div">
+        <h2 class="flip-clock-text">UNTIL THE RETREAT:</h2>
+        <div id="clock"></div>
+
+    </div>
 </div>
+
+
+<div class="reg-pic picture">
+    <div class="hamburger-low-div">
+        <button class="invis-button-div hamburger-low" onclick="window.location.href = '/hamburger';"
+                type="button"></button>
+    </div>
+    <div class="register-div">
+        <button class="invis-button-div register-button" onclick="window.location.href = '/registration';"
+                type="button"></button>
+    </div>
+    <div class="scroll-up-div">
+        <button class="invis-button-div scroll-up-button" onclick="topFunction()" type="button"></button>
+    </div>
+</div>
+
 <script>
 
-    var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    console.clear();
 
-    "
-    "
-    if (!isiOS) {
-        window.addEventListener('scroll', function () { // on page scroll
-            requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
-        }, false)
+    function CountdownTracker(label, value) {
 
-        window.addEventListener('resize', function () { // on window resize
-            var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
-            var scrollamount = (scrolltop / (scrollheight - windowheight)) * 100 // get amount scrolled (in %)
-            intro.style.left = -100 + scrollamount + '%' // set position of fish in percentage (starts at -100%)
-        }, false)
+        var el = document.createElement('span');
+
+        el.className = 'flip-clock__piece';
+        el.innerHTML = '<b class="flip-clock__card card"><b class="card__top"></b><b class="card__bottom"></b><b class="card__back"><b class="card__bottom"></b></b></b>' +
+            '<span class="flip-clock__slot">' + label + '</span>';
+
+        this.el = el;
+
+        var top = el.querySelector('.card__top'),
+            bottom = el.querySelector('.card__bottom'),
+            back = el.querySelector('.card__back'),
+            backBottom = el.querySelector('.card__back .card__bottom');
+
+        this.update = function (val) {
+            val = ('0' + val).slice(-2);
+            if (val !== this.currentValue) {
+
+                if (this.currentValue >= 0) {
+                    back.setAttribute('data-value', this.currentValue);
+                    bottom.setAttribute('data-value', this.currentValue);
+                }
+                this.currentValue = val;
+                top.innerText = this.currentValue;
+                backBottom.setAttribute('data-value', this.currentValue);
+
+                this.el.classList.remove('flip');
+                void this.el.offsetWidth;
+                this.el.classList.add('flip');
+            }
+        }
+
+        this.update(value);
     }
+
+    // Calculation adapted from https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
+
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        return {
+            'Total': t,
+            'Days': Math.floor(t / (1000 * 60 * 60 * 24)),
+            {#'Days': 111,#}
+            'Hours': Math.floor((t / (1000 * 60 * 60)) % 24),
+            'Minutes': Math.floor((t / 1000 / 60) % 60),
+            'Seconds': Math.floor((t / 1000) % 60)
+        };
+    }
+
+    function getTime() {
+        var t = new Date();
+        return {
+            'Total': t,
+            'Hours': t.getHours() % 12,
+            'Minutes': t.getMinutes(),
+            'Seconds': t.getSeconds()
+        };
+    }
+
+    function Clock(countdown, callback) {
+
+        countdown = countdown ? new Date(Date.parse(countdown)) : false;
+        callback = callback || function () {
+        };
+
+        var updateFn = countdown ? getTimeRemaining : getTime;
+
+        this.el = document.createElement('div');
+        this.el.className = 'flip-clock';
+
+        var trackers = {},
+            t = updateFn(countdown),
+            key, timeinterval;
+
+        for (key in t) {
+            if (key === 'Total') {
+                continue;
+            }
+            trackers[key] = new CountdownTracker(key, t[key]);
+            this.el.appendChild(trackers[key].el);
+        }
+
+        var i = 0;
+
+        function updateClock() {
+            timeinterval = requestAnimationFrame(updateClock);
+
+            // throttle so it's not constantly updating the time.
+            if (i++ % 10) {
+                return;
+            }
+
+            var t = updateFn(countdown);
+            if (t.Total < 0) {
+                cancelAnimationFrame(timeinterval);
+                for (key in trackers) {
+                    trackers[key].update(0);
+                }
+                callback();
+                return;
+            }
+
+            for (key in trackers) {
+                trackers[key].update(t[key]);
+            }
+        }
+
+        setTimeout(updateClock, 500);
+    }
+
+    var deadline = new Date("June 11 2020 18:00");
+    var c = new Clock(deadline, function () {
+        alert('countdown complete')
+    });
+    document.getElementById('clock').appendChild(c.el);
+
+    {#var clock = new Clock();#}
+    {#document.body.appendChild(clock.el);#}
+    {#    scroll up button #}
+    //Get the button:
+
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
+
+</script>
+<script>
 
 </script>
 </body>
