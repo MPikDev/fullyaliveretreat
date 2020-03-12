@@ -21,10 +21,20 @@ body, html {
 }
 
 .hamburger {
-    top: 2%;
-    left: 74%;
-    height: 52px;
-    width: 69px;
+    /*top: 2%;*/
+    /*left: 74%;*/
+    /*height: 52px;*/
+    /*width: 69px;*/
+
+        z-index: 1000;
+    /*background: red;*/
+    /*opacity: .5;*/
+    /*opacity: 0;*/
+    position: absolute;
+        top: 2%;
+    left: 82%;
+    height: 24px;
+    width: 42px;
 }
 
 
@@ -370,14 +380,16 @@ h3:after {
 .slideshow-container {
     top: 27%;
 }
-
+.ham_img {
+    background-image: url("ham-img.png");
+}
 .test-header-pic {
     /*margin-top: 70px;*/
     /*background-image: url("main.jpg");*/
     /*position: absolute;*/
     /*top: 0px;*/
     /*z-index: 0;*/
-    background-image: url("main_text.jpg");
+    background-image: url("maint.jpg");
     /*background-image: url("fire.MOV");*/
 }
 
@@ -419,7 +431,7 @@ h3:after {
 }
 
 .hamburger-pic {
-    background-image: url("hamblue.jpg");
+    background-image: url("ham.jpg");
 }
 
 .bkgrd-pic {
