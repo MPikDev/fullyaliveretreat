@@ -36,17 +36,22 @@
 <body style="text-align: center">
 
 {#<div style="z-index: 2">#}
-<video autoplay muted loop playsinline id="myVideo">
-    <source src="{% static "registration/fireHD.mp4" %}" type="video/mp4">
+{#<video autoplay muted loop playsinline id="myVideo">#}
+{#    <source src="{% static "registration/fireHD.mp4" %}" type="video/mp4">#}
+{##}
+{#</video>#}
+{#<div>#}
 
-</video>
-<div>
-    <button class="invis-button hamburger" onclick="window.location.href = '/hamburger';" type="button"></button>
+<div class="picture ham_img">
+    <button class=" hamburger" onclick="window.location.href = '/hamburger';" type="button">
 
-</div>
+    </button>
+    </div>
+{##}
+{#</div>#}
 
 {#</div>#}
-{#<div class="picture test-header-pic"></div>#}
+<div class="picture test-header-pic"></div>
 {#<div class="main-title">#}
 {#    <div class=" main_title_text">#}
 {#        FULLY#}
@@ -92,18 +97,37 @@
 </div>
 
 
-<div class="reg-pic picture">
-    <div class="hamburger-low-div">
-        <button class="invis-button-div hamburger-low" onclick="window.location.href = '/hamburger';"
+<div class="reg-pic picture" style="position: relative">
+
+{#    more info #}
+    <div class="ham-btn-div photo">
+{#        <button class="invis-button-div ham-button" onclick="window.location.href = '/photos';"#}
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/infotwo';"
                 type="button"></button>
     </div>
-    <div class="register-div">
-        <button class="invis-button-div register-button" onclick="window.location.href = '/registration';"
+{#   schdedule #}
+    <div class="ham-btn-div vdieo">
+{#        <button class="invis-button-div ham-button" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';"#}
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'schedule';"
                 type="button"></button>
     </div>
-    <div class="scroll-up-div">
-        <button class="invis-button-div scroll-up-button" onclick="topFunction()" type="button"></button>
+{#photos#}
+    <div class="ham-btn-div schedule-div">
+{#        <button class="invis-button-div ham-button" onclick="window.location.href = 'schedule';"#}
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'photos';"
+                type="button"></button>
     </div>
+{#video #}
+    <div class="ham-btn-div moreinfo">
+{#        <button class="invis-button-div ham-button" onclick="window.location.href = '/infotwo';" type="button"></button>#}
+        <button class="invis-button-div ham-button" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';" type="button"></button>
+    </div>
+
+    <div class="ham-btn-div reg">
+        <button class="invis-button-div ham-button" onclick="window.location.href = '/registration';"
+                type="button"></button>
+    </div>
+
 </div>
 
 <script>
