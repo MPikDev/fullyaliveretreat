@@ -26,15 +26,15 @@ body, html {
     /*height: 52px;*/
     /*width: 69px;*/
 
-        z-index: 1000;
-    /*background: red;*/
-    /*opacity: .5;*/
-    /*opacity: 0;*/
-    position: absolute;
-        top: 2%;
-    left: 82%;
-    height: 24px;
-    width: 42px;
+    /*    z-index: 1000;*/
+    /*!*background: red;*!*/
+    /*!*opacity: .5;*!*/
+    opacity: 0;
+    /*position: absolute;*/
+    /*    top: 2%;*/
+    /*left: 82%;*/
+    /*height: 24px;*/
+    /*width: 42px;*/
 }
 
 
@@ -381,6 +381,15 @@ h3:after {
     top: 27%;
 }
 .ham_img {
+            z-index: 1000;
+    /*background: red;*/
+    /*opacity: .5;*/
+    /*opacity: 0;*/
+    position: absolute;
+        top: 2%;
+left: 87%;
+    height: 24px;
+    width: 24px;
     background-image: url("ham-img.png");
 }
 .test-header-pic {
