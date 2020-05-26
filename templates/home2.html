@@ -260,7 +260,7 @@
     var c = new Clock(deadline, function () {
         alert('countdown complete')
     });
-    document.getElementById('clock').appendChild(c.el);
+    {#document.getElementById('clock').appendChild(c.el);#}
 
     {#var clock = new Clock();#}
     {#document.body.appendChild(clock.el);#}
