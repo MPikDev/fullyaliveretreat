@@ -1120,3 +1120,34 @@ h3:after {
         z-index: 5;
     }
 }
+.postpone-box{
+    width: 726px;
+    color: rgb(21,90,142);
+        font-family: "Avenir", sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+}
+.postpone-container{
+    margin-top: 10%;
+    left: 50%;
+    margin-right: -50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.postpone-box-main{
+    width: 250px;
+    color: white;
+
+        font-family: "Avenir", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+.postpone-container-main{
+        background-color: black;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 80%;
+    left: 50%;
+    margin-right: -50%;
+    position: absolute;
+    transform: translate(-50%, 0%);
+}
