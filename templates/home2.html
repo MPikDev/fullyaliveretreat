@@ -55,17 +55,9 @@
      <div class="postpone-container-main">
     <div class="postpone-box-main">
          <p>
-        Date: To Be Announced
+            Date: November 12<sup>th</sup>-15<sup>th</sup>
     </p>
 
-    <p>
-        Due to the unknowns of the quarantine phase openings, Fully Alive Retreat 2020 is postponed.
-
-        Once we have a new date we will let you know.
-
-        If you have registered, refunds will be rolling out shortly. Thank you for understanding, and hopefully we will
-        meet soon!
-    </p>
     </div>
 </div>
 </div>
@@ -104,8 +96,15 @@
     </div>
 
 </div>
+<!--
+<div class="picture locaiton">
+    <div class="flip-clock-div">
+        <h2 class="flip-clock-text">UNTIL THE RETREAT:</h2>
+        <div id="clock"></div>
 
-
+    </div>
+</div>
+-->
 
 
 <div class="reg-pic picture" style="position: relative">
@@ -256,15 +255,14 @@
         setTimeout(updateClock, 500);
     }
 
-    var deadline = new Date("June 11 2020 18:00");
+    var deadline = new Date("November 12 2020 18:00");
     var c = new Clock(deadline, function () {
-        alert('countdown complete')
     });
-    {#document.getElementById('clock').appendChild(c.el);#}
+    document.getElementById('clock').appendChild(c.el);
 
-    {#var clock = new Clock();#}
-    {#document.body.appendChild(clock.el);#}
-    {#    scroll up button #}
+    //var clock = new Clock();
+    //document.body.appendChild(clock.el);
+     //   scroll up button
     //Get the button:
 
 
