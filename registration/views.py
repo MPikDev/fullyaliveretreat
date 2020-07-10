@@ -219,14 +219,15 @@ def camper_logout(request):
 
 @login_required(redirect_field_name='login')
 def camper_info(request):
-
-    paid_campers_info_2020 = Camper.objects.filter(camp_filter=FALL_2020_CAMP, paid=True).order_by('pk')
-    not_paid_campers_info_2020 =  Camper.objects.filter(camp_filter=FALL_2020_CAMP, paid=False).order_by('pk')
+    print 'FALL_2020_CAMP', FALL_2020_CAMP
+    filter_camp = FALL_2020_CAMP
+    paid_campers_info_2020 = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
+    not_paid_campers_info_2020 =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')
     try:
-        not_paid_and_no_duplicates_email_info_2020  = Camper.objects.filter(camp_filter=FALL_2020_CAMP, paid=False).distinct('email')
+        not_paid_and_no_duplicates_email_info_2020  = Camper.objects.filter(camp_filter=filter_camp, paid=False).distinct('email')
         len(not_paid_and_no_duplicates_email_info_2020)
     except:
-        not_paid_and_no_duplicates_email_info_2020 = Camper.objects.filter(camp_filter=FALL_2020_CAMP,paid=False)
+        not_paid_and_no_duplicates_email_info_2020 = Camper.objects.filter(camp_filter=filter_camp,paid=False)
         non_dulicate = {}
         for camper in not_paid_and_no_duplicates_email_info_2020:
             if camper.email not in non_dulicate:
@@ -241,11 +242,74 @@ def camper_info(request):
             'not_count': len(not_paid_campers_info_2020),
             'not_email_count': len(not_paid_and_no_duplicates_email_info_2020),
             'final_paid_campers_info':paid_campers_info_2020,
-            'final_paid_count': len(paid_campers_info_2020)
+            'final_paid_count': len(paid_campers_info_2020),
+            'camp_filter': filter_camp,
+            }
+    return render(request, 'camper_info.html', data)
+
+@login_required(redirect_field_name='login')
+def camper_info_spring_2020(request):
+    print 'SPRING_2020_CAMP', SPRING_2020_CAMP
+    filter_camp = SPRING_2020_CAMP
+
+    paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
+    not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')
+    try:
+        not_paid_and_no_duplicates_campers  = Camper.objects.filter(camp_filter=filter_camp, paid=False).distinct('email')
+        len(not_paid_and_no_duplicates_campers)
+    except:
+        not_paid_and_no_duplicates_campers = Camper.objects.filter(camp_filter=filter_camp,paid=False)
+        non_dulicate = {}
+        for camper in not_paid_and_no_duplicates_campers:
+            if camper.email not in non_dulicate:
+                non_dulicate[camper.email] = camper
+
+        not_paid_and_no_duplicates_campers = non_dulicate.values()
+
+    data = {'paid_campers_info': paid_campers,
+            'not_campers_info': not_paid_campers,
+            'not_paid_email_info': not_paid_and_no_duplicates_campers,
+            'paid_count': len(paid_campers),
+            'not_count': len(not_paid_campers),
+            'not_email_count': len(not_paid_and_no_duplicates_campers),
+            'final_paid_campers_info':paid_campers,
+            'final_paid_count': len(paid_campers),
+            'camp_filter':filter_camp,
+            }
+    return render(request, 'camper_info.html', data)
+
+@login_required(redirect_field_name='login')
+def camper_info_spring_2019(request):
+    print 'SPRING_2019_CAMP', SPRING_2019_CAMP
+    filter_camp = SPRING_2019_CAMP
+
+    paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
+    not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')
+    try:
+        not_paid_and_no_duplicates_campers  = Camper.objects.filter(camp_filter=filter_camp, paid=False).distinct('email')
+        len(not_paid_and_no_duplicates_campers)
+    except:
+        not_paid_and_no_duplicates_campers = Camper.objects.filter(camp_filter=filter_camp,paid=False)
+        non_dulicate = {}
+        for camper in not_paid_and_no_duplicates_campers:
+            if camper.email not in non_dulicate:
+                non_dulicate[camper.email] = camper
+
+        not_paid_and_no_duplicates_campers = non_dulicate.values()
+
+    data = {'paid_campers_info': paid_campers,
+            'not_campers_info': not_paid_campers,
+            'not_paid_email_info': not_paid_and_no_duplicates_campers,
+            'paid_count': len(paid_campers),
+            'not_count': len(not_paid_campers),
+            'not_email_count': len(not_paid_and_no_duplicates_campers),
+            'final_paid_campers_info':paid_campers,
+            'final_paid_count': len(paid_campers),
+            'camp_filter':filter_camp,
             }
 
-
     return render(request, 'camper_info.html', data)
+
 
 def filter_campers(all_campers, int_pks):
     paid_campers_info_2020 = []
