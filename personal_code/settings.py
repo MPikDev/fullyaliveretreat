@@ -28,6 +28,10 @@ PAYPAL_RECEIVER_EMAIL = 'events@nwasbc.com'
 # PAYPAL_RECEIVER_EMAIL = 'lotgchurch-facilitator@hotmail.com'
 # PAYPAL_RECEIVER_EMAIL = 'het7ga-facilitator@gmail.com'
 
+SPRING_2019_CAMP = 'camp 2019'
+SPRING_2020_CAMP = 'spring camp 2020'
+FALL_2020_CAMP = 'fall 2020 camp'
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
