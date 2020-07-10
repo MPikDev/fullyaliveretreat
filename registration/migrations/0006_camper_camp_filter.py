@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-
+from personal_code.settings import SPRING_2019_CAMP, SPRING_2020_CAMP
 
 class Migration(migrations.Migration):
 
@@ -17,9 +17,9 @@ class Migration(migrations.Migration):
         Camper = apps.get_model('registration', 'Camper')
         for c in Camper.objects.all():
             if c.created.year == 2020:
-                c.camp_filter = "spring camp 2020"
+                c.camp_filter = SPRING_2020_CAMP
             else:
-                c.camp_filter = "camp 2019"
+                c.camp_filter = SPRING_2019_CAMP
             c.save()
 
     operations = [
