@@ -47,5 +47,7 @@ urlpatterns = [
     url(r'^login', views.log_in, name='login'),
     url(r'^logout', views.camper_logout),
     url(r'^camper_info', views.camper_info, name='camper_info'),
+    url(r'^2020_spring_camper_info', views.camper_info_spring_2020),
+    url(r'^2019_camper_info_spring', views.camper_info_spring_2019),
 
 ]
