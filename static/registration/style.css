@@ -1121,6 +1121,7 @@ h3:after {
     }
 }
 .postpone-box{
+        text-align: center;
     width: 726px;
     color: rgb(21,90,142);
         font-family: "Avenir", sans-serif;

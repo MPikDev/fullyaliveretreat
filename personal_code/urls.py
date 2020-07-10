@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^$', views.home2),
     url(r'^home', views.home2),
     url(r'^registration', views.register),
+    url(r'^check_who_paid', views.check_who_paid),
     url(r'^fellowship', views.fellowship),
     url(r'^nature', views.nature),
     url(r'^activities', views.activities),
