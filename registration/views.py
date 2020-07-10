@@ -73,9 +73,13 @@ def schedule(request):
 
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
-    total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice', flat=True)
-    paid_all_campers = Camper.objects.filter(pk__in=total_paid_campers_pk)
-    print len(paid_all_campers) # this is for the query to be done right now
+    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice',
+                                                                                                         flat=True)
+    int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
+    no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
+
+    paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
+    print len(paid_all_campers)  # this is for the query to be done right now
     for camper in paid_all_campers:
         camper.paid = True
         camper.save()
