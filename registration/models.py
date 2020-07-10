@@ -20,7 +20,8 @@ class Camper(models.Model):
     church_member = models.BooleanField()
     paypal = models.CharField(max_length=48, default='untouched')
     paid = models.BooleanField()
-    timestamp = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    camp_filter = models.CharField(max_length=48, default='not caught')
 
     def __unicode__(self):
         return u"{0} {1}, church member: {2}, paided: {3}".format(self.first_name, self.last_name, self.church_member, self.paid)
