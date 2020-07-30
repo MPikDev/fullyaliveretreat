@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Fully Alive Retreat</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+</head>
+<body>
+<div class="picture desktop-main">
+    <div class="container" style="width: 100%; text-align: center;">
+
+        <div class="row">
+            {#    more info #}
+
+            <button class="desktop-btn " style="color: rgb(141,106,117)" onclick="window.location.href = '/infotwo';"
+                    type="button">MORE INFO
+            </button>
+            {#   schdedule #}
+            <button class="desktop-btn "  style="color: rgb(159,129,133)" onclick="window.location.href = 'schedule';"
+                    type="button">SCHEDULE
+            </button>
+            {#photos#}
+            <button class="desktop-btn "  style="color: rgb(176,138,122)" onclick="window.location.href = 'photos';"
+                    type="button">PHOTO
+            </button>
+            {#video #}
+            <button class="desktop-btn "  style="color: rgb(191,140,112)" onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';"
+                    type="button">VIDEO
+            </button>
+
+            <button class="desktop-btn "  style="color: rgb(217,159,112)" onclick="window.location.href = '/registration';"
+                    type="button">REGISTRATION
+            </button>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="picture desktop-add">
+
+</div>
+
+</body>
+</html>
