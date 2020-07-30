@@ -411,7 +411,6 @@ body, html {
     /*top: 0px;*/
     /*z-index: 0;*/
     background-image: url("maint.jpg");
-    /*background-image: url("fire.MOV");*/
 }
 
 .mission {
@@ -454,10 +453,6 @@ body, html {
 
 .fellow3 {
     background-image: url("whattoexpect3.jpg");
-}
-
-.nature-pic {
-    background-image: url("nature.jpg");
 }
 
 .reg-pic {
