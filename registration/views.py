@@ -30,12 +30,13 @@ def register(request):
 
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2020).count()
 
-    if total_campers > 200:
+    if total_campers > settings.MAX_CAPACITY:
         return render(request, 'closed.html')
     if datetime.datetime.now() > datetime.datetime(2020, 11, 1, 7, 0):
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
+    camper["max_capacity"] = settings.MAX_CAPACITY
     return render(request, 'register.html', camper)
 
 
@@ -43,7 +44,11 @@ def register(request):
     # return render(request, 'info.html')
 
 def info_two(request):
-    return render(request, 'info_two.html')
+    data = {
+        "max_capacity": settings.MAX_CAPACITY,
+        "camp_price": settings.CAMP_PRICE,
+    }
+    return render(request, 'info_two.html', data)
 
 
 def hamburger(request):
@@ -160,6 +165,7 @@ def reg(request):
     if invalid_post:
         camper["error_message"] = error_message
         camper["total_campers"] = total_campers
+        camper["max_capacity"] = settings.MAX_CAPACITY
         return render(request, 'register.html', camper)
 
     del camper['email_v']
@@ -175,7 +181,7 @@ def pay_now(request, *args, **kwargs):
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": "215.00",
+        "amount":  "{price}.00".format(price=settings.CAMP_PRICE),
         "item_name": "Registration for Fully Alive Retreat FALL 2020",
         'currency_code': 'USD',
         "invoice": camper_id,

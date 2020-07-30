@@ -32,6 +32,9 @@ SPRING_2019_CAMP = 'camp 2019'
 SPRING_2020_CAMP = 'spring camp 2020'
 FALL_2020_CAMP = 'fall 2020 camp'
 
+MAX_CAPACITY = 120
+CAMP_PRICE = 220
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
