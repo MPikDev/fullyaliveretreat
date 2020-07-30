@@ -314,33 +314,6 @@ body, html {
 
 }
 
-h3:before {
-    content: "";
-    position: inherit;
-    display: block;
-    height: 15vw;
-    width: 15vw;
-    background: url('quote_u.svg') no-repeat bottom;
-    background-size: contain;
-    mix-blend-mode: multiply;
-    left: 10%;
-    top: -20vw;
-    z-index: 3;
-}
-
-h3:after {
-    content: "";
-    position: inherit;
-    display: block;
-    height: 15vw;
-    width: 15vw;
-    background: url('quote_u.svg') no-repeat bottom;
-    background-size: contain;
-    mix-blend-mode: multiply;
-    float: right;
-    top: 20vw;
-    z-index: 3;
-}
 
 #clock {
 
