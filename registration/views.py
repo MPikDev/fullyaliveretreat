@@ -58,6 +58,9 @@ def hamburger(request):
 def photos(request):
     return render(request, 'photos.html')
 
+def desktop(request):
+    return render(request, 'desktop.html')
+
 
 def fellowship(request):
     return render(request, 'fellowship.html')

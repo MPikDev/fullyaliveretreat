@@ -12,6 +12,7 @@ body, html {
     src: url(8483.ttf);
 }
 
+
 .invis-button {
     z-index: 1000;
     /*background: red;*/
@@ -91,13 +92,48 @@ body, html {
     width: 68px;
 }
 
+.back-button-bottom-center {
+    height: 54px;
+    width: 68px;
+    text-align: center;
+    top: 88%;
+}
+
+.desktop-btn {
+    opacity: 1;
+    border: 0;
+    background: white;
+    border-radius: 51px;
+    height: 65px;
+    width: 225px;
+    position: relative;
+    color: rgb(208, 164, 126);
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .schedule-div {
     position: absolute;
     width: 100%;
 }
 
+.schedule-btn-real {
+    opacity: 1;
+    border: 0;
+    background: rgb(208, 164, 126);
+    border-radius: 51px;
+    height: 47px;
+    width: 207px;
+    position: relative;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .schedule-div.fellow-div {
-    top: 31%;
+    top: 22%;
 }
 
 .schedule-div.nature-div {
@@ -157,10 +193,11 @@ body, html {
     position: relative;
     text-align: center;
 }
-.flip-clock-text{
-        color: rgba(79, 105, 127, 1);
+
+.flip-clock-text {
+    color: rgba(79, 105, 127, 1);
     font-size: 27px;
-        margin-bottom: -15px;
+    margin-bottom: -15px;
 }
 
 .custom-row {
@@ -380,18 +417,20 @@ h3:after {
 .slideshow-container {
     top: 27%;
 }
+
 .ham_img {
-            z-index: 1000;
+    z-index: 1000;
     /*background: red;*/
     /*opacity: .5;*/
     /*opacity: 0;*/
     position: absolute;
-        top: 2%;
+    top: 2%;
     left: 82%;
     height: 24px;
     width: 24px;
     background-image: url("ham-img.png");
 }
+
 .test-header-pic {
     /*margin-top: 70px;*/
     /*background-image: url("main.jpg");*/
@@ -411,24 +450,37 @@ h3:after {
     position: relative;
     background-image: url("verse.jpg");
 }
+
 .mobileonly {
     background-image: url("mobileonly.jpg");
 }
 
-.schedule {
-    background-image: url("schedule2.jpg");
+.desktop-main {
+    background-image: url("desktop-main.jpg");
+}
+
+.desktop-add {
+    background-image: url("desktop-add.jpg");
+}
+
+.schedule3 {
+    background-image: url("schedule_no_text.jpg");
 }
 
 .locaiton {
     background-image: url("location.jpg");
 }
 
-.activ {
-    background-image: url("activities.jpg");
+.fellow1 {
+    background-image: url("whattoexpect1.jpg");
 }
 
-.fellow {
-    background-image: url("fellow.jpg");
+.fellow2 {
+    background-image: url("whattoexpect2.jpg");
+}
+
+.fellow3 {
+    background-image: url("whattoexpect3.jpg");
 }
 
 .nature-pic {
@@ -443,18 +495,23 @@ h3:after {
     background-image: url("ham.jpg");
 }
 
-.bkgrd-pic {
-    background-image: url("back1.jpg");
-}
 .pic1 {
     background-image: url("1.PNG");
-}.pic2 {
+}
+
+.pic2 {
     background-image: url("2.PNG");
-}.pic3 {
+}
+
+.pic3 {
     background-image: url("3.PNG");
-}.pic4 {
+}
+
+.pic4 {
     background-image: url("4.PNG");
-}.pic5 {
+}
+
+.pic5 {
     background-image: url("5.PNG");
 }
 
@@ -1120,31 +1177,35 @@ h3:after {
         z-index: 5;
     }
 }
-.postpone-box{
-        text-align: center;
+
+.postpone-box {
+    text-align: center;
     width: 726px;
-    color: rgb(21,90,142);
-        font-family: "Avenir", sans-serif;
+    color: rgb(21, 90, 142);
+    font-family: "Avenir", sans-serif;
     font-size: 23px;
     font-weight: 500;
 }
-.postpone-container{
+
+.postpone-container {
     margin-top: 10%;
     left: 50%;
     margin-right: -50%;
     position: absolute;
     transform: translate(-50%, -50%);
 }
-.postpone-box-main{
+
+.postpone-box-main {
     width: 250px;
     color: white;
 
-        font-family: "Avenir", sans-serif;
+    font-family: "Avenir", sans-serif;
     font-size: 16px;
     font-weight: 500;
 }
-.postpone-container-main{
-        background-color: black;
+
+.postpone-container-main {
+    background-color: black;
     background: rgba(0, 0, 0, 0.5);
     margin-top: 80%;
     left: 50%;
