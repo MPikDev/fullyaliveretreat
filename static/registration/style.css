@@ -471,10 +471,6 @@ h3:after {
     background-image: url("location.jpg");
 }
 
-.activ {
-    background-image: url("activities.jpg");
-}
-
 .fellow1 {
     background-image: url("whattoexpect1.jpg");
 }
@@ -497,10 +493,6 @@ h3:after {
 
 .hamburger-pic {
     background-image: url("ham.jpg");
-}
-
-.bkgrd-pic {
-    background-image: url("back1.jpg");
 }
 
 .pic1 {
