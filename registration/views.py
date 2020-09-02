@@ -27,6 +27,8 @@ def full(request):
     return render(request, 'full.html')
 
 def register(request):
+    # closed 
+    return render(request, 'closed.html')
 
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2020).count()
 
