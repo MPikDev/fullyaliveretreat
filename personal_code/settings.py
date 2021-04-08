@@ -68,6 +68,7 @@ ROOT_URLCONF = 'personal_code.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': []
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
