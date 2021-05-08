@@ -34,7 +34,7 @@ FALL_2020_CAMP = 'fall 2020 camp'
 FALL_2021_CAMP = 'fall 2021 camp'
 
 MAX_CAPACITY = 140
-CAMP_PRICE = 100
+CAMP_PRICE = 110
 
 ALLOWED_HOSTS = ['*']
 
@@ -69,6 +69,7 @@ ROOT_URLCONF = 'personal_code.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': []
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
