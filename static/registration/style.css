@@ -1175,9 +1175,29 @@ body, html {
 .postpone-container-main {
     background-color: black;
     background: rgba(0, 0, 0, 0.5);
-    margin-top: 80%;
+    /*margin-top: 80%;*/
     left: 50%;
     margin-right: -50%;
     position: absolute;
     transform: translate(-50%, 0%);
+}
+
+
+/*New buttons on home*/
+.btn-lower-menu {
+    margin-top: 40px;
+    /*margin-left: 50px;*/
+    background: #ffffff;
+    border-radius: 50px;
+    font-weight: bold;
+    max-width: 300px;
+    min-height: 40px;
+    font-size: 30px;
+    color: #32669a;
+    text-align: center;
+    min-width: 240px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
 }
