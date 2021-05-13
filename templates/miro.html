@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>FullyAliveCamp</title>
-
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/bootstrap/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/css/Features-Blue.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/css/Header-Blue.css' %}"/>
@@ -61,6 +61,31 @@
             <div class="col"><img class="img-fluid" src='{% static "registration/assets/img/title.png" %}'></div>
         </div>
     </div>
+        <div class="container hero">
+        <div class="row">
+        <div class="postpone-container-main">
+        <div class="postpone-box-main">
+            <p style="    background-color: black !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    /*margin-top: 80% !important;*/
+    left: 50%;
+    margin-right: -50%;
+    position: absolute;
+    transform: translate(-50%, 0%) !important;
+    color: white !important;
+    font-family: 'Avenir', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            ">
+                2021 is looking promising!
+                <br>Mark your Calendars!
+                <br>September 9<sup>th</sup> - 12<sup>th</sup>
+            </p>
+
+        </div>
+    </div>
+        </div>
+    </div>
 
 </header>
 <section class="features-blue"
@@ -91,26 +116,21 @@
 </section>
 <section class="features-blue"
          style="min-height: 700px;background: url('{% static "registration/assets/img/4.png" %}') center / cover no-repeat;">
-    <div class="container" style="margin-top: 10px;border-style: none;">
-        <a class="btn btn-primary active" role="button" style="margin-top: 120px;margin-left: 50px;background: #c4936b;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 25PX;color: #ffffff;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
+    <div class="container " style="margin-top: 10px;border-style: none; text-align: center;">
+        <a class="btn btn-primary active" role="button"
+           style="margin-top: 120px;background: #c4936b;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 25PX;color: #ffffff;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
            onclick="window.location.href = '/fellowship';">WHAT
-        TO EXPECT</a></div>
+            TO EXPECT</a></div>
 </section>
 <section class="features-blue"
          style="min-height: 700px;background: url('{% static "registration/assets/img/-6 A .jpg" %}') center / cover no-repeat;">
-    <div class="container" style="margin-top: 10px;"><a class="btn btn-primary active" role="button"
-                                                        style="margin-top: 120px;margin-left: 50px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
-                                                        onclick="window.location.href = '/infotwo';">MORE INFO</a><a
-            class="btn btn-primary active" role="button"
-            style="margin-top: 40px;margin-left: 50px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
-            onclick="window.location.href = 'schedule';">SCHEDULE</a><a class="btn btn-primary active" role="button"
-                                                                            style="margin-top: 40px;margin-left: 50px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 400px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
-                                                                            onclick="window.location.href = 'photos';">PHOTO</a><a
-            class="btn btn-primary active" role="button"
-            style="margin-top: 40px;margin-left: 50px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
-            onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">VIDEO</a><a
-            class="btn btn-primary active" role="button"
-            style="margin-top: 38px;margin-left: 50px;background: #5487c1;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #ffffff;text-align: center;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
+    <div class="container" style="margin-top: 10px; text-align: center; height: 600px; width: 400px;">
+        <a class="btn btn-primary active" role="button"  style="margin-top: 120px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;" onclick="window.location.href = '/infotwo';">MORE
+        INFO</a>
+        <a class="btn btn-primary active" role="button" style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'schedule';">SCHEDULE</a>
+        <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 400px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'photos';">PHOTO</a>
+        <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"   onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">VIDEO</a>
+        <a  class="btn btn-primary active" role="button" style="margin-top: 38px;background: #5487c1;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #ffffff;text-align: center;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
             onclick="window.location.href = '/registration';">REGISTRATION</a>
     </div>
 </section>
