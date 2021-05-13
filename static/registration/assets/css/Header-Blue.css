@@ -139,12 +139,12 @@
   text-align: center;
 }
 
-@media (min-width:768px) {
-  .header-blue .hero {
-    margin-top: 60px;
-    text-align: left;
-  }
-}
+/*@media (min-width:768px) {*/
+/*  .header-blue .hero {*/
+/*    margin-top: 60px;*/
+/*    text-align: left;*/
+/*  }*/
+/*}*/
 
 .header-blue .hero h1 {
   color: #fff;
