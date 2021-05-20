@@ -22,6 +22,8 @@ def home(request):
 
 def home2(request):
     return render(request, 'miro.html')
+def olga(request):
+    return render(request, 'olga.html')
 
 def full(request):
     return render(request, 'full.html')

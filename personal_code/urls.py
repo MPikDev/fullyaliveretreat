@@ -36,6 +36,7 @@ urlpatterns = [
     # url(r'^info', views.info),
     url(r'^hamburger', views.hamburger),
     url(r'^miro', views.miro),
+    url(r'^olga', views.olga),
     url(r'^photos', views.photos),
     url(r'^infotwo', views.info_two),
     url(r'^register', views.reg),
