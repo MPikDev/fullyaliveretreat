@@ -713,7 +713,8 @@ body, html {
 @media (max-width: 786px) {
     .wave-backgroud {
         /*background-attachment: scroll;*/
-        background-image: url("main.jpg")
+        /*background-image: url("main.jpg")*/
+        background-image: url("3_test.jpg")
 
     }
 
