@@ -671,7 +671,8 @@ body, html {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    background-image: url("main.jpg")
+    /*background-image: url("main.jpg")*/
+    background-image: url("main_test.jpeg")
 }
 
 .paid-title {
@@ -683,7 +684,9 @@ body, html {
 
 .successBox {
     margin-top: 28%;
-    background: white;
+    /*background: white;*/
+    /*opacity: 80%;*/
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .button-row {
@@ -745,7 +748,8 @@ body, html {
 
 .moreinfoBox {
     margin-top: 50px;
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    /*opacity: 80%;*/
 }
 
 .signupBox {
@@ -1200,4 +1204,17 @@ body, html {
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
+}
+
+.olga-pic-main {
+    background: url('3_test.jpg') center / cover no-repeat;
+    min-height: 90%;
+}
+.olga-pic-verse-statement {
+    background: url('2_test.jpg') center / cover no-repeat;
+    min-height: 90%;
+}
+.olga-pic-buttom {
+    background: url('4_test.jpg') center / cover no-repeat;
+    min-height: 90%;
 }
