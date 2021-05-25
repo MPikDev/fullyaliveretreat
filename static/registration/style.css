@@ -686,7 +686,7 @@ body, html {
     margin-top: 28%;
     /*background: white;*/
     /*opacity: 80%;*/
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .button-row {
@@ -749,7 +749,7 @@ body, html {
 
 .moreinfoBox {
     margin-top: 50px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.7);
     /*opacity: 80%;*/
 }
 
