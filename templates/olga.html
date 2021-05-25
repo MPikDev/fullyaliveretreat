@@ -7,18 +7,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>FullyAliveCamp</title>
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/bootstrap/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/css/Features-Blue.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/css/Header-Blue.css' %}"/>
     <link rel="stylesheet" href="{% static 'registration/assets/css/styles.css' %}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
 
 </head>
 
 <body>
-<header class="header-blue"
-        style="background: url('{% static "registration/main_test.jpeg" %}') center / cover no-repeat;min-height: 660px;">
+<header class="header-blue olga-pic-main">
 
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
         <div class="container-fluid">
@@ -88,8 +87,7 @@
     </div>
 
 </header>
-<section class="features-blue"
-         style="min-height: 650px;background: url('{% static "registration/ 2_test.jpg" %}') center / cover no-repeat;">
+<section class="features-blue olga-pic-verse-statement">
 
     <div class="container">
 
@@ -103,10 +101,7 @@
                 THEIR WALK TOWARDS HEAVEN</p>
         </div>
     </div>
-</section>
-<section class="features-blue"
-         style="min-height: 700px;background: url('{% static "registration/3_test.jpg" %}') center / cover no-repeat;">
-    <div class="container">
+        <div class="container">
         <img class="img-fluid" src='{% static "registration/assets/img/verse.png" %}'
              style="min-height: 200px;min-width: 300px;margin: -4px;margin-top: 200px;">
         <img
@@ -114,18 +109,31 @@
                 style="min-width: 100px;margin: -4px;margin-top: 117px;max-height: 58px;margin-left: 215px;">
     </div>
 </section>
-<section class="features-blue"
-         style="min-height: 700px;background: url('{% static "registration/4_test.jpg" %}') center / cover no-repeat;">
-    <div class="container " style="margin-top: 10px;border-style: none; text-align: center;">
-        <a class="btn btn-primary active" role="button"
-           style="margin-top: 120px;background: #FFFFFF;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 25PX;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
-           onclick="window.location.href = '/fellowship';">WHAT
-            TO EXPECT</a></div>
-</section>
-<section class="features-blue"
-         style="min-height: 700px;background: url('{% static "registration/5_test.jpg" %}') center / cover no-repeat;">
-    <div class="container" style="margin-top: 10px; text-align: center; height: 600px; width: 400px;">
-        <a class="btn btn-primary active" role="button"  style="margin-top: 120px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;" onclick="window.location.href = '/infotwo';">MORE
+{#<section class="features-blue"#}
+{#         style="min-height: 700px;background: url('{% static "registration/3_test.jpg" %}')  center / cover no-repeat;     background-size: contain;">#}
+{#    <div class="container">#}
+{#        <img class="img-fluid" src='{% static "registration/assets/img/verse.png" %}'#}
+{#             style="min-height: 200px;min-width: 300px;margin: -4px;margin-top: 200px;">#}
+{#        <img#}
+{#                class="img-fluid" src='{% static "registration/assets/img/passage.png" %}'#}
+{#                style="min-width: 100px;margin: -4px;margin-top: 117px;max-height: 58px;margin-left: 215px;">#}
+{#    </div>#}
+{#</section>#}
+{#<section class="features-blue"#}
+{#         style="min-height: 700px;background: url('{% static "registration/4_test.jpg" %}') center / cover no-repeat;">#}
+{#    <div class="container " style="margin-top: 10px;border-style: none; text-align: center;">#}
+{#        <a class="btn btn-primary active" role="button"#}
+{#           style="margin-top: 120px;background: #FFFFFF;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 25PX;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"#}
+{#           onclick="window.location.href = '/fellowship';">WHAT#}
+{#            TO EXPECT</a></div>#}
+{#</section>#}
+<section class="features-blue olga-pic-buttom">
+    <div class="container" style=" text-align: center; height: 600px; width: 400px;">
+
+        <a class="btn btn-primary active" role="button"  style="margin-top: 120px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;" onclick="window.location.href = '/fellowship';">WHAT
+           TO EXPECT</a>
+
+        <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;" onclick="window.location.href = '/infotwo';">MORE
         INFO</a>
         <a class="btn btn-primary active" role="button" style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'schedule';">SCHEDULE</a>
         <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 400px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'photos';">PHOTO</a>
