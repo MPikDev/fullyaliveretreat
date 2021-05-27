@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^camper_info', views.camper_info, name='camper_info'),
     url(r'^2020_spring_camper_info', views.camper_info_spring_2020),
     url(r'^2019_camper_info_spring', views.camper_info_spring_2019),
+    url(r'^2020_camper_info_fall', views.camper_info_fall_2020),
     url(r'^desktop', views.desktop),
 
 ]
