@@ -12,16 +12,20 @@ import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP
+from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP
 
-FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
-FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
+# FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
+# FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
+
+FIlTER_2021 = datetime.datetime(2021, 5, 1, 1, 33, 24, 755599)
+FIlTER_FALL_2021 = datetime.datetime(2021, 10, 1, 1, 33, 24, 755599)
 
 def home(request):
     return render(request, 'home.html')
 
 def home2(request):
-    return render(request, 'miro.html')
+    return render(request, 'olga.html')
+
 def olga(request):
     return render(request, 'olga.html')
 
@@ -30,13 +34,13 @@ def full(request):
 
 def register(request):
     # closed
-    return render(request, 'closed.html')
+    # return render(request, 'closed.html')
 
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2020).count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2021).count()
 
     if total_campers > settings.MAX_CAPACITY:
         return render(request, 'closed.html')
-    if datetime.datetime.now() > datetime.datetime(2020, 11, 1, 7, 0):
+    if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -105,7 +109,7 @@ def check_who_paid(request):
 def reg(request):
 
 
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2020).count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2021).count()
 
     camper = dict(
     first_name = request.POST['camper_first_name'],
@@ -122,7 +126,7 @@ def reg(request):
     church_member = request.POST.get('camper_church_member', False),
     paypal = 'reg',
     paid = False,
-    camp_filter = FALL_2020_CAMP,
+    camp_filter = FALL_2021_CAMP,
     )
 
     invalid_post = False
@@ -234,7 +238,7 @@ def camper_logout(request):
     return render(request, 'logout.html')
 
 @login_required(redirect_field_name='login')
-def camper_info(request):
+def camper_info_fall_2020(request):
     print 'FALL_2020_CAMP', FALL_2020_CAMP
     filter_camp = FALL_2020_CAMP
     paid_campers_info_2020 = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
@@ -298,6 +302,38 @@ def camper_info_spring_2020(request):
 def camper_info_spring_2019(request):
     print 'SPRING_2019_CAMP', SPRING_2019_CAMP
     filter_camp = SPRING_2019_CAMP
+
+    paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
+    not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')
+    try:
+        not_paid_and_no_duplicates_campers  = Camper.objects.filter(camp_filter=filter_camp, paid=False).distinct('email')
+        len(not_paid_and_no_duplicates_campers)
+    except:
+        not_paid_and_no_duplicates_campers = Camper.objects.filter(camp_filter=filter_camp,paid=False)
+        non_dulicate = {}
+        for camper in not_paid_and_no_duplicates_campers:
+            if camper.email not in non_dulicate:
+                non_dulicate[camper.email] = camper
+
+        not_paid_and_no_duplicates_campers = non_dulicate.values()
+
+    data = {'paid_campers_info': paid_campers,
+            'not_campers_info': not_paid_campers,
+            'not_paid_email_info': not_paid_and_no_duplicates_campers,
+            'paid_count': len(paid_campers),
+            'not_count': len(not_paid_campers),
+            'not_email_count': len(not_paid_and_no_duplicates_campers),
+            'final_paid_campers_info':paid_campers,
+            'final_paid_count': len(paid_campers),
+            'camp_filter':filter_camp,
+            }
+
+    return render(request, 'camper_info.html', data)
+
+@login_required(redirect_field_name='login')
+def camper_info(request):
+    print 'FALL_2021_CAMP', FALL_2021_CAMP
+    filter_camp = FALL_2021_CAMP
 
     paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
     not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')
