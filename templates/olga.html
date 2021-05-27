@@ -38,10 +38,10 @@
                     <li class="nav-item" style="font-size: 20px;font-weight: bold;">
                         <a class="nav-link" onclick="window.location.href = 'photos';">Photo</a>
                     </li>
-                    <li class="nav-item" style="font-size: 20px;font-weight: bold;">
-                        <a class="nav-link"
-                           onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">Video</a>
-                    </li>
+{#                    <li class="nav-item" style="font-size: 20px;font-weight: bold;">#}
+{#                        <a class="nav-link"#}
+{#                           onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">Video</a>#}
+{#                    </li>#}
                     <li class="nav-item" style="font-size: 20px;font-weight: bold;">
                         <a class="nav-link" onclick="window.location.href = '/registration';">Registration</a>
                     </li>
@@ -89,68 +89,38 @@
 </header>
 <section class="features-blue olga-pic-verse-statement">
 
-    <div class="container" style="
-    /* float: left; */
-    display: flex;
-    /* text-align: center; */
-    margin: auto;
-    width: 50%;
-">
-        {#        <div class="intro">#}
-        <div style="
-    padding-top: 184px;
-    width: 167px;
-">
-            <h2 class="text-left"
-      style="color: #FFFFFF;font-family: 'Source Sans Pro', sans-serif;font-size: 30px;font-weight: 600;padding: 10px 10px 25px 10px;">
-            AGE 23+</h2></div>
-        <div class="" style="
-    max-width: 400px;
-    margin-left: 210px;
-    margin-top: 100px;">
-            <p class="text-center" style="color: #FFFFFF;font-size: 30PX;font-weight: 600;">FULLY ALIVE</p>
-            <p class="text-center" style="color: #FFFFFF;font-size: 20px;font-weight: 600;">~ IS A CHRISTIAN PLATFORM
-                FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE FELLOWSHIP WITH ONE ANOTHER WHILE ON
-                THEIR WALK TOWARDS HEAVEN</p></div>
-
-    </div>
-{#    </div>#}
-{#        <div class="container">#}
-{#            #}
-{#            #}
-{#            #}
-{#        <img class="img-fluid" src='{% static "registration/assets/img/verse.png" %}'#}
-{#             style="min-height: 200px;min-width: 300px;margin: -4px;margin-top: 200px;">#}
-{#        <img#}
-{#                class="img-fluid" src='{% static "registration/assets/img/passage.png" %}'#}
-{#                style="min-width: 100px;margin: -4px;margin-top: 117px;max-height: 58px;margin-left: 215px;">#}
-{#    </div>#}
-        <div class="container" style="
-    /* float: left; */
-    display: flex;
-    /* text-align: center; */
-    margin: auto;
-    width: 50%;
-">
-        {#        <div class="intro">#}
-                <div class="" style="
-    max-width: 400px;
-    margin-top: 100px;">
-            <p class="text-center" style="color: #FFFFFF;font-size: 30PX;font-weight: 600;">BY HUMILITY & THE FEAR OF THE LORD ARE RICHES, & HONER & LIFE</p>
-
+    <div>
+        <div class="row">
+            <div class="main-page-age col-xs-12  offset-md-2 col-md-3">
+                <h2
+                        style="color: #FFFFFF;font-family: 'Source Sans Pro', sans-serif;font-size: 30px;font-weight: 600;padding: 10px 10px 25px 10px;">
+                    AGE 23+</h2>
+            </div>
+            <div class="main-page-sum col-xs-12 offset-md-2 col-md-3">
+                <p class="text-center" style="color: #FFFFFF;font-size: 30PX;font-weight: 600;">FULLY ALIVE</p>
+                <p class="text-center" style="color: #FFFFFF;font-size: 20px;font-weight: 600;">~ IS A CHRISTIAN
+                    PLATFORM
+                    FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE FELLOWSHIP WITH ONE ANOTHER WHILE ON
+                    THEIR WALK TOWARDS HEAVEN</p></div>
+        </div>
 
     </div>
 
-            <div style="
-    padding-top: 125px;
-        margin-left: 210px;
+    <div>
+        <div class="row">
+            <div class="main-page-bible col-xs-3  offset-md-2 col-md-3">
+                <p class="text-center" style="color: #FFFFFF;font-size: 30PX;font-weight: 600;">BY HUMILITY & THE FEAR
+                    OF
+                    THE LORD ARE RICHES, & HONER & LIFE</p>
+            </div>
 
-    width: 167px;
-">
-            <h2 class="text-left"
-      style="color: #FFFFFF;font-family: 'Source Sans Pro', sans-serif;font-size: 30px;font-weight: 600;padding: 10px 10px 25px 10px;">
-            PROVERBS 22:4</h2></div>
-
+            <div class="main-page-verse col-xs-3 offset-md-2 col-md-3">
+                <h2
+                    style="color: #FFFFFF;font-family: 'Source Sans Pro', sans-serif;font-size: 30px;font-weight: 600;padding: 10px 10px 25px 10px;">
+                    PROVERBS 22:4</h2>
+            </div>
+        </div>
+    </div>
 </section>
 {#<section class="features-blue"#}
 {#         style="min-height: 700px;background: url('{% static "registration/3_test.jpg" %}')  center / cover no-repeat;     background-size: contain;">#}
@@ -180,7 +150,7 @@
         INFO</a>
         <a class="btn btn-primary active" role="button" style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'schedule';">SCHEDULE</a>
         <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 400px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"  onclick="window.location.href = 'photos';">PHOTO</a>
-        <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"   onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">VIDEO</a>
+{#        <a class="btn btn-primary active" role="button"  style="margin-top: 40px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"   onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">VIDEO</a>#}
         <a  class="btn btn-primary active" role="button" style="margin-top: 38px;background: #ffffff;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 30px;color: #32669a;text-align: center;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"
             onclick="window.location.href = '/registration';">REGISTRATION</a>
     </div>
