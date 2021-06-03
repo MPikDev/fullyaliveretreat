@@ -40,7 +40,8 @@ def register(request):
 
     if total_campers > settings.MAX_CAPACITY:
         return render(request, 'closed.html')
-    if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
+    # if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
+    if datetime.datetime.now() > FIlTER_FALL_2021:
         return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -109,7 +110,7 @@ def check_who_paid(request):
 def reg(request):
 
 
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2021).count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).count()
 
     camper = dict(
     first_name = request.POST['camper_first_name'],
