@@ -1220,6 +1220,11 @@ body, html {
     min-height: 90%;
 }
 
+.olga-pic-forest {
+    background: url('forest.png') center / cover no-repeat;
+    min-height: 100%;
+}
+
 .main-page-age {
     padding-top: 184px;
     /*width: 167px*/
@@ -1257,12 +1262,33 @@ body, html {
 
     .main-page-verse {
         margin-left: 0px;
-        padding-top: 0px;
+        margin-top: 80px;
         margin: auto;
-                text-align: center !important;
+        text-align: center !important;
     }
+
     .main-page-bible {
-                margin: 80px;
+        margin: 80px;
+        margin-top: 0px;
+    }
+    phone-forest-text-padding{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.fellowship-forest{
+    margin-top: 150px;
+    text-align: center;
+        background: rgba(255, 255, 255, 0.3);
 
 }
+.fellowship-forest-center{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+}
+.row{
+        margin-right: 0px !important;
+    margin-left: 0px !important;
 }
