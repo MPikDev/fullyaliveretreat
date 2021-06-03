@@ -36,7 +36,7 @@ def register(request):
     # closed
     # return render(request, 'closed.html')
 
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_FALL_2021).count()
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).count()
 
     if total_campers > settings.MAX_CAPACITY:
         return render(request, 'closed.html')
