@@ -1275,6 +1275,13 @@ body, html {
         padding-left: 15px;
         padding-right: 15px;
     }
+    .fellowship-forest{
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+    .fellowship-forest-center {
+        max-width: none !important;
+    }
 }
 
 .fellowship-forest{
