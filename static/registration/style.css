@@ -1292,3 +1292,19 @@ body, html {
         margin-right: 0px !important;
     margin-left: 0px !important;
 }
+
+.wood-theme-button{
+    border-radius: 50px;
+    font-weight: bold;
+    max-width: 300px;
+    min-height: 40px;
+    font-size: 30px;
+    color: #32669a;
+    text-align: center;
+    min-width: 240px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    background: rgba(255, 255, 255, 0.6);
+}
