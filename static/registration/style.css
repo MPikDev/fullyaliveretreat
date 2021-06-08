@@ -1271,23 +1271,50 @@ body, html {
         margin: 80px;
         margin-top: 0px;
     }
-    phone-forest-text-padding{
+
+    .phone-forest-text-padding {
         padding-left: 15px;
         padding-right: 15px;
     }
-    .fellowship-forest{
+
+    .fellowship-forest {
         margin-right: 15px !important;
         margin-left: 15px !important;
     }
+
     .fellowship-forest-center {
         max-width: none !important;
     }
+
+    .text-center-desktop {
+        text-align: left!important;
+    }
+
+    .text-right-desktop {
+        text-align: left !important;
+    }
+}
+
+    .text-center-desktop {
+        text-align: center ;
+    }
+
+.text-left-desktop{
+    text-align: left ;
+}
+
+.text-right-desktop{
+    text-align: right ;
+}
+
+.smaller-font{
+    font-size: 27px !important;
 }
 
 .fellowship-forest{
     margin-top: 150px;
-    text-align: center;
-        background: rgba(255, 255, 255, 0.3);
+    /*text-align: center;*/
+        background: rgba(255, 255, 255, 0.7);
 
 }
 .fellowship-forest-center{
@@ -1314,4 +1341,19 @@ body, html {
     border-bottom-style: none;
     border-left-style: none;
     background: rgba(255, 255, 255, 0.6);
+}
+.forest-text-header{
+    color: rgb(77,77,77);
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    padding: 10px 10px 25px 10px;
+}
+
+.forest-text-body{
+        font-family: 'DengXian Light', sans-serif;
+
+    color: rgb(77,77,77);
+    font-size: 30PX;
+    font-weight: 300;
 }
