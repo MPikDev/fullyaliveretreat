@@ -124,6 +124,7 @@ def reg(request):
     med_notes = request.POST['camper_med_notes'],
     church = request.POST['camper_church'],
     pastor = request.POST['camper_pastor'],
+    pastor_number = request.POST['camper_pastor_phone'],
     church_member = request.POST.get('camper_church_member', False),
     paypal = 'reg',
     paid = False,
