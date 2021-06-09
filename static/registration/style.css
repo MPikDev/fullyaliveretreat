@@ -12,6 +12,10 @@ body, html {
     src: url(8483.ttf);
 }
 
+@font-face {
+    font-family: Austhind;
+    src: url(Austhind.ttf);
+}
 
 .invis-button {
     z-index: 1000;
@@ -1211,10 +1215,12 @@ body, html {
     background: url('3_test.jpg') center / cover no-repeat;
     min-height: 90%;
 }
+
 .olga-pic-verse-statement {
     background: url('2_test.jpg') center / cover no-repeat;
     min-height: 90%;
 }
+
 .olga-pic-buttom {
     background: url('4_test.jpg') center / cover no-repeat;
     min-height: 90%;
@@ -1247,6 +1253,130 @@ body, html {
     /*width: 167px;*/
 }
 
+
+.text-center-desktop {
+    text-align: center;
+}
+
+.text-left-desktop {
+    text-align: left;
+}
+
+.text-right-desktop {
+    text-align: right;
+}
+
+.smaller-font {
+    font-size: 27px !important;
+}
+
+.fellowship-forest {
+    margin-top: 150px;
+    /*text-align: center;*/
+    background: rgba(255, 255, 255, 0.7);
+
+}
+
+.fellowship-forest-center {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.wood-theme-button {
+    border-radius: 50px;
+    font-weight: bold;
+    max-width: 300px;
+    min-height: 40px;
+    font-size: 30px;
+    color: #32669a;
+    text-align: center;
+    min-width: 240px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.forest-text-header {
+    color: rgb(77, 77, 77);
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    padding: 10px 10px 25px 10px;
+}
+
+.forest-text-body {
+    font-family: 'DengXian Light', sans-serif;
+
+    color: rgb(77, 77, 77);
+    font-size: 30PX;
+    font-weight: 300;
+}
+
+.forest-hamburger-text {
+    border-bottom-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 27px;
+    font-weight: 300;
+}
+
+.forest-verse-text-header {
+    color: rgb(255, 255, 255);
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    padding: 10px 10px 25px 10px;
+}
+
+.forest-verse-text-body {
+    font-family: 'DengXian Light', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 30PX;
+    font-weight: 300;
+}
+
+.forest-verse {
+    margin-top: 150px;
+    /*text-align: center;*/
+    background: rgba(255, 255, 255, 0.7);
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.forest-main-title-fully-alive {
+    font-family: 'Austhind';
+    font-size: 13vw;
+    color: white;
+    margin-bottom: -20px;
+}
+
+.forest-main-title-retreat {
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 4vw;
+    color: white;
+    font-weight: 300;
+    margin-bottom: -25px;
+}
+
+.forest-main-title-year {
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 12vw;
+    color: white;
+    font-weight: 300;
+}
+
+@media (min-width: 768px) {
+    .text-left-desktop {
+        margin-left: 12.333333%;
+    }
+}
 @media (max-width: 786px) {
     .main-page-age {
         padding-top: 184px;
@@ -1282,78 +1412,38 @@ body, html {
         margin-left: 15px !important;
     }
 
+    .forest-verse {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+
     .fellowship-forest-center {
         max-width: none !important;
     }
 
     .text-center-desktop {
-        text-align: left!important;
+        text-align: left !important;
     }
 
     .text-right-desktop {
         text-align: left !important;
     }
-}
 
-    .text-center-desktop {
-        text-align: center ;
+    .forest-main-title-fully-alive {
+        font-size: 23vw;
+        margin-top: 100px;
+        margin-bottom: -10px;
     }
 
-.text-left-desktop{
-    text-align: left ;
-}
+    .forest-main-title-retreat {
+        font-size: 8vw;
+        font-weight: 300;
 
-.text-right-desktop{
-    text-align: right ;
-}
+        margin-bottom: -10px;
+    }
 
-.smaller-font{
-    font-size: 27px !important;
-}
-
-.fellowship-forest{
-    margin-top: 150px;
-    /*text-align: center;*/
-        background: rgba(255, 255, 255, 0.7);
-
-}
-.fellowship-forest-center{
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 400px;
-}
-.row{
-        margin-right: 0px !important;
-    margin-left: 0px !important;
-}
-
-.wood-theme-button{
-    border-radius: 50px;
-    font-weight: bold;
-    max-width: 300px;
-    min-height: 40px;
-    font-size: 30px;
-    color: #32669a;
-    text-align: center;
-    min-width: 240px;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    background: rgba(255, 255, 255, 0.6);
-}
-.forest-text-header{
-    color: rgb(77,77,77);
-    font-family: 'DengXian Light', sans-serif;
-    font-size: 42px;
-    font-weight: 300;
-    padding: 10px 10px 25px 10px;
-}
-
-.forest-text-body{
-        font-family: 'DengXian Light', sans-serif;
-
-    color: rgb(77,77,77);
-    font-size: 30PX;
-    font-weight: 300;
+    .forest-main-title-year {
+        font-size: 24vw;
+        font-weight: 300;
+    }
 }
