@@ -1338,11 +1338,34 @@ body, html {
 .forest-verse-text-body {
     font-family: 'DengXian Light', sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 30PX;
+    font-size: 46px;
+    font-weight: 300;
+}
+
+.forest-mission-text-header {
+    color: rgb(255, 255, 255);
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    padding: 10px 10px 25px 10px;
+}
+
+.forest-mission-text-body {
+    font-family: 'DengXian Light', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
     font-weight: 300;
 }
 
 .forest-verse {
+    margin-top: 150px;
+    /*text-align: center;*/
+    background: rgba(255, 255, 255, 0.7);
+    padding-right: 40px;
+    padding-left: 40px;
+    text-align: left
+}
+.forest-mission {
     margin-top: 150px;
     /*text-align: center;*/
     background: rgba(255, 255, 255, 0.7);
@@ -1413,6 +1436,11 @@ body, html {
     }
 
     .forest-verse {
+        margin-bottom: 100px;
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+        .forest-mission {
         margin-right: 15px !important;
         margin-left: 15px !important;
     }
@@ -1446,4 +1474,17 @@ body, html {
         font-size: 24vw;
         font-weight: 300;
     }
+    .forest-verse-text-header {
+    font-size: 8vw;
+}
+
+.forest-verse-text-body {
+    font-size: 7vw;
+}    .forest-mission-text-header {
+    font-size: 9vw;
+}
+
+.forest-mission-text-body {
+    font-size: 7vw;
+}
 }
