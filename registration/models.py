@@ -17,6 +17,7 @@ class Camper(models.Model):
     med_notes = models.CharField(max_length=400)
     church = models.CharField(max_length=100)
     pastor = models.CharField(max_length=100)
+    pastor_number = models.CharField(max_length=15, null=True, default=None)
     church_member = models.BooleanField()
     paypal = models.CharField(max_length=48, default='untouched')
     paid = models.BooleanField()
