@@ -1290,11 +1290,12 @@ body, html {
 
 .wood-theme-button {
     border-radius: 50px;
-    font-weight: bold;
+    font-family: 'DengXian Light', sans-serif;
+    font-weight: 300;
     max-width: 300px;
     min-height: 40px;
     font-size: 30px;
-    color: #32669a;
+    color: rgb(77, 77, 77);
     text-align: center;
     min-width: 240px;
     border-top-style: none;
@@ -1311,7 +1312,7 @@ body, html {
     font-family: 'DengXian Light', sans-serif;
     font-size: 42px;
     font-weight: 300;
-    padding: 10px 10px 25px 10px;
+    padding: 10px 0px 25px 0px;
 }
 
 .forest-text-body {
@@ -1332,30 +1333,30 @@ body, html {
 .forest-verse-text-header {
     color: rgb(77, 77, 77);
     font-family: 'DengXian Light', sans-serif;
-    font-size: 55px;
+    font-size: 3vw;
     font-weight: 300;
-    padding: 10px 10px 25px 10px;
+    padding: 10px 0px 25px 0px;
 }
 
 .forest-verse-text-body {
     font-family: 'DengXian Light', sans-serif;
     color: rgb(77, 77, 77);
-    font-size: 46px;
+    font-size: 2vw;
     font-weight: 300;
 }
 
 .forest-mission-text-header {
     color: rgb(77, 77, 77);
     font-family: 'DengXian Light', sans-serif;
-    font-size: 55px;
+    font-size: 3vw;
     font-weight: 300;
-    padding: 10px 10px 25px 10px;
+    padding: 10px 0px 25px 0px;
 }
 
 .forest-mission-text-body {
     font-family: 'DengXian Light', sans-serif;
     color: rgb(77, 77, 77);
-    font-size: 30px;
+    font-size: 1.5vw;
     font-weight: 300;
 }
 
@@ -1367,6 +1368,7 @@ body, html {
     padding-left: 40px;
     text-align: left
 }
+
 .forest-mission {
     margin-top: 150px;
     /*text-align: center;*/
@@ -1404,6 +1406,7 @@ body, html {
         margin-left: 12.333333%;
     }
 }
+
 @media (max-width: 786px) {
     .main-page-age {
         padding-top: 184px;
@@ -1444,7 +1447,8 @@ body, html {
         margin-right: 15px !important;
         margin-left: 15px !important;
     }
-        .forest-mission {
+
+    .forest-mission {
         margin-right: 15px !important;
         margin-left: 15px !important;
     }
@@ -1478,17 +1482,24 @@ body, html {
         font-size: 24vw;
         font-weight: 300;
     }
+
     .forest-verse-text-header {
-    font-size: 8vw;
-}
+        font-size: 8vw;
+    }
 
-.forest-verse-text-body {
-    font-size: 7vw;
-}    .forest-mission-text-header {
-    font-size: 9vw;
-}
+    .forest-verse-text-body {
+        font-size: 7vw;
+    }
 
-.forest-mission-text-body {
-    font-size: 7vw;
-}
+    .forest-mission-text-header {
+        font-size: 9vw;
+    }
+
+    .forest-mission-text-body {
+        font-size: 7vw;
+    }
+    .forest-text-header{
+            padding: 10px 0px 25px 15px;
+
+    }
 }
