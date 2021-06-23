@@ -119,24 +119,30 @@
     </div>
 
 </section>
-{#<section class="features-blue"#}
-{#         style="min-height: 700px;background: url('{% static "registration/3_test.jpg" %}')  center / cover no-repeat;     background-size: contain;">#}
-{#    <div class="container">#}
-{#        <img class="img-fluid" src='{% static "registration/assets/img/verse.png" %}'#}
-{#             style="min-height: 200px;min-width: 300px;margin: -4px;margin-top: 200px;">#}
-{#        <img#}
-{#                class="img-fluid" src='{% static "registration/assets/img/passage.png" %}'#}
-{#                style="min-width: 100px;margin: -4px;margin-top: 117px;max-height: 58px;margin-left: 215px;">#}
-{#    </div>#}
-{#</section>#}
-{#<section class="features-blue"#}
-{#         style="min-height: 700px;background: url('{% static "registration/4_test.jpg" %}') center / cover no-repeat;">#}
-{#    <div class="container " style="margin-top: 10px;border-style: none; text-align: center;">#}
-{#        <a class="btn btn-primary active" role="button"#}
-{#           style="margin-top: 120px;background: #FFFFFF;border-radius: 50px;font-weight: bold;max-width: 300px;min-height: 40px;font-size: 25PX;color: #32669a;text-align: center;min-width: 240px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;"#}
-{#           onclick="window.location.href = '/fellowship';">WHAT#}
-{#            TO EXPECT</a></div>#}
-{#</section>#}
+<section class="olga-pic-forest">
+
+    <div>
+        <div class="row">
+            <div class=" col-xs-3 offset-md-2 col-md-4">
+                 <h2 class="forest-mission-text-header">
+                        September</h2>
+                    <p class="  forest-mission-text-body">
+                        IS A CHRISTIAN PLATFORM FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE
+                        FELLOWSHIP WITH ONE ANOTHER
+                    </p>
+
+            </div>
+            <div class="  col-xs-3 col-md-5">
+                <div class="flip-clock-div">
+                    <h2 class="flip-clock-text">UNTIL THE RETREAT:</h2>
+                    <div id="clock"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
 <section class="features-blue olga-pic-buttom">
     <div class="container" style="text-align: center">
         <div class="row">
@@ -165,6 +171,124 @@
     </div>
 
 </section>
+<script>
+    console.clear();
+
+    function CountdownTracker(label, value) {
+
+        var el = document.createElement('span');
+
+        el.className = 'flip-clock__piece';
+        el.innerHTML = '<b class="flip-clock__card card"><b class="card__top"></b><b class="card__bottom"></b><b class="card__back"><b class="card__bottom"></b></b></b>' +
+            '<span class="flip-clock__slot">' + label + '</span>';
+
+        this.el = el;
+
+        var top = el.querySelector('.card__top'),
+            bottom = el.querySelector('.card__bottom'),
+            back = el.querySelector('.card__back'),
+            backBottom = el.querySelector('.card__back .card__bottom');
+
+        this.update = function (val) {
+            val = ('0' + val).slice(-2);
+            if (val !== this.currentValue) {
+
+                if (this.currentValue >= 0) {
+                    back.setAttribute('data-value', this.currentValue);
+                    bottom.setAttribute('data-value', this.currentValue);
+                }
+                this.currentValue = val;
+                top.innerText = this.currentValue;
+                backBottom.setAttribute('data-value', this.currentValue);
+
+                this.el.classList.remove('flip');
+                void this.el.offsetWidth;
+                this.el.classList.add('flip');
+            }
+        }
+
+        this.update(value);
+    }
+
+    // Calculation adapted from https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
+
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        return {
+            'Total': t,
+            'Days': Math.floor(t / (1000 * 60 * 60 * 24)),
+            'Hours': Math.floor((t / (1000 * 60 * 60)) % 24),
+            'Minutes': Math.floor((t / 1000 / 60) % 60),
+            'Seconds': Math.floor((t / 1000) % 60)
+        };
+    }
+
+    function getTime() {
+        var t = new Date();
+        return {
+            'Total': t,
+            'Hours': t.getHours() % 12,
+            'Minutes': t.getMinutes(),
+            'Seconds': t.getSeconds()
+        };
+    }
+
+    function Clock(countdown, callback) {
+
+        countdown = countdown ? new Date(Date.parse(countdown)) : false;
+        callback = callback || function () {
+        };
+
+        var updateFn = countdown ? getTimeRemaining : getTime;
+
+        this.el = document.createElement('div');
+        this.el.className = 'flip-clock';
+
+        var trackers = {},
+            t = updateFn(countdown),
+            key, timeinterval;
+
+        for (key in t) {
+            if (key === 'Total') {
+                continue;
+            }
+            trackers[key] = new CountdownTracker(key, t[key]);
+            this.el.appendChild(trackers[key].el);
+        }
+
+        var i = 0;
+
+        function updateClock() {
+            timeinterval = requestAnimationFrame(updateClock);
+
+            // throttle so it's not constantly updating the time.
+            if (i++ % 10) {
+                return;
+            }
+
+            var t = updateFn(countdown);
+            if (t.Total < 0) {
+                cancelAnimationFrame(timeinterval);
+                for (key in trackers) {
+                    trackers[key].update(0);
+                }
+                callback();
+                return;
+            }
+
+            for (key in trackers) {
+                trackers[key].update(t[key]);
+            }
+        }
+
+        setTimeout(updateClock, 500);
+    }
+
+    var deadline = new Date("September 10 2021 18:00");
+    var c = new Clock(deadline, function () {
+    });
+    document.getElementById('clock').appendChild(c.el);
+</script>
 <script src="{% static 'registration/assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'registration/assets/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
