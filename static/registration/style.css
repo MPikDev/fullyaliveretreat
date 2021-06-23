@@ -191,9 +191,9 @@ body, html {
 }
 
 .flip-clock-div {
-    /*color: rgba(169, 196, 191, 1); origanal color;*/
-    color: rgba(80, 128, 128, 1);
-    top: 68%;
+    color: rgba(169, 196, 191, 1); /* origanal color */
+    /*color: rgba(80, 128, 128, 1);*/
+    /*top: 68%;*/
     position: relative;
     text-align: center;
 }
@@ -1045,7 +1045,7 @@ body, html {
     /*padding-bottom: @halfHeight;*/
     padding-bottom: var(--halfHeight);
     /*padding-bottom: 0.72em;*/
-    font-size: 9vw;
+    font-size: 5vw;
     line-height: 0.95;
 }
 
@@ -1228,7 +1228,7 @@ body, html {
 
 .olga-pic-forest {
     background: url('forest.png') center / cover no-repeat;
-    min-height: 100%;
+    min-height: 90%;
 }
 
 .main-page-age {
