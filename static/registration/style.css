@@ -1424,6 +1424,7 @@ body, html {
     font-family: 'DengXian Light', sans-serif;
     font-size: 2vw;
     font-weight: 300;
+    color: rgb(77, 77, 77);
 }
 
 .forest-time-left-div {
@@ -1548,9 +1549,7 @@ body, html {
     }
 
     .forest-time-left-box {
-        font-family: 'DengXian Light', sans-serif;
-        font-size: 4vw !important;
-        font-weight: 300;
+        font-size: 4vw;
     }
 
     .forest-time-left-div {
