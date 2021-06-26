@@ -4,6 +4,7 @@ body, html {
     margin: 0;
     /*{# -moz-osx-font-smoothing: grayscale; #}*/
     font-family: "myFirstFont", "Avenir", sans-serif;
+    /*font-family: "myFirstFont", sans-serif;*/
 
 }
 
@@ -1003,7 +1004,7 @@ body, html {
 .flip-clock {
     text-align: center;
     perspective: 400px;
-    margin: 20px auto;
+    /*margin: 20px auto;*/
 }
 
 *,
@@ -1024,7 +1025,7 @@ body, html {
 }
 
 .flip-clock__slot {
-    font-size: 2vw;
+    /*font-size: 2vw;*/
 }
 
 /*@halfHeight: 0.72em;*/
@@ -1045,8 +1046,11 @@ body, html {
     /*padding-bottom: @halfHeight;*/
     padding-bottom: var(--halfHeight);
     /*padding-bottom: 0.72em;*/
-    font-size: 5vw;
+    /*font-size: 5vw;*/
+    font-size: 4.5vw;
     line-height: 0.95;
+    background-color: transparent;
+    border: transparent;
 }
 
 .card__top,
@@ -1060,14 +1064,15 @@ body, html {
     /*color: #ccc;*/
     color: white;
     /*background: #222;*/
-    background: rgba(80, 128, 128, 1);
+    /*background: rgba(80, 128, 128, 1);*/
+    background: rgba(77, 77, 77, 1);
     padding: 0.25em 0.25em;
     /*border-radius: 0.15em 0.15em 0 0;*/
     border-radius: var(--borderRadius) var(--borderRadius) 0 0;
     /*border-radius: @borderRadius @borderRadius 0 0;*/
     backface-visiblity: hidden;
     transform-style: preserve-3d;
-    /*width: 1.8em;*/
+    width: 1.7em;
     transform: translateZ(0);
 }
 
@@ -1076,13 +1081,9 @@ body, html {
     position: absolute;
     top: 50%;
     left: 0;
-    border-top: solid 1px rgba(80, 128, 128, 1);
-    border-top: solid 1px rgba(80, 128, 128, 1);
-    /*background: #393939;*/
-    background: rgba(80, 128, 128, 1);
-    /*border-radius: 0 0 @borderRadius @borderRadius;*/
+    border-top: solid 1px rgba(77, 77, 77, 1);
+    background: rgba(77, 77, 77, 1);
     border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-    /*border-radius: 0 0 0.15em 0.15em;*/
     pointer-events: none;
     overflow: hidden;
 }
@@ -1401,6 +1402,36 @@ body, html {
     padding-left: 25px;
 }
 
+.camp-dates {
+    color: white;
+    border-radius: var(--borderRadius) var(--borderRadius) var(--borderRadius) var(--borderRadius);
+    background: rgb(77, 77, 77);
+    font-size: 4.5vw;
+    padding: 0.25em 0.25em;
+    line-height: .95;
+    text-align: center;
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+.camp-dates-div {
+    margin-top: 150px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.forest-time-left-box {
+    font-family: 'DengXian Light', sans-serif;
+    font-size: 2vw;
+    font-weight: 300;
+}
+
+.forest-time-left-div {
+    margin-top: 150px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+}
+
 @media (min-width: 768px) {
     .text-left-desktop {
         margin-left: 12.333333%;
@@ -1498,8 +1529,33 @@ body, html {
     .forest-mission-text-body {
         font-size: 7vw;
     }
-    .forest-text-header{
-            padding: 10px 0px 25px 15px;
 
+    .forest-text-header {
+        padding: 10px 0px 25px 15px;
+    }
+
+    .camp-dates {
+        font-size: 10.4vw;
+    }
+
+    .camp-dates-div {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+
+    .card {
+        font-size: 10.4vw;
+    }
+
+    .forest-time-left-box {
+        font-family: 'DengXian Light', sans-serif;
+        font-size: 4vw !important;
+        font-weight: 300;
+    }
+
+    .forest-time-left-div {
+        margin-bottom: 100px;
+        margin-right: 15px !important;
+        margin-left: 15px !important;
     }
 }
