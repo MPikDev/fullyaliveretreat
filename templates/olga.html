@@ -35,9 +35,9 @@
                     <li class="nav-item forest-hamburger-text">
                         <a class="nav-link" onclick="window.location.href = 'schedule';">SCHEDULE</a>
                     </li>
-{#                    <li class="nav-item" style="font-size: 20px;font-weight: bold;">#}
-{#                        <a class="nav-link" onclick="window.location.href = 'photos';">Photo</a>#}
-{#                    </li>#}
+                    {#                    <li class="nav-item" style="font-size: 20px;font-weight: bold;">#}
+                    {#                        <a class="nav-link" onclick="window.location.href = 'photos';">Photo</a>#}
+                    {#                    </li>#}
                     <li class="nav-item forest-hamburger-text">
                         <a class="nav-link"
                            onclick="window.location.href = 'https://youtu.be/ztPhKAuXx5I';">VIDEO</a>
@@ -59,18 +59,18 @@
         <div class="row">
             <h2 class="offset-md-1 col-md-10 forest-main-title-fully-alive">Fully Alive</h2>
         </div>
-                <div class="row">
+        <div class="row">
             <h2 class="offset-md-2 col-md-8 forest-main-title-retreat">R E T R E A T</h2>
         </div>
         <div class="row">
             <h2 class="offset-md-2 col-md-8 forest-main-title-year">2021</h2>
         </div>
     </div>
-        <div class="container hero">
+    <div class="container hero">
         <div class="row">
-        <div class="postpone-container-main">
-        <div class="postpone-box-main">
-            <p style="    background-color: black !important;
+            <div class="postpone-container-main">
+                <div class="postpone-box-main">
+                    <p style="    background-color: black !important;
                 font-family: 'DengXian Light', sans-serif;
 
     background: rgba(0, 0, 0, 0.5) !important;
@@ -85,13 +85,13 @@
                 padding: 15px;
 
             ">
-                2021 is looking promising!
-                <br>Mark your Calendars!
-                <br>September 9<sup>th</sup> - 12<sup>th</sup>
-            </p>
+                        2021 is looking promising!
+                        <br>Mark your Calendars!
+                        <br>September 9<sup>th</sup> - 12<sup>th</sup>
+                    </p>
 
-        </div>
-    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -99,22 +99,22 @@
 <section class=" olga-pic-verse-statement">
 
     <div>
-            <div class="row">
-                <div class="text-right-desktop forest-mission col-xs-3 offset-md-2 col-md-4">
+        <div class="row">
+            <div class="text-right-desktop forest-mission col-xs-3 offset-md-2 col-md-4">
 
-                    <h2 class="forest-mission-text-header">
-                        FULLY ALIVE</h2>
-                    <p class="  forest-mission-text-body">
-                        IS A CHRISTIAN PLATFORM FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE
-                        FELLOWSHIP WITH ONE ANOTHER
-                    </p>
+                <h2 class="forest-mission-text-header">
+                    FULLY ALIVE</h2>
+                <p class="  forest-mission-text-body">
+                    IS A CHRISTIAN PLATFORM FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE
+                    FELLOWSHIP WITH ONE ANOTHER
+                </p>
 
-                </div>
-                <div class=" forest-verse col-xs-3 col-md-4">
-                    <h2 class="forest-verse-text-header">JOHN 10:10</h2>
-                    <p class="  forest-verse-text-body">
+            </div>
+            <div class=" forest-verse col-xs-3 col-md-4">
+                <h2 class="forest-verse-text-header">JOHN 10:10</h2>
+                <p class="  forest-verse-text-body">
                     I CAME THAT THEY MAY HAVE LIFE, AND HAVE IT ABUNDANTLY.
-                </div>
+            </div>
         </div>
     </div>
 
@@ -123,18 +123,31 @@
 
     <div>
         <div class="row">
-            <div class=" col-xs-3 offset-md-2 col-md-4">
-                 <h2 class="forest-mission-text-header">
-                        September</h2>
-                    <p class="  forest-mission-text-body">
-                        IS A CHRISTIAN PLATFORM FOR YOUNG ADULTS TO GET TO KNOW GOD AT A DEEPER LEVEL AND HAVE
-                        FELLOWSHIP WITH ONE ANOTHER
-                    </p>
+            <div class="camp-dates-div col-xs-3 offset-md-1 col-md-5">
+                <h2 class="forest-mission-text-header">
+                    SEPTEMBER</h2>
+                <div style="margin: 0 auto;">
+                    <div style="display: inline-flex">
+                        <div class="camp-dates">09</div>
+                        <div class="camp-dates">10</div>
+                        <div class="camp-dates ">11</div>
+                        <div class="camp-dates ">12</div>
+                    </div>
+                </div>
+                <p class="  forest-mission-text-body">
+                    <br>
+                    <a href="https://www.lutherhaven.com/camp-locations/shoshone-mountain-retreat/"
+                       target="_blank" style="color: rgb(77,77,77)">
+                        Shoshone Mountain Retreat and Ranch</a>
+                    <br>29216 Coeur D'Alene River Rd
+                    <br>Wallace, ID 83873
+                </p>
 
             </div>
-            <div class="  col-xs-3 col-md-5">
-                <div class="flip-clock-div">
-                    <h2 class="flip-clock-text">UNTIL THE RETREAT:</h2>
+            <div class="forest-time-left-div col-xs-3 col-md-5">
+
+                <div class="forest-time-left-box">
+                    <h2 class="forest-mission-text-header">UNTIL THE RETREAT:</h2>
                     <div id="clock"></div>
                 </div>
             </div>
@@ -284,7 +297,7 @@
         setTimeout(updateClock, 500);
     }
 
-    var deadline = new Date("September 10 2021 18:00");
+    var deadline = new Date("September 9 2021 18:00");
     var c = new Clock(deadline, function () {
     });
     document.getElementById('clock').appendChild(c.el);
