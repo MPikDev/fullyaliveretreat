@@ -1057,7 +1057,7 @@ body, html {
 .card__bottom,
 .card__back::before,
 .card__back::after {
-    display: block;
+    display: flex;
     /*height: @halfHeight;*/
     height: var(--halfHeight);
     /*height: 0.72em;*/
@@ -1423,7 +1423,7 @@ body, html {
 .forest-time-left-box {
     font-family: 'DengXian Light', sans-serif;
     font-size: 2vw;
-    font-weight: 300;
+    /*font-weight: 300;*/
     color: rgb(77, 77, 77);
 }
 
