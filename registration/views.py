@@ -20,6 +20,7 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 FIlTER_2021 = datetime.datetime(2021, 5, 1, 1, 33, 24, 755599)
 FIlTER_FALL_2021 = datetime.datetime(2021, 9, 3, 1, 33, 24, 755599)
 
+GLOBAL_OPEN_REG_FLAG = True
 def home(request):
     return render(request, 'home.html')
 
@@ -38,11 +39,12 @@ def register(request):
 
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).count()
 
-    if total_campers > settings.MAX_CAPACITY:
-        return render(request, 'closed.html')
-    # if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
-    if datetime.datetime.now() > FIlTER_FALL_2021:
-        return render(request, 'closed.html')
+    if not GLOBAL_OPEN_REG_FLAG:
+        if total_campers > settings.MAX_CAPACITY:
+            return render(request, 'closed.html')
+        # if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
+        if datetime.datetime.now() > FIlTER_FALL_2021:
+            return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
@@ -90,6 +92,20 @@ def mobile(request):
 
 def schedule(request):
     return render(request, 'schedule.html')
+
+@login_required(redirect_field_name='login')
+def open_reg(request):
+    global GLOBAL_OPEN_REG_FLAG
+    GLOBAL_OPEN_REG_FLAG = True
+    return camper_info(request)
+
+
+@login_required(redirect_field_name='login')
+def close_reg(request):
+    global GLOBAL_OPEN_REG_FLAG
+    GLOBAL_OPEN_REG_FLAG = False
+    return camper_info(request)
+
 
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
@@ -266,6 +282,8 @@ def camper_info_fall_2020(request):
             'final_paid_campers_info':paid_campers_info_2020,
             'final_paid_count': len(paid_campers_info_2020),
             'camp_filter': filter_camp,
+            'reg_flag': GLOBAL_OPEN_REG_FLAG,
+
             }
     return render(request, 'camper_info.html', data)
 
@@ -297,6 +315,7 @@ def camper_info_spring_2020(request):
             'final_paid_campers_info':paid_campers,
             'final_paid_count': len(paid_campers),
             'camp_filter':filter_camp,
+            'reg_flag': GLOBAL_OPEN_REG_FLAG,
             }
     return render(request, 'camper_info.html', data)
 
@@ -328,6 +347,7 @@ def camper_info_spring_2019(request):
             'final_paid_campers_info':paid_campers,
             'final_paid_count': len(paid_campers),
             'camp_filter':filter_camp,
+            'reg_flag': GLOBAL_OPEN_REG_FLAG,
             }
 
     return render(request, 'camper_info.html', data)
@@ -360,6 +380,7 @@ def camper_info(request):
             'final_paid_campers_info':paid_campers,
             'final_paid_count': len(paid_campers),
             'camp_filter':filter_camp,
+            'reg_flag': GLOBAL_OPEN_REG_FLAG,
             }
 
     return render(request, 'camper_info.html', data)
