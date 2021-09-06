@@ -6,7 +6,7 @@ from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.ipn.models import PayPalIPN
-from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.models import ST_PP_COMPLETED, ST_PP_REFUNDED
 from django.conf import settings
 import datetime
 from django.contrib.auth import authenticate, login, logout
@@ -37,7 +37,8 @@ def register(request):
     # closed
     # return render(request, 'closed.html')
 
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list('invoice',flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).exclude(invoice__in=refund_incoices).count()
 
     if not GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
@@ -109,8 +110,14 @@ def close_reg(request):
 
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
-    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED).values_list('invoice',
-                                                                                                         flat=True)
+
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list(
+        'invoice', flat=True)
+    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+                                                             created_at__gte=FIlTER_2021).exclude(
+        invoice__in=refund_incoices).values_list('invoice',
+                                                 flat=True)
+
     int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
     no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
 
@@ -119,14 +126,23 @@ def check_who_paid(request):
     for camper in paid_all_campers:
         camper.paid = True
         camper.save()
+    refund_incoices = [str(pk) for pk in refund_incoices]
+    refund_campers = Camper.objects.filter(pk__in=refund_incoices)
+    for camper in refund_campers:
+        if camper.paid:
+            camper.paid = False
+            camper.save()
 
     return camper_info(request)
 
 
 def reg(request):
 
-
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list(
+        'invoice', flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+                                                             created_at__gte=FIlTER_2021).exclude(
+        invoice__in=refund_incoices).count()
 
     camper = dict(
     first_name = request.POST['camper_first_name'],
