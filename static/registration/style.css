@@ -677,7 +677,7 @@ body, html {
     background-repeat: repeat;
     background-size: cover;
     /*background-image: url("main.jpg")*/
-    background-image: url("main_test.jpeg")
+    background-image: url("2022_coast_backgrounds/dune_waves.JPG")
 }
 
 .paid-title {
@@ -1213,22 +1213,22 @@ body, html {
 }
 
 .olga-pic-main {
-    background: url('3_test.jpg') center / cover no-repeat;
+    background: url('2022_coast_backgrounds/grass_dune.jpg') center / cover no-repeat;
     min-height: 90%;
 }
 
 .olga-pic-verse-statement {
-    background: url('2_test.jpg') center / cover no-repeat;
+    background: url('2022_coast_backgrounds/close_dune.JPG') center / cover no-repeat;
     min-height: 90%;
 }
 
 .olga-pic-buttom {
-    background: url('4_test.jpg') center / cover no-repeat;
+    background: url('2022_coast_backgrounds/sunset_moon.JPG') center / cover no-repeat;
     min-height: 90%;
 }
 
 .olga-pic-forest {
-    background: url('forest.png') center / cover no-repeat;
+    background: url('2022_coast_backgrounds/sunset.JPG') center / cover no-repeat;
     min-height: 90%;
 }
 

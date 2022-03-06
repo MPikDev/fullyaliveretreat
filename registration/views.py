@@ -12,13 +12,17 @@ import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, GLOBAL_OPEN_REG_FLAG
+from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, \
+    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP
 
 # FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
 # FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
 
-FIlTER_2021 = datetime.datetime(2021, 5, 1, 1, 33, 24, 755599)
-FIlTER_FALL_2021 = datetime.datetime(2021, 9, 3, 1, 33, 24, 755599)
+# FIlTER_2021 = datetime.datetime(2021, 5, 1, 1, 33, 24, 755599)
+# FIlTER_FALL_2021 = datetime.datetime(2021, 9, 3, 1, 33, 24, 755599)
+
+FIlTER_2022 = datetime.datetime(2021, 10, 1, 1, 33, 24, 755599)
+FIlTER_FALL_2022 = datetime.datetime(2022, 9, 1, 1, 33, 24, 755599)
 
 def home(request):
     return render(request, 'home.html')
@@ -36,14 +40,13 @@ def register(request):
     # closed
     # return render(request, 'closed.html')
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list('invoice',flat=True)
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2021).exclude(invoice__in=refund_incoices).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list('invoice',flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2022).exclude(invoice__in=refund_incoices).count()
 
     if not settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
-        # if datetime.datetime.now() > datetime.datetime(2021, 9, 29, 7, 0):
-        if datetime.datetime.now() > FIlTER_FALL_2021:
+        if datetime.datetime.now() > FIlTER_FALL_2022:
             return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -108,10 +111,10 @@ def close_reg(request):
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list(
         'invoice', flat=True)
     unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2021).exclude(
+                                                             created_at__gte=FIlTER_2022).exclude(
         invoice__in=refund_incoices).values_list('invoice',
                                                  flat=True)
 
@@ -135,10 +138,10 @@ def check_who_paid(request):
 
 def reg(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2021).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2021).exclude(
+                                                             created_at__gte=FIlTER_2022).exclude(
         invoice__in=refund_incoices).count()
 
     camper = dict(
@@ -157,7 +160,7 @@ def reg(request):
     church_member = request.POST.get('camper_church_member', False),
     paypal = 'reg',
     paid = False,
-    camp_filter = FALL_2021_CAMP,
+    camp_filter = SUMMER_2022_CAMP,
     )
 
     invalid_post = False
@@ -175,7 +178,7 @@ def reg(request):
         invalid_post = True
 
     # check if from jquery datetime
-    date_of_birth_limit = datetime.datetime(1998, 11, 11, 0, 0)
+    date_of_birth_limit = datetime.datetime(1999, 8, 26, 0, 0)
     if camper['date_of_birth'].find('/') == 2:
         split_date = camper['date_of_birth'].split('/')
         year = split_date[2]
