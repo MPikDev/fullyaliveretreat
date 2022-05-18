@@ -36,7 +36,6 @@ def olga(request):
 def full(request):
     return render(request, 'full.html')
 
-@login_required(redirect_field_name='login')
 def register(request):
     # closed
     # return render(request, 'closed.html')
