@@ -36,9 +36,10 @@ def olga(request):
 def full(request):
     return render(request, 'full.html')
 
+@login_required(redirect_field_name='login')
 def register(request):
     # closed
-    return render(request, 'closed.html')
+    # return render(request, 'closed.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2022).exclude(invoice__in=refund_incoices).count()
@@ -230,7 +231,7 @@ def pay_now(request, *args, **kwargs):
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount":  "{price}.00".format(price=settings.CAMP_PRICE),
-        "item_name": "Registration for Fully Alive Retreat FALL 2020",
+        "item_name": "Registration for Fully Alive Retreat Summer 2022",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
