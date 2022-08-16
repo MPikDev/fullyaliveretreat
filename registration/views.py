@@ -22,7 +22,7 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 # FIlTER_FALL_2021 = datetime.datetime(2021, 9, 3, 1, 33, 24, 755599)
 
 FIlTER_2022 = datetime.datetime(2021, 10, 1, 1, 33, 24, 755599)
-FIlTER_FALL_2022 = datetime.datetime(2022, 9, 1, 1, 33, 24, 755599)
+FIlTER_FALL_2022 = datetime.datetime(2022, 8, 14, 1, 33, 24, 755599)
 
 def home(request):
     return render(request, 'home.html')
