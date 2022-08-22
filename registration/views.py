@@ -43,7 +43,7 @@ def register(request):
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2022).exclude(invoice__in=refund_incoices).count()
 
-    if not settings.GLOBAL_OPEN_REG_FLAG:
+    if settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
         if datetime.datetime.now() > FIlTER_FALL_2022:
