@@ -19,7 +19,7 @@ def paided():
 class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time.time()
-        print 'starting'
+        print ('starting')
         paided()
-        print 'finished ', time.time() - start
+        print ('finished ', time.time() - start)
 
