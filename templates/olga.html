@@ -63,7 +63,7 @@
             <h2 class="offset-md-2 col-md-8 forest-main-title-retreat">R E T R E A T</h2>
         </div>
         <div class="row">
-            <h2 class="offset-md-2 col-md-8 forest-main-title-year">2022</h2>
+            <h2 class="offset-md-2 col-md-8 forest-main-title-year">2023</h2>
         </div>
     </div>
     <div class="container hero">
@@ -129,10 +129,10 @@
                     AUGUST</h2>
                 <div style="margin: 0 auto;">
                     <div style="display: inline-flex">
+                        <div class="camp-dates">25</div>
                         <div class="camp-dates">26</div>
-                        <div class="camp-dates">27</div>
+                        <div class="camp-dates ">27</div>
                         <div class="camp-dates ">28</div>
-                        <div class="camp-dates ">29</div>
                     </div>
                 </div>
                 <p class="  forest-mission-text-body">
@@ -203,8 +203,11 @@
             back = el.querySelector('.card__back'),
             backBottom = el.querySelector('.card__back .card__bottom');
 
-        this.update = function (val) {
-            val = ('0' + val).slice(-2);
+        this.update = function (val, label) {
+            if (label == 'Days')
+                val = ('0' + val).slice(-3);
+            else
+                val = ('0' + val).slice(-2);
             if (val !== this.currentValue) {
 
                 if (this.currentValue >= 0) {
@@ -221,7 +224,7 @@
             }
         }
 
-        this.update(value);
+        this.update(value, label);
     }
 
     // Calculation adapted from https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
@@ -241,6 +244,7 @@
         var t = new Date();
         return {
             'Total': t,
+            'Days': Math.floor(t / (1000 * 60 * 60 * 24)),
             'Hours': t.getHours() % 12,
             'Minutes': t.getMinutes(),
             'Seconds': t.getSeconds()
@@ -291,14 +295,14 @@
             }
 
             for (key in trackers) {
-                trackers[key].update(t[key]);
+                trackers[key].update(t[key], key);
             }
         }
 
         setTimeout(updateClock, 500);
     }
 
-    var deadline = new Date("August 26 2022 18:00");
+    var deadline = new Date("August 25 2023 18:00");
     var c = new Clock(deadline, function () {
     });
     document.getElementById('clock').appendChild(c.el);
