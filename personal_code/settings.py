@@ -141,9 +141,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-# import dj_database_url
-#
-# DATABASES['default'] = dj_database_url.config()
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.config()
 
 try:
     from local_settings import *
