@@ -19,8 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+DEBUG = False
 
 PAYPAL_TEST = False
 PAYPAL_RECEIVER_EMAIL = 'events@nwasbc.com'
@@ -142,9 +141,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-import dj_database_url
-
-DATABASES['default'] = dj_database_url.config()
+# import dj_database_url
+#
+# DATABASES['default'] = dj_database_url.config()
 
 try:
     from local_settings import *
