@@ -122,7 +122,7 @@ def check_who_paid(request):
     no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
 
     paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
-    print len(paid_all_campers)  # this is for the query to be done right now
+    print(len(paid_all_campers))  # this is for the query to be done right now
     for camper in paid_all_campers:
         camper.paid = True
         camper.save()
@@ -167,7 +167,7 @@ def reg(request):
     error_message = []
 
     for key, item in camper.iteritems():
-        if item is u"":
+        if item == u"":
             if key != "med_notes":
                 error_message.append("Not all info with * is filled in")
                 invalid_post = True
@@ -275,7 +275,7 @@ def camper_logout(request):
 
 def camper_info(request,  **kwargs):
     filter_camp = SUMMER_2022_CAMP
-    print 'Giving Camp',  kwargs
+    print( 'Giving Camp',  kwargs)
     if 'camper_2021_info_fall' in kwargs:
         filter_camp = FALL_2021_CAMP
     elif 'camper_2020_info_fall' in kwargs:
@@ -285,7 +285,7 @@ def camper_info(request,  **kwargs):
     elif 'camper_2019_info_spring' in kwargs:
         filter_camp = SPRING_2019_CAMP
 
-    print 'Selected Camp', filter_camp
+    print ('Selected Camp', filter_camp)
 
     paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
     not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')

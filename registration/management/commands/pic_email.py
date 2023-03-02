@@ -20,7 +20,7 @@ def send_email(list_campers):
             subject="Pictures - Fully Alive Retreat",
             contents=body,
         )
-        print camper.first_name, camper.pk
+        print( camper.first_name, camper.pk)
 
 
 def email_survey():
@@ -28,7 +28,7 @@ def email_survey():
     final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=193).order_by('pk')
     # final_paid_campers_info = Camper.objects.filter(pk=4)
 
-    print 'emails going to send out:', len(final_paid_campers_info)
+    print ('emails going to send out:', len(final_paid_campers_info))
     # for c in final_paid_campers_info:
     #     print c.first_name , c.pk
     send_email(final_paid_campers_info)
@@ -37,6 +37,6 @@ def email_survey():
 class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time.time()
-        print 'starting'
+        print ('starting')
         email_survey()
-        print 'finished ', time.time() - start
+        print ('finished ', time.time() - start)
