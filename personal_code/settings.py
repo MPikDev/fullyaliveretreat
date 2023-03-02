@@ -32,6 +32,7 @@ SPRING_2020_CAMP = 'spring camp 2020'
 FALL_2020_CAMP = 'fall 2020 camp'
 FALL_2021_CAMP = 'fall 2021 camp'
 SUMMER_2022_CAMP = 'summer 2022 camp'
+SUMMER_2023_CAMP = 'summer 2023 camp'
 
 MAX_CAPACITY = 210
 CAMP_PRICE = 260
@@ -126,7 +127,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
