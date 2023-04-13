@@ -21,8 +21,11 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 # FIlTER_2021 = datetime.datetime(2021, 5, 1, 1, 33, 24, 755599)
 # FIlTER_FALL_2021 = datetime.datetime(2021, 9, 3, 1, 33, 24, 755599)
 
-FIlTER_2022 = datetime.datetime(2021, 10, 1, 1, 33, 24, 755599)
-FIlTER_FALL_2022 = datetime.datetime(2022, 8, 14, 1, 33, 24, 755599)
+# FIlTER_2022 = datetime.datetime(2021, 10, 1, 1, 33, 24, 755599)
+# FIlTER_FALL_2022 = datetime.datetime(2022, 8, 14, 1, 33, 24, 755599)
+
+FIlTER_2023 = datetime.datetime(2022, 8, 15, 1, 33, 24, 755599)
+FIlTER_FALL_2023 = datetime.datetime(2023, 8, 14, 1, 33, 24, 755599)
 
 def home(request):
     return render(request, 'home.html')
@@ -38,15 +41,15 @@ def full(request):
 
 def register(request):
     # closed
-    # return render(request, 'closed.html')
+    return render(request, 'hasnt_opened.html')
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list('invoice',flat=True)
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2022).exclude(invoice__in=refund_incoices).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list('invoice',flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2023).exclude(invoice__in=refund_incoices).count()
 
     if settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
-        if datetime.datetime.now() > FIlTER_FALL_2022:
+        if datetime.datetime.now() > FIlTER_FALL_2023:
             return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -111,10 +114,10 @@ def close_reg(request):
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list(
         'invoice', flat=True)
     unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2022).exclude(
+                                                             created_at__gte=FIlTER_2023).exclude(
         invoice__in=refund_incoices).values_list('invoice',
                                                  flat=True)
 
@@ -122,7 +125,7 @@ def check_who_paid(request):
     no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
 
     paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
-    print len(paid_all_campers)  # this is for the query to be done right now
+    print(len(paid_all_campers))  # this is for the query to be done right now
     for camper in paid_all_campers:
         camper.paid = True
         camper.save()
@@ -138,10 +141,10 @@ def check_who_paid(request):
 
 def reg(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2022).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2022).exclude(
+                                                             created_at__gte=FIlTER_2023).exclude(
         invoice__in=refund_incoices).count()
 
     camper = dict(
@@ -167,7 +170,7 @@ def reg(request):
     error_message = []
 
     for key, item in camper.iteritems():
-        if item is u"":
+        if item == u"":
             if key != "med_notes":
                 error_message.append("Not all info with * is filled in")
                 invalid_post = True
@@ -275,7 +278,7 @@ def camper_logout(request):
 
 def camper_info(request,  **kwargs):
     filter_camp = SUMMER_2022_CAMP
-    print 'Giving Camp',  kwargs
+    print( 'Giving Camp',  kwargs)
     if 'camper_2021_info_fall' in kwargs:
         filter_camp = FALL_2021_CAMP
     elif 'camper_2020_info_fall' in kwargs:
@@ -285,7 +288,7 @@ def camper_info(request,  **kwargs):
     elif 'camper_2019_info_spring' in kwargs:
         filter_camp = SPRING_2019_CAMP
 
-    print 'Selected Camp', filter_camp
+    print ('Selected Camp', filter_camp)
 
     paid_campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
     not_paid_campers =  Camper.objects.filter(camp_filter=filter_camp, paid=False).order_by('pk')

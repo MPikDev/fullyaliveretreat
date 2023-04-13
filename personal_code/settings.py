@@ -19,7 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 DEBUG = False
 
 PAYPAL_TEST = False
@@ -33,6 +32,7 @@ SPRING_2020_CAMP = 'spring camp 2020'
 FALL_2020_CAMP = 'fall 2020 camp'
 FALL_2021_CAMP = 'fall 2021 camp'
 SUMMER_2022_CAMP = 'summer 2022 camp'
+SUMMER_2023_CAMP = 'summer 2023 camp'
 
 MAX_CAPACITY = 210
 CAMP_PRICE = 260
@@ -127,7 +127,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
