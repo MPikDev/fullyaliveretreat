@@ -37,17 +37,17 @@ def reg_not_paid():
         int_pks.append(int(pk))
 
     all_campers = Camper.objects.all()
-    print len(all_campers)
+    print (len(all_campers))
 
     paid_campers_info, not_campers_info, not_paid_email_info = filter_campers(all_campers, int_pks)
 
-    print 'emails going to send out:', len(not_paid_email_info)
+    print ('emails going to send out:', len(not_paid_email_info))
     send_email(not_paid_email_info)
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time.time()
-        print 'starting'
+        print ('starting')
         reg_not_paid()
-        print 'finished ', time.time() - start
+        print ('finished ', time.time() - start)

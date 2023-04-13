@@ -21,7 +21,7 @@ def send_email(list_campers):
             contents=body,
             attachments= STATIC_ROOT +'/registration/camp_map_reg.pdf'
         )
-        print camper.first_name, camper.pk
+        print (camper.first_name, camper.pk)
 
 
 def email_paided():
@@ -29,7 +29,7 @@ def email_paided():
     # final_paid_campers_info = Camper.objects.filter(paid=True, pk__gt=23).order_by('pk')
     # final_paid_campers_info = Camper.objects.filter(pk=122)
 
-    print 'emails going to send out:', len(final_paid_campers_info)
+    print( 'emails going to send out:', len(final_paid_campers_info))
     # for c in final_paid_campers_info:
     #     print c.first_name , c.pk
     send_email(final_paid_campers_info)
@@ -38,6 +38,6 @@ def email_paided():
 class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time.time()
-        print 'starting'
+        print( 'starting')
         email_paided()
-        print 'finished ', time.time() - start
+        print ('finished ', time.time() - start)
