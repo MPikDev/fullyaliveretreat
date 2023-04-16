@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.shortcuts import render,render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+
 from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -41,7 +43,7 @@ def full(request):
 
 def register(request):
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2023).exclude(invoice__in=refund_incoices).count()
@@ -140,7 +142,6 @@ def check_who_paid(request):
 
 
 def reg(request):
-
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
@@ -160,12 +161,22 @@ def reg(request):
     church = request.POST['camper_church'],
     pastor = request.POST['camper_pastor'],
     pastor_number = request.POST['camper_pastor_phone'],
-    church_member = request.POST.get('camper_church_member', False),
-    not_married = request.POST.get('camper_not_married', False),
+    church_member = request.POST.get('camper_church_member'),
+    not_married = request.POST.get('camper_not_married'),
     paypal = 'reg',
     paid = False,
     camp_filter = SUMMER_2023_CAMP,
     )
+    # print(camper['church_member'],camper['not_married'])
+    #cast into booleans
+    try:
+        camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
+        camper['not_married'] = True if camper['not_married'] in ['True','true'] or camper['not_married'] is True else False
+    except:
+        camper['church_member'] = False
+        camper['not_married'] = False
+
+    # print(camper['church_member'],camper['not_married'])
 
     invalid_post = False
     error_message = []
@@ -211,13 +222,13 @@ def reg(request):
         camper["error_message"] = error_message
         camper["total_campers"] = total_campers
         camper["max_capacity"] = settings.MAX_CAPACITY
-        return render(request, 'register.html', camper)
+        return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
 
     del camper['email_v']
     camper_object = Camper.objects.create(**camper)
     # want to save the camper to make sure we catch that this person wrote that they were married
     if not camper['not_married']:
-        return render(request, 'married_error.html')
+        return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
 
     data = dict(camper_id=camper_object.id)
     return pay_now(request, 'pay_now.html', data)
