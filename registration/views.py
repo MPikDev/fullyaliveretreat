@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.shortcuts import render,render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+
 from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -13,7 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, \
-    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP
+    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP, SUMMER_2023_CAMP
 
 # FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
 # FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
@@ -41,7 +43,7 @@ def full(request):
 
 def register(request):
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2023).exclude(invoice__in=refund_incoices).count()
@@ -140,7 +142,6 @@ def check_who_paid(request):
 
 
 def reg(request):
-
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2023).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
@@ -160,16 +161,26 @@ def reg(request):
     church = request.POST['camper_church'],
     pastor = request.POST['camper_pastor'],
     pastor_number = request.POST['camper_pastor_phone'],
-    church_member = request.POST.get('camper_church_member', False),
+    church_member = request.POST.get('camper_church_member'),
+    not_married = request.POST.get('camper_not_married'),
     paypal = 'reg',
     paid = False,
-    camp_filter = SUMMER_2022_CAMP,
+    camp_filter = SUMMER_2023_CAMP,
     )
+    # print(camper['church_member'],camper['not_married'])
+    #cast into booleans
+    try:
+        camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
+        camper['not_married'] = True if camper['not_married'] in ['True','true'] or camper['not_married'] is True else False
+    except:
+        camper['church_member'] = False
+        camper['not_married'] = False
+
+    # print(camper['church_member'],camper['not_married'])
 
     invalid_post = False
     error_message = []
-
-    for key, item in camper.iteritems():
+    for key, item in camper.items():
         if item == u"":
             if key != "med_notes":
                 error_message.append("Not all info with * is filled in")
@@ -181,7 +192,7 @@ def reg(request):
         invalid_post = True
 
     # check if from jquery datetime
-    date_of_birth_limit = datetime.datetime(1999, 8, 26, 0, 0)
+    date_of_birth_limit = datetime.datetime(2000, 8, 26, 0, 0)
     if camper['date_of_birth'].find('/') == 2:
         split_date = camper['date_of_birth'].split('/')
         year = split_date[2]
@@ -207,21 +218,19 @@ def reg(request):
         error_message.append("Format of date is wrong")
         invalid_post = True
 
-    # removed email check because will check just check who paid instead
-    # camper_check = Camper.objects.filter(email=camper['email'])
-    # if camper_check:
-    #     error_message.append("This email is already in use")
-    #     invalid_post = True
-
     if invalid_post:
         camper["error_message"] = error_message
         camper["total_campers"] = total_campers
         camper["max_capacity"] = settings.MAX_CAPACITY
-        return render(request, 'register.html', camper)
+        return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
 
     del camper['email_v']
-    camper = Camper.objects.create(**camper)
-    data = dict(camper_id=camper.id)
+    camper_object = Camper.objects.create(**camper)
+    # want to save the camper to make sure we catch that this person wrote that they were married
+    if not camper['not_married']:
+        return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
+
+    data = dict(camper_id=camper_object.id)
     return pay_now(request, 'pay_now.html', data)
 
 
@@ -277,7 +286,7 @@ def camper_logout(request):
 @login_required(redirect_field_name='login')
 
 def camper_info(request,  **kwargs):
-    filter_camp = SUMMER_2022_CAMP
+    filter_camp = SUMMER_2023_CAMP
     print( 'Giving Camp',  kwargs)
     if 'camper_2021_info_fall' in kwargs:
         filter_camp = FALL_2021_CAMP
@@ -287,6 +296,8 @@ def camper_info(request,  **kwargs):
         filter_camp = SPRING_2020_CAMP
     elif 'camper_2019_info_spring' in kwargs:
         filter_camp = SPRING_2019_CAMP
+    elif 'camper_2022_info_summer' in kwargs:
+        filter_camp = SUMMER_2022_CAMP
 
     print ('Selected Camp', filter_camp)
 
@@ -303,6 +314,11 @@ def camper_info(request,  **kwargs):
                 non_dulicate[camper.email] = camper
 
         not_paid_and_no_duplicates_campers = non_dulicate.values()
+    #created keys to create tables
+    base_camper = Camper().__dict__
+    for item in ['_state','paypal','camp_filter']:
+        del base_camper[item]
+    base_camper_keys = [key for key in base_camper]
 
     data = {'paid_campers_info': paid_campers,
             'not_campers_info': not_paid_campers,
@@ -314,8 +330,8 @@ def camper_info(request,  **kwargs):
             'final_paid_count': len(paid_campers),
             'camp_filter':filter_camp,
             'reg_flag': settings.GLOBAL_OPEN_REG_FLAG,
+            'base_camper_keys':base_camper_keys
             }
-
     return render(request, 'camper_info.html', data)
 
 

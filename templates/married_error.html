@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page not Found</title>
+
+    {% load static %}
+        <!-- css link -->
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135068928-1');
+    </script>
+
+<body class="wave-backgroud">
+<div class="container">
+    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
+        <h1 class="paid-title">Not complying with camp rules.</h1>
+        <p class="center">
+            Sorry, but this camp is only for people that have never been married before. We apologize for the inconvenience. </p>
+    </div>
+
+</div>
+<div class="button-row button-row-home">
+    <button class="home-button" onclick="window.location.href='/'">HOME</button>
+</div>
+</body>
+</html>

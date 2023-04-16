@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^login', views.log_in, name='login'),
     url(r'^logout', views.camper_logout),
     url(r'^camper_info/$', views.camper_info),
+    url(r'^camper_info/2022_summer_camper_info/$', views.camper_info, kwargs=dict(camper_2022_info_summer=True)),
     url(r'^camper_info/2021_fall_camper_info/$', views.camper_info, kwargs=dict(camper_2021_info_fall=True)),
     url(r'^camper_info/2020_camper_info_fall/$',views.camper_info, kwargs=dict(camper_2020_info_fall=True)),
     url(r'^camper_info/2020_spring_camper_info/$', views.camper_info, kwargs=dict(camper_info_2020_spring=True)),
