@@ -242,7 +242,7 @@ def pay_now(request, *args, **kwargs):
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount":  "{price}.00".format(price=settings.CAMP_PRICE),
-        "item_name": "Registration for Fully Alive Retreat Summer 2022",
+        "item_name": "Registration for Fully Alive Retreat Summer 2023",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
