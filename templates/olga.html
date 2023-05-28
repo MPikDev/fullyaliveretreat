@@ -205,7 +205,10 @@
 
         this.update = function (val, label) {
             if (label == 'Days')
-                val = ('0' + val).slice(-3);
+                if (val >= 100)
+                    val = ('0' + val).slice(-3); // for longer then 100 days
+                else
+                    val = ('0' + val).slice(-2);
             else
                 val = ('0' + val).slice(-2);
             if (val !== this.currentValue) {
