@@ -227,7 +227,7 @@ def reg(request):
     del camper['email_v']
     camper_object = Camper.objects.create(**camper)
     # want to save the camper to make sure we catch that this person wrote that they were married
-    if not camper['not_married']:
+    if not camper['not_married'] or not camper['church_member']:
         return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
 
     data = dict(camper_id=camper_object.id)
