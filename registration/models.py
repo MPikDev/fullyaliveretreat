@@ -28,6 +28,8 @@ class Camper(models.Model):
     def __unicode__(self):
         return u"{0} {1}, church member: {2}, paided: {3}".format(self.first_name, self.last_name, self.church_member, self.paid)
 
+    def __str__(self):
+        return u"{0} {1}, church member: {2}, paided: {3}".format(self.first_name, self.last_name, self.church_member, self.paid)
 
     # first default for paypal was
     # 1. earilier
