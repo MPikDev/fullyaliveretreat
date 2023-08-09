@@ -409,84 +409,7 @@ body, html {
     background-image: url("ham-img.png");
 }
 
-.test-header-pic {
-    /*margin-top: 70px;*/
-    /*background-image: url("main.jpg");*/
-    /*position: absolute;*/
-    /*top: 0px;*/
-    /*z-index: 0;*/
-    background-image: url("maint.jpg");
-}
 
-.mission {
-    /*background-image: url("info.gif");*/
-    background-image: url("mission.jpg");
-}
-
-.verse {
-    position: relative;
-    background-image: url("verse.jpg");
-}
-
-.mobileonly {
-    background-image: url("mobileonly.jpg");
-}
-
-.desktop-main {
-    background-image: url("desktop-main.jpg");
-}
-
-.desktop-add {
-    background-image: url("desktop-add.jpg");
-}
-
-.schedule3 {
-    background-image: url("schedule_no_text.jpg");
-}
-
-.locaiton {
-    background-image: url("location.jpg");
-}
-
-.fellow1 {
-    background-image: url("whattoexpect1.jpg");
-}
-
-.fellow2 {
-    background-image: url("whattoexpect2.jpg");
-}
-
-.fellow3 {
-    background-image: url("whattoexpect3.jpg");
-}
-
-.reg-pic {
-    background-image: url("final.jpg");
-}
-
-.hamburger-pic {
-    background-image: url("ham.jpg");
-}
-
-.pic1 {
-    background-image: url("1.PNG");
-}
-
-.pic2 {
-    background-image: url("2.PNG");
-}
-
-.pic3 {
-    background-image: url("3.PNG");
-}
-
-.pic4 {
-    background-image: url("4.PNG");
-}
-
-.pic5 {
-    background-image: url("5.PNG");
-}
 
 
 /*{#tablets #}*/
@@ -676,7 +599,6 @@ body, html {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    /*background-image: url("main.jpg")*/
     background-image: url("2022_coast_backgrounds/dune_waves.JPG")
 }
 
@@ -718,7 +640,6 @@ body, html {
 @media (max-width: 786px) {
     .wave-backgroud {
         /*background-attachment: scroll;*/
-        /*background-image: url("main.jpg")*/
         background-image: url("2022_coast_backgrounds/dune_waves.JPG")
 
     }
