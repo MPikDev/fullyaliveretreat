@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+
     <!-- css link -->
     <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
 
@@ -43,7 +44,7 @@
 <div class="container">
     <div class="moreinfoBox col-xs-12 col-sm-10 col-sm-offset-1">
         <div class="center">
-            <h1>FULLY ALIVE RETREAT 2019</h1>
+            <h1>FULLY ALIVE RETREAT 2024</h1>
         </div>
 
 
@@ -51,48 +52,54 @@
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-3">
                 <h2>DATES</h2>
-                <br>June 14<sup>th</sup> - 16<sup>th</sup>
-                <br>Check In: 4 PM - 6 PM
-                <br>Check Out: 11 AM
+                <br>August 23<sup>th</sup> - 26<sup>th</sup>
+                <br>Check In: 4 PM
+                     <br>Check Out: 10 AM
 
-                <h2>TOPICS:</h2>
-                <br>Day 1 - Living a life with purpose.
-                <br>Day 2 - Spiritual discipline & discipline with time/money abilities.
-                <br>Day 3 - Living abundantly.
-                <br>Speaker: Konstantin Kostuk
-                <br>Sermons will be in Russain
+                <h2>TOPIC:</h2>
+{#                <br>Abundant Life Enlight of Jonah#}
+                <br>To be announced
 
-                <h2>ADDITIONAL INFO</h2>
+                <h2>REGISTRATION INFO</h2>
+                <br><b>You must be a member of a Baptist church to attend the Fully Alive Retreat</b>
+                <br><b>See additional rules below</b>
                 <br>Online registration only
-                <br>Deadline to register: May 31<sup>st</sup>
-                <br>Capacity: 200 people
-                <br>Age: 23 and older
+                <br>Deadline to register: August 14<sup>th</sup>
+                <br>Capacity: {{ max_capacity }} people
+                <br>Age: 25 - 45 (23+, if allowed by the local church)
 
+                <h2>COST</h2>
+                <br>${{ camp_price }}
+                <br>Refunds are not full price, due to PayPal fee
+{#                <br>Deadline for a refund is Nov 1<sup>st</sup>#}
+
+{#                <h2>ADDITIONAL INFO</h2>#}
+{#                <br>Poor cellphone reception at camp#}
+
+                <h2>ADDRESS</h2>
+                <br><a href="http://www.twinrocks.org" target="_blank">Twin Rock Camp</a>
+                <br>18705 N Hwy 101
+                <br>Rockaway Beach, OR 97136
+
+            </div>
+
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-1 col-md-4">
                 <h2>THINGS TO BRING:</h2>
                 <br>Bedding for cabins (Mattresses are provided)
                 <br>Warm Clothes
                 <br>Bible & Journal
                 <br>Essential Hygiene Items
-                <br>Church Clothes (Skirts for girls & pants for boys)
+                <br>Church Clothes
+                <ul style="margin-bottom: 0px">
+                    <li>Skirts for girls</li>
+                    <li>Pants and polo or shirt for boys</li>
+                </ul>
                 <br>Snacks
-            </div>
+                <br>Flashlight
 
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-1 col-md-4">
-
-
-                <h2>COST</h2>
-                <br>$170 - Before May 1<sup>st</sup>
-                <br>$180 - After May 1<sup>st</sup>
-                <br>Refunds are not full price
-                <br>Deadline for a refund is May 31<sup>st</sup>
-
-                <h2>ADDRESS</h2>
-                <br><a href="http://www.twinrocks.org" target="_blank">Link: Twin Rock Camp</a>
-                <br>18705 N Hwy 101
-                <br>Rockaway Beach, OR 97136
 
                 <h2>NON-NEGOTIABLE RULES</h2>
-                <br>No swimming at the ocean.
+                <br><b>Registration limited to individuals not previously married.</b>
                 <br>Keep the territory clean.
                 <br>Opposite gender cabins are off limits.
                 <br>Clothes should be representative of who we are as Christians.
@@ -106,8 +113,7 @@
 
                 <h2>QUESTIONS?</h2>
                 <br>Registration: Mark 509-979-5419
-                <br>All Other: Andrey 509-290-1133‬
-                <br><a href="https://docs.google.com/forms/d/e/1FAIpQLSeeBRWi8hnqLVPvrwJChocqKDxWa00pDlfzCKEWZlF-Hr2HJw/viewform?usp=pp_url" target="_blank">Survey</a>
+                <br>All Other: Andrey 509-290-1133
 
             </div>
         </div>
