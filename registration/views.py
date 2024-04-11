@@ -40,7 +40,7 @@ def home(request):
 def full(request):
     return render(request, 'full.html')
 
-@login_required(redirect_field_name='login')
+# @login_required(redirect_field_name='login')
 def register(request):
     # closed
     # return render(request, 'hasnt_opened.html')
@@ -222,8 +222,7 @@ def pay_now(request, *args, **kwargs):
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        # "amount":  f"{settings.CAMP_PRICE}.00",
-        "amount":  f"1.00",
+        "amount":  f"{settings.CAMP_PRICE}.00",
         "item_name": "Registration for Fully Alive Retreat Summer 2024",
         'currency_code': 'USD',
         "invoice": camper_id,
