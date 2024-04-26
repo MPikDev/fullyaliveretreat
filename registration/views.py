@@ -120,7 +120,6 @@ def check_who_paid(request):
 
     return camper_info(request)
 
-@login_required(redirect_field_name='login')
 
 def reg(request):
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2024).values_list(
