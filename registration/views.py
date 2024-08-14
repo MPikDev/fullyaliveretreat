@@ -42,6 +42,8 @@ def full(request):
 
 # @login_required(redirect_field_name='login')
 def register(request):
+    return render(request, 'paypal_issues.html')
+
     # closed
     # return render(request, 'hasnt_opened.html')
 
@@ -80,6 +82,10 @@ def fellowship(request):
 
 def schedule(request):
     return render(request, 'schedule.html')
+
+
+def paypal_issues(request):
+    return render(request, 'paypal_issues.html')
 
 @login_required(redirect_field_name='login')
 def open_reg(request):
