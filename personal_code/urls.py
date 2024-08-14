@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^register', views.reg),
     url(r'^schedule', views.schedule),
     url(r'^full', views.full),
+    url(r'^paypal_issues', views.paypal_issues),
     url(r'^return', views.return_url, name='your-return-view'),
     url(r'^cancel', views.canceled_url, name='your-cancel-view'),
     url(r'^V4LrfBrC9UbZYm3k/', include('paypal.standard.ipn.urls')),
