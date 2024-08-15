@@ -28,7 +28,7 @@
 
         function toggle($toBeHidden, $toBeShown) {
   $toBeHidden.hide().prop('disabled', true);
-  $toBeShown.show().prop('disabled', false).focus();
+  $toBeShown.show().prop('disabled', false);
 }
 
 function showOptions(inputName) {
@@ -154,8 +154,9 @@ function showCustomInput(inputName) {
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
-                            <select id="camper_state" name="camper_state" type="text"
+                            <select required id="camper_state" name="camper_state" type="text"
                                     class="form-control light ignore">
+                                  <option disabled selected value> -- select a state -- </option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
