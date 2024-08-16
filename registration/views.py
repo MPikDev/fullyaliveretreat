@@ -42,7 +42,8 @@ def full(request):
 
 # @login_required(redirect_field_name='login')
 def register(request):
-    return render(request, 'paypal_issues.html')
+    return redirect('https://www.tickettailor.com/events/nwasbcyouth/1357024')
+    # return render(request, 'paypal_issues.html')
 
     # closed
     # return render(request, 'hasnt_opened.html')
