@@ -46,7 +46,7 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    # return render(request, 'hasnt_opened.html')
+    return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2024).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2024).exclude(invoice__in=refund_incoices).count()
