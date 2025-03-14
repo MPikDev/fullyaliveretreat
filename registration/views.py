@@ -15,7 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, \
-    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP, SUMMER_2023_CAMP, SUMMER_2024_CAMP
+    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP, SUMMER_2023_CAMP, SUMMER_2024_CAMP, SUMMER_2025_CAMP
 
 # FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
 # FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
@@ -29,8 +29,11 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 # FIlTER_2023 = datetime.datetime(2022, 8, 15, 1, 33, 24, 755599)
 # FIlTER_FALL_2023 = datetime.datetime(2023, 8, 14, 1, 33, 24, 755599)
 
-FIlTER_2024 = datetime.datetime(2023, 8, 15, 1, 33, 24, 755599)
-FIlTER_FALL_2024 = datetime.datetime(2024, 8, 14, 1, 33, 24, 755599)
+# FIlTER_2024 = datetime.datetime(2023, 8, 15, 1, 33, 24, 755599)
+# FIlTER_FALL_2024 = datetime.datetime(2024, 8, 14, 1, 33, 24, 755599)
+
+FIlTER_2025 = datetime.datetime(2024, 8, 15, 1, 33, 24, 755599)
+FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
 
 
 def home(request):
@@ -46,15 +49,15 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2024).values_list('invoice',flat=True)
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2024).exclude(invoice__in=refund_incoices).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list('invoice',flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2025).exclude(invoice__in=refund_incoices).count()
 
     if settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
-        if datetime.datetime.now() > FIlTER_FALL_2024:
+        if datetime.datetime.now() > FIlTER_FALL_2025:
             return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
@@ -103,10 +106,10 @@ def close_reg(request):
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2024).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
         'invoice', flat=True)
     unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2024).exclude(
+                                                             created_at__gte=FIlTER_2025).exclude(
         invoice__in=refund_incoices).values_list('invoice',
                                                  flat=True)
 
@@ -129,10 +132,10 @@ def check_who_paid(request):
 
 
 def reg(request):
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2024).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2024).exclude(
+                                                             created_at__gte=FIlTER_2025).exclude(
         invoice__in=refund_incoices).count()
 
     camper = dict(
@@ -152,7 +155,7 @@ def reg(request):
     not_married = request.POST.get('camper_not_married'),
     paypal = 'reg',
     paid = False,
-    camp_filter = SUMMER_2024_CAMP,
+    camp_filter = SUMMER_2025_CAMP,
     )
     # print(camper['church_member'],camper['not_married'])
     #cast into booleans
@@ -229,7 +232,7 @@ def pay_now(request, *args, **kwargs):
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount":  f"{settings.CAMP_PRICE}.00",
-        "item_name": "Registration for Fully Alive Retreat Summer 2024",
+        "item_name": "Registration for Fully Alive Retreat Summer 2025",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
@@ -273,7 +276,7 @@ def camper_logout(request):
 @login_required(redirect_field_name='login')
 
 def camper_info(request,  **kwargs):
-    filter_camp = SUMMER_2024_CAMP
+    filter_camp = SUMMER_2025_CAMP
     print( 'Giving Camp',  kwargs)
     if 'camper_2021_info_fall' in kwargs:
         filter_camp = FALL_2021_CAMP
@@ -287,6 +290,8 @@ def camper_info(request,  **kwargs):
         filter_camp = SUMMER_2022_CAMP
     elif 'camper_2023_info_summer' in kwargs:
         filter_camp = SUMMER_2023_CAMP
+    elif 'camper_2024_info_summer' in kwargs:
+        filter_camp = SUMMER_2024_CAMP
 
     print ('Selected Camp', filter_camp)
 
