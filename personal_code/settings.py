@@ -35,6 +35,7 @@ FALL_2021_CAMP = 'fall 2021 camp'
 SUMMER_2022_CAMP = 'summer 2022 camp'
 SUMMER_2023_CAMP = 'summer 2023 camp'
 SUMMER_2024_CAMP = 'summer 2024 camp'
+SUMMER_2025_CAMP = 'summer 2025 camp'
 
 MAX_CAPACITY = 180
 CAMP_PRICE = 300
