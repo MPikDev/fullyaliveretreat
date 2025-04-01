@@ -10,7 +10,7 @@ A django website for registering, receiving payment through PayPal, and sending 
     1. A different way [tutorial](https://www.liquidweb.com/kb/install-pip-windows/)
 1. Install pip
     1. cmd line: python get-pip.py
-1. Add to Environment Variables the path ;C:\Python27\Scripts (same way as above)
+1. Add to Environment Variables the path ;C: (same way as above)
 
 # To get the website running on a windows machine
 1. pip install virtualenv
