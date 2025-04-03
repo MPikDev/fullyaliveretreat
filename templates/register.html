@@ -353,7 +353,129 @@ function showCustomInput(inputName) {
                     </div>
 
                 </div>
+
                 <br>
+
+                {% comment %} <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">Would you like to buy a T-shirt?</div>
+                    </div>
+                    <div class="col-xs-2 col-sm-6 col-sm-offset-0 col-md-4">
+                        <label style="margin-right: 15px;">
+                            <input id="buy_tshirt_yes" name="buy_tshirt" type="radio" class="light ignore"
+                                   value="yes" {% if buy_tshirt == 'yes' %}checked{% endif %}/> Yes
+                        </label>
+                        <label>
+                            <input id="buy_tshirt_no" name="buy_tshirt" type="radio" class="light ignore"
+                                   value="no" {% if buy_tshirt != 'yes' %}checked{% endif %}/> No
+                        </label>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-1 col-xs-offset-1">
+                        <div class="separator bigMarginBottom bigMarginTop"></div>
+                    </div>
+                </div> {% endcomment %}
+                
+                
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">T-Shirt Size:</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <select required id="tshirt_size" name="tshirt_size" type="text"
+                                    class="form-control light ignore">
+                                <option value="None" selected>-- No T-Shirt --</option>
+                                <option value="XXL">XXL</option>
+                                <option value="XL">XL</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="XS">XS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- Button to Open T-shirt Modal -->
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <button id="openTshirtModal" class="btn btn-primary">View T-shirt</button>
+                    </div>
+                </div>
+
+                <!-- T-shirt Modal (Hidden by Default) -->
+                <div id="tshirtModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-tshirt">&times;</span>
+                        <h2>T-shirt Preview</h2>
+                        <img src="./static/registration/tshirt.png" alt="T-shirt Image" class="tshirt-img">
+                    </div>
+                </div>
+
+                <br>
+
+                {% comment %} <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">Would you like to buy a Sweatshirt?</div>
+                    </div>
+                    <div class="col-xs-2 col-sm-6 col-sm-offset-0 col-md-4">
+                        <label style="margin-right: 15px;">
+                            <input id="buy_swshirt_yes" name="buy_swshirt" type="radio" class="light ignore"
+                                   value="yes" {% if buy_swshirt == 'yes' %}checked{% endif %}/> Yes
+                        </label>
+                        <label>
+                            <input id="buy_swshirt_no" name="buy_swshirt" type="radio" class="light ignore"
+                                   value="no" {% if buy_swshirt != 'yes' %}checked{% endif %}/> No
+                        </label>
+                    </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-1 col-xs-offset-1">
+                        <div class="separator bigMarginBottom bigMarginTop"></div>
+                    </div>
+                </div> {% endcomment %}
+                
+                
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">Sweatshirt Size:</div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <select required id="swshirt_size" name="swshirt_size" type="text"
+                                    class="form-control light ignore">
+                                <option value="None" selected>-- No Sweatshirt --</option>
+                                <option value="XXL">XXL</option>
+                                <option value="XL">XL</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="XS">XS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button to Open Modal -->
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <button id="openModal" class="btn btn-primary">View Sweatshirt</button>
+                    </div>
+                </div>
+                
+                <!-- Modal (Hidden by Default) -->
+                <div id="sweatshirtModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-swshirt">&times;</span>
+                        <h2>Sweatshirt Preview</h2>
+                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">
+                    </div>
+                </div>
+                
+                <br>
+
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
                         <input type="submit" class="btn btn-block black-boarder"
@@ -404,4 +526,93 @@ function showCustomInput(inputName) {
             });
         });
     }
+
+    // T-shirt Modal Open and Close
+    document.getElementById("openTshirtModal").onclick = function (event) {
+        event.preventDefault(); // Prevents unwanted default behavior
+        document.getElementById("tshirtModal").style.display = "block";
+    };
+
+    document.querySelector(".close-tshirt").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("tshirtModal").style.display = "none";
+    };
+
+    // Close modal when clicking outside the content (specific to T-shirt)
+    window.addEventListener("click", function (event) {
+        let modal = document.getElementById("tshirtModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // Sweatshirt Modal Open and Close
+    document.getElementById("openModal").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("sweatshirtModal").style.display = "block";
+    };
+
+    document.querySelector(".close-swshirt").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("sweatshirtModal").style.display = "none";
+    };
+
+    // Close modal when clicking outside the content (specific to Sweatshirt)
+    window.addEventListener("click", function (event) {
+        let modal = document.getElementById("sweatshirtModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
 </script>
+
+<style>
+    .modal {
+        display: none; 
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 80vw; /* Increase modal width */
+        max-width: 700px; /* Allow for larger display */
+        height: auto;
+    }
+    
+    .close-tshirt, .close-swshirt {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .sweatshirt-img, .tshirt-img {
+        width: 100%;
+        max-width: 100%; /* Ensure it scales with the modal */
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 768px) { /* Mobile view adjustments */
+        .modal-content {
+            width: 90vw; /* Allow more space */
+            max-width: none; /* Remove max width limit */
+        }
+        
+        .sweatshirt-img, .tshirt-img {
+            max-width: 100%; /* Use full modal width */
+        }
+    }
+</style>

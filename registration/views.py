@@ -49,7 +49,7 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2025).exclude(invoice__in=refund_incoices).count()
@@ -132,7 +132,8 @@ def check_who_paid(request):
 
 
 def reg(request):
-    return render(request, 'hasnt_opened.html')
+    # Regisratation hasn't not opened yet
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
         'invoice', flat=True)
@@ -154,9 +155,12 @@ def reg(request):
     pastor = request.POST['camper_pastor'],
     pastor_number = request.POST['camper_pastor_phone'],
     church_member = request.POST.get('camper_church_member'),
+    tshirt_size = request.POST.get('tshirt_size', 'None'),  # default to None if not selected
+    swshirt_size = request.POST.get('swshirt_size', 'None'),  # default to None if not selected
     not_married = request.POST.get('camper_not_married'),
     paypal = 'reg',
     paid = False,
+
     camp_filter = SUMMER_2025_CAMP,
     )
     # print(camper['church_member'],camper['not_married'])
