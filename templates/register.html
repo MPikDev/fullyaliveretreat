@@ -355,38 +355,34 @@ function showCustomInput(inputName) {
                 </div>
 
                 <br>
+                                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-9 col-xs-offset-1 col-sm-5 col-sm-offset-2">
+                        <div class="form-label">Merch Section </div>
+                    </div>
 
-                {% comment %} <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Would you like to buy a T-shirt?</div>
-                    </div>
-                    <div class="col-xs-2 col-sm-6 col-sm-offset-0 col-md-4">
-                        <label style="margin-right: 15px;">
-                            <input id="buy_tshirt_yes" name="buy_tshirt" type="radio" class="light ignore"
-                                   value="yes" {% if buy_tshirt == 'yes' %}checked{% endif %}/> Yes
-                        </label>
-                        <label>
-                            <input id="buy_tshirt_no" name="buy_tshirt" type="radio" class="light ignore"
-                                   value="no" {% if buy_tshirt != 'yes' %}checked{% endif %}/> No
-                        </label>
-                    </div>
                 </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-1 col-xs-offset-1">
-                        <div class="separator bigMarginBottom bigMarginTop"></div>
+                                                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-9 col-xs-offset-1 col-sm-7 col-sm-offset-2">
+                        <div class="form-label">Selecting any merch will add to your camp price total. </div>
                     </div>
-                </div> {% endcomment %}
-                
-                
+
+                </div>
+                <br>
+
+                                <!-- T-shirt Modal section -->
+
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">T-Shirt Size:</div>
+                        <div class="form-label">T-Shirt $30:</div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
                             <select required id="tshirt_size" name="tshirt_size" type="text"
                                     class="form-control light ignore">
-                                <option value="None" selected>-- No T-Shirt --</option>
+                                <option value=null selected>-- Not Ordering a T-Shirt --</option>
+                                <option value="5XL">5XL</option>
+                                <option value="4XL">4XL</option>
+                                <option value="3XL">3XL</option>
                                 <option value="XXL">XXL</option>
                                 <option value="XL">XL</option>
                                 <option value="L">L</option>
@@ -410,43 +406,25 @@ function showCustomInput(inputName) {
                     <div class="modal-content">
                         <span class="close-tshirt">&times;</span>
                         <h2>T-shirt Preview</h2>
-                        <img src="./static/registration/tshirt.png" alt="T-shirt Image" class="tshirt-img">
+{#                        <img src="./static/registration/tshirt.png" alt="T-shirt Image" class="tshirt-img">#}
+                        <img src="./static/registration/mock_t_shirt.jpg" alt="T-shirt Image" class="tshirt-img">
                     </div>
                 </div>
 
                 <br>
 
-                {% comment %} <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Would you like to buy a Sweatshirt?</div>
-                    </div>
-                    <div class="col-xs-2 col-sm-6 col-sm-offset-0 col-md-4">
-                        <label style="margin-right: 15px;">
-                            <input id="buy_swshirt_yes" name="buy_swshirt" type="radio" class="light ignore"
-                                   value="yes" {% if buy_swshirt == 'yes' %}checked{% endif %}/> Yes
-                        </label>
-                        <label>
-                            <input id="buy_swshirt_no" name="buy_swshirt" type="radio" class="light ignore"
-                                   value="no" {% if buy_swshirt != 'yes' %}checked{% endif %}/> No
-                        </label>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-1 col-xs-offset-1">
-                        <div class="separator bigMarginBottom bigMarginTop"></div>
-                    </div>
-                </div> {% endcomment %}
-                
-                
+                                <!--Sweater Modal section -->
+
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Sweatshirt Size:</div>
+                        <div class="form-label">Sweatshirt $45:</div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
                             <select required id="swshirt_size" name="swshirt_size" type="text"
                                     class="form-control light ignore">
-                                <option value="None" selected>-- No Sweatshirt --</option>
+                                <option value=null selected>--Not Ordering a Sweatshirt --</option>
+                                <option value="3XL">3XL</option>
                                 <option value="XXL">XXL</option>
                                 <option value="XL">XL</option>
                                 <option value="L">L</option>
@@ -470,10 +448,60 @@ function showCustomInput(inputName) {
                     <div class="modal-content">
                         <span class="close-swshirt">&times;</span>
                         <h2>Sweatshirt Preview</h2>
-                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">
+{#                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">#}
+                        <img src="./static/registration/mock_sweater.jpg" alt="Sweatshirt Image" class="sweatshirt-img">
                     </div>
                 </div>
-                
+
+<br>
+                                                <!--Mug Modal section -->
+
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">Camp Mug $5:</div>
+                    </div>
+                    <div class="col-xs-2  col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <select required id="camper_mug" name="camper_mug" type="text"
+                                    class="form-control light ignore">
+                                <option value=false selected>-- Not Ordering a Mug --</option>
+                                <option value=true>Ordering</option>
+
+                            </select>
+                        </div>
+                </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-1 col-xs-offset-1">
+                        <div class="separator bigMarginBottom bigMarginTop"></div>
+                    </div>
+
+                </div>
+
+                <!-- Button to Open Modal -->
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <button id="openMugModal" class="btn btn-primary">View Camp Mug</button>
+                    </div>
+                </div>
+
+                <!-- Modal (Hidden by Default) -->
+                <div id="mugModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-mug">&times;</span>
+                        <h2>Camp Mug Preview</h2>
+                                            <div class="col-xs-6 ">
+
+{#                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">#}
+                        <img src="./static/registration/mock_logo_mug.png" alt="Mug Log Image" class="mug-logo-img">
+                                                                                           </div>
+
+                                                                    <div class="col-xs-6 ">
+
+                        <img src="./static/registration/mock_art_mug.png" alt="Mug Art Image" class="mug-art-img">
+                        </div>
+                    </div>
+                </div>
+
                 <br>
 
                 <div class="row panel-row flexHeight center-vertically">
@@ -557,9 +585,31 @@ function showCustomInput(inputName) {
         document.getElementById("sweatshirtModal").style.display = "none";
     };
 
+
+
+
     // Close modal when clicking outside the content (specific to Sweatshirt)
     window.addEventListener("click", function (event) {
         let modal = document.getElementById("sweatshirtModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+
+            // Mug Modal Open and Close
+    document.getElementById("openMugModal").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("mugModal").style.display = "block";
+    };
+    document.querySelector(".close-mug").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("mugModal").style.display = "none";
+    };
+
+        // Close modal when clicking outside the content (specific to mug)
+    window.addEventListener("click", function (event) {
+        let modal = document.getElementById("mugModal");
         if (event.target === modal) {
             modal.style.display = "none";
         }
@@ -591,14 +641,14 @@ function showCustomInput(inputName) {
         height: auto;
     }
     
-    .close-tshirt, .close-swshirt {
+    .close-tshirt, .close-swshirt, .close-mug {
         position: absolute;
         top: 10px;
         right: 15px;
         font-size: 24px;
         cursor: pointer;
     }
-    .sweatshirt-img, .tshirt-img {
+    .sweatshirt-img, .tshirt-img, .mug-logo-img, .mug-art-img {
         width: 100%;
         max-width: 100%; /* Ensure it scales with the modal */
         height: auto;
