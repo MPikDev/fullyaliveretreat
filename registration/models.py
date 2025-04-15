@@ -20,6 +20,7 @@ class Camper(models.Model):
     pastor_number = models.CharField(max_length=15, null=True, default=None)
     church_member = models.BooleanField()
     not_married = models.BooleanField(default=False)
+    mug = models.BooleanField(default=False)
     tshirt_size = models.CharField(
         max_length=4
         , choices=(
@@ -30,6 +31,9 @@ class Camper(models.Model):
             ('L', 'Large'),
             ('XL', 'Extra Large'),
             ('XXL', 'Extra Extra Large'),
+            ('3XL', '3 Extra Large'),
+            ('4XL', '4 Extra Large'),
+            ('5XL', '5 Extra Large'),
         ),
         default='None',
         verbose_name="T-shirt Size",
@@ -45,6 +49,8 @@ class Camper(models.Model):
             ('L', 'Large'),
             ('XL', 'Extra Large'),
             ('XXL', 'Extra Extra Large'),
+            ('3XL', '3 Extra Large'),
+
         ),
         default='None',
         verbose_name="Swim Shirt Size",
