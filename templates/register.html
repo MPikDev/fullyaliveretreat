@@ -448,7 +448,6 @@ function showCustomInput(inputName) {
                     <div class="modal-content">
                         <span class="close-swshirt">&times;</span>
                         <h2>Sweatshirt Preview</h2>
-{#                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">#}
                         <img src="./static/registration/mock_sweater.jpg" alt="Sweatshirt Image" class="sweatshirt-img">
                     </div>
                 </div>
@@ -460,7 +459,7 @@ function showCustomInput(inputName) {
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
                         <div class="form-label">Camp Mug $5:</div>
                     </div>
-                    <div class="col-xs-2  col-sm-6 col-sm-offset-0 col-md-4">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
                             <select required id="camper_mug" name="camper_mug" type="text"
                                     class="form-control light ignore">
@@ -486,16 +485,17 @@ function showCustomInput(inputName) {
 
                 <!-- Modal (Hidden by Default) -->
                 <div id="mugModal" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content" style="    max-height: calc(100vh - 200px);
+    overflow-y: auto;">
                         <span class="close-mug">&times;</span>
                         <h2>Camp Mug Preview</h2>
-                                            <div class="col-xs-6 ">
+                                            <div class="col-xs-12 ">
 
 {#                        <img src="./static/registration/swShirt.png" alt="Sweatshirt Image" class="sweatshirt-img">#}
                         <img src="./static/registration/mock_logo_mug.png" alt="Mug Log Image" class="mug-logo-img">
                                                                                            </div>
 
-                                                                    <div class="col-xs-6 ">
+                                                                    <div class="col-xs-12 ">
 
                         <img src="./static/registration/mock_art_mug.png" alt="Mug Art Image" class="mug-art-img">
                         </div>
@@ -506,7 +506,7 @@ function showCustomInput(inputName) {
 
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-                        <input type="submit" class="btn btn-block black-boarder"
+                        <input type="submit" class=" btn-primary  btn btn-block "
                                id="register" value="Register">
                         </input>
                     </div>

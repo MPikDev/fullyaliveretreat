@@ -37,7 +37,7 @@ FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
 
 
 def send_registration_email(camper):
-    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "lluFfull")
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "weqf ucmg cksi znvy")
 
     receiver_email = camper.email
 
@@ -59,6 +59,39 @@ def send_registration_email(camper):
         contents=body,
     )
 
+
+def check_who_paid_helper():
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
+        'invoice', flat=True)
+    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+                                                             created_at__gte=FIlTER_2025).exclude(
+        invoice__in=refund_incoices).values_list('invoice',
+                                                 flat=True)
+
+    int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
+    no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
+
+    paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
+
+    print(len(paid_all_campers))  # this is for the query to be done right now
+    for camper in paid_all_campers:
+        camper.paid = True
+        camper.save()
+        try:
+            send_registration_email(camper)
+            camper.email_sent = True
+            camper.save()
+        except Exception as e:
+            print("email didn't send")
+            print(camper)
+            print(e)
+
+    refund_incoices = [str(pk) for pk in refund_incoices]
+    refund_campers = Camper.objects.filter(pk__in=refund_incoices)
+    for camper in refund_campers:
+        if camper.paid:
+            camper.paid = False
+            camper.save()
 
 
 def home(request):
@@ -131,27 +164,7 @@ def close_reg(request):
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
-        'invoice', flat=True)
-    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2025).exclude(
-        invoice__in=refund_incoices).values_list('invoice',
-                                                 flat=True)
-
-    int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
-    no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
-
-    paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
-    print(len(paid_all_campers))  # this is for the query to be done right now
-    for camper in paid_all_campers:
-        camper.paid = True
-        camper.save()
-    refund_incoices = [str(pk) for pk in refund_incoices]
-    refund_campers = Camper.objects.filter(pk__in=refund_incoices)
-    for camper in refund_campers:
-        if camper.paid:
-            camper.paid = False
-            camper.save()
+    check_who_paid_helper()
 
     return camper_info(request)
 
@@ -295,6 +308,7 @@ def pay_now(request, *args, **kwargs):
 
 @csrf_exempt
 def return_url(request):
+    check_who_paid_helper()
     return render_to_response('success.html')
 
 @csrf_exempt
