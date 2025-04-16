@@ -58,6 +58,7 @@ class Camper(models.Model):
     )
     paypal = models.CharField(max_length=48, default='untouched')
     paid = models.BooleanField()
+    email_sent = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     camp_filter = models.CharField(max_length=48, default='not caught')
 
