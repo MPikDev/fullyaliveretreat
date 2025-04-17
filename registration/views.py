@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-
+import yagmail
 from registration.models import Camper
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -36,6 +36,66 @@ FIlTER_2025 = datetime.datetime(2024, 8, 15, 1, 33, 24, 755599)
 FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
 
 
+def send_registration_email(camper):
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "REMOVED")
+
+    receiver_email = camper.email
+
+    body = f"""\
+        Hello {camper.first_name},
+
+        You have successfully registered to Fully Alive Retreat!
+        Here is a link to the Telagram to stay up to date with any news about camp. 
+        https://t.me/+Ky9V40c6bh0yMjMx
+        Other info: 
+        Sweater Ordered: {camper.swshirt_size}
+        T-Shirt Ordered: {camper.tshirt_size}
+        Mug Ordered: {camper.mug}
+
+    """
+    yag.send(
+        to=receiver_email,
+        subject="Registered for Fully Alive Retreat",
+        contents=body,
+    )
+
+
+def check_who_paid_helper():
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
+        'invoice', flat=True)
+    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+                                                             created_at__gte=FIlTER_2025).exclude(
+        invoice__in=refund_incoices).values_list('invoice',
+                                                 flat=True)
+
+    int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
+    no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
+
+    paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
+
+    print(len(paid_all_campers))  # this is for the query to be done right now
+    for camper in paid_all_campers:
+        camper.paid = True
+        camper.save()
+        # send emails to campers that have not got an email
+        if not camper.email_sent:
+            try:
+                send_registration_email(camper)
+                camper.email_sent = True
+                camper.save()
+            except Exception as e:
+                print("email didn't send")
+                print(camper)
+                print(e)
+
+    refund_incoices = [str(pk) for pk in refund_incoices]
+    refund_campers = Camper.objects.filter(pk__in=refund_incoices)
+    for camper in refund_campers:
+        if camper.paid:
+            camper.paid = False
+            camper.save()
+
+
 def home(request):
     return render(request, 'home.html')
 
@@ -49,7 +109,7 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2025).exclude(invoice__in=refund_incoices).count()
@@ -106,32 +166,13 @@ def close_reg(request):
 @login_required(redirect_field_name='login')
 def check_who_paid(request):
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
-        'invoice', flat=True)
-    unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2025).exclude(
-        invoice__in=refund_incoices).values_list('invoice',
-                                                 flat=True)
-
-    int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
-    no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
-
-    paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
-    print(len(paid_all_campers))  # this is for the query to be done right now
-    for camper in paid_all_campers:
-        camper.paid = True
-        camper.save()
-    refund_incoices = [str(pk) for pk in refund_incoices]
-    refund_campers = Camper.objects.filter(pk__in=refund_incoices)
-    for camper in refund_campers:
-        if camper.paid:
-            camper.paid = False
-            camper.save()
+    check_who_paid_helper()
 
     return camper_info(request)
 
 
 def reg(request):
+    # Regisratation hasn't not opened yet
     return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
@@ -154,9 +195,13 @@ def reg(request):
     pastor = request.POST['camper_pastor'],
     pastor_number = request.POST['camper_pastor_phone'],
     church_member = request.POST.get('camper_church_member'),
+    tshirt_size = request.POST.get('tshirt_size'),
+    swshirt_size = request.POST.get('swshirt_size'),
+    mug = request.POST.get('camper_mug', False),
     not_married = request.POST.get('camper_not_married'),
     paypal = 'reg',
     paid = False,
+
     camp_filter = SUMMER_2025_CAMP,
     )
     # print(camper['church_member'],camper['not_married'])
@@ -164,9 +209,11 @@ def reg(request):
     try:
         camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
         camper['not_married'] = True if camper['not_married'] in ['True','true'] or camper['not_married'] is True else False
+        camper['mug'] = True if camper['mug'] in ['True','true'] or camper['mug'] is True else False
     except:
         camper['church_member'] = False
         camper['not_married'] = False
+        camper['mug'] = False
 
     # print(camper['church_member'],camper['not_married'])
 
@@ -222,18 +269,33 @@ def reg(request):
     if not camper['not_married'] or not camper['church_member']:
         return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
 
-    data = dict(camper_id=camper_object.id)
+    data = dict(camper_id=camper_object.id,
+                sweater=False if camper_object.swshirt_size in ['None', 'null'] else True,
+                tshirt=False if camper_object.tshirt_size in ['None', 'null'] else True,
+                mug=camper_object.mug,
+    )
+
     return pay_now(request, 'pay_now.html', data)
 
 
 def pay_now(request, *args, **kwargs):
     data = args
-    camper_id = data[1]['camper_id']
+    camper_info = data[1]
+    camper_id = camper_info['camper_id']
+
+    price = settings.CAMP_PRICE
+    if camper_info['tshirt']:
+        price += 30
+    if camper_info['sweater']:
+        price += 45
+    if camper_info['mug']:
+        price += 5
+
 
     # What you want the button to do.
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount":  f"{settings.CAMP_PRICE}.00",
+        "amount":  f"{price}.00",
         "item_name": "Registration for Fully Alive Retreat Summer 2025",
         'currency_code': 'USD',
         "invoice": camper_id,
@@ -241,7 +303,6 @@ def pay_now(request, *args, **kwargs):
         "return": request.build_absolute_uri(reverse('your-return-view')),
         "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
     }
-
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form}
@@ -249,6 +310,7 @@ def pay_now(request, *args, **kwargs):
 
 @csrf_exempt
 def return_url(request):
+    check_who_paid_helper()
     return render_to_response('success.html')
 
 @csrf_exempt

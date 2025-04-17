@@ -12,10 +12,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for productions
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -38,7 +37,7 @@ SUMMER_2024_CAMP = 'summer 2024 camp'
 SUMMER_2025_CAMP = 'summer 2025 camp'
 
 MAX_CAPACITY = 180
-CAMP_PRICE = 300
+CAMP_PRICE = 315
 GLOBAL_OPEN_REG_FLAG = True
 
 ALLOWED_HOSTS = ['*']
