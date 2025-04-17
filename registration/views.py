@@ -46,11 +46,11 @@ def send_registration_email(camper):
 
         You have successfully registered to Fully Alive Retreat!
         Here is a link to the Telagram to stay up to date with any news about camp. 
-        
+        https://t.me/+Ky9V40c6bh0yMjMx
         Other info: 
-        Sweater Order: {camper.swshirt_size}
-        T-Shirt Order: {camper.tshirt_size}
-        Mug Order: {camper.mug}
+        Sweater Ordered: {camper.swshirt_size}
+        T-Shirt Ordered: {camper.tshirt_size}
+        Mug Ordered: {camper.mug}
 
     """
     yag.send(
@@ -77,14 +77,16 @@ def check_who_paid_helper():
     for camper in paid_all_campers:
         camper.paid = True
         camper.save()
-        try:
-            send_registration_email(camper)
-            camper.email_sent = True
-            camper.save()
-        except Exception as e:
-            print("email didn't send")
-            print(camper)
-            print(e)
+        # send emails to campers that have not got an email
+        if not camper.email_sent:
+            try:
+                send_registration_email(camper)
+                camper.email_sent = True
+                camper.save()
+            except Exception as e:
+                print("email didn't send")
+                print(camper)
+                print(e)
 
     refund_incoices = [str(pk) for pk in refund_incoices]
     refund_campers = Camper.objects.filter(pk__in=refund_incoices)
@@ -171,7 +173,7 @@ def check_who_paid(request):
 
 def reg(request):
     # Regisratation hasn't not opened yet
-    # return render(request, 'hasnt_opened.html')
+    return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
         'invoice', flat=True)
