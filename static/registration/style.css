@@ -599,7 +599,7 @@ body, html {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    background-image: url("2022_coast_backgrounds/dune_waves.JPG")
+    background-image: url("2022_coast_backgrounds/background_new.jpeg")
 }
 
 .paid-title {
@@ -640,7 +640,7 @@ body, html {
 @media (max-width: 786px) {
     .wave-backgroud {
         /*background-attachment: scroll;*/
-        background-image: url("2022_coast_backgrounds/dune_waves.JPG")
+        background-image: url("2022_coast_backgrounds/background_new.jpeg")
 
     }
 
