@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'REMOVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 PAYPAL_TEST = False
 # PAYPAL_RECEIVER_EMAIL = 'events@nwasbc.com' #old one not working anymore
