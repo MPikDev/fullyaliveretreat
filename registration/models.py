@@ -20,8 +20,45 @@ class Camper(models.Model):
     pastor_number = models.CharField(max_length=15, null=True, default=None)
     church_member = models.BooleanField()
     not_married = models.BooleanField(default=False)
+    mug = models.BooleanField(default=False)
+    tshirt_size = models.CharField(
+        max_length=4
+        , choices=(
+            ('None', 'None'),
+            ('XS', 'Extra Small'),
+            ('S', 'Small'),
+            ('M', 'Medium'),
+            ('L', 'Large'),
+            ('XL', 'Extra Large'),
+            ('XXL', 'Extra Extra Large'),
+            ('3XL', '3 Extra Large'),
+            ('4XL', '4 Extra Large'),
+            ('5XL', '5 Extra Large'),
+        ),
+        default='None',
+        verbose_name="T-shirt Size",
+        help_text="Select the t-shirt size for the camper. 'None' means no t-shirt is needed."
+    )
+    swshirt_size = models.CharField(
+        max_length=4,
+        choices=(
+            ('None', 'None'),
+            ('XS', 'Extra Small'),
+            ('S', 'Small'),
+            ('M', 'Medium'),
+            ('L', 'Large'),
+            ('XL', 'Extra Large'),
+            ('XXL', 'Extra Extra Large'),
+            ('3XL', '3 Extra Large'),
+
+        ),
+        default='None',
+        verbose_name="Swim Shirt Size",
+        help_text="Select the swim shirt size for the camper. 'None' means no swim shirt is needed."
+    )
     paypal = models.CharField(max_length=48, default='untouched')
     paid = models.BooleanField()
+    email_sent = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     camp_filter = models.CharField(max_length=48, default='not caught')
 
