@@ -32,8 +32,8 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 # FIlTER_2024 = datetime.datetime(2023, 8, 15, 1, 33, 24, 755599)
 # FIlTER_FALL_2024 = datetime.datetime(2024, 8, 14, 1, 33, 24, 755599)
 
-FIlTER_2025 = datetime.datetime(2024, 8, 15, 1, 33, 24, 755599)
-FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
+FIlTER_2025 = datetime.datetime(2024, 9, 15, 1, 33, 24, 755599)
+FIlTER_FALL_2025 = datetime.datetime(2025, 9, 14, 1, 33, 24, 755599)
 
 
 def send_registration_email(camper):
