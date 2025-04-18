@@ -40,6 +40,8 @@ MAX_CAPACITY = 180
 CAMP_PRICE = 315
 GLOBAL_OPEN_REG_FLAG = True
 
+DOMAIN = 'fullyaliveretreat.com'
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
