@@ -39,25 +39,38 @@ FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
 def send_registration_email(camper):
     yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "weqf ucmg cksi znvy")
 
-    receiver_email = camper.email
+    # HTML version with styled links
+    html_content = f"""\
+    <div style="font-family: sans-serif; font-size: 14px; line-height: 1.4;">
+      <div>Hello {camper.first_name},</div>
 
-    body = f"""\
-        Hello {camper.first_name},
+      <div>You have successfully registered for <strong>Fully Alive Retreat</strong>!</div>
 
-        You have successfully registered to Fully Alive Retreat!
-        Here is a link to the Telagram to stay up to date with any news about camp. 
-        https://t.me/+Ky9V40c6bh0yMjMx
-        Other info: 
-        Sweater Ordered: {camper.swshirt_size}
-        T-Shirt Ordered: {camper.tshirt_size}
-        Mug Ordered: {camper.mug}
+      <div><strong>Camp starts:</strong> August 22, 2025 at 4:00pm <a href="http://{settings.DOMAIN}/static/fullyalive.ics" style="color: #007bff; text-decoration: none;">Add to Calendar</a>
+      <strong>Camp address:</strong> 18705 N Hwy 101, Rockaway Beach, OR 97136
+      Join our <a href="https://t.me/+Ky9V40c6bh0yMjMx" style="color: #007bff; text-decoration: none;">Telegram group</a> to stay updated.
+      <br>
+      <strong>Your Order:</strong><br>
+        Sweater: {camper.swshirt_size}
+        T-Shirt: {camper.tshirt_size}
+        Mug: {camper.mug}
+      <br>
+    Follow us on  <a href="https://www.instagram.com/fullyaliveretreat?igsh=MXE1aXppNmdtZDQybQ==" style="color: #007bff; text-decoration: none;"> Instagram</a>
+      </div>
 
+      <div>
+    
+      </div>
+    </div>
     """
+
     yag.send(
-        to=receiver_email,
-        subject="Registered for Fully Alive Retreat",
-        contents=body,
+        to=camper.email,
+        subject="You're Registered to Fully Alive Retreat 2025!",
+        contents=[html_content]
     )
+
+
 
 
 def check_who_paid_helper():
@@ -65,13 +78,14 @@ def check_who_paid_helper():
         'invoice', flat=True)
     unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
                                                              created_at__gte=FIlTER_2025).exclude(
-        invoice__in=refund_incoices).values_list('invoice',
-                                                 flat=True)
+        invoice__in=refund_incoices).values_list('invoice', flat=True)
 
     int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
     no_duplicate_int_total_paid_campers_pk = list(dict.fromkeys(int_total_paid_campers_pk))
 
     paid_all_campers = Camper.objects.filter(pk__in=no_duplicate_int_total_paid_campers_pk)
+    # for testing
+    # paid_all_campers = [Camper.objects.get(pk=88)]
 
     print(len(paid_all_campers))  # this is for the query to be done right now
     for camper in paid_all_campers:
