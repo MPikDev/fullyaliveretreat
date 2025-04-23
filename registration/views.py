@@ -187,7 +187,7 @@ def check_who_paid(request):
 
 def reg(request):
     # Regisratation hasn't not opened yet
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
         'invoice', flat=True)
