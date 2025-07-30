@@ -366,6 +366,10 @@ function showCustomInput(inputName) {
                 </div>
 
                 <br>
+
+                    {% if not remove_merch_date %}
+
+
                                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-2">
                         <div class="form-label center">
@@ -379,7 +383,7 @@ function showCustomInput(inputName) {
                         <div class="form-label center">Selecting any merch will add to your camp price total. </div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-2">
-                        <div class="form-label center">Merch deadline is August 4th. </div>
+                        <div class="form-label center">Merch deadline is August 3rd at midnight. </div>
                     </div>
                 </div>
                 <br>
@@ -490,6 +494,10 @@ function showCustomInput(inputName) {
                 </div>
 
 <br>
+
+                    {% if  not mugs_ordered_flag %}
+
+
                                                 <!--Mug Modal section -->
 
                 <div class="row panel-row flexHeight center-vertically">
@@ -534,6 +542,8 @@ function showCustomInput(inputName) {
                     </div>
                 </div>
 
+    {% endif %}
+    {% endif %}
                 <br>
                 <br>
                 <br>
