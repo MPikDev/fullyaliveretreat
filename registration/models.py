@@ -35,6 +35,7 @@ class Camper(models.Model):
             ('4XL', '4 Extra Large'),
             ('5XL', '5 Extra Large'),
         ),
+        null=True,
         default='None',
         verbose_name="T-shirt Size",
         help_text="Select the t-shirt size for the camper. 'None' means no t-shirt is needed."
@@ -52,6 +53,7 @@ class Camper(models.Model):
             ('3XL', '3 Extra Large'),
 
         ),
+        null=True,
         default='None',
         verbose_name="Swim Shirt Size",
         help_text="Select the swim shirt size for the camper. 'None' means no swim shirt is needed."
