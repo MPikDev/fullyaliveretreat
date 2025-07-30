@@ -127,6 +127,7 @@ def register(request):
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2025).exclude(invoice__in=refund_incoices).count()
+    mugs_campers = Camper.objects.filter(camp_filter=SUMMER_2025_CAMP, paid=True).count()
 
     if settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
@@ -136,6 +137,9 @@ def register(request):
 
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
+    camper["mugs_ordered_flag"] = mugs_campers >= 50 # when we get more than 50 to close the mugs
+    camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
+    # print(f'{camper=}')
     return render(request, 'register.html', camper)
 
 
@@ -278,6 +282,7 @@ def reg(request):
         return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
 
     del camper['email_v']
+    # print(f'{camper=}')
     camper_object = Camper.objects.create(**camper)
     # want to save the camper to make sure we catch that this person wrote that they were married
     if not camper['not_married'] or not camper['church_member']:
@@ -303,7 +308,7 @@ def pay_now(request, *args, **kwargs):
     if camper_info['sweater']:
         price += 45
     if camper_info['mug']:
-        price += 10
+        price += 5
 
 
     # What you want the button to do.
