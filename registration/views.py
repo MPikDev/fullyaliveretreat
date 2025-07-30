@@ -303,7 +303,7 @@ def pay_now(request, *args, **kwargs):
     if camper_info['sweater']:
         price += 45
     if camper_info['mug']:
-        price += 10
+        price += 5
 
 
     # What you want the button to do.
