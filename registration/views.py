@@ -289,8 +289,8 @@ def reg(request):
         return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
 
     data = dict(camper_id=camper_object.id,
-                sweater=False if camper_object.swshirt_size in ['None', 'null'] else True,
-                tshirt=False if camper_object.tshirt_size in ['None', 'null'] else True,
+                sweater=False if camper_object.swshirt_size in ['None', 'null', None] else True,
+                tshirt=False if camper_object.tshirt_size in ['None', 'null', None] else True,
                 mug=camper_object.mug,
     )
 
