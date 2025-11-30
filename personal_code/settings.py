@@ -35,9 +35,12 @@ SUMMER_2022_CAMP = 'summer 2022 camp'
 SUMMER_2023_CAMP = 'summer 2023 camp'
 SUMMER_2024_CAMP = 'summer 2024 camp'
 SUMMER_2025_CAMP = 'summer 2025 camp'
+WINTER_2026_CAMP = 'summer 2026 camp'
 
-MAX_CAPACITY = 180
-CAMP_PRICE = 335
+WEBSITE_THEME = 'winter'
+
+MAX_CAPACITY = 30
+CAMP_PRICE = 290
 GLOBAL_OPEN_REG_FLAG = True
 
 DOMAIN = 'fullyaliveretreat.com'
