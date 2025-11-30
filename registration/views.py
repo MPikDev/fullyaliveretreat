@@ -14,8 +14,10 @@ import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, \
-    GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP, SUMMER_2023_CAMP, SUMMER_2024_CAMP, SUMMER_2025_CAMP
+from personal_code.settings import (
+    SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020_CAMP, FALL_2021_CAMP, GLOBAL_OPEN_REG_FLAG, SUMMER_2022_CAMP,
+    SUMMER_2023_CAMP, SUMMER_2024_CAMP, SUMMER_2025_CAMP, WINTER_2026_CAMP
+)
 
 # FIlTER_2020 = datetime.datetime(2020, 1, 1, 1, 33, 24, 755599)
 # FIlTER_FALL_2020 = datetime.datetime(2020, 7, 1, 1, 33, 24, 755599)
@@ -32,8 +34,11 @@ from personal_code.settings import SPRING_2020_CAMP, SPRING_2019_CAMP, FALL_2020
 # FIlTER_2024 = datetime.datetime(2023, 8, 15, 1, 33, 24, 755599)
 # FIlTER_FALL_2024 = datetime.datetime(2024, 8, 14, 1, 33, 24, 755599)
 
-FIlTER_2025 = datetime.datetime(2024, 9, 15, 1, 33, 24, 755599)
-FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
+# FIlTER_2025 = datetime.datetime(2024, 9, 15, 1, 33, 24, 755599)
+# FIlTER_FALL_2025 = datetime.datetime(2025, 8, 14, 1, 33, 24, 755599)
+
+START_FIlTER_2026_WINTER = datetime.datetime(2025, 11, 29, 1, 33, 24, 755599)
+END_FIlTER_2026_WINTER = datetime.datetime(2026, 2, 1, 1, 33, 24, 755599)
 
 
 def send_registration_email(camper):
@@ -74,10 +79,10 @@ def send_registration_email(camper):
 
 
 def check_who_paid_helper():
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list(
         'invoice', flat=True)
     unicode_total_paid_campers_pk = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2025).exclude(
+                                                             created_at__gte=START_FIlTER_2026_WINTER).exclude(
         invoice__in=refund_incoices).values_list('invoice', flat=True)
 
     int_total_paid_campers_pk = [int(float(pk)) for pk in unicode_total_paid_campers_pk]
@@ -125,15 +130,15 @@ def register(request):
     # closed
     # return render(request, 'hasnt_opened.html')
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list('invoice',flat=True)
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=FIlTER_2025).exclude(invoice__in=refund_incoices).count()
-    mugs_campers = Camper.objects.filter(camp_filter=SUMMER_2025_CAMP, paid=True).count()
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list('invoice',flat=True)
+    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=START_FIlTER_2026_WINTER).exclude(invoice__in=refund_incoices).count()
+    mugs_campers = Camper.objects.filter(camp_filter=WINTER_2026_CAMP, paid=True).count()
 
     if settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
-        if datetime.datetime.now() > FIlTER_FALL_2025:
-            return render(request, 'closed.html')
+        # if datetime.datetime.now() > FIlTER_FALL_2025:
+        #     return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
@@ -193,10 +198,10 @@ def reg(request):
     # Regisratation hasn't not opened yet
     # return render(request, 'hasnt_opened.html')
 
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=FIlTER_2025).values_list(
+    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list(
         'invoice', flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=FIlTER_2025).exclude(
+                                                             created_at__gte=START_FIlTER_2026_WINTER).exclude(
         invoice__in=refund_incoices).count()
 
     camper = dict(
@@ -220,7 +225,7 @@ def reg(request):
     paypal = 'reg',
     paid = False,
 
-    camp_filter = SUMMER_2025_CAMP,
+    camp_filter = WINTER_2026_CAMP,
     )
     # print(camper['church_member'],camper['not_married'])
     #cast into booleans
@@ -249,7 +254,7 @@ def reg(request):
         invalid_post = True
 
     # check if from jquery datetime
-    date_of_birth_limit = datetime.datetime(2001, 8, 23, 0, 0)
+    date_of_birth_limit = datetime.datetime(2002, 1, 28, 0, 0)
     if camper['date_of_birth'].find('/') == 2:
         split_date = camper['date_of_birth'].split('/')
         year = split_date[2]
@@ -315,7 +320,7 @@ def pay_now(request, *args, **kwargs):
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount":  f"{price}.00",
-        "item_name": "Registration for Fully Alive Retreat Summer 2025",
+        "item_name": "Registration for Fully Alive Retreat Winter 2026",
         'currency_code': 'USD',
         "invoice": camper_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
@@ -359,7 +364,7 @@ def camper_logout(request):
 @login_required(redirect_field_name='login')
 
 def camper_info(request,  **kwargs):
-    filter_camp = SUMMER_2025_CAMP
+    filter_camp = WINTER_2026_CAMP
     print( 'Giving Camp',  kwargs)
     if 'camper_2021_info_fall' in kwargs:
         filter_camp = FALL_2021_CAMP
@@ -375,6 +380,8 @@ def camper_info(request,  **kwargs):
         filter_camp = SUMMER_2023_CAMP
     elif 'camper_2024_info_summer' in kwargs:
         filter_camp = SUMMER_2024_CAMP
+    elif 'camper_2025_info_summer' in kwargs:
+        filter_camp = SUMMER_2025_CAMP
 
     print ('Selected Camp', filter_camp)
 
