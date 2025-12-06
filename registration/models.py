@@ -22,7 +22,7 @@ class Camper(models.Model):
     not_married = models.BooleanField(default=False)
     mug = models.BooleanField(default=False)
     region = models.CharField(
-        max_length=4
+        max_length=8
         , choices=(
             ('oregon', 'Oregon Region'),
             ('seattle', 'Seattle Region'),
