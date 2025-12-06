@@ -209,7 +209,7 @@ def reg(request):
             invoice__in=refund_incoices).values_list('invoice', flat=True)
         total_campers = len(total_camper_ids)
         print('total_camper_ids=',total_camper_ids)
-        total_camper_objects = Camper.objects.filter(id__in=total_camper_ids)
+        total_camper_objects = Camper.objects.filter(pk__in=total_camper_ids)
         print('total_camper_objects=',total_camper_objects)
 
         camper = dict(
