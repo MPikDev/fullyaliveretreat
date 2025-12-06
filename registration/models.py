@@ -21,6 +21,30 @@ class Camper(models.Model):
     church_member = models.BooleanField()
     not_married = models.BooleanField(default=False)
     mug = models.BooleanField(default=False)
+    region = models.CharField(
+        max_length=4
+        , choices=(
+            ('oregon', 'Oregon Region'),
+            ('seattle', 'Seattle Region'),
+            ('spokane', 'Spokane Region'),
+        ),
+        null=True,
+        default='None',
+        verbose_name="Activity",
+        help_text="Select the t-shirt size for the camper. 'None' means no t-shirt is needed."
+    )
+    activity = models.CharField(
+        max_length=4
+        , choices=(
+            ('ski', 'Ski/Snowboard'),
+            ('tub', 'Tubing'),
+            ('stay', 'Stay at the Cabin'),
+        ),
+        null=True,
+        default='None',
+        verbose_name="Activity",
+        help_text="Select the t-shirt size for the camper. 'None' means no t-shirt is needed."
+    )
     tshirt_size = models.CharField(
         max_length=4
         , choices=(

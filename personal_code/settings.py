@@ -35,7 +35,7 @@ SUMMER_2022_CAMP = 'summer 2022 camp'
 SUMMER_2023_CAMP = 'summer 2023 camp'
 SUMMER_2024_CAMP = 'summer 2024 camp'
 SUMMER_2025_CAMP = 'summer 2025 camp'
-WINTER_2026_CAMP = 'summer 2026 camp'
+WINTER_2026_CAMP = 'winter 2026 camp'
 
 WEBSITE_THEME = 'winter'
 
