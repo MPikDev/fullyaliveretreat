@@ -207,6 +207,7 @@ def reg(request):
         total_camper_ids = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
                                                                  created_at__gte=START_FIlTER_2026_WINTER).exclude(
             invoice__in=refund_incoices).values_list('invoice', flat=True)
+        total_camper_ids = [int(x) for x in total_camper_ids]
         total_campers = len(total_camper_ids)
         print('total_camper_ids=',total_camper_ids)
         total_camper_objects = Camper.objects.filter(pk__in=total_camper_ids)
