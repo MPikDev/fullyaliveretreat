@@ -208,7 +208,10 @@ def reg(request):
                                                                  created_at__gte=START_FIlTER_2026_WINTER).exclude(
             invoice__in=refund_incoices).values_list('invoice', flat=True)
         total_campers = len(total_camper_ids)
+        print('total_camper_ids=',total_camper_ids)
         total_camper_objects = Camper.objects.filter(id__in=total_camper_ids)
+        print('total_camper_objects=',total_camper_objects)
+
         camper = dict(
         first_name = request.POST['camper_first_name'],
         last_name = request.POST['camper_last_name'],
@@ -321,7 +324,7 @@ def reg(request):
             camper["max_capacity"] = settings.MAX_CAPACITY
             camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
             return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
-        x = 3/0
+
         del camper['email_v']
         # print(f'{camper=}')
         camper_object = Camper.objects.create(**camper)
