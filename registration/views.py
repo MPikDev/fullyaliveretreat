@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+import traceback
+
 from django.shortcuts import render,render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -195,142 +198,145 @@ def check_who_paid(request):
 
 
 def reg(request):
-    # Regisratation hasn't not opened yet
-    # return render(request, 'hasnt_opened.html')
-
-    refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list(
-        'invoice', flat=True)
-    total_camper_ids = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
-                                                             created_at__gte=START_FIlTER_2026_WINTER).exclude(
-        invoice__in=refund_incoices).values_list('invoice', flat=True)
-    total_campers = len(total_camper_ids)
-    total_camper_objects = Camper.objects.filter(id__in=total_camper_ids)
-    camper = dict(
-    first_name = request.POST['camper_first_name'],
-    last_name = request.POST['camper_last_name'],
-    date_of_birth = request.POST['camper_date_of_birth'],
-    email = request.POST['camper_email'],
-    email_v = request.POST['camper_email_again'],
-    phone = request.POST['camper_phone'],
-    city = request.POST['camper_city'],
-    state = request.POST['camper_state'],
-    med_notes = request.POST['camper_med_notes'],
-    church = request.POST['camper_church'],
-    pastor = request.POST['camper_pastor'],
-    pastor_number = request.POST['camper_pastor_phone'],
-    church_member = request.POST.get('camper_church_member'),
-    # tshirt_size = request.POST.get('tshirt_size'),
-    tshirt_size = None,
-    # swshirt_size = request.POST.get('swshirt_size'),
-    swshirt_size = None,
-    # mug = request.POST.get('camper_mug', False),
-    mug = False,
-    not_married = request.POST.get('camper_not_married'),
-    activity = request.POST.get('camper_activity'),
-    region = request.POST.get('camper_region'),
-    paypal = 'reg',
-    paid = False,
-
-    camp_filter = WINTER_2026_CAMP,
-    )
-    # print(camper['church_member'],camper['not_married'])
-    #cast into booleans
     try:
-        camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
-        camper['not_married'] = True if camper['not_married'] in ['True','true'] or camper['not_married'] is True else False
-        camper['mug'] = True if camper['mug'] in ['True','true'] or camper['mug'] is True else False
-    except:
-        camper['church_member'] = False
-        camper['not_married'] = False
-        camper['mug'] = False
+        # Regisratation hasn't not opened yet
+        # return render(request, 'hasnt_opened.html')
 
-    # print(camper['church_member'],camper['not_married'])
+        refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list(
+            'invoice', flat=True)
+        total_camper_ids = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+                                                                 created_at__gte=START_FIlTER_2026_WINTER).exclude(
+            invoice__in=refund_incoices).values_list('invoice', flat=True)
+        total_campers = len(total_camper_ids)
+        total_camper_objects = Camper.objects.filter(id__in=total_camper_ids)
+        camper = dict(
+        first_name = request.POST['camper_first_name'],
+        last_name = request.POST['camper_last_name'],
+        date_of_birth = request.POST['camper_date_of_birth'],
+        email = request.POST['camper_email'],
+        email_v = request.POST['camper_email_again'],
+        phone = request.POST['camper_phone'],
+        city = request.POST['camper_city'],
+        state = request.POST['camper_state'],
+        med_notes = request.POST['camper_med_notes'],
+        church = request.POST['camper_church'],
+        pastor = request.POST['camper_pastor'],
+        pastor_number = request.POST['camper_pastor_phone'],
+        church_member = request.POST.get('camper_church_member'),
+        # tshirt_size = request.POST.get('tshirt_size'),
+        tshirt_size = None,
+        # swshirt_size = request.POST.get('swshirt_size'),
+        swshirt_size = None,
+        # mug = request.POST.get('camper_mug', False),
+        mug = False,
+        not_married = request.POST.get('camper_not_married'),
+        activity = request.POST.get('camper_activity'),
+        region = request.POST.get('camper_region'),
+        paypal = 'reg',
+        paid = False,
 
-    invalid_post = False
-    error_message = []
-    for key, item in camper.items():
-        if item == u"":
-            if key != "med_notes":
-                error_message.append("Not all info with * is filled in")
-                invalid_post = True
-                break
+        camp_filter = WINTER_2026_CAMP,
+        )
+        # print(camper['church_member'],camper['not_married'])
+        #cast into booleans
+        try:
+            camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
+            camper['not_married'] = True if camper['not_married'] in ['True','true'] or camper['not_married'] is True else False
+            camper['mug'] = True if camper['mug'] in ['True','true'] or camper['mug'] is True else False
+        except:
+            camper['church_member'] = False
+            camper['not_married'] = False
+            camper['mug'] = False
 
-    if camper['email'] != camper['email_v']:
-        error_message.append("The emails are not the same")
-        invalid_post = True
+        # print(camper['church_member'],camper['not_married'])
 
-    # check if from jquery datetime
-    date_of_birth_limit = datetime.datetime(2002, 1, 28, 0, 0)
-    if camper['date_of_birth'].find('/') == 2:
-        split_date = camper['date_of_birth'].split('/')
-        year = split_date[2]
-        day = split_date[1]
-        month = split_date[0]
-        if year != "" and day != "" and month != "":
-            dob = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
-            if dob > date_of_birth_limit:
-                error_message.append("Not old enough to go to camp")
-                invalid_post = True
-                camper['date_of_birth'] = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
-    elif camper['date_of_birth'].find('-') == 4:
-        split_date = camper['date_of_birth'].split('-')
-        year = split_date[0]
-        day = split_date[2]
-        month = split_date[1]
-        if year != "" and day != "" and month != "":
-            dob = datetime.datetime.strptime(camper['date_of_birth'], '%Y-%m-%d')
-            if dob > date_of_birth_limit:
-                error_message.append("Not old enough to go to camp")
-                invalid_post = True
-    else:
-        error_message.append("Format of date is wrong")
-        invalid_post = True
+        invalid_post = False
+        error_message = []
+        for key, item in camper.items():
+            if item == u"":
+                if key != "med_notes":
+                    error_message.append("Not all info with * is filled in")
+                    invalid_post = True
+                    break
 
-    spokane_region = 0
-    portland_region = 0
-    seattle_region = 0
-
-    for c in total_camper_objects.iterator():
-        if c.region == "spokane":
-            spokane_region += 1
-        elif c.region == "portland":
-            portland_region += 1
-        elif c.region == "seattle":
-            seattle_region += 1
-
-    if camper['region'] == "spokane":
-        if spokane_region >= 10:
+        if camper['email'] != camper['email_v']:
+            error_message.append("The emails are not the same")
             invalid_post = True
-            error_message.append("We are at capacity for campers from Spokane region.")
-    if camper['region'] == "portland":
-        invalid_post = True
-        if portland_region >= 10:
-            error_message.append("We are at capacity for campers from Portland region.")
-    if camper['region'] == "seattle":
-        if seattle_region >= 10:
+
+        # check if from jquery datetime
+        date_of_birth_limit = datetime.datetime(2002, 1, 28, 0, 0)
+        if camper['date_of_birth'].find('/') == 2:
+            split_date = camper['date_of_birth'].split('/')
+            year = split_date[2]
+            day = split_date[1]
+            month = split_date[0]
+            if year != "" and day != "" and month != "":
+                dob = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
+                if dob > date_of_birth_limit:
+                    error_message.append("Not old enough to go to camp")
+                    invalid_post = True
+                    camper['date_of_birth'] = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
+        elif camper['date_of_birth'].find('-') == 4:
+            split_date = camper['date_of_birth'].split('-')
+            year = split_date[0]
+            day = split_date[2]
+            month = split_date[1]
+            if year != "" and day != "" and month != "":
+                dob = datetime.datetime.strptime(camper['date_of_birth'], '%Y-%m-%d')
+                if dob > date_of_birth_limit:
+                    error_message.append("Not old enough to go to camp")
+                    invalid_post = True
+        else:
+            error_message.append("Format of date is wrong")
             invalid_post = True
-            error_message.append("We are at capacity for campers from Seattle region.")
 
-    if invalid_post:
-        camper["error_message"] = error_message
-        camper["total_campers"] = total_campers
-        camper["max_capacity"] = settings.MAX_CAPACITY
-        camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
-        return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
+        spokane_region = 0
+        portland_region = 0
+        seattle_region = 0
 
-    del camper['email_v']
-    # print(f'{camper=}')
-    camper_object = Camper.objects.create(**camper)
-    # want to save the camper to make sure we catch that this person wrote that they were married
-    if not camper['not_married'] or not camper['church_member']:
-        return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
+        for c in total_camper_objects.iterator():
+            if c.region == "spokane":
+                spokane_region += 1
+            elif c.region == "portland":
+                portland_region += 1
+            elif c.region == "seattle":
+                seattle_region += 1
 
-    data = dict(camper_id=camper_object.id,
-                sweater=False if camper_object.swshirt_size in ['None', 'null', None] else True,
-                tshirt=False if camper_object.tshirt_size in ['None', 'null', None] else True,
-                mug=camper_object.mug,
-    )
+        if camper['region'] == "spokane":
+            if spokane_region >= 10:
+                invalid_post = True
+                error_message.append("We are at capacity for campers from Spokane region.")
+        if camper['region'] == "portland":
+            invalid_post = True
+            if portland_region >= 10:
+                error_message.append("We are at capacity for campers from Portland region.")
+        if camper['region'] == "seattle":
+            if seattle_region >= 10:
+                invalid_post = True
+                error_message.append("We are at capacity for campers from Seattle region.")
 
+        if invalid_post:
+            camper["error_message"] = error_message
+            camper["total_campers"] = total_campers
+            camper["max_capacity"] = settings.MAX_CAPACITY
+            camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
+            return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
+        x = 3/0
+        del camper['email_v']
+        # print(f'{camper=}')
+        camper_object = Camper.objects.create(**camper)
+        # want to save the camper to make sure we catch that this person wrote that they were married
+        if not camper['not_married'] or not camper['church_member']:
+            return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
+
+        data = dict(camper_id=camper_object.id,
+                    sweater=False if camper_object.swshirt_size in ['None', 'null', None] else True,
+                    tshirt=False if camper_object.tshirt_size in ['None', 'null', None] else True,
+                    mug=camper_object.mug,
+        )
+    except Exception:
+        print(traceback.format_exc())
+        return error(request)
     return pay_now(request, 'pay_now.html', data)
 
 
