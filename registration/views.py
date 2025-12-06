@@ -200,10 +200,11 @@ def reg(request):
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_WINTER).values_list(
         'invoice', flat=True)
-    total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
+    total_camper_ids = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
                                                              created_at__gte=START_FIlTER_2026_WINTER).exclude(
-        invoice__in=refund_incoices).count()
-
+        invoice__in=refund_incoices).values_list('invoice', flat=True)
+    total_campers = len(total_camper_ids)
+    total_camper_objects = Camper.objects.filter(id__in=total_camper_ids)
     camper = dict(
     first_name = request.POST['camper_first_name'],
     last_name = request.POST['camper_last_name'],
@@ -218,10 +219,15 @@ def reg(request):
     pastor = request.POST['camper_pastor'],
     pastor_number = request.POST['camper_pastor_phone'],
     church_member = request.POST.get('camper_church_member'),
-    tshirt_size = request.POST.get('tshirt_size'),
-    swshirt_size = request.POST.get('swshirt_size'),
-    mug = request.POST.get('camper_mug', False),
+    # tshirt_size = request.POST.get('tshirt_size'),
+    tshirt_size = None,
+    # swshirt_size = request.POST.get('swshirt_size'),
+    swshirt_size = None,
+    # mug = request.POST.get('camper_mug', False),
+    mug = False,
     not_married = request.POST.get('camper_not_married'),
+    activity = request.POST.get('camper_activity'),
+    region = request.POST.get('camper_region'),
     paypal = 'reg',
     paid = False,
 
@@ -280,10 +286,36 @@ def reg(request):
         error_message.append("Format of date is wrong")
         invalid_post = True
 
+    spokane_region = 0
+    portland_region = 0
+    seattle_region = 0
+
+    for c in total_camper_objects.iterator():
+        if c.region == "spokane":
+            spokane_region += 1
+        elif c.region == "portland":
+            portland_region += 1
+        elif c.region == "seattle":
+            seattle_region += 1
+
+    if camper['region'] == "spokane":
+        if spokane_region >= 10:
+            invalid_post = True
+            error_message.append("We are at capacity for campers from Spokane region.")
+    if camper['region'] == "portland":
+        invalid_post = True
+        if portland_region >= 10:
+            error_message.append("We are at capacity for campers from Portland region.")
+    if camper['region'] == "seattle":
+        if seattle_region >= 10:
+            invalid_post = True
+            error_message.append("We are at capacity for campers from Seattle region.")
+
     if invalid_post:
         camper["error_message"] = error_message
         camper["total_campers"] = total_campers
         camper["max_capacity"] = settings.MAX_CAPACITY
+        camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
         return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
 
     del camper['email_v']
