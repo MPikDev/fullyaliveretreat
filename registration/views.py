@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import pdb
 import traceback
 
 from django.shortcuts import render,render_to_response, redirect
@@ -238,6 +239,24 @@ def reg(request):
         camp_filter = WINTER_2026_CAMP,
         )
         # print(camper['church_member'],camper['not_married'])
+
+
+        # print(camper['church_member'],camper['not_married'])
+
+        invalid_post = False
+        error_message = []
+        skip_items = ['tshirt_size', 'swshirt_size', 'mug', 'med_notes']
+        missing_items_flag = False
+        missing_items = []
+        for key, item in camper.items():
+            if item == u"" or item is None:
+                if key not in skip_items:
+                    missing_items.append(key)
+                    missing_items_flag = True
+                    invalid_post = True
+        if missing_items_flag:
+            error_message.append(f"Not all info with * is filled in, missing: {missing_items}")
+
         #cast into booleans
         try:
             camper['church_member'] = True if camper['church_member'] in ['True','true'] or camper['church_member'] is True else False
@@ -247,17 +266,6 @@ def reg(request):
             camper['church_member'] = False
             camper['not_married'] = False
             camper['mug'] = False
-
-        # print(camper['church_member'],camper['not_married'])
-
-        invalid_post = False
-        error_message = []
-        for key, item in camper.items():
-            if item == u"":
-                if key != "med_notes":
-                    error_message.append("Not all info with * is filled in")
-                    invalid_post = True
-                    break
 
         if camper['email'] != camper['email_v']:
             error_message.append("The emails are not the same")
