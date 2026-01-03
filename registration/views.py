@@ -311,7 +311,7 @@ def reg(request):
                 seattle_region += 1
 
         if camper['region'] == "spokane":
-            if spokane_region >= 10:
+            if spokane_region >= 15:
                 invalid_post = True
                 error_message.append("We are at capacity for campers from Spokane region.")
         if camper['region'] == "portland":
