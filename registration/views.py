@@ -4,12 +4,12 @@ from __future__ import unicode_literals
 import pdb
 import traceback
 
-from django.shortcuts import render,render_to_response, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 import yagmail
 from registration.models import Camper
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.ipn.models import PayPalIPN
 from paypal.standard.models import ST_PP_COMPLETED, ST_PP_REFUNDED
@@ -335,7 +335,7 @@ def reg(request):
         camper_object = Camper.objects.create(**camper)
         # want to save the camper to make sure we catch that this person wrote that they were married
         if not camper['not_married'] or not camper['church_member']:
-            return render_to_response('married_error.html', status=status.HTTP_400_BAD_REQUEST)
+            return render(request,'married_error.html', status=status.HTTP_400_BAD_REQUEST)
 
         data = dict(camper_id=camper_object.id,
                     sweater=False if camper_object.swshirt_size in ['None', 'null', None] else True,
@@ -381,17 +381,17 @@ def pay_now(request, *args, **kwargs):
 @csrf_exempt
 def return_url(request):
     check_who_paid_helper()
-    return render_to_response('success.html')
+    return render(request,'success.html')
 
 @csrf_exempt
 def canceled_url(request):
-    return render_to_response('cancel.html')
+    return render(request,'cancel.html')
 
 def error(request):
-    return render_to_response('error.html')
+    return render(request,'error.html')
 
-def not_found(request):
-    return render_to_response('not_found.html')
+def not_found(request, exception):
+    return render(request,'not_found.html')
 
 def log_in(request):
     username = request.POST.get('username', '')
