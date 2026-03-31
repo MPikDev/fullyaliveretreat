@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 import yagmail
 from registration.models import Camper
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.ipn.models import PayPalIPN
 from paypal.standard.models import ST_PP_COMPLETED, ST_PP_REFUNDED
@@ -390,7 +390,7 @@ def canceled_url(request):
 def error(request):
     return render_to_response('error.html')
 
-def not_found(request):
+def not_found(request, exception):
     return render_to_response('not_found.html')
 
 def log_in(request):

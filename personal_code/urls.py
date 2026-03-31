@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^accounts/login/$', views.log_in),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
-    url(r'^home', views.home),
+    url(r'home', views.home),
     url(r'^registration', views.register),
     url(r'^check_who_paid', views.check_who_paid),
     url(r'^fellowship', views.fellowship),
