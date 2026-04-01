@@ -25,7 +25,7 @@ handler500 = 'registration.views.error'
 urlpatterns = [
     # url('', include('django.contrib.auth.urls')),
     path(r'accounts/login/', views.log_in),
-    path(r'admin/', admin.site.urls),
+    path(r'admin', admin.site.urls),
     path(r'', views.home),
     path(r'home', views.home),
     path(r'registration', views.register),
@@ -42,7 +42,8 @@ urlpatterns = [
     path(r'V4LrfBrC9UbZYm3k/', include('paypal.standard.ipn.urls')),
     path(r'login', views.log_in, name='login'),
     path(r'logout', views.camper_logout),
-    path(r'camper_info/', views.camper_info),
+    path(r'camper_info', views.camper_info),
+    path(r'camper_info/2026_winter_camper_info/', views.camper_info, kwargs=dict(camper_2026_info_winter=True)),
     path(r'camper_info/2025_summer_camper_info/', views.camper_info, kwargs=dict(camper_2025_info_summer=True)),
     path(r'camper_info/2024_summer_camper_info/', views.camper_info, kwargs=dict(camper_2024_info_summer=True)),
     path(r'camper_info/2023_summer_camper_info/', views.camper_info, kwargs=dict(camper_2023_info_summer=True)),

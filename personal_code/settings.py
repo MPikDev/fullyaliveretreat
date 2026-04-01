@@ -36,10 +36,12 @@ SUMMER_2023_CAMP = 'summer 2023 camp'
 SUMMER_2024_CAMP = 'summer 2024 camp'
 SUMMER_2025_CAMP = 'summer 2025 camp'
 WINTER_2026_CAMP = 'winter 2026 camp'
+SUMMER_2026_CAMP = 'summer 2026 camp'
 
-WEBSITE_THEME = 'winter'
+# WEBSITE_THEME = 'winter'
+WEBSITE_THEME = 'summer'
 
-MAX_CAPACITY = 35
+MAX_CAPACITY = 150
 CAMP_PRICE = 290
 GLOBAL_OPEN_REG_FLAG = True
 
