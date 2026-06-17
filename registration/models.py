@@ -17,7 +17,7 @@ class Camper(models.Model):
             ('f', 'female'),
         ),
         null=True,
-        default='None',
+        default=None,
         verbose_name="Gender",
         help_text="Select the gender. 'None' means legacy campers."
     )
