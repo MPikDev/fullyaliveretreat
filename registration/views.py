@@ -292,14 +292,12 @@ def reg(request):
             camper['date_of_birth'] = dob
             dob.date()
             today = datetime.date.today()
-            age = today.year - dob.year - (
-                    (today.month, today.day) < (dob.month, dob.day)
-            )
+            age = today.year - dob.year
 
             if age < 23:
                 error_message.append("Not old enough to go to camp")
                 invalid_post = True
-            elif age > 45:
+            elif age >= 45:
                 error_message.append("Too old to go to camp")
                 invalid_post = True
 

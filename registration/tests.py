@@ -118,20 +118,24 @@ class CamperRegistartionTests(TestCase):
         print(response.context.get('error_message'))
         assert response.context.get('error_message') == ["Not all info with * is filled in, missing: ['email_v']", 'The emails are not the same']
 
+
     def test_birthday_check(self):
+        # todo add mock for date.today and retry different times
         data = copy.deepcopy(self.data)
-        data['camper_date_of_birth'] = '06/16/2010'
-        response = self.client.post('/register', data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.context.get('error_message'), ["Not old enough to go to camp"])
+        checks = [{'dob': '06/16/2010',
+                  'error':["Not old enough to go to camp"],
+                   'status': status.HTTP_400_BAD_REQUEST,},
+                  {'dob': '06/16/1981',
+                   'error': ["Too old to go to camp"],
+                   'status': status.HTTP_400_BAD_REQUEST, },
+                  {'dob': '06/16/1982',
+                   'error': None,
+                   'status': status.HTTP_200_OK, },
+                  ]
+        for check in checks:
+            print(check)
+            data['camper_date_of_birth'] = check['dob']
+            response = self.client.post('/register', data=data)
+            self.assertEqual(response.status_code, check['status'])
+            self.assertEqual(response.context.get('error_message'), check['error'])
 
-        data['camper_date_of_birth'] = '06/16/1980'
-        response = self.client.post('/register', data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.context.get('error_message'), ["Too old to go to camp"])
-
-
-        data['camper_date_of_birth'] = '06/16/1991'
-        response = self.client.post('/register', data=data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.context.get('error_message'), None)
