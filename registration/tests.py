@@ -16,6 +16,7 @@ class CamperRegistartionTests(TestCase):
     data = {
         "camper_first_name": "Mark",
         "camper_last_name": "Pikulik",
+        "camper_gender": "m",
         'camper_date_of_birth': '2000-08-25',
         'camper_email': 'het7ga@gmail.com',
         'camper_email_again': 'het7ga@gmail.com',
@@ -36,6 +37,7 @@ class CamperRegistartionTests(TestCase):
         assert response.status_code == status.HTTP_200_OK
 
         camper = Camper.objects.first()
+        print(f'{camper=}')
         assert camper.first_name == data['camper_first_name']
         assert camper.last_name == data['camper_last_name']
         assert camper.email == data['camper_email']
@@ -49,16 +51,6 @@ class CamperRegistartionTests(TestCase):
         assert camper.church_member == data['camper_church_member']
         assert camper.not_married == data['camper_not_married']
 
-    def test_redirect_camper_to_young(self):
-        data = copy.deepcopy(self.data)
-        data['camper_date_of_birth'] = '2000-08-27'
-        response = self.client.post('/register', data=data)
-
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-
-        camper = Camper.objects.first()
-        assert camper is None
-        assert response.context.get('error_message') == ['Not old enough to go to camp']
 
     def test_redirect_camper_married(self):
         data = copy.deepcopy(self.data)
@@ -84,7 +76,8 @@ class CamperRegistartionTests(TestCase):
     def test_redirect_camper_not_all_info_is_filled_in(self):
         empty_list = ["camper_first_name", "camper_last_name", 'camper_phone', 'camper_city', 'camper_state', 'camper_church',
                       'camper_pastor', 'camper_pastor_phone']
-        for key in empty_list:
+        check_empty_list = ["first_name", "last_name", 'phone', 'city', 'state', 'church', 'pastor', 'pastor_number']
+        for i, key in enumerate(empty_list):
             data = copy.deepcopy(self.data)
             data[key] = ''
             response = self.client.post('/register', data=data)
@@ -92,8 +85,8 @@ class CamperRegistartionTests(TestCase):
             camper = Camper.objects.first()
             assert camper is None
             # print(key)
-            # print(response.context.get('error_message'))
-            assert response.context.get('error_message') == ["Not all info with * is filled in"]
+            print(response.context.get('error_message'))
+            assert response.context.get('error_message') == [f"Not all info with * is filled in, missing: ['{check_empty_list[i]}']"]
 
     def test_redirect_camper_not_all_info_is_filled_in_date(self):
         data = copy.deepcopy(self.data)
@@ -102,8 +95,8 @@ class CamperRegistartionTests(TestCase):
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         camper = Camper.objects.first()
         assert camper is None
-        # print(response.context.get('error_message'))
-        assert response.context.get('error_message') == ['Not all info with * is filled in', 'Format of date is wrong']
+        print(response.context.get('error_message'))
+        assert response.context.get('error_message') == ["Not all info with * is filled in, missing: ['date_of_birth']", 'Format of date is wrong']
 
     def test_redirect_camper_not_all_info_is_filled_in_email(self):
         data = copy.deepcopy(self.data)
@@ -112,8 +105,8 @@ class CamperRegistartionTests(TestCase):
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         camper = Camper.objects.first()
         assert camper is None
-        # print(response.context.get('error_message'))
-        assert response.context.get('error_message') == ['Not all info with * is filled in', 'The emails are not the same']
+        print(response.context.get('error_message'))
+        assert response.context.get('error_message') == ["Not all info with * is filled in, missing: ['email']", 'The emails are not the same']
 
     def test_redirect_camper_not_all_info_is_filled_in_v_email(self):
         data = copy.deepcopy(self.data)
@@ -122,5 +115,23 @@ class CamperRegistartionTests(TestCase):
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         camper = Camper.objects.first()
         assert camper is None
-        # print(response.context.get('error_message'))
-        assert response.context.get('error_message') == ['Not all info with * is filled in', 'The emails are not the same']
+        print(response.context.get('error_message'))
+        assert response.context.get('error_message') == ["Not all info with * is filled in, missing: ['email_v']", 'The emails are not the same']
+
+    def test_birthday_check(self):
+        data = copy.deepcopy(self.data)
+        data['camper_date_of_birth'] = '06/16/2010'
+        response = self.client.post('/register', data=data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.context.get('error_message'), ["Not old enough to go to camp"])
+
+        data['camper_date_of_birth'] = '06/16/1980'
+        response = self.client.post('/register', data=data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.context.get('error_message'), ["Too old to go to camp"])
+
+
+        data['camper_date_of_birth'] = '06/16/1991'
+        response = self.client.post('/register', data=data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.context.get('error_message'), None)
