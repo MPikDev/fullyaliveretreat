@@ -42,7 +42,7 @@ SUMMER_2026_CAMP = 'summer 2026 camp'
 WEBSITE_THEME = 'summer'
 
 MAX_CAPACITY = 150
-CAMP_PRICE = 1 # 330
+CAMP_PRICE = 330
 GLOBAL_OPEN_REG_FLAG = True
 
 DOMAIN = 'fullyaliveretreat.com'
