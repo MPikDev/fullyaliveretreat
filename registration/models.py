@@ -10,6 +10,17 @@ class Camper(models.Model):
     first_name = models.CharField(max_length=48)
     last_name = models.CharField(max_length=48)
     date_of_birth = models.DateTimeField()
+    gender = models.CharField(
+        max_length=1
+        , choices=(
+            ('m', 'male'),
+            ('f', 'female'),
+        ),
+        null=True,
+        default='None',
+        verbose_name="Gender",
+        help_text="Select the gender. 'None' means legacy campers."
+    )
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     city = models.CharField(max_length=48)
@@ -75,12 +86,13 @@ class Camper(models.Model):
             ('XL', 'Extra Large'),
             ('XXL', 'Extra Extra Large'),
             ('3XL', '3 Extra Large'),
-
+            ('4XL', '4 Extra Large'),
+            ('5XL', '5 Extra Large'),
         ),
         null=True,
         default='None',
-        verbose_name="Swim Shirt Size",
-        help_text="Select the swim shirt size for the camper. 'None' means no swim shirt is needed."
+        verbose_name="Sweat Shirt Size",
+        help_text="Select the sweat shirt size for the camper. 'None' means no sweat shirt is needed."
     )
     paypal = models.CharField(max_length=48, default='untouched')
     paid = models.BooleanField()
