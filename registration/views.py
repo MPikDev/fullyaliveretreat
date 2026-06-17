@@ -56,12 +56,14 @@ def send_registration_email(camper):
     <div style="font-family: sans-serif; font-size: 14px; line-height: 1.4;">
       <div>Hello {camper.first_name},</div>
 
-      <div>You have successfully registered for <strong>Fully Alive Winter Retreat</strong>!</div>
+      <div>You have successfully registered for <strong>Fully Alive Retreat</strong>!</div>
 
-      <div><strong>Camp starts:</strong> January 28, 2026 at 4:00pm 
+      <div><strong>Camp starts:</strong> August 21, 2026 at 4:00pm 
       <br>Join our <a href="https://t.me/+Ky9V40c6bh0yMjMx" style="color: #007bff; text-decoration: none;">Telegram group</a> to stay updated.
       <br>
-
+      <strong>Your Order:</strong><br>
+      Forest Sweater: {camper.swshirt_size}
+      Sage Sweater: {camper.tshirt_size}
       <br>
     Follow us on  <a href="https://www.instagram.com/fullyaliveretreat?igsh=MXE1aXppNmdtZDQybQ==" style="color: #007bff; text-decoration: none;"> Instagram</a>
       </div>
@@ -74,7 +76,7 @@ def send_registration_email(camper):
 
     yag.send(
         to=camper.email,
-        subject="You're Registered to Fully Alive Winter Retreat 2026!",
+        subject="You're Registered to Fully Alive Retreat 2026!",
         contents=[html_content]
     )
 
