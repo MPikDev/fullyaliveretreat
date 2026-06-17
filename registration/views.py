@@ -44,10 +44,10 @@ from personal_code.settings import (
 # START_FIlTER_2026_WINTER = datetime.datetime(2025, 11, 29, 1, 33, 24, 755599)
 # END_FIlTER_2026_WINTER = datetime.datetime(2026, 2, 1, 1, 33, 24, 755599)
 
-START_FIlTER_2026_SUMMER = datetime.datetime(2026, 2, 1, 1, 33, 24, 755599)
-END_FIlTER_2026_SUMMER = datetime.datetime(2026, 8, 25, 1, 33, 24, 755599)
+START_FIlTER_2026_SUMMER = datetime.datetime(2026, 2, 1)
+END_FIlTER_2026_SUMMER = datetime.datetime(2026, 8, 25)
 
-
+MERCH_DEAD_LINE_DATETIME = datetime.datetime(2026, 8, 4)
 def send_registration_email(camper):
     yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "weqf ucmg cksi znvy")
 
@@ -131,7 +131,7 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2026_SUMMER).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=START_FIlTER_2026_SUMMER).exclude(invoice__in=refund_incoices).count()
@@ -146,7 +146,7 @@ def register(request):
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
     camper["mugs_ordered_flag"] = mugs_campers >= 50 # when we get more than 50 to close the mugs
-    camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
+    camper["remove_merch_date"] = datetime.datetime.now() > MERCH_DEAD_LINE_DATETIME
     # print(f'{camper=}')
     return render(request, 'register.html', camper)
 
@@ -217,6 +217,7 @@ def reg(request):
         first_name = request.POST['camper_first_name'],
         last_name = request.POST['camper_last_name'],
         date_of_birth = request.POST['camper_date_of_birth'],
+        gender = request.POST['camper_gender'],
         email = request.POST['camper_email'],
         email_v = request.POST['camper_email_again'],
         phone = request.POST['camper_phone'],
@@ -227,28 +228,27 @@ def reg(request):
         pastor = request.POST['camper_pastor'],
         pastor_number = request.POST['camper_pastor_phone'],
         church_member = request.POST.get('camper_church_member'),
-        # tshirt_size = request.POST.get('tshirt_size'),
-        tshirt_size = None,
-        # swshirt_size = request.POST.get('swshirt_size'),
-        swshirt_size = None,
-        # mug = request.POST.get('camper_mug', False),
+        tshirt_size = request.POST.get('sage_swshirt_size'),
+        # tshirt_size = None,
+        swshirt_size = request.POST.get('forest_swshirt_size'),
+        # swshirt_size = None,
+        # mug = request.POST.get('camper_cap', False),
         mug = False,
         not_married = request.POST.get('camper_not_married'),
-        activity = request.POST.get('camper_activity'),
-        region = request.POST.get('camper_region'),
+        # activity = request.POST.get('camper_activity'),
+        activity = None,
+        #winter camp
+        # region = request.POST.get('camper_region'),
+        region = None,
         paypal = 'reg',
         paid = False,
-
-        camp_filter = WINTER_2026_CAMP,
+        camp_filter = SUMMER_2026_CAMP,
         )
-        # print(camper['church_member'],camper['not_married'])
 
-
-        # print(camper['church_member'],camper['not_married'])
 
         invalid_post = False
         error_message = []
-        skip_items = ['tshirt_size', 'swshirt_size', 'mug', 'med_notes']
+        skip_items = ['tshirt_size', 'swshirt_size', 'mug', 'med_notes', 'activity', 'region']
         missing_items_flag = False
         missing_items = []
         for key, item in camper.items():
@@ -275,62 +275,61 @@ def reg(request):
             invalid_post = True
 
         # check if from jquery datetime
-        date_of_birth_limit = datetime.datetime(2002, 1, 28, 0, 0)
-        if camper['date_of_birth'].find('/') == 2:
-            split_date = camper['date_of_birth'].split('/')
-            year = split_date[2]
-            day = split_date[1]
-            month = split_date[0]
-            if year != "" and day != "" and month != "":
-                dob = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
-                if dob > date_of_birth_limit:
-                    error_message.append("Not old enough to go to camp")
-                    invalid_post = True
-                    camper['date_of_birth'] = datetime.datetime.strptime(camper['date_of_birth'], '%m/%d/%Y')
-        elif camper['date_of_birth'].find('-') == 4:
-            split_date = camper['date_of_birth'].split('-')
-            year = split_date[0]
-            day = split_date[2]
-            month = split_date[1]
-            if year != "" and day != "" and month != "":
-                dob = datetime.datetime.strptime(camper['date_of_birth'], '%Y-%m-%d')
-                if dob > date_of_birth_limit:
-                    error_message.append("Not old enough to go to camp")
-                    invalid_post = True
-        else:
+        dob_string = camper['date_of_birth']
+        try:
+            if '/' in dob_string:
+                dob = datetime.datetime.strptime(dob_string, '%m/%d/%Y')
+            elif '-' in dob_string:
+                dob = datetime.datetime.strptime(dob_string, '%Y-%m-%d')
+            else:
+                raise ValueError("Invalid format")
+        except ValueError:
             error_message.append("Format of date is wrong")
             invalid_post = True
+        else:
+            camper['date_of_birth'] = dob
+            dob.date()
+            today = datetime.date.today()
+            age = today.year - dob.year - (
+                    (today.month, today.day) < (dob.month, dob.day)
+            )
 
-        spokane_region = 0
-        portland_region = 0
-        seattle_region = 0
-
-        for c in total_camper_objects.iterator():
-            if c.region == "spokane":
-                spokane_region += 1
-            elif c.region == "portland":
-                portland_region += 1
-            elif c.region == "seattle":
-                seattle_region += 1
-
-        if camper['region'] == "spokane":
-            if spokane_region >= 15:
+            if age < 23:
+                error_message.append("Not old enough to go to camp")
                 invalid_post = True
-                error_message.append("We are at capacity for campers from Spokane region.")
-        if camper['region'] == "portland":
-            invalid_post = True
-            if portland_region >= 10:
-                error_message.append("We are at capacity for campers from Portland region.")
-        if camper['region'] == "seattle":
-            if seattle_region >= 10:
+            elif age > 45:
+                error_message.append("Too old to go to camp")
                 invalid_post = True
-                error_message.append("We are at capacity for campers from Seattle region.")
+
+        # this was for winter camp
+        # spokane_region = 0
+        # portland_region = 0
+        # seattle_region = 0
+        # for c in total_camper_objects.iterator():
+        #     if c.region == "spokane":
+        #         spokane_region += 1
+        #     elif c.region == "portland":
+        #         portland_region += 1
+        #     elif c.region == "seattle":
+        #         seattle_region += 1
+        # if camper['region'] == "spokane":
+        #     if spokane_region >= 15:
+        #         invalid_post = True
+        #         error_message.append("We are at capacity for campers from Spokane region.")
+        # if camper['region'] == "portland":
+        #     invalid_post = True
+        #     if portland_region >= 10:
+        #         error_message.append("We are at capacity for campers from Portland region.")
+        # if camper['region'] == "seattle":
+        #     if seattle_region >= 10:
+        #         invalid_post = True
+        #         error_message.append("We are at capacity for campers from Seattle region.")
 
         if invalid_post:
             camper["error_message"] = error_message
             camper["total_campers"] = total_campers
             camper["max_capacity"] = settings.MAX_CAPACITY
-            camper["remove_merch_date"] = datetime.datetime.now() > datetime.datetime(2025, 8, 4, 0, 0)
+            camper["remove_merch_date"] = datetime.datetime.now() > MERCH_DEAD_LINE_DATETIME
             return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
 
         del camper['email_v']
@@ -358,11 +357,11 @@ def pay_now(request, *args, **kwargs):
 
     price = settings.CAMP_PRICE
     if camper_info['tshirt']:
-        price += 30
+        price += 45
     if camper_info['sweater']:
         price += 45
     if camper_info['mug']:
-        price += 5
+        price += 10
 
 
     # What you want the button to do.

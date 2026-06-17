@@ -97,6 +97,22 @@ function showCustomInput(inputName) {
                         </div>
                     </div>
                 </div>
+                <div class="row panel-row flexHeight center-vertically">
+                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
+                        <div class="form-label">Gender: *</div>
+                    </div>
+
+                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
+                        <div class="form-group">
+                            <select required id="camper_gender" name="camper_gender" type="text"
+                                    class="form-control light ignore">
+                                <option value='' disabled selected>-- Please select a gender --</option>
+                                <option value=m>Male</option>
+                                <option value=f>Female</option>
+                            </select>
+                        </div>
+                </div>
+                </div>
                 <div class=" row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
                         <div class="form-label">Email: *</div>
@@ -359,43 +375,43 @@ function showCustomInput(inputName) {
                 </div>
                 </div>
 
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">What activity do you want to do? *</div>
-                    </div>
+{#                <div class="row panel-row flexHeight center-vertically">#}
+{#                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
+{#                        <div class="form-label">What activity do you want to do? *</div>#}
+{#                    </div>#}
+{##}
+{#                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                        <div class="form-group">#}
+{#                            <select required id="camper_activity" name="camper_activity" type="text"#}
+{#                                    class="form-control light ignore">#}
+{#                                <option value='' disabled selected>-- Please select an option --</option>#}
+{#                                <option value=tub>Tubing</option>#}
+{#                                <option value=ski>Ski/Snowboarding</option>#}
+{#                                <option value=stay>Stay at the cabin</option>#}
+{##}
+{#                            </select>#}
+{#                        </div>#}
+{#                </div>#}
+{#                </div>#}
 
-                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_activity" name="camper_activity" type="text"
-                                    class="form-control light ignore">
-                                <option value='' disabled selected>-- Please select an option --</option>
-                                <option value=tub>Tubing</option>
-                                <option value=ski>Ski/Snowboarding</option>
-                                <option value=stay>Stay at the cabin</option>
-
-                            </select>
-                        </div>
-                </div>
-                </div>
-
-               <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">What region are you from? *</div>
-                    </div>
-
-                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_region" name="camper_region" type="text"
-                                    class="form-control light ignore">
-                                <option value='' disabled selected>-- Please select an option --</option>
-                                <option value=oregon>Oregon Region</option>
-                                <option value=seattle>Seattle Region</option>
-                                <option value=spokane>Spokane Region</option>
-
-                            </select>
-                        </div>
-                </div>
-                </div>
+{#               <div class="row panel-row flexHeight center-vertically">#}
+{#                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
+{#                        <div class="form-label">What region are you from? *</div>#}
+{#                    </div>#}
+{##}
+{#                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                        <div class="form-group">#}
+{#                            <select required id="camper_region" name="camper_region" type="text"#}
+{#                                    class="form-control light ignore">#}
+{#                                <option value='' disabled selected>-- Please select an option --</option>#}
+{#                                <option value=oregon>Oregon Region</option>#}
+{#                                <option value=seattle>Seattle Region</option>#}
+{#                                <option value=spokane>Spokane Region</option>#}
+{##}
+{#                            </select>#}
+{#                        </div>#}
+{#                </div>#}
+{#                </div>#}
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-1 col-xs-offset-1">
                         <div class="separator bigMarginBottom bigMarginTop"></div>
@@ -430,14 +446,14 @@ function showCustomInput(inputName) {
 
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">T-Shirt $30:</div>
+                        <div class="form-label">Sage Hoodie $45:</div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
-                            <select required id="tshirt_size" name="tshirt_size" type="text"
+                            <select required id="sage_swshirt_size" name="sage_swshirt_size" type="text"
                                     class="form-control light ignore">
-                                <option value=null selected>-- Not Ordering a T-Shirt --</option>
-                                <option value="5XL">5XL</option>
+                                <option value=null selected>-- Not Ordering a Hoodie --</option>
+{#                                <option value="5XL">5XL</option>#}
                                 <option value="4XL">4XL</option>
                                 <option value="3XL">3XL</option>
                                 <option value="XXL">XXL</option>
@@ -454,24 +470,19 @@ function showCustomInput(inputName) {
                <!-- Button to Open T-shirt Modal -->
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <button id="openTshirtModal" class="btn btn-primary">View T-shirt</button>
+                        <button id="openTshirtModal" class="btn btn-primary">View Sage Hoodie</button>
                     </div>
                 </div>
 
-                <!-- T-shirt Modal (Hidden by Default) -->
+                <!-- Sage Hoodie Modal (Hidden by Default) -->
                 <div id="tshirtModal" class="modal">
                     <div class="modal-content modal-scroll">
                         <span class="close-tshirt">&times;</span>
-                        <h2>T-shirt Preview</h2>
+                        <h2>Sage Hoodie Preview</h2>
                         <div class="col-xs-12 ">
-                            <img src="./static/registration/shirt_front.jpeg" alt="T-shirt Image" class="tshirt-img">
+                            <img src="./static/registration/sage_hoodie.jpg" alt="T-shirt Image" class="tshirt-img">
                         </div>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/shirt_back.jpeg" alt="T-shirt Image" class="tshirt-img">
-                        </div>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/tshirt_mock.png" alt="T-shirt Image" class="tshirt-img">
-                        </div>
+
                     </div>
                 </div>
 
@@ -481,13 +492,15 @@ function showCustomInput(inputName) {
 
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Sweatshirt $45:</div>
+                        <div class="form-label">Forest Hoodie $45:</div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
                         <div class="form-group">
-                            <select required id="swshirt_size" name="swshirt_size" type="text"
+                            <select required id="forest_swshirt_size" name="forest_swshirt_size" type="text"
                                     class="form-control light ignore">
-                                <option value=null selected>--Not Ordering a Sweatshirt --</option>
+                                <option value=null selected>--Not Ordering a Forest Hoodie --</option>
+{#                                <option value="5XL">5XL</option>#}
+                                <option value="4XL">4XL</option>
                                 <option value="3XL">3XL</option>
                                 <option value="XXL">XXL</option>
                                 <option value="XL">XL</option>
@@ -503,7 +516,7 @@ function showCustomInput(inputName) {
                 <!-- Button to Open Modal -->
                 <div class="row panel-row flexHeight center-vertically">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <button id="openModal" class="btn btn-primary">View Sweatshirt</button>
+                        <button id="openModal" class="btn btn-primary">View Forest Hoodie</button>
                     </div>
                 </div>
                 
@@ -511,22 +524,11 @@ function showCustomInput(inputName) {
                 <div id="sweatshirtModal" class="modal">
                     <div class="modal-content modal-scroll">
                         <span class="close-swshirt">&times;</span>
-                        <h2>Sweatshirt Preview</h2>
+                        <h2>Forest Hoodie Preview</h2>
                        <div class="col-xs-12 ">
-                            <img src="./static/registration/sweater_front.jpeg" alt="Sweatshirt Image" class="sweatshirt-img">
+                            <img src="./static/registration/green_hoodie.jpg" alt="Sweatshirt Image" class="sweatshirt-img">
                         </div>
-                         <div class="col-xs-12 ">
-                            <img src="./static/registration/sweater_back.jpeg" alt="SweatshirtImage" class="sweatshirt-img">
-                        </div>
-                                                 <div class="col-xs-12 ">
-                            <img src="./static/registration/sweater_both.jpeg" alt="SweatshirtImage" class="sweatshirt-img">
-                        </div>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/sweater_mock.jpeg" alt="Sweatshirt Image" class="sweatshirt-img">
-                        </div>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/sweater_sizes.jpg" alt="Sweatshirt Image" class="sweatshirt-img">
-                        </div>
+
 
                     </div>
                 </div>
@@ -537,48 +539,48 @@ function showCustomInput(inputName) {
 
 
                                                 <!--Mug Modal section -->
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Camp Mug $5:</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_mug" name="camper_mug" type="text"
-                                    class="form-control light ignore">
-                                <option value=false selected>-- Not Ordering a Mug --</option>
-                                <option value=true>Ordering a Mug</option>
-
-                            </select>
-                        </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-1 col-xs-offset-1">
-                        <div class="separator bigMarginBottom bigMarginTop"></div>
-                    </div>
-
-                </div>
-
-                <!-- Button to Open Modal -->
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <button id="openMugModal" class="btn btn-primary">View Camp Mug</button>
-                    </div>
-                </div>
-
-                <!-- Modal (Hidden by Default) -->
-                <div id="mugModal" class="modal">
-                    <div class="modal-content modal-scroll">
-                        <span class="close-mug">&times;</span>
-                        <h2>Camp Mug Preview</h2>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/mock_logo_mug.png" alt="Mug Log Image" class="mug-logo-img">
-                        </div>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/mock_art_mug.png" alt="Mug Art Image" class="mug-art-img">
-                        </div>
-                    </div>
-                </div>
+{##}
+{#                <div class="row panel-row flexHeight center-vertically">#}
+{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
+{#                        <div class="form-label">Camp Mug $5:</div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
+{#                        <div class="form-group">#}
+{#                            <select required id="camper_mug" name="camper_mug" type="text"#}
+{#                                    class="form-control light ignore">#}
+{#                                <option value=false selected>-- Not Ordering a Mug --</option>#}
+{#                                <option value=true>Ordering a Mug</option>#}
+{##}
+{#                            </select>#}
+{#                        </div>#}
+{#                </div>#}
+{#                <div class="row panel-row flexHeight center-vertically">#}
+{#                    <div class="col-xs-1 col-xs-offset-1">#}
+{#                        <div class="separator bigMarginBottom bigMarginTop"></div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{#                <!-- Button to Open Modal -->#}
+{#                <div class="row panel-row flexHeight center-vertically">#}
+{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
+{#                        <button id="openMugModal" class="btn btn-primary">View Camp Mug</button>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <!-- Modal (Hidden by Default) -->#}
+{#                <div id="mugModal" class="modal">#}
+{#                    <div class="modal-content modal-scroll">#}
+{#                        <span class="close-mug">&times;</span>#}
+{#                        <h2>Camp Mug Preview</h2>#}
+{#                        <div class="col-xs-12 ">#}
+{#                            <img src="./static/registration/mock_logo_mug.png" alt="Mug Log Image" class="mug-logo-img">#}
+{#                        </div>#}
+{#                        <div class="col-xs-12 ">#}
+{#                            <img src="./static/registration/mock_art_mug.png" alt="Mug Art Image" class="mug-art-img">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
 
     {% endif %}
     {% endif %}
