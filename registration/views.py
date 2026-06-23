@@ -277,6 +277,7 @@ def reg(request):
             invalid_post = True
 
         # check if from jquery datetime
+        is_too_old = False
         dob_string = camper['date_of_birth']
         try:
             if '/' in dob_string:
@@ -298,8 +299,9 @@ def reg(request):
                 error_message.append("Not old enough to go to camp")
                 invalid_post = True
             elif age >= 45:
-                error_message.append("Too old to go to camp")
-                invalid_post = True
+                # error_message.append("Too old to go to camp")
+                # invalid_post = True
+                is_too_old = True
 
         # this was for winter camp
         # spokane_region = 0
@@ -338,6 +340,8 @@ def reg(request):
         # want to save the camper to make sure we catch that this person wrote that they were married
         if not camper['not_married'] or not camper['church_member']:
             return render(request,'married_error.html', status=status.HTTP_400_BAD_REQUEST)
+        if is_too_old:
+            return render(request,'age_error.html', status=status.HTTP_400_BAD_REQUEST)
 
         data = dict(camper_id=camper_object.id,
                     sweater=False if camper_object.swshirt_size in ['None', 'null', None] else True,
