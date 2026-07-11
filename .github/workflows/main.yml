@@ -24,4 +24,7 @@ jobs:
       - name: Run tests
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-        run: python manage.py test
+        run: |
+          python -c "import os; print(os.getenv('DJANGO_SECRET_KEY') is not None)"
+          python -c "import os; print(len(os.getenv('DJANGO_SECRET_KEY') or ''))"
+          python manage.py test
