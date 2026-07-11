@@ -13,9 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import os
 from django.urls import path, include
 from django.contrib import admin
 from registration import views
+
+PAYPAL_ENDPOINT = os.getenv('PAYPAL_ENDPOINT')
 
 
 # app_name = 'retreat'
@@ -39,7 +42,7 @@ urlpatterns = [
     path(r'paypal_issues', views.paypal_issues),
     path(r'return', views.return_url, name='your-return-view'),
     path(r'cancel', views.canceled_url, name='your-cancel-view'),
-    path(r'V4LrfBrC9UbZYm3k/', include('paypal.standard.ipn.urls')),
+    path(rf'{PAYPAL_ENDPOINT}/', include('paypal.standard.ipn.urls')),
     path(r'login', views.log_in, name='login'),
     path(r'logout', views.camper_logout),
     path(r'camper_info', views.camper_info),

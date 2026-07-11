@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import os
 import pdb
 import traceback
 
@@ -48,8 +49,12 @@ START_FIlTER_2026_SUMMER = datetime.datetime(2026, 2, 1)
 END_FIlTER_2026_SUMMER = datetime.datetime(2026, 8, 25)
 
 MERCH_DEAD_LINE_DATETIME = datetime.datetime(2026, 8, 4)
+
+FAR_EMAIL_PASS_CODE = os.getenv('FAR_EMAIL_PASS_CODE')
+
+
 def send_registration_email(camper):
-    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "weqf ucmg cksi znvy")
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", FAR_EMAIL_PASS_CODE)
 
     # HTML version with styled links
     html_content = f"""\

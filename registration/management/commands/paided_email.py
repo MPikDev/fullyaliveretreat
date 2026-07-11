@@ -1,11 +1,15 @@
+import os
 from django.core.management.base import BaseCommand
 from registration.models import Camper
 from personal_code.settings import STATIC_ROOT
 import yagmail
 import time
 
+FAR_EMAIL_PASSWORD = os.getenv('FAR_EMAIL_PASSWORD')
+
+
 def send_email(list_campers):
-    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "lluFfull")
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", FAR_EMAIL_PASSWORD)
     for camper in list_campers:
         receiver_email = camper.email
 
