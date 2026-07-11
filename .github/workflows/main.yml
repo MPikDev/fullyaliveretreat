@@ -7,19 +7,13 @@ on:
     branches: [master]
 
 jobs:
-  test:
+  debug:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      
-      - name: Run tests
+      - name: Check secret
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: |
-          python -c "import os; print(os.getenv('DJANGO_SECRET_KEY') is not None)"
-          python -c "import os; print(len(os.getenv('DJANGO_SECRET_KEY') or ''))"
+          python -c "import os; print('Exists:', os.getenv('DJANGO_SECRET_KEY') is not None)"
+          python -c "print('Length:', len(__import__('os').getenv('DJANGO_SECRET_KEY') or ''))"
