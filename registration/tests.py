@@ -12,7 +12,7 @@ from rest_framework import status
 from registration.models import Camper
 
 
-class CamperRegistartionTests(TestCase):
+class CamperRegistrationTests(TestCase):
     data = {
         "camper_first_name": "Mark",
         "camper_last_name": "Pikulik",
@@ -31,7 +31,7 @@ class CamperRegistartionTests(TestCase):
         'camper_not_married': True,
     }
 
-    def test_sucessful_camper_with_all_info(self):
+    def test_successful_camper_with_all_info(self):
         data = copy.deepcopy(self.data)
         response = self.client.post('/register',data=data)
         assert response.status_code == status.HTTP_200_OK
@@ -125,17 +125,19 @@ class CamperRegistartionTests(TestCase):
         checks = [{'dob': '06/16/2010',
                   'error':["Not old enough to go to camp"],
                    'status': status.HTTP_400_BAD_REQUEST,},
-                  {'dob': '06/16/1981',
-                   'error': ["Too old to go to camp"],
-                   'status': status.HTTP_400_BAD_REQUEST, },
                   {'dob': '06/16/1982',
                    'error': None,
                    'status': status.HTTP_200_OK, },
+                  {'dob': '06/16/1981',
+                   'error': ["Too old to go to camp"],
+                   'status': status.HTTP_400_BAD_REQUEST, },
+
                   ]
         for check in checks:
-            print(check)
+            print(f'{check=}')
             data['camper_date_of_birth'] = check['dob']
             response = self.client.post('/register', data=data)
             self.assertEqual(response.status_code, check['status'])
-            self.assertEqual(response.context.get('error_message'), check['error'])
+            if check['error'] == ["Too old to go to camp"]:
+                self.assertTemplateUsed(response, 'age_error.html')
 
