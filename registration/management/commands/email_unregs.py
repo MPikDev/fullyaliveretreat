@@ -1,3 +1,4 @@
+import os
 from django.core.management.base import BaseCommand
 from registration.models import Camper
 from paypal.standard.models import ST_PP_COMPLETED
@@ -6,8 +7,11 @@ from registration.views import filter_campers
 import yagmail
 import time
 
+FAR_EMAIL_PASSWORD = os.getenv('FAR_EMAIL_PASSWORD')
+
+
 def send_email(list_campers):
-    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", "REMOVED")
+    yag = yagmail.SMTP("fullyaliveretreat@gmail.com", FAR_EMAIL_PASSWORD)
     dont_send_list = [171, 98, 106]
     for camper in list_campers:
         if camper.id not in dont_send_list:

@@ -6,3 +6,4 @@ local_settings.py
 staticfiles/
 .DS_Store
 .DS_Store?
+.env
