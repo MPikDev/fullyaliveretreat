@@ -58,5 +58,6 @@ urlpatterns = [
 
     path(r'open_reg', views.open_reg),
     path(r'close_reg', views.close_reg),
+    path("export/", views.export_paid_campers_csv, name="export_paid_campers_csv"),
 
 ]

@@ -38,6 +38,11 @@
 <button onclick="window.location.href = '/camper_info/2020_spring_camper_info/';">Spring 2020 Camp</button>
 <button onclick="window.location.href = '/camper_info/2019_camper_info_spring/';">Spring 2019 Camp</button>
 <h1>Campers that Paid: {{ final_paid_count }}</h1>
+
+<a href="{% url 'export_paid_campers_csv' %}?camp_filter={{ camp_filter }}" class="btn btn-primary">
+    Download Paid Campers CSV
+</a>
+
 <table style="width:100%">
     {% if base_camper_keys %}
         <tr>
