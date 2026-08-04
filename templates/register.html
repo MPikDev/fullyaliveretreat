@@ -1,756 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Register</title>
+{% extends "base.html" %}
+{% load static %}
 
-    {% load static %}
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+{% block title %}Register — {{ site_name }}{% endblock %}
+{% block description %}Register for the Fully Alive Retreat{% if season and season.starts_at %} {{ season.starts_at|date:"Y" }}{% endif %} at {{ season.venue_name|default:"Twin Rocks Camp" }} on the Oregon coast.{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% block content %}
+<div class="section">
+    <div class="container container--narrow">
+        <div class="panel">
+            <header class="text-center">
+                <span class="eyebrow">{% if season %}{{ season.name }}{% endif %}</span>
+                <h1>Registration</h1>
+                {% if season and season.starts_at %}
+                <p class="mx-auto" style="color:var(--ink-faint)">
+                    {{ season.starts_at|date:"F jS" }}&ndash;{{ season.ends_at|date:"jS, Y" }}
+                    &middot; {{ season.venue_name }}
+                </p>
+                {% endif %}
+            </header>
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-
-        function toggle($toBeHidden, $toBeShown) {
-  $toBeHidden.hide().prop('disabled', true);
-  $toBeShown.show().prop('disabled', false);
-}
-
-function showOptions(inputName) {
-  var $select = $(`select[name=${inputName}]`);
-  toggle($(`input[name=${inputName}]`), $select);
-  $select.val(null);
-}
-
-
-function showCustomInput(inputName) {
-  toggle($(`select[name=${inputName}]`), $(`input[name=${inputName}]`));
-}
-    </script>
-</head>
-<body class="wave-backgroud">
-
-<form action="/register" method="post">
-    {% csrf_token %}
-    <!-- the signup form -->
-    <div class="container">
-        <div class="signupBox col-xs-12 col-sm-10 col-sm-offset-1">
-            <div class="row">
-                <div class="center">
-                    <h2>Registration</h2>
-{#     for now               <h5>{{ total_campers }} out of {{ max_capacity }} have registered</h5>#}
-                    {% for error in error_message %}
-                        <p class="error-text"><strong>{{ error }}</strong></p>
-                    {% endfor %}
+            {% if season %}
+            <div class="capacity">
+                <div class="capacity__bar">
+                    <div class="capacity__fill" style="width: {{ capacity_percent }}%"></div>
                 </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">First Name: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_first_name" name="camper_first_name" type="text"
-                                   class="form-control light name-field" value="{{ first_name }}"
-                                   placeholder=""
-                                   maxlength="48"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Last Name: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_last_name" name="camper_last_name" type="text"
-                                   class="form-control light name-field" value="{{ last_name }}"
-                                   placeholder=""
-                                   maxlength="48"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Date of Birth: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_date_of_birth" name="camper_date_of_birth" type="date"
-                                   class="form-control light ignore" placeholder="mm-dd-yyyy"
-                                   maxlength="" value="{{ date_of_birth }}"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Gender: *</div>
-                    </div>
-
-                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_gender" name="camper_gender" type="text"
-                                    class="form-control light ignore">
-                                <option value='' disabled selected>-- Please select a gender --</option>
-                                <option value=m>Male</option>
-                                <option value=f>Female</option>
-                            </select>
-                        </div>
-                </div>
-                </div>
-                <div class=" row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Email: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_email" name="camper_email" type="email"
-                                   class="form-control light email-field" value="{{ email }}"
-                                   placeholder=""
-                                   maxlength="100"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Verify Email: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_email_again" name="camper_email_again" type="email"
-                                   class="form-control light email-field" value="{{ email_v }}"
-                                   maxlength="100"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Phone:*</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_phone" name="camper_phone" type="text"
-                                   class="form-control light ignore" placeholder="999-999-9999"
-                                   maxlength="15" value="{{ phone }}"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">City: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_city" name="camper_city" type="text"
-                                   class="form-control light ignore" placeholder=""
-                                   maxlength="48" value="{{ city }}"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">State: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_state" name="camper_state" type="text"
-                                    class="form-control light ignore">
-                                  <option disabled selected value> -- select a state -- </option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District Of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="CANADA">Canada</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Medical Notes:</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_med_notes" name="camper_med_notes" type="text"
-                                   class="form-control light ignore" placeholder=""
-                                   maxlength="400" value="{{ med_notes }}"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Church: *</div>
-
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select id="camper_church" name="camper_church" style="width: -webkit-fill-available;" class="form-control"
-                                    onchange="if($(this).val()==='customOption')showCustomInput('camper_church')">
-                                <option>{{ church }}</option>
-                                <option value="customOption">[type a Church]</option>
-                                <option> СЛАВЯНСКАЯ БАПТИСТСКАЯ ЦЕРКОВЬ 'БЛАГОДАТЬ' (VANCOUVER,WA)</option>
-                                <option> ЦЕРКОВЬ 'ВОЗРОЖДЕНИЕ' (VANCOUVER, WA)</option>
-                                <option>
-                                    ПЕРВАЯ СЛАВЯНСКАЯ ЦЕРКОВЬ 'ВЕФИЛЬ' (EAST WENATCHEE,WA)
-                                </option>
-                                <option>
-                                    СЛАВЯНСКАЯ БАПТИСТСКАЯ ЦЕРКОВЬ 'ИСТОЧНИК ЖИЗНИ' (MUKILTEO,WA)
-                                </option>
-                                <option>
-                                    ПЕРВАЯ СЛАВЯНСКАЯ ЦЕРКОВЬ ЕХБ 'CHURCH OF LOVE' (OREGON CITY, OR)
-                                </option>
-                                <option> ЦЕРКОВЬ 'СВЕТ СПАСЕНИЯ' (CARMICHAEL,CA)</option>
-                                <option>
-                                    СЛАВЯНСКАЯ БАПТИСТСКАЯ ЦЕРКОВЬ (BELLINGHAM,WA)
-                                </option>
-                                <option> СЛАВЯНСКАЯ ЦЕРКОВЬ 'СВЕТ ЕВАНГЕЛИЯ' (SPOKANE,WA)</option>
-                                <option>
-                                    ЦЕРКОВЬ 'НОВАЯ ЖИЗНЬ' (SALEM,OR)
-                                </option>
-                                <option> ЦЕРКОВЬ 'ГОЛГОФА' (VANCOUVER, WA)</option>
-                                <option> ЦЕРКОВЬ 'БЛАГОВЕСТИЕ' (DES MOINES,WA)</option>
-                                <option>
-                                    ЦЕРКОВЬ 'ВОЗРОЖДЕНИЕ' (FEDERAL WAY, WA)
-                                </option>
-                                <option> ЦЕРКОВЬ 'ВИФАНИЯ' (FEDERAL WAY, WA)</option>
-                                <option>
-                                    ЦЕРКОВЬ 'НАДЕЖДА' (EVERETT, WA)
-                                </option>
-                                <option> ЦЕРКОВЬ ЕХБ (KIRKLAND, WA)</option>
-                                <option>
-                                    СЛАВЯНСКЯ БАПТИСТСКАЯ ЦЕРКОВЬ Г. СИЭТЛА (LYNNWOOD, WA)
-                                </option>
-                                <option> ОБЪЕДИНЕННАЯ ЦЕРКОВЬ ЕХБ (TACOMA,WA)</option>
-                                <option>
-                                    ПЕРВАЯ СЛАВЯНСКАЯ БАПТИСТСКАЯ ЦЕРКОВЬ (SALEM,OR)
-                                </option>
-                                <option> ЦЕРКОВЬ 'БЛАГОДАТЬ' (LAKEWOOD, WA)</option>
-                                <option>
-                                    ЦЕРКОВЬ 'СЛОВО ЖИЗНИ' (PORTLAND, OR)
-                                </option>
-                                <option> ЦЕРКОВЬ 'ЭММАНУИЛ' (VANCOUVER, WA)</option>
-                                <option> ЦЕРКОВЬ 'СПАСЕНИЕ' (EDGEWOOD, WA)</option>
-                                <option>
-                                    ЦЕРКОВЬ 'БЛАГОДАТЬ' (MERIDIAN, ID)
-                                </option>
-                                <option> ЦЕРКОВЬ 'ПИЛИГРИМ' (SPOKANE, WA)</option>
-                                <option> ЦЕРКОВЬ 'НА ГОРЕ' (SPOKANE,WA)</option>
-                                <option>
-                                    СЛАВЯНСКАЯ ЕВАНГЕЛЬСКАЯ БАПТИСТСКАЯ ЦЕРКОВЬ (VANCOUVER,BC)
-                                </option>
-                                <option> ЦЕРКОВЬ 'НАДЕЖДА' (KELOWNA, BC)
-                                </option>
-                            </select>
-                            <input id="camper_church" name="camper_church" style="display:none;"
-                               disabled="disabled" class="form-control"
-                                   onblur="if($(this).val()==='')showOptions('camper_church')" value="{{ church }}">
-
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Pastor's Name: *</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_pastor" name="camper_pastor" type="text"
-                                   class="form-control light ignore" placeholder=""
-                                   maxlength="100" value="{{ pastor }}"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Pastor's Phone:*</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <input id="camper_pastor_phone" name="camper_pastor_phone" type="text"
-                                   class="form-control light ignore" placeholder="999-999-9999"
-                                   maxlength="15" value="{{ pastor_number }}"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Are you a church member? *</div>
-                    </div>
-
-              <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_church_member" name="camper_church_member" type="text"
-                                    class="form-control light ignore">
-                                <option value='' disabled selected>-- Please select an option --</option>
-                                <option value=false>No, I am not a church member.</option>
-                                <option value=true>Yes, I am a church member.</option>
-
-                            </select>
-                        </div>
-                </div>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Have you ever been married? *</div>
-                    </div>
-
-                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="camper_married" name="camper_not_married" type="text"
-                                    class="form-control light ignore">
-                                <option value='' disabled selected>-- Please select an option --</option>
-                                <option value=true>No, I have not been married.</option>
-                                <option value=false>Yes, I have been married.</option>
-
-                            </select>
-                        </div>
-                </div>
-                </div>
-
-{#                <div class="row panel-row flexHeight center-vertically">#}
-{#                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
-{#                        <div class="form-label">What activity do you want to do? *</div>#}
-{#                    </div>#}
-{##}
-{#                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
-{#                        <div class="form-group">#}
-{#                            <select required id="camper_activity" name="camper_activity" type="text"#}
-{#                                    class="form-control light ignore">#}
-{#                                <option value='' disabled selected>-- Please select an option --</option>#}
-{#                                <option value=tub>Tubing</option>#}
-{#                                <option value=ski>Ski/Snowboarding</option>#}
-{#                                <option value=stay>Stay at the cabin</option>#}
-{##}
-{#                            </select>#}
-{#                        </div>#}
-{#                </div>#}
-{#                </div>#}
-
-{#               <div class="row panel-row flexHeight center-vertically">#}
-{#                    <div class="col-xs-7 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
-{#                        <div class="form-label">What region are you from? *</div>#}
-{#                    </div>#}
-{##}
-{#                   <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
-{#                        <div class="form-group">#}
-{#                            <select required id="camper_region" name="camper_region" type="text"#}
-{#                                    class="form-control light ignore">#}
-{#                                <option value='' disabled selected>-- Please select an option --</option>#}
-{#                                <option value=oregon>Oregon Region</option>#}
-{#                                <option value=seattle>Seattle Region</option>#}
-{#                                <option value=spokane>Spokane Region</option>#}
-{##}
-{#                            </select>#}
-{#                        </div>#}
-{#                </div>#}
-{#                </div>#}
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-1 col-xs-offset-1">
-                        <div class="separator bigMarginBottom bigMarginTop"></div>
-                    </div>
-
-                </div>
-
-                <br>
-
-                    {% if not remove_merch_date %}
-
-
-                                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-2">
-                        <div class="form-label center">
-                        <h2>Merch Section</h2>
-                         </div>
-                    </div>
-
-                </div>
-                                                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-2">
-                        <div class="form-label center">Selecting any merch will add to your camp price total. </div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-2">
-                        <div class="form-label center">Merch deadline is August 3rd at midnight. </div>
-                    </div>
-                </div>
-                <br>
-
-                                <!-- T-shirt Modal section -->
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Sage Hoodie $45:</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="sage_swshirt_size" name="sage_swshirt_size" type="text"
-                                    class="form-control light ignore">
-                                <option value=null selected>-- Not Ordering a Hoodie --</option>
-{#                                <option value="5XL">5XL</option>#}
-                                <option value="4XL">4XL</option>
-                                <option value="3XL">3XL</option>
-                                <option value="XXL">XXL</option>
-                                <option value="XL">XL</option>
-                                <option value="L">L</option>
-                                <option value="M">M</option>
-                                <option value="S">S</option>
-                                <option value="XS">XS</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-               <!-- Button to Open T-shirt Modal -->
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <button id="openTshirtModal" class="btn btn-primary">View Sage Hoodie</button>
-                    </div>
-                </div>
-
-                <!-- Sage Hoodie Modal (Hidden by Default) -->
-                <div id="tshirtModal" class="modal">
-                    <div class="modal-content modal-scroll">
-                        <span class="close-tshirt">&times;</span>
-                        <h2>Sage Hoodie Preview</h2>
-                        <div class="col-xs-12 ">
-                            <img src="./static/registration/sage_hoodie.jpg" alt="T-shirt Image" class="tshirt-img">
-                        </div>
-
-                    </div>
-                </div>
-
-                <br>
-
-                                <!--Sweater Modal section -->
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <div class="form-label">Forest Hoodie $45:</div>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                        <div class="form-group">
-                            <select required id="forest_swshirt_size" name="forest_swshirt_size" type="text"
-                                    class="form-control light ignore">
-                                <option value=null selected>--Not Ordering a Forest Hoodie --</option>
-{#                                <option value="5XL">5XL</option>#}
-                                <option value="4XL">4XL</option>
-                                <option value="3XL">3XL</option>
-                                <option value="XXL">XXL</option>
-                                <option value="XL">XL</option>
-                                <option value="L">L</option>
-                                <option value="M">M</option>
-                                <option value="S">S</option>
-                                <option value="XS">XS</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Button to Open Modal -->
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                        <button id="openModal" class="btn btn-primary">View Forest Hoodie</button>
-                    </div>
-                </div>
-                
-                <!-- Modal (Hidden by Default) -->
-                <div id="sweatshirtModal" class="modal">
-                    <div class="modal-content modal-scroll">
-                        <span class="close-swshirt">&times;</span>
-                        <h2>Forest Hoodie Preview</h2>
-                       <div class="col-xs-12 ">
-                            <img src="./static/registration/green_hoodie.jpg" alt="Sweatshirt Image" class="sweatshirt-img">
-                        </div>
-
-
-                    </div>
-                </div>
-
-<br>
-
-                    {% if  not mugs_ordered_flag %}
-
-
-                                                <!--Mug Modal section -->
-{##}
-{#                <div class="row panel-row flexHeight center-vertically">#}
-{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
-{#                        <div class="form-label">Camp Mug $5:</div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">#}
-{#                        <div class="form-group">#}
-{#                            <select required id="camper_mug" name="camper_mug" type="text"#}
-{#                                    class="form-control light ignore">#}
-{#                                <option value=false selected>-- Not Ordering a Mug --</option>#}
-{#                                <option value=true>Ordering a Mug</option>#}
-{##}
-{#                            </select>#}
-{#                        </div>#}
-{#                </div>#}
-{#                <div class="row panel-row flexHeight center-vertically">#}
-{#                    <div class="col-xs-1 col-xs-offset-1">#}
-{#                        <div class="separator bigMarginBottom bigMarginTop"></div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{##}
-{#                <!-- Button to Open Modal -->#}
-{#                <div class="row panel-row flexHeight center-vertically">#}
-{#                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">#}
-{#                        <button id="openMugModal" class="btn btn-primary">View Camp Mug</button>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <!-- Modal (Hidden by Default) -->#}
-{#                <div id="mugModal" class="modal">#}
-{#                    <div class="modal-content modal-scroll">#}
-{#                        <span class="close-mug">&times;</span>#}
-{#                        <h2>Camp Mug Preview</h2>#}
-{#                        <div class="col-xs-12 ">#}
-{#                            <img src="./static/registration/mock_logo_mug.png" alt="Mug Log Image" class="mug-logo-img">#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 ">#}
-{#                            <img src="./static/registration/mock_art_mug.png" alt="Mug Art Image" class="mug-art-img">#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-
-    {% endif %}
-    {% endif %}
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-                        <input type="submit" class=" btn-primary  btn btn-block "
-                               id="register" value="Register">
-                        </input>
-                    </div>
-                </div>
-                <div class="row panel-row flexHeight center-vertically">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-                        <br>
-
-                    </div>
-                </div>
+                <p class="capacity__text mb-0">
+                    {{ season.paid_count }} of {{ season.capacity }} spots taken
+                    &middot; ${{ season.base_price|floatformat:0 }} per person
+                </p>
             </div>
+            {% endif %}
+
+            {% if form.non_field_errors %}
+            <div class="alert alert--error" role="alert">
+                <p class="alert__title">We couldn't complete your registration</p>
+                {% for error in form.non_field_errors %}<p class="mb-0">{{ error }}</p>{% endfor %}
+            </div>
+            {% elif form.errors %}
+            <div class="alert alert--error" role="alert">
+                <p class="alert__title mb-0">Please check the highlighted fields below.</p>
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'register' %}" novalidate>
+                {% csrf_token %}
+
+                <section class="form-section">
+                    <h2 class="form-section__title">About you</h2>
+                    <div class="form-grid">
+                        {% include "partials/field.html" with field=form.first_name %}
+                        {% include "partials/field.html" with field=form.last_name %}
+                        {% include "partials/field.html" with field=form.date_of_birth %}
+                        {% include "partials/field.html" with field=form.gender %}
+                        {% include "partials/field.html" with field=form.email %}
+                        {% include "partials/field.html" with field=form.email_confirm %}
+                        {% include "partials/field.html" with field=form.phone %}
+                        {% include "partials/field.html" with field=form.city %}
+                        {% include "partials/field.html" with field=form.state %}
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h2 class="form-section__title">Your church</h2>
+                    <div class="form-grid">
+                        <div class="field {% if form.church.errors %}field--error{% endif %} field--full">
+                            <label for="{{ form.church.id_for_label }}">
+                                {{ form.church.label }}<span class="field__required" aria-hidden="true">*</span>
+                            </label>
+                            {% comment %}
+                            A datalist offers the known churches as suggestions while still
+                            allowing any other church to be typed, replacing a select and a
+                            hidden input that shared the same id and name.
+                            {% endcomment %}
+                            <input type="text" name="{{ form.church.html_name }}"
+                                   id="{{ form.church.id_for_label }}"
+                                   class="form-control" list="church-options"
+                                   value="{{ form.church.value|default_if_none:'' }}"
+                                   maxlength="100" autocomplete="organization" required>
+                            <datalist id="church-options">
+                                {% for church in churches %}<option value="{{ church }}"></option>{% endfor %}
+                            </datalist>
+                            <p class="field__help">Start typing to search, or enter your church if it isn't listed.</p>
+                            {% if form.church.errors %}
+                            <ul class="field__error">{% for e in form.church.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                            {% endif %}
+                        </div>
+
+                        {% include "partials/field.html" with field=form.pastor %}
+                        {% include "partials/field.html" with field=form.pastor_number %}
+                    </div>
+
+                    <div class="form-grid mt-6">
+                        {% include "partials/radio_field.html" with field=form.church_member %}
+                        {% include "partials/radio_field.html" with field=form.not_married %}
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h2 class="form-section__title">Anything we should know?</h2>
+                    <div class="form-grid">
+                        {% include "partials/field.html" with field=form.med_notes %}
+                    </div>
+                </section>
+
+                {% if form.tshirt_size or form.swshirt_size %}
+                <section class="form-section">
+                    <h2 class="form-section__title">Merchandise</h2>
+                    <p style="color:var(--ink-faint)">
+                        Optional. Hoodies are ${{ season.hoodie_price|floatformat:0 }} each and are
+                        added to your total.
+                        {% if season.merch_deadline %}
+                        Orders close {{ season.merch_deadline|date:"F jS" }}.
+                        {% endif %}
+                    </p>
+
+                    <div class="merch-grid">
+                        {% if form.swshirt_size %}
+                        <div class="merch-card">
+                            <figure class="merch-card__figure">
+                                <picture>
+                                    <source type="image/webp" srcset="{% static 'registration/img/hoodie-forest-640.webp' %}">
+                                    <img src="{% static 'registration/img/hoodie-forest-640.jpg' %}"
+                                         alt="Forest green hoodie with the Fully Alive Retreat logo"
+                                         width="640" height="634" loading="lazy">
+                                </picture>
+                            </figure>
+                            <div class="merch-card__header">
+                                <span class="merch-card__name">Forest hoodie</span>
+                                <span class="merch-card__price">${{ season.hoodie_price|floatformat:0 }}</span>
+                            </div>
+                            {% include "partials/field.html" with field=form.swshirt_size hide_label=True %}
+                        </div>
+                        {% endif %}
+
+                        {% if form.tshirt_size %}
+                        <div class="merch-card">
+                            <figure class="merch-card__figure">
+                                <picture>
+                                    <source type="image/webp" srcset="{% static 'registration/img/hoodie-sage-640.webp' %}">
+                                    <img src="{% static 'registration/img/hoodie-sage-640.jpg' %}"
+                                         alt="Sage green hoodie with the Fully Alive Retreat logo"
+                                         width="640" height="634" loading="lazy">
+                                </picture>
+                            </figure>
+                            <div class="merch-card__header">
+                                <span class="merch-card__name">Sage hoodie</span>
+                                <span class="merch-card__price">${{ season.hoodie_price|floatformat:0 }}</span>
+                            </div>
+                            {% include "partials/field.html" with field=form.tshirt_size hide_label=True %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </section>
+                {% endif %}
+
+                <div class="alert alert--info mt-6">
+                    <p class="mb-0">
+                        By registering you agree to the
+                        <a href="{% url 'info' %}">non-negotiable rules</a> of the retreat.
+                        You'll be taken to PayPal to pay after this step.
+                    </p>
+                </div>
+
+                <div class="btn-row btn-row--center mt-6">
+                    <button class="btn btn--lg btn--primary" type="submit">
+                        Continue to payment
+                    </button>
+                </div>
+            </form>
         </div>
-        <br>
-        <br>
-        <br>
     </div>
-</form>
-
-</body>
-<script>
-    {#$(document).ready(function () {#}
-    {#    date_div = $('#camper_date_of_birth')#}
-    {#    if (date_div.prop('type') != 'date'){#}
-    {#        date_div.datepicker();#}
-    {#    }#}
-    {#{);#}
-    {##}
-    date_div = $('#camper_date_of_birth')
-    var datefield = document.createElement("input")
-
-    datefield.setAttribute("type", "date")
-
-    if (datefield.type != "date") { //if browser doesn't support input type="date", load files for jQuery UI Date Picker
-        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
-        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"><\/script>\n')
-    }
-    if (datefield.type != "date") { //if browser doesn't support input type="date", initialize date picker widget:
-        $(document).ready(function () {
-            date_div.attr('placeholder', 'Please use selector');
-            date_div.datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "1930:2019"
-            });
-        });
-    }
-
-    // T-shirt Modal Open and Close
-    document.getElementById("openTshirtModal").onclick = function (event) {
-        event.preventDefault(); // Prevents unwanted default behavior
-        document.getElementById("tshirtModal").style.display = "block";
-    };
-
-    document.querySelector(".close-tshirt").onclick = function (event) {
-        event.preventDefault();
-        document.getElementById("tshirtModal").style.display = "none";
-    };
-
-    // Close modal when clicking outside the content (specific to T-shirt)
-    window.addEventListener("click", function (event) {
-        let modal = document.getElementById("tshirtModal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-
-    // Sweatshirt Modal Open and Close
-    document.getElementById("openModal").onclick = function (event) {
-        event.preventDefault();
-        document.getElementById("sweatshirtModal").style.display = "block";
-    };
-
-    document.querySelector(".close-swshirt").onclick = function (event) {
-        event.preventDefault();
-        document.getElementById("sweatshirtModal").style.display = "none";
-    };
-
-
-
-
-    // Close modal when clicking outside the content (specific to Sweatshirt)
-    window.addEventListener("click", function (event) {
-        let modal = document.getElementById("sweatshirtModal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-
-
-            // Mug Modal Open and Close
-    document.getElementById("openMugModal").onclick = function (event) {
-        event.preventDefault();
-        document.getElementById("mugModal").style.display = "block";
-    };
-    document.querySelector(".close-mug").onclick = function (event) {
-        event.preventDefault();
-        document.getElementById("mugModal").style.display = "none";
-    };
-
-        // Close modal when clicking outside the content (specific to mug)
-    window.addEventListener("click", function (event) {
-        let modal = document.getElementById("mugModal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-</script>
-
-<style>
-    .modal {
-        display: none; 
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-    .modal-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        width: 80vw; /* Increase modal width */
-        max-width: 700px; /* Allow for larger display */
-        height: auto;
-    }
-    .modal-scroll {
-        max-height: calc(100vh - 200px);
-        overflow-y: auto;
-    }
-    .close-tshirt, .close-swshirt, .close-mug {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
-    }
-    .sweatshirt-img, .tshirt-img, .mug-logo-img, .mug-art-img {
-        width: 100%;
-        max-width: 100%; /* Ensure it scales with the modal */
-        height: auto;
-        border-radius: 8px;
-    }
-    
-    @media (max-width: 768px) { /* Mobile view adjustments */
-        .modal-content {
-            width: 90vw; /* Allow more space */
-            max-width: none; /* Remove max width limit */
-        }
-        
-        .sweatshirt-img, .tshirt-img {
-            max-width: 100%; /* Use full modal width */
-        }
-    }
-</style>
+</div>
+{% endblock %}

@@ -1,140 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
+{% extends "base.html" %}
+{% load static %}
 
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+{% block title %}More info — {{ site_name }}{% endblock %}
+{% block description %}Dates, cost, address, what to bring and the rules for the Fully Alive Retreat{% if season and season.starts_at %} {{ season.starts_at|date:"Y" }}{% endif %}.{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <title>More Info</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="panel">
+            <header class="text-center">
+                <span class="eyebrow">Everything you need to know</span>
+                <h1>{% if season %}{{ season.name }}{% else %}Fully Alive Retreat{% endif %}</h1>
+            </header>
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+            <div class="grid-2 mt-6">
+                <div>
+                    <section class="info-block">
+                        <h3>Dates</h3>
+                        <ul class="info-list">
+                            {% if season and season.starts_at %}
+                            <li>{{ season.starts_at|date:"F jS" }} &ndash; {{ season.ends_at|date:"jS" }}</li>
+                            <li>Check in: {{ season.starts_at|date:"g:i A" }}</li>
+                            <li>Check out: {{ season.ends_at|date:"g:i A" }}</li>
+                            {% else %}
+                            <li>To be announced</li>
+                            {% endif %}
+                        </ul>
+                    </section>
 
-        gtag('js', new Date());
+                    <section class="info-block">
+                        <h3>Topic</h3>
+                        <ul class="info-list"><li>To be announced</li></ul>
+                    </section>
 
-        gtag('config', 'UA-135068928-1');
-    </script>
+                    <section class="info-block">
+                        <h3>Registration</h3>
+                        <ul class="info-list">
+                            <li><strong>You must be a member of a Baptist church to attend.</strong></li>
+                            <li>See the non-negotiable rules opposite.</li>
+                            <li>Online registration only.</li>
+                            {% if season.registration_deadline_note %}
+                            <li>Deadline: {{ season.registration_deadline_note }}</li>
+                            {% endif %}
+                            {% if season %}
+                            <li>Capacity: {{ season.capacity }} people</li>
+                            <li>Age: 25&ndash;{{ season.max_age }} ({{ season.min_age }}+, if allowed by the local church)</li>
+                            {% endif %}
+                        </ul>
+                    </section>
 
-    <style>
+                    <section class="info-block">
+                        <h3>Cost</h3>
+                        <ul class="info-list">
+                            {% if season %}<li><strong>${{ season.base_price|floatformat:0 }}</strong> per person</li>{% endif %}
+                            <li>Refunds are less the PayPal fee. No refunds once camp has started.</li>
+                        </ul>
+                    </section>
 
-        br {
-            display: block; /* makes it have a width */
-            content: ""; /* clears default height */
-        }
+                    <section class="info-block">
+                        <h3>Address</h3>
+                        <ul class="info-list">
+                            {% if season %}
+                            <li><a href="{{ season.venue_url }}" rel="noopener" target="_blank">{{ season.venue_name }}</a></li>
+                            <li>{{ season.venue_address }}</li>
+                            {% endif %}
+                        </ul>
+                    </section>
 
-    </style>
-</head>
-<body class="wave-backgroud">
+                    <section class="info-block">
+                        <h3>Social media</h3>
+                        <ul class="info-list">
+                            <li><a href="{{ instagram_url }}" rel="noopener" target="_blank">Instagram</a></li>
+                        </ul>
+                    </section>
+                </div>
 
-<img src="{% static 'registration/NWASBC Logo FINAL Full Wording Vertical White.png' %}" class="logo hidden-xs">
-<img src="{% static 'registration/NWASBC Logo Acronym Horizontal.png' %}" class="logo-xs visible-xs">
+                <div>
+                    <section class="info-block">
+                        <h3>Additional info</h3>
+                        <ul class="info-list"><li>Cellphone reception at camp is poor.</li></ul>
+                    </section>
 
-<div class="container">
-    <div class="moreinfoBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <div class="center">
-            <h1>FULLY ALIVE RETREAT 2026</h1>
-        </div>
+                    <section class="info-block">
+                        <h3>Things to bring</h3>
+                        <ul class="info-list">
+                            <li>Bedding for cabins (mattresses are provided)</li>
+                            <li>Warm clothes</li>
+                            <li>Bible and journal</li>
+                            <li>Essential hygiene items</li>
+                            <li>
+                                Church clothes
+                                <ul>
+                                    <li>Skirts for girls</li>
+                                    <li>Pants and a polo or shirt for boys</li>
+                                </ul>
+                            </li>
+                            <li>Snacks</li>
+                            <li>Flashlight</li>
+                        </ul>
+                    </section>
 
+                    <section class="info-block">
+                        <h3>Non-negotiable rules</h3>
+                        <ul class="info-list">
+                            <li><strong>Registration is limited to individuals not previously married.</strong></li>
+                            <li>Keep the territory clean.</li>
+                            <li>Opposite gender cabins are off limits.</li>
+                            <li>Clothes should be representative of who we are as Christians.</li>
+                            <li>No use of drugs, alcohol or tobacco products.</li>
+                            <li>Participate in all group activities, including adherence to curfews,
+                                and abide by the rules of the camp and other time-related instructions.</li>
+                            <li>No sexual misconduct.</li>
+                            <li>Participants will avoid foul language, cursing, or any speech
+                                (including “humor”) which puts down, makes fun of, or stereotypes
+                                other persons or groups.</li>
+                        </ul>
+                    </section>
 
-        <!-- Dates & Cost-->
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-2 col-md-3">
-                <h2>DATES</h2>
-                <br>August 21<sup>th</sup> - 24<sup>st</sup>
-                <br>Check In: 4 PM
-                <br>Check Out: 11 AM
-
-                <h2>TOPIC:</h2>
-                <br>To be announced
-
-{#                <br>Practical Christianity Enlight of Joseph #}
-{#                <br>Speakers: Sergey Kholostov and Alex Chernichenko#}
-
-                <h2>REGISTRATION INFO</h2>
-                <br><b>You must be a member of a Baptist church to attend the Fully Alive Retreat</b>
-                <br><b>See additional rules below</b>
-                <br>Online registration only
-                <br>Deadline: August 16<sup>th</sup>
-                <br>Capacity: {{ max_capacity }} people
-                <br>Age: 25 - 45 (23+, if allowed by the local church)
-
-                <h2>COST</h2>
-                <br>${{ camp_price }}
-                <br>Refunds are not full price, due to PayPal fee, No refunds once camp has started.
-{#                <br>Deadline for a refund is Nov 1<sup>st</sup>#}
-
-
-                <h2>ADDRESS</h2>
-                <br><a href="http://www.twinrocks.org" target="_blank">Twin Rock Camp</a>
-                <br>18705 N Hwy 101
-                <br>Rockaway Beach, OR 97136
-
-                <h2>Social Media</h2>
-                <br><a href="https://www.instagram.com/fullyaliveretreat?igsh=MXE1aXppNmdtZDQybQ==" target="_blank">Instagram</a>
-{#                <br><a href="https://invite.viber.com/?g=BTw16zDzHEmcvD_IhNFgM8i__Crq4LQV" target="_blank">Viber</a>#}
-
-                
-
-
+                    <section class="info-block">
+                        <h3>Questions?</h3>
+                        <ul class="info-list">
+                            <li>Registration: Mark <a href="tel:+15099795419">509-979-5419</a></li>
+                            <li>All other: Tim A. <a href="tel:+15097935131">509-793-5131</a></li>
+                        </ul>
+                    </section>
+                </div>
             </div>
 
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-offset-1 col-md-4">
-
-                                <h2>ADDITIONAL INFO</h2>
-                <br>Poor cellphone reception at camp
-
-                <h2>THINGS TO BRING:</h2>
-                <br>Bedding for cabins (Mattresses are provided)
-                <br>Warm Clothes
-                <br>Bible & Journal
-                <br>Essential Hygiene Items
-                <br>Church Clothes
-                <ul style="margin-bottom: 0px">
-                    <li>Skirts for girls</li>
-                    <li>Pants and polo or shirt for boys</li>
-                </ul>
-                <br>Snacks
-                <br>Flashlight
-
-
-                <h2>NON-NEGOTIABLE RULES</h2>
-                <br><b>Registration limited to individuals not previously married.</b>
-                <br>Keep the territory clean.
-                <br>Opposite gender cabins are off limits.
-                <br>Clothes should be representative of who we are as Christians.
-                <br>No use of drugs, alcohol or tobacco products.
-                <br>Participate in all group activities, including adherence to curfews, abide by the rules of the camp
-                and other time-related instructions.
-
-                <br>No sexual misconduct.
-                <br>Participants will avoid the use of foul language, cursing, or any speech (including “humor”) which
-                puts down, makes fun of, or stereotypes other persons or groups.
-
-                                <h2>QUESTIONS?</h2>
-                <br>Registration: Mark 509-979-5419
-                <br>All Other: Tim A. 509-793-5131
-
+            <div class="btn-row btn-row--center mt-6">
+                <a class="btn btn--primary" href="{% url 'register' %}">Register</a>
+                <a class="btn btn--outline" href="{% url 'schedule' %}">See the schedule</a>
             </div>
-        </div>
 
-        <br>
-        <br>
-        <br>
-        <div class="center md-padding">
-            <h5>This retreat is organized by the Department of NWASBC Union</h5>
+            <p class="text-center mt-6 mx-auto" style="color:var(--ink-faint)">
+                This retreat is organized by the Department of NWASBC Union.
+            </p>
         </div>
     </div>
 </div>
-</body>
+{% endblock %}

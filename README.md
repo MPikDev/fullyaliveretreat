@@ -1,57 +1,105 @@
-# fullyaliveretreat
+# Fully Alive Retreat
 
-A django website for registering, receiving payment through PayPal, and sending email notifications for camp.
+The website for the Fully Alive Retreat: camp registration, PayPal payment, and camper email.
+Django 5.2, deployed to Heroku.
 
-## Things to Install
-1. Install from link [python 3]
-1. Add to Environment Variables the Path ;C:
-1. Downlaod pip 
-    1. Command line way: curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    1. A different way [tutorial](https://www.liquidweb.com/kb/install-pip-windows/)
-1. Install pip
-    1. cmd line: python get-pip.py
-1. Add to Environment Variables the path ;C: (same way as above)
+> **Rebuilt.** See [REBUILD.md](REBUILD.md) for what changed, why, and the deployment steps.
+> **Read section 1 of that document first** — there are credentials in this repository's git
+> history that need rotating.
 
-## To get the website running on a windows machine
-1. pip install virtualenv
-1. get a clone of the repo if not already then go into the camp_registration_website directory
-1. virtualenv venv 
-1. venv\Scripts\activate 
-1. pip install -r requirements.txt
-1. in personal_code directory the local_settings_copy remove the _copy from the file name
-1. python manage.py runserver
-1. Stop server: ctrl c for linux/mac
-1. python manage.py makemigrations 
-1. python manage.py migrate 
-1. python manage.py createsuperuser ` remember the username and password `
-1. python manage.py runserver
+---
 
+## Getting set up
 
-# Update seciton 04/02/2025
+Requires Python 3.12 (see `.python-version`).
 
-## Dillon Homebrew Install
-1. https://docs.brew.sh/Installation
+```bash
+git clone https://github.com/MPikDev/fullyaliveretreat.git
+cd fullyaliveretreat
 
-## Dillon Pip Install
-1. https://phoenixnap.com/kb/install-pip-mac
-2. `python3 -m ensurepip`
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 
-## Dillon Getting Running on M3 Mac
-1. `pip install virtualenv`
-2. If you haven't cloned then `git clone https://github.com/MPikDev/camp_registration_website.git` Else go to project root directory
-3. `brew install pyenv-virtualenv`
-4. `exec $SHELL` 
-5. `pyenv virtualenvs`
-6. `pyenv virtualenv 3.8 myenv`
-7. `source ~/.pyenv/versions/myenv/bin/activate`
-8. `pip install -r requirements.txt`
-9. `python manage.py runserver`
-10. To Stop the Server: ctrl+c for linux/mac
+cp .env.example .env
+```
 
-## Dillon Making Migrations
-1. `python manage.py makemigrations`
-2. `python manage.py migrate`
+Edit `.env` and set at least:
 
-## Dillon Making an Admin User
-1. `python manage.py createsuperuser` REMEMBER the username and password!
+```
+DJANGO_DEBUG=true
+DJANGO_SECRET_KEY=<anything, for local use>
+PAYPAL_ENDPOINT=<anything, for local use>
+```
 
+Generate a real secret key with:
+
+```bash
+.venv/bin/python -c "from django.core.management.utils import get_random_secret_key as g; print(g())"
+```
+
+Then:
+
+```bash
+.venv/bin/python manage.py migrate          # also seeds all ten camp seasons
+.venv/bin/python manage.py createsuperuser
+.venv/bin/python manage.py runserver
+```
+
+The site runs at http://127.0.0.1:8000/, the admin at `/admin/`.
+
+Local development uses SQLite. Set `DATABASE_URL` to use Postgres instead.
+
+## Common tasks
+
+```bash
+# Tests
+.venv/bin/python manage.py test --settings=personal_code.settings_test
+
+# Production configuration check
+.venv/bin/python manage.py check --deploy
+
+# Dependency vulnerability scan
+.venv/bin/pip install pip-audit && .venv/bin/pip-audit
+
+# Re-check PayPal payments against camper records
+.venv/bin/python manage.py reconcile_payments --season summer-2026
+
+# Email campers (dry run unless --confirm is passed)
+.venv/bin/python manage.py send_camper_email --season summer-2026 --audience unpaid \
+    --template email/reminder.html --subject "Don't forget to pay"
+
+# Rebuild derived images and fonts from assets-src/
+.venv/bin/pip install Pillow "fonttools[woff]"
+.venv/bin/python tools/build_assets.py
+```
+
+## Opening a new camp
+
+Add a **Camp season** in the admin. Dates, venue, capacity, price, merchandise and age limits all
+live on that record — the public pages, the countdown, the PayPal line item and the confirmation
+email follow from it. No code changes needed. See
+[REBUILD.md § 10](REBUILD.md#10-running-a-camp-season).
+
+## Layout
+
+```
+personal_code/      settings, URLs, WSGI
+registration/       the app — models, forms, views, payment verification
+  models.py           CampSeason and Camper
+  forms.py            registration form and all validation
+  signals.py          PayPal IPN verification — the only place a camper becomes paid
+  services.py         payment reconciliation
+  churches.py         the church list offered on the form
+templates/          base.html plus every page
+static/registration/  served assets — css, js, img, fonts (generated)
+assets-src/         source photographs and fonts, never served
+tools/              build_assets.py
+```
+
+## Configuration
+
+All configuration is environment variables; see `.env.example` for the full list with comments.
+Nothing secret belongs in this repository.
+
+In production, missing required variables cause the app to refuse to start rather than fall back
+to an insecure default.

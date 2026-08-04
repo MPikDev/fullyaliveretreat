@@ -1,78 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Log In</title>
+{% extends "base.html" %}
+{% load static %}
 
-    {% load static %}
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+{% block title %}Staff sign in — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow">{% endblock %}
 
+{% block content %}
+<div class="section">
+    <div class="container" style="max-width:460px">
+        <div class="panel">
+            <header class="text-center">
+                <span class="eyebrow">Staff only</span>
+                <h1>Sign in</h1>
+            </header>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-    </script>
-
-<body class="wave-backgroud">
-<div class="container">
-    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">LOG IN</h1>
-        <p class="center"></p>
-        <form method="post" action="/login">
-            {% csrf_token %}
-            <div class="row panel-row flexHeight center-vertically">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                    <div class="form-label">Username</div>
-                </div>
-                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                    <div class="form-group">
-                        <input id="username" name="username" type="text"
-                               class="form-control light name-field" value="{{ username }}"
-                               placeholder="username"
-                               maxlength="48"/>
-                    </div>
-                </div>
+            {% if form.errors %}
+            <div class="alert alert--error" role="alert">
+                <p class="mb-0">
+                    {% for error in form.non_field_errors %}{{ error }}{% empty %}Please check your username and password.{% endfor %}
+                </p>
             </div>
-            <div class="row panel-row flexHeight center-vertically">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-2">
-                    <div class="form-label">Password</div>
-                </div>
-                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-                    <div class="form-group">
-                        <input id="password" name="password" type="password"
-                               class="form-control light name-field" value=""
-                               placeholder="password"
-                               maxlength="48"/>
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                <div class="stack">
+                    <div class="field {% if form.username.errors %}field--error{% endif %}">
+                        <label for="{{ form.username.id_for_label }}">Username</label>
+                        <input type="text" name="{{ form.username.html_name }}"
+                               id="{{ form.username.id_for_label }}" class="form-control"
+                               value="{{ form.username.value|default_if_none:'' }}"
+                               autocomplete="username" autocapitalize="none" required autofocus>
                     </div>
+
+                    <div class="field {% if form.password.errors %}field--error{% endif %}">
+                        <label for="{{ form.password.id_for_label }}">Password</label>
+                        <input type="password" name="{{ form.password.html_name }}"
+                               id="{{ form.password.id_for_label }}" class="form-control"
+                               autocomplete="current-password" required>
+                    </div>
+
+                    <button class="btn btn--primary btn--block" type="submit">Sign in</button>
                 </div>
-            </div>
-            <!--
-            <input type="submit" value="login">
-            <input type="hidden" name="next" value="{{ next }}">
-            -->
-            <div class="button-row button-row-home">
-    <input type="submit" class="home-button" value="LOGIN" ></input>
-</div>
-        </form>
+
+                {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+            </form>
+        </div>
     </div>
-
 </div>
-
-</body>
-</html>
+{% endblock %}

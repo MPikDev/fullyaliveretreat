@@ -1,62 +1,77 @@
-"""personal_code URL Configuration
+"""URL configuration for the Fully Alive Retreat site."""
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
-import os
-from django.urls import path, include
+from django.conf import settings
 from django.contrib import admin
+from django.core.exceptions import ImproperlyConfigured
+from django.urls import include, path
+from django.views.generic import RedirectView
+
 from registration import views
 
-PAYPAL_ENDPOINT = os.getenv('PAYPAL_ENDPOINT')
-
-
-# app_name = 'retreat'
-handler404 = 'registration.views.not_found'
-handler500 = 'registration.views.error'
+handler404 = "registration.views.not_found"
+handler500 = "registration.views.error"
 
 urlpatterns = [
-    # url('', include('django.contrib.auth.urls')),
-    path(r'accounts/login/', views.log_in),
-    path(r'admin', admin.site.urls),
-    path(r'', views.home),
-    path(r'home', views.home),
-    path(r'registration', views.register),
-    path(r'check_who_paid', views.check_who_paid),
-    path(r'fellowship', views.fellowship),
-    path(r'photos', views.photos),
-    path(r'info', views.info),
-    path(r'register', views.reg),
-    path(r'schedule', views.schedule),
-    path(r'full', views.full),
-    path(r'paypal_issues', views.paypal_issues),
-    path(r'return', views.return_url, name='your-return-view'),
-    path(r'cancel', views.canceled_url, name='your-cancel-view'),
-    path(rf'{PAYPAL_ENDPOINT}/', include('paypal.standard.ipn.urls')),
-    path(r'login', views.log_in, name='login'),
-    path(r'logout', views.camper_logout),
-    path(r'camper_info', views.camper_info),
-    path(r'camper_info/2026_winter_camper_info/', views.camper_info, kwargs=dict(camper_2026_info_winter=True)),
-    path(r'camper_info/2025_summer_camper_info/', views.camper_info, kwargs=dict(camper_2025_info_summer=True)),
-    path(r'camper_info/2024_summer_camper_info/', views.camper_info, kwargs=dict(camper_2024_info_summer=True)),
-    path(r'camper_info/2023_summer_camper_info/', views.camper_info, kwargs=dict(camper_2023_info_summer=True)),
-    path(r'camper_info/2022_summer_camper_info/', views.camper_info, kwargs=dict(camper_2022_info_summer=True)),
-    path(r'camper_info/2021_fall_camper_info/', views.camper_info, kwargs=dict(camper_2021_info_fall=True)),
-    path(r'camper_info/2020_camper_info_fall/',views.camper_info, kwargs=dict(camper_2020_info_fall=True)),
-    path(r'camper_info/2020_spring_camper_info/', views.camper_info, kwargs=dict(camper_info_2020_spring=True)),
-    path(r'camper_info/2019_camper_info_spring/', views.camper_info, kwargs=dict(camper_2019_info_spring=True)),
+    # Public pages
+    path("", views.home, name="home"),
+    path("home/", views.home, name="home_alias"),
+    path("info/", views.info, name="info"),
+    path("schedule/", views.schedule, name="schedule"),
+    path("fellowship/", views.fellowship, name="fellowship"),
+    path("photos/", views.photos, name="photos"),
+    path("paypal-issues/", views.paypal_issues, name="paypal_issues"),
+    path("robots.txt", views.robots_txt, name="robots"),
+    # Registration + payment
+    path("registration/", views.register, name="register"),
+    path("pay/<int:camper_id>/", views.pay_now, name="pay_now"),
+    path("return/", views.return_url, name="your-return-view"),
+    path("cancel/", views.canceled_url, name="your-cancel-view"),
+    path("full/", views.full, name="full"),
+    # Staff
+    path("login/", views.CamperLoginView.as_view(), name="login"),
+    path("logout/", views.camper_logout, name="logout"),
+    path("camper-info/", views.camper_info, name="camper_info"),
+    path("camper-info/<slug:season>/", views.camper_info, name="camper_info_season"),
+    path("camper-info/<slug:season>/export.csv", views.camper_export, name="camper_export"),
+    path("registration-status/", views.set_registration_status, name="set_registration_status"),
+    path("reconcile-payments/", views.reconcile_payments, name="reconcile_payments"),
+    # Admin
+    path(f"{settings.ADMIN_URL}/", admin.site.urls),
+]
 
-    path(r'open_reg', views.open_reg),
-    path(r'close_reg', views.close_reg),
+# The PayPal IPN listener path is configured out of band so it can be rotated
+# without a code change. Refusing to boot is safer than silently mounting the
+# listener at a predictable path.
+if not settings.PAYPAL_ENDPOINT:
+    raise ImproperlyConfigured(
+        "PAYPAL_ENDPOINT is not set. Set it to the secret path PayPal should "
+        "post IPN notifications to. See .env.example."
+    )
 
+urlpatterns.append(
+    path(f"{settings.PAYPAL_ENDPOINT.strip('/')}/", include("paypal.standard.ipn.urls"))
+)
+
+# Legacy URLs kept as permanent redirects so existing links, bookmarks and the
+# PayPal account's stored return URLs keep working after the rebuild.
+_LEGACY_REDIRECTS = {
+    "register": "registration/",
+    "camper_info": "camper-info/",
+    "paypal_issues": "paypal-issues/",
+    "check_who_paid": "camper-info/",
+    "accounts/login": "login/",
+    "camper_info/2026_winter_camper_info": "camper-info/winter-2026/",
+    "camper_info/2025_summer_camper_info": "camper-info/summer-2025/",
+    "camper_info/2024_summer_camper_info": "camper-info/summer-2024/",
+    "camper_info/2023_summer_camper_info": "camper-info/summer-2023/",
+    "camper_info/2022_summer_camper_info": "camper-info/summer-2022/",
+    "camper_info/2021_fall_camper_info": "camper-info/fall-2021/",
+    "camper_info/2020_camper_info_fall": "camper-info/fall-2020/",
+    "camper_info/2020_spring_camper_info": "camper-info/spring-2020/",
+    "camper_info/2019_camper_info_spring": "camper-info/spring-2019/",
+}
+
+urlpatterns += [
+    path(f"{old}/", RedirectView.as_view(url=f"/{new}", permanent=True))
+    for old, new in _LEGACY_REDIRECTS.items()
 ]

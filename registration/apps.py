@@ -1,8 +1,11 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.apps import AppConfig
 
 
 class RegistrationConfig(AppConfig):
-    name = 'registration'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "registration"
+    verbose_name = "Camp registration"
+
+    def ready(self):
+        # Connects the PayPal IPN verification handlers.
+        from registration import signals  # noqa: F401

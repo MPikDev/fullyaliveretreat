@@ -1,45 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Did Not Meet Camp Rules</title>
-
-    {% load static %}
-        <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-    </script>
-
-<body class="wave-backgroud">
-<div class="container">
-    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">Not complying with camp rules.</h1>
-        <p class="center">
-            Sorry, but this camp is only for people that have never been married before and are church members. We apologize for the inconvenience. </p>
-    </div>
-
-</div>
-<div class="button-row button-row-home">
-    <button class="home-button" onclick="window.location.href='/'">HOME</button>
-</div>
-</body>
-</html>
+{% extends "_message_base.html" %}
+{% block title %}Registration requirements — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block message_icon %}<div class="message-card__icon" aria-hidden="true">💬</div>{% endblock %}
+{% block message_title %}Let's talk about your registration{% endblock %}
+{% block message_body %}
+    <p>The Fully Alive Retreat is for young adults who are members of a Baptist
+       church and have not previously been married.</p>
+    <p>Based on your answers, we weren't able to complete your registration
+       automatically. Your details have been saved. If you believe this is a
+       mistake, or your church leadership has approved your attendance, please
+       reach out and we'll sort it out with you.</p>
+    <p><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+{% endblock %}

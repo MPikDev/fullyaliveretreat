@@ -1,202 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Camper Info</title>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% extends "base.html" %}
+{% load static %}
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+{% block title %}Campers — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow, noarchive">{% endblock %}
 
-        gtag('js', new Date());
+{# The staff area has its own minimal chrome; the public nav is not useful here. #}
+{% block header %}
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a class="site-header__brand" href="{% url 'home' %}">Fully Alive <span style="font-size:0.7em; letter-spacing:0.1em">STAFF</span></a>
+        <nav class="site-nav" aria-label="Staff">
+            <a class="btn btn--outline btn--sm" href="/{{ admin_url }}/">Admin</a>
+            <a class="btn btn--outline btn--sm" href="{% url 'logout' %}">Sign out</a>
+        </nav>
+    </div>
+</header>
+{% endblock %}
 
-        gtag('config', 'UA-135068928-1');
-    </script>
-</head>
-<body>
-<div>
-    <button onclick="window.location.href = '/check_who_paid';">Check Who Paid</button>
-    <button onclick="window.location.href = '/open_reg';">Open Reg</button>
-    <button onclick="window.location.href = '/close_reg';">Close Reg</button>
-    <h3>What is Reg Flag: {{ reg_flag }}</h3>
+{% block footer %}{% endblock %}
+
+{% block content %}
+<div class="section section--tight">
+    <div class="container">
+
+        {% if not season %}
+            <div class="alert alert--warning">
+                <p class="mb-0">No camp seasons exist yet. Create one in the
+                   <a href="/{{ admin_url }}/registration/campseason/add/">admin</a>.</p>
+            </div>
+        {% else %}
+
+        <header class="toolbar">
+            <div>
+                <span class="eyebrow">Registrations</span>
+                <h1 style="margin-bottom:0">{{ season.name }}</h1>
+            </div>
+            <div class="toolbar__spacer"></div>
+
+            <form method="post" action="{% url 'set_registration_status' %}">
+                {% csrf_token %}
+                {% if season.is_active %}
+                    {% if season.registration_open %}
+                        <input type="hidden" name="action" value="close">
+                        <button class="btn btn--outline btn--sm" type="submit">Close registration</button>
+                    {% else %}
+                        <input type="hidden" name="action" value="open">
+                        <button class="btn btn--primary btn--sm" type="submit">Open registration</button>
+                    {% endif %}
+                {% endif %}
+            </form>
+
+            <form method="post" action="{% url 'reconcile_payments' %}">
+                {% csrf_token %}
+                <button class="btn btn--outline btn--sm" type="submit">Re-check payments</button>
+            </form>
+
+            <a class="btn btn--outline btn--sm" href="{% url 'camper_export' season.slug %}">Export CSV</a>
+        </header>
+
+        <p style="color:var(--ink-faint)">
+            Registration is
+            <strong>{% if season.registration_open %}open{% else %}closed{% endif %}</strong>
+            {% if not season.is_active %}&middot; this is not the active season{% endif %}
+        </p>
+
+        {# Season switcher — one link per season row, replacing ten hardcoded buttons. #}
+        <nav aria-label="Choose a season" class="btn-row" style="margin-bottom:var(--space-6)">
+            {% for s in seasons %}
+            <a class="btn btn--sm {% if s.pk == season.pk %}btn--primary{% else %}btn--outline{% endif %}"
+               href="{% url 'camper_info_season' s.slug %}">{{ s.name }}</a>
+            {% endfor %}
+        </nav>
+
+        <div class="stat-row">
+            <a class="stat" href="?show=paid" {% if tab == 'paid' %}aria-current="true"{% endif %}>
+                <span class="stat__value">{{ counts.paid }}</span>
+                <span class="stat__label">Paid</span>
+            </a>
+            <a class="stat" href="?show=unpaid" {% if tab == 'unpaid' %}aria-current="true"{% endif %}>
+                <span class="stat__value">{{ counts.unpaid }}</span>
+                <span class="stat__label">Not paid</span>
+            </a>
+            <a class="stat {% if counts.flagged %}stat--alert{% endif %}" href="?show=flagged" {% if tab == 'flagged' %}aria-current="true"{% endif %}>
+                <span class="stat__value">{{ counts.flagged }}</span>
+                <span class="stat__label">Flagged</span>
+            </a>
+            <a class="stat" href="?show=ineligible" {% if tab == 'ineligible' %}aria-current="true"{% endif %}>
+                <span class="stat__value">{{ counts.ineligible }}</span>
+                <span class="stat__label">Not eligible</span>
+            </a>
+            <div class="stat">
+                <span class="stat__value">{{ unique_unpaid_emails }}</span>
+                <span class="stat__label">Unique unpaid emails</span>
+            </div>
+            <div class="stat">
+                <span class="stat__value">{{ counts.paid }}/{{ capacity }}</span>
+                <span class="stat__label">Capacity</span>
+            </div>
+        </div>
+
+        {% if counts.flagged %}
+        <div class="alert alert--error">
+            <p class="alert__title">{{ counts.flagged }} payment{{ counts.flagged|pluralize }} need review</p>
+            <p class="mb-0">A payment arrived that didn't match the expected amount, currency or
+               receiver. These campers were <strong>not</strong> marked paid.
+               <a href="?show=flagged">Review them</a>.</p>
+        </div>
+        {% endif %}
+
+        <div class="table-scroll">
+            <table class="data-table">
+                <caption class="visually-hidden">
+                    Campers for {{ season.name }} — {{ tab }} view
+                </caption>
+                <thead>
+                    <tr>{% for field, label in columns %}<th scope="col">{{ label }}</th>{% endfor %}</tr>
+                </thead>
+                <tbody>
+                    {% for camper in page %}
+                    <tr>
+                        <td>{{ camper.pk }}</td>
+                        <td>{{ camper.first_name }}</td>
+                        <td>{{ camper.last_name }}</td>
+                        <td>{{ camper.date_of_birth|date:"Y-m-d" }}</td>
+                        <td>{{ camper.get_gender_display|default:"—" }}</td>
+                        <td><a href="mailto:{{ camper.email }}">{{ camper.email }}</a></td>
+                        <td>{{ camper.phone }}</td>
+                        <td>{{ camper.city }}</td>
+                        <td>{{ camper.state }}</td>
+                        <td>{{ camper.church }}</td>
+                        <td>{{ camper.pastor }}</td>
+                        <td>{{ camper.pastor_number|default:"—" }}</td>
+                        <td>{% if camper.church_member %}<span class="tag tag--yes">Yes</span>{% else %}<span class="tag tag--no">No</span>{% endif %}</td>
+                        <td>{% if camper.not_married %}<span class="tag tag--yes">Yes</span>{% else %}<span class="tag tag--no">No</span>{% endif %}</td>
+                        <td style="white-space:normal; min-width:220px">{{ camper.med_notes|default:"—" }}</td>
+                        <td>{{ camper.tshirt_size|default:"—" }}</td>
+                        <td>{{ camper.swshirt_size|default:"—" }}</td>
+                        <td>{% if camper.mug %}Yes{% else %}—{% endif %}</td>
+                        <td>{{ camper.get_status_display }}</td>
+                        <td>{% if camper.amount_due %}${{ camper.amount_due|floatformat:2 }}{% else %}—{% endif %}</td>
+                        <td>{% if camper.amount_paid %}${{ camper.amount_paid|floatformat:2 }}{% else %}—{% endif %}</td>
+                        <td>{% if camper.paid %}<span class="tag tag--yes">Paid</span>{% else %}<span class="tag tag--no">No</span>{% endif %}</td>
+                        <td>{% if camper.payment_flagged %}<span class="tag tag--alert" title="{{ camper.payment_note }}">Review</span>{% else %}—{% endif %}</td>
+                        <td>{% if camper.email_sent %}Yes{% else %}—{% endif %}</td>
+                        <td>{{ camper.created|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td class="data-table__empty" colspan="{{ columns|length }}">
+                            No campers in this view.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if page.paginator.num_pages > 1 %}
+        <nav class="pagination" aria-label="Pagination">
+            {% if page.has_previous %}
+            <a class="btn btn--outline btn--sm" href="?show={{ tab }}&amp;page={{ page.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+            {% if page.has_next %}
+            <a class="btn btn--outline btn--sm" href="?show={{ tab }}&amp;page={{ page.next_page_number }}">Next</a>
+            {% endif %}
+        </nav>
+        {% endif %}
+
+        {% endif %}
+    </div>
 </div>
-<h1>Data is for {{ camp_filter }}</h1>
-
-<button onclick="window.location.href = '/camper_info';">Summer 2026 Camp</button>
-<button onclick="window.location.href = '/camper_info/2026_winter_camper_info/';">Winter 2026 Camp</button>
-<button onclick="window.location.href = '/camper_info/2025_summer_camper_info/';">Summer 2025 Camp</button>
-<button onclick="window.location.href = '/camper_info/2024_summer_camper_info/';">Summer 2024 Camp</button>
-<button onclick="window.location.href = '/camper_info/2023_summer_camper_info/';">Summer 2023 Camp</button>
-<button onclick="window.location.href = '/camper_info/2022_summer_camper_info/';">Summer 2022 Camp</button>
-<button onclick="window.location.href = '/camper_info/2021_fall_camper_info/';">Fall 2021 Camp</button>
-<button onclick="window.location.href = '/camper_info/2020_camper_info_fall/';">Fall 2020 Camp</button>
-<button onclick="window.location.href = '/camper_info/2020_spring_camper_info/';">Spring 2020 Camp</button>
-<button onclick="window.location.href = '/camper_info/2019_camper_info_spring/';">Spring 2019 Camp</button>
-<h1>Campers that Paid: {{ final_paid_count }}</h1>
-<table style="width:100%">
-    {% if base_camper_keys %}
-        <tr>
-            {% for key in base_camper_keys %}
-                <td>{{ key }}</td>
-
-            {% endfor %}
-        </tr>
-    {% endif %}
-
-    {% for camper in final_paid_campers_info %}
-        <tr>
-            <td>{{ camper.pk }}</td>
-            <td>{{ camper.first_name }}</td>
-            <td>{{ camper.last_name }}</td>
-            <td>{{ camper.date_of_birth }}</td>
-            <td>{{ camper.gender }}</td>
-            <td>{{ camper.email }}</td>
-            <td>{{ camper.phone }}</td>
-            <td>{{ camper.city }}</td>
-            <td>{{ camper.state }}</td>
-            <td>{{ camper.med_notes }}</td>
-            <td>{{ camper.church }}</td>
-            <td>{{ camper.pastor }}</td>
-            <td>{{ camper.pastor_number }}</td>
-            <td>{{ camper.church_member }}</td>
-            <td>{{ camper.not_married }}</td>
-            <td>{{ camper.mug }}</td>
-            <td>{{ camper.region }}</td>
-            <td>{{ camper.activity }}</td>
-            <td>{{ camper.tshirt_size }}</td>
-            <td>{{ camper.swshirt_size }}</td>
-            <td>{{ camper.paid }}</td>
-            <td>{{ camper.email_sent }}</td>
-            <td>{{ camper.created }}</td>
-        </tr>
-    {% endfor %}
-
-</table>
-
-<h1>Campers that didnt Pay: {{ not_count }}</h1>
-<table style="width:100%">
-    {% if base_camper_keys %}
-        <tr>
-            {% for key in base_camper_keys %}
-                <td>{{ key }}</td>
-
-            {% endfor %}
-        </tr>
-    {% endif %}
-
-    {% for camper in not_campers_info %}
-        <tr>
-            <td>{{ camper.pk }}</td>
-            <td>{{ camper.first_name }}</td>
-            <td>{{ camper.last_name }}</td>
-            <td>{{ camper.date_of_birth }}</td>
-            <td>{{ camper.gender }}</td>
-            <td>{{ camper.email }}</td>
-            <td>{{ camper.phone }}</td>
-            <td>{{ camper.city }}</td>
-            <td>{{ camper.state }}</td>
-            <td>{{ camper.med_notes }}</td>
-            <td>{{ camper.church }}</td>
-            <td>{{ camper.pastor }}</td>
-            <td>{{ camper.pastor_number }}</td>
-            <td>{{ camper.church_member }}</td>
-            <td>{{ camper.not_married }}</td>
-            <td>{{ camper.mug }}</td>
-            <td>{{ camper.region }}</td>
-            <td>{{ camper.activity }}</td>
-            <td>{{ camper.tshirt_size }}</td>
-            <td>{{ camper.swshirt_size }}</td>
-            <td>{{ camper.paid }}</td>
-            <td>{{ camper.email_sent }}</td>
-            <td>{{ camper.created }}</td>
-        </tr>
-    {% endfor %}
-</table>
-<h1>Campers that didnt Pay and no duplicates: {{ not_email_count }}</h1>
-<table style="width:100%">
-    {% if base_camper_keys %}
-        <tr>
-            {% for key in base_camper_keys %}
-                <td>{{ key }}</td>
-
-            {% endfor %}
-        </tr>
-    {% endif %}
-
-    {% for camper in not_paid_email_info %}
-        <tr>
-            <td>{{ camper.pk }}</td>
-            <td>{{ camper.first_name }}</td>
-            <td>{{ camper.last_name }}</td>
-            <td>{{ camper.date_of_birth }}</td>
-            <td>{{ camper.gender }}</td>
-            <td>{{ camper.email }}</td>
-            <td>{{ camper.phone }}</td>
-            <td>{{ camper.city }}</td>
-            <td>{{ camper.state }}</td>
-            <td>{{ camper.med_notes }}</td>
-            <td>{{ camper.church }}</td>
-            <td>{{ camper.pastor }}</td>
-            <td>{{ camper.pastor_number }}</td>
-            <td>{{ camper.church_member }}</td>
-            <td>{{ camper.not_married }}</td>
-            <td>{{ camper.mug }}</td>
-            <td>{{ camper.region }}</td>
-            <td>{{ camper.activity }}</td>
-            <td>{{ camper.tshirt_size }}</td>
-            <td>{{ camper.swshirt_size }}</td>
-            <td>{{ camper.paid }}</td>
-            <td>{{ camper.email_sent }}</td>
-            <td>{{ camper.created }}</td>
-        </tr>
-    {% endfor %}
-</table>
-
-<h1>Campers that Paid including Refunds: {{ paid_count }}</h1>
-<table style="width:100%">
-    {% if base_camper_keys %}
-        <tr>
-            {% for key in base_camper_keys %}
-                <td>{{ key }}</td>
-
-            {% endfor %}
-        </tr>
-    {% endif %}
-
-    {% for camper in paid_campers_info %}
-        <tr>
-            <td>{{ camper.pk }}</td>
-            <td>{{ camper.first_name }}</td>
-            <td>{{ camper.last_name }}</td>
-            <td>{{ camper.date_of_birth }}</td>
-            <td>{{ camper.gender }}</td>
-            <td>{{ camper.email }}</td>
-            <td>{{ camper.phone }}</td>
-            <td>{{ camper.city }}</td>
-            <td>{{ camper.state }}</td>
-            <td>{{ camper.med_notes }}</td>
-            <td>{{ camper.church }}</td>
-            <td>{{ camper.pastor }}</td>
-            <td>{{ camper.pastor_number }}</td>
-            <td>{{ camper.church_member }}</td>
-            <td>{{ camper.not_married }}</td>
-            <td>{{ camper.mug }}</td>
-            <td>{{ camper.region }}</td>
-            <td>{{ camper.activity }}</td>
-            <td>{{ camper.tshirt_size }}</td>
-            <td>{{ camper.swshirt_size }}</td>
-            <td>{{ camper.paid }}</td>
-            <td>{{ camper.email_sent }}</td>
-            <td>{{ camper.created }}</td>
-        </tr>
-    {% endfor %}
-
-</table>
-
-</body>
-</html>
+{% endblock %}

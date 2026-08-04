@@ -3,7 +3,13 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from personal_code.settings import SPRING_2019_CAMP, SPRING_2020_CAMP
+
+# Inlined literals. These were imported from settings, which coupled an applied
+# migration to a mutable setting; the values are now historical facts and must
+# not change.
+SPRING_2019_CAMP = 'camp 2019'
+SPRING_2020_CAMP = 'spring camp 2020'
+
 
 class Migration(migrations.Migration):
 

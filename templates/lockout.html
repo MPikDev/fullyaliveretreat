@@ -1,0 +1,9 @@
+{% extends "_message_base.html" %}
+{% block title %}Too many attempts — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block message_icon %}<div class="message-card__icon" aria-hidden="true">⏳</div>{% endblock %}
+{% block message_title %}Too many sign-in attempts{% endblock %}
+{% block message_body %}
+    <p>For security, this account has been locked for one hour after repeated
+       failed sign-in attempts. Please try again later.</p>
+{% endblock %}

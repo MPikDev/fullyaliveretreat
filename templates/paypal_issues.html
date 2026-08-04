@@ -1,47 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registration is Temporally Closed</title>
-
-    {% load static %}
-        <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-    </script>
-
-
-<body class="wave-backgroud">
-<div class="container">
-    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">REGISTRATION IS TEMPORALLY CLOSED</h1>
-        <p class="center">
-            Sorry we are having some technical difficulties with PayPal right now. Please come back later and register or join the <a href="https://invite.viber.com/?g=BTw16zDzHEmcvD_IhNFgM8i__Crq4LQV">viber chat</a>. We will inform the chat once the issue is resolved. Sorry for the inconvenience and we are looking forward to having you at our retreat.
-        </p>
-    </div>
-
-</div>
-<div class="button-row button-row-home">
-    <button class="home-button" onclick="window.location.href='/'">HOME</button>
-</div>
-</body>
-</html>
+{% extends "_message_base.html" %}
+{% block title %}PayPal help — {{ site_name }}{% endblock %}
+{% block message_icon %}<div class="message-card__icon" aria-hidden="true">💳</div>{% endblock %}
+{% block message_title %}Trouble paying?{% endblock %}
+{% block message_body %}
+    <p style="text-align:left">A few things that usually help:</p>
+    <ul style="text-align:left; display:inline-block">
+        <li>You do not need a PayPal account — choose <strong>Pay with debit or credit card</strong>.</li>
+        <li>Try a different browser, or turn off any ad or script blocker.</li>
+        <li>Make sure the billing address matches your card exactly.</li>
+    </ul>
+    <p>Still stuck? Email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+       and we'll get you registered.</p>
+{% endblock %}
+{% block message_actions %}
+    <a class="btn btn--primary" href="{% url 'register' %}">Back to registration</a>
+    <a class="btn btn--outline" href="{% url 'home' %}">Home</a>
+{% endblock %}

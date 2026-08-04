@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Dependencies went years without updates; ten packages ended up carrying
+  # known CVEs. Weekly PRs keep that from recurring.
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      python-packages:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly

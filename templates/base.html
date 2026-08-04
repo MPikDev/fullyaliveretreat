@@ -1,0 +1,110 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ site_tagline }}{% endblock %}">
+    {% block robots %}{% endblock %}
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+    {# Open Graph / Twitter — the site is shared mainly through social messaging. #}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:title" content="{% block og_title %}{{ site_name }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ site_tagline }}{% endblock %}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'registration/img/og-cover.jpg' %}">
+    <meta property="og:image:alt" content="The Oregon coast at Twin Rocks Camp">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="theme-color" content="#508080">
+
+    <link rel="icon" href="{% static 'registration/img/favicon.svg' %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{% static 'registration/img/apple-touch-icon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'registration/css/main.css' %}">
+    {% block extra_head %}{% endblock %}
+
+    {% if ga_measurement_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_measurement_id }}"></script>
+    <script src="{% static 'registration/js/analytics.js' %}" data-measurement-id="{{ ga_measurement_id }}" defer></script>
+    {% endif %}
+</head>
+<body{% if body_class %} class="{{ body_class }}"{% endif %}>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+{% block header %}
+<header class="site-header{% block header_modifier %}{% endblock %}">
+    <div class="container site-header__inner">
+        <a class="site-header__brand" href="{% url 'home' %}">Fully Alive</a>
+
+        <button class="nav-toggle" type="button"
+                aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+            <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Main">
+            <ul class="site-nav__list">
+                <li><a class="site-nav__link" href="{% url 'info' %}"{% if nav == 'info' %} aria-current="page"{% endif %}>More info</a></li>
+                <li><a class="site-nav__link" href="{% url 'schedule' %}"{% if nav == 'schedule' %} aria-current="page"{% endif %}>Schedule</a></li>
+                <li><a class="site-nav__link" href="{% url 'fellowship' %}"{% if nav == 'fellowship' %} aria-current="page"{% endif %}>What to expect</a></li>
+                <li><a class="site-nav__link" href="{{ video_url }}" rel="noopener" target="_blank">Video</a></li>
+            </ul>
+            <a class="btn btn--primary btn--sm" href="{% url 'register' %}">Register</a>
+        </nav>
+    </div>
+</header>
+{% endblock %}
+
+<main id="main" class="page-main">
+    {% block content %}{% endblock %}
+</main>
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="container">
+        <div class="site-footer__inner">
+            <div>
+                <div class="site-footer__brand">Fully Alive Retreat</div>
+                {% if season and season.venue_name %}
+                <p class="mb-0">
+                    {% if season.starts_at %}{{ season.starts_at|date:"F j" }}&ndash;{{ season.ends_at|date:"j, Y" }}<br>{% endif %}
+                    {{ season.venue_name }}<br>{{ season.venue_address }}
+                </p>
+                {% endif %}
+            </div>
+
+            <div>
+                <h2 class="visually-hidden">Site links</h2>
+                <ul class="site-footer__links">
+                    <li><a href="{% url 'info' %}">More info</a></li>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'fellowship' %}">What to expect</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{{ instagram_url }}" rel="noopener" target="_blank">Instagram</a></li>
+                    <li><a href="mailto:{{ contact_email }}">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <img class="site-footer__logo"
+                     src="{% static 'registration/img/nwasbc-logo-vertical-white.png' %}"
+                     alt="NWASBC Union logo" width="150" height="150" loading="lazy">
+            </div>
+        </div>
+
+        <p class="site-footer__legal mb-0">
+            Organized by the Youth Department of the NWASBC Union.
+        </p>
+    </div>
+</footer>
+{% endblock %}
+
+<script src="{% static 'registration/js/site.js' %}" defer></script>
+{% block extra_js %}{% endblock %}
+{% block structured_data %}{% endblock %}
+</body>
+</html>

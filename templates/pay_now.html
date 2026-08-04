@@ -1,48 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registered</title>
+{% extends "base.html" %}
+{% load static %}
 
-    {% load static %}
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+{% block title %}Payment — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow">{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <title>More Info</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% block content %}
+<div class="section">
+    <div class="container container--narrow">
+        <div class="panel text-center">
+            <span class="eyebrow">Almost there</span>
+            <h1>Complete your payment</h1>
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+            <p class="mx-auto">
+                Thanks, {{ camper.first_name }}. Your registration is saved, but your
+                spot is not held until payment goes through.
+            </p>
 
-        gtag('js', new Date());
+            <div class="card mt-6" style="text-align:left; max-width:420px; margin-inline:auto">
+                <h2 class="card__title">Your order</h2>
+                <ul class="info-list mb-0">
+                    <li style="display:flex; justify-content:space-between; gap:1rem">
+                        <span>Registration</span>
+                        <strong>${{ season.base_price|floatformat:2 }}</strong>
+                    </li>
+                    {% for name, size in camper.ordered_merch %}
+                    <li style="display:flex; justify-content:space-between; gap:1rem">
+                        <span>{{ name }}{% if size %} &middot; {{ size }}{% endif %}</span>
+                        <strong>${{ season.hoodie_price|floatformat:2 }}</strong>
+                    </li>
+                    {% endfor %}
+                    <li style="display:flex; justify-content:space-between; gap:1rem; font-size:var(--step-1)">
+                        <span><strong>Total</strong></span>
+                        <strong>${{ camper.amount_due|floatformat:2 }}</strong>
+                    </li>
+                </ul>
+            </div>
 
-        gtag('config', 'UA-135068928-1');
-    </script>
+            <div class="btn-row btn-row--center mt-6">
+                {{ form.render }}
+            </div>
 
-<body class="wave-backgroud">
-<div class="container">
-    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">REGISTERED</h1>
-        <br>
-        <p class="center">
-            You have registered but you have not secured a spot for this retreat. Please continue and pay through PayPal
-            to secure your spot. If you leave this page you will need to re-register. </p>
-        <br>
-        <div class="center">{{ form.render }}</div>
-        <br>
+            <p class="mt-6 mx-auto" style="color:var(--ink-faint); font-size:var(--step--1)">
+                You don't need a PayPal account — choose “Pay with debit or credit card”
+                on the next screen.<br>
+                You can return to this page later to finish paying.<br>
+                Having trouble? <a href="{% url 'paypal_issues' %}">Here's what to try.</a>
+            </p>
+        </div>
     </div>
-
 </div>
-
-</body>
-</html>
+{% endblock %}

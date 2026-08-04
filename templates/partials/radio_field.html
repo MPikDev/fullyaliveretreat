@@ -1,0 +1,24 @@
+{% comment %}
+A yes/no question rendered as a real <fieldset>/<legend> radio group, so the
+question itself is announced along with each option.
+{% endcomment %}
+<fieldset class="fieldset field {% if field.errors %}field--error{% endif %}">
+    <legend class="fieldset__legend">
+        {{ field.label }}{% if field.field.required %}<span class="field__required" aria-hidden="true">*</span><span class="visually-hidden">(required)</span>{% endif %}
+    </legend>
+
+    <div class="choice-row">
+        {% for choice in field %}
+        <label for="{{ choice.id_for_label }}">
+            {{ choice.tag }}
+            <span>{{ choice.choice_label }}</span>
+        </label>
+        {% endfor %}
+    </div>
+
+    {% if field.errors %}
+    <ul class="field__error mt-0">
+        {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+</fieldset>

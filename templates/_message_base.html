@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% comment %}
+Shared layout for every short outcome page: full, closed, cancelled, paid,
+errors, and so on. Previously each of these was a standalone copy of the entire
+document.
+{% endcomment %}
+
+{% block content %}
+<div class="message-page">
+    <picture>
+        <source type="image/webp" srcset="{% static 'registration/img/coast-wide-1280.webp' %} 1280w,
+                                          {% static 'registration/img/coast-wide-1920.webp' %} 1920w"
+                sizes="100vw">
+        <img class="message-page__media" src="{% static 'registration/img/coast-wide-1280.jpg' %}"
+             alt="" width="1920" height="960" fetchpriority="low">
+    </picture>
+
+    <div class="message-card">
+        {% block message_icon %}{% endblock %}
+        <h1>{% block message_title %}{% endblock %}</h1>
+        {% block message_body %}{% endblock %}
+
+        <div class="btn-row">
+            {% block message_actions %}
+            <a class="btn btn--primary" href="{% url 'home' %}">Back to home</a>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

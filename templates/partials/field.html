@@ -1,0 +1,27 @@
+{% comment %}
+One form field with its label, help text and errors.
+
+Every control gets a real <label for>, which the previous form lacked entirely —
+it used <div class="form-label">, so screen readers announced nothing.
+{% endcomment %}
+<div class="field {% if field.errors %}field--error{% endif %} {% if field.name in 'med_notes' %}field--full{% endif %}">
+    {% if not hide_label %}
+    <label for="{{ field.id_for_label }}">
+        {{ field.label }}{% if field.field.required %}<span class="field__required" aria-hidden="true">*</span><span class="visually-hidden">(required)</span>{% endif %}
+    </label>
+    {% else %}
+    <label class="visually-hidden" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {% endif %}
+
+    {{ field }}
+
+    {% if field.help_text %}
+    <p class="field__help" id="{{ field.id_for_label }}-help">{{ field.help_text }}</p>
+    {% endif %}
+
+    {% if field.errors %}
+    <ul class="field__error" id="{{ field.id_for_label }}-error">
+        {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+</div>

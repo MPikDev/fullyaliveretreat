@@ -1,9 +1,29 @@
-.idea
-*.pyc
-venv/*
+# Environments
+.venv/
+venv/
+myenv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Django
 db.sqlite3
-local_settings.py
+db.sqlite3.*
 staticfiles/
+*.log
+media/
+
+# Secrets
+.env
+.env.*
+!.env.example
+local_settings.py
+
+# Editors / OS
+.idea/
+.vscode/
 .DS_Store
 .DS_Store?
-.env

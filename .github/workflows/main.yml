@@ -2,26 +2,60 @@ name: CI
 
 on:
   push:
-    branches: [master]
   pull_request:
     branches: [master]
+
+# Least-privilege token; the previous workflow inherited the default scope.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version-file: .python-version
+          cache: pip
 
-      - run: |
+      - name: Install dependencies
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
+
+      # The test settings module supplies its own throwaway secret key, so no
+      # repository secret is needed to run the suite.
       - name: Run tests
+        run: python manage.py test --settings=personal_code.settings_test
+
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run --settings=personal_code.settings_test
+
+      - name: Production deployment checks
         env:
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-        run: python manage.py test
+          DJANGO_DEBUG: "false"
+          DJANGO_SECRET_KEY: ci-only-key-never-used-to-sign-anything-just-satisfies-length-check-0123456789
+          PAYPAL_ENDPOINT: ci-endpoint
+        run: python manage.py check --deploy --fail-level WARNING
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+
+      - name: Audit dependencies for known vulnerabilities
+        run: |
+          python -m pip install --upgrade pip pip-audit
+          pip install -r requirements.txt
+          pip-audit --strict

@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <title>Photos</title>
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
+{% extends "base.html" %}
+{% load static %}
 
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% block title %}Photos — {{ site_name }}{% endblock %}
+{% block description %}Photos from past Fully Alive Retreats on the Oregon coast.{% endblock %}
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-    </script>
-</head>
-<body>
-<div class="picture pic1"></div>
-<div class="picture pic2"></div>
-<div class="picture pic3"></div>
-<div class="picture pic4"></div>
-<div class="picture pic5"></div>
-
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
-</body>
-</html>
+{% block content %}
+<div class="section">
+    <div class="container container--narrow text-center">
+        <span class="eyebrow">From past retreats</span>
+        <h1>Photos</h1>
+        <p class="mx-auto">
+            Our photos live on Instagram, where we post throughout each retreat.
+        </p>
+        <div class="btn-row btn-row--center mt-6">
+            <a class="btn btn--primary" href="{{ instagram_url }}" rel="noopener" target="_blank">
+                View on Instagram
+            </a>
+            <a class="btn btn--outline" href="{{ video_url }}" rel="noopener" target="_blank">
+                Watch the video
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

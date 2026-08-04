@@ -1,19 +1,28 @@
-asgiref==3.6.0
-certifi==2022.12.7
-charset-normalizer==3.0.1
-dj-database-url==0.5.0
-Django==4.2
-django-paypal==1.1.2
-djangorestframework==3.11.0
-gunicorn==19.10.0
-idna==3.4
-pi==0.1.2
-psycopg2==2.9.5
-pytz==2018.9
-requests==2.28.2
-six==1.16.0
-sqlparse==0.4.3
-urllib3==1.26.14
-whitenoise==4.1.4
-yagmail==0.11.220
-python-dotenv==1.2.2
+# Core framework
+Django>=5.2,<5.3
+
+# WSGI server + static file serving
+gunicorn>=23.0.0
+whitenoise[brotli]>=6.9.0
+
+# Database
+dj-database-url>=2.3.0
+psycopg[binary]>=3.2.0
+
+# Payments
+django-paypal>=2.1
+
+# Auth hardening (login throttling / lockout)
+django-axes>=7.0.0
+
+# Email
+yagmail>=0.15.293
+
+# Configuration
+python-dotenv>=1.0.1
+
+# HTTP stack (transitively required; pinned to patched versions)
+requests>=2.32.4
+urllib3>=2.2.2
+certifi>=2024.7.4
+idna>=3.7

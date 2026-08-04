@@ -1,96 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <title>Fully Alive Retreat</title>
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
-    <link rel="stylesheet" href="{% static 'registration/assets/bootstrap/css/bootstrap.min.css' %}"/>
+{% extends "base.html" %}
+{% load static %}
 
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% block title %}What to expect — {{ site_name }}{% endblock %}
+{% block description %}Activities, nature and fellowship at the Fully Alive Retreat on the Oregon coast.{% endblock %}
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+{% block content %}
+<section class="band">
+    <picture>
+        <source type="image/webp"
+                srcset="{% static 'registration/img/sunset-1280.webp' %} 1280w,
+                        {% static 'registration/img/sunset-1920.webp' %} 1920w"
+                sizes="100vw">
+        <img class="band__media" src="{% static 'registration/img/sunset-1280.jpg' %}"
+             alt="" width="1920" height="1280" fetchpriority="high">
+    </picture>
 
-        gtag('js', new Date());
+    <div class="container text-center">
+        <span class="eyebrow" style="color:var(--foam)">Fully Alive</span>
+        <h1>What to expect</h1>
+    </div>
+</section>
 
-        gtag('config', 'UA-135068928-1');
-    </script>
-</head>
-<body>
+<section class="section">
+    <div class="container">
+        <div class="grid-2">
+            <article class="card">
+                <h2 class="card__title">Activities</h2>
+                <ul class="info-list mb-0">
+                    <li>Camp games</li>
+                    <li>Volleyball</li>
+                    <li>Hikes on and off the campgrounds</li>
+                    <li>Bonfires</li>
+                    <li>Board games</li>
+                </ul>
+            </article>
 
-{#<div class="picture fellow1" style="text-align: center">#}
-{#</div>#}
-{##}
-{#<div class="picture fellow2" style="text-align: center">#}
-{#</div>#}
-{#<div class="picture fellow3" style="text-align: center">#}
-{#        <button class="invis-button-div back-button-bottom-center" onclick="goBack()"type="button"></button>#}
-{#</div>#}
-
-<div class="olga-pic-forest">
-
-
-    <div>
-        <div class="row">
-            <div class="text-center-desktop fellowship-forest col-xs-3  col-md-3" style="margin-left: 12.333333%;">
-
-                <h2 class="forest-text-header">
-                    ACTIVITIES</h2>
-                <p class=" phone-forest-text-padding forest-text-body">
-                    CAMP GAMES
-                    <br>SKIING
-                    <br>SNOWBOARDING
-                    <br>TUBING
-                    <br>BOARD GAMES
+            <article class="card">
+                <h2 class="card__title">Nature</h2>
+                <p class="mb-0">
+                    The campground sits on the Oregon coast with a private bridge
+                    connecting it to the beach, and trails to explore in every direction.
+                    Star gazing included.
                 </p>
-            </div>
+            </article>
 
-{#            <div class="text-left-desktop fellowship-forest col-xs-3  col-md-3">#}
-{#                <h2 class="forest-text-header">#}
-{#                    NATURE</h2>#}
-{#                <p class=" phone-forest-text-padding forest-text-body">THE BEAUTIFUL CAMP GROUND HAS A PRIVATE BRIDGE#}
-{#                    CONNECTION IT TO THE OCEAN BEACH AND HAS MULTIPLE TRAILS TO EXPLORE THE MOUNTAINS#}
-{#                </p>#}
-{##}
-{#            </div>#}
-            <div class="text-center-desktop fellowship-forest col-xs-3 col-md-3">
-{##}
-{#                <h2 class="forest-text-header">#}
-{#                    ACTIVITIES</h2>#}
-{#                <p class=" phone-forest-text-padding forest-text-body">#}
-{#                    CAMP GAMES, VOLLEYBALL, HIKES OFF & ON THE#}
-{#                    CAMPGROUNDS, SWIMMING AND MORE! OH, AND OF COURSE STAR GAZING#}
-{#                </p>#}
-            </div>
-            <div class="text-center-desktop fellowship-forest col-xs-3 col-md-3">
+            <article class="card">
+                <h2 class="card__title">Fellowship</h2>
+                <p class="mb-0">
+                    Experience inspiring fellowship with brothers and sisters in Christ,
+                    centered on the topic of living a life of abundance and what that
+                    truly means.
+                </p>
+            </article>
+        </div>
 
-                <h2 class="forest-text-header">
-                    FELLOWSHIP</h2>
-                <p class="phone-forest-text-padding forest-text-body smaller-font">
-                    EXPERIENCE INSPIRING FELLOWSHIP WITH
-                    BROTHERS AND SISTERS IN CHRIST, CENTERED ON THE TOPIC OF LIVING A LIFE OF ABUNDANCE AND WHAT THAT
-                    TRULY MEANS.</p>
-            </div>
+        <div class="btn-row btn-row--center mt-6">
+            <a class="btn btn--primary" href="{% url 'register' %}">Register</a>
+            <a class="btn btn--outline" href="{{ video_url }}" rel="noopener" target="_blank">Watch the video</a>
         </div>
     </div>
-</div>
-
-</div>
-
-
-
-<script>
-function goBack() {
-  window.history.back();
-}
-</script>
-</body>
-</html>
+</section>
+{% endblock %}

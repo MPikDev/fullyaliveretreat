@@ -1,0 +1,50 @@
+{% comment %}
+Confirmation email sent once a payment is verified.
+
+Rendered through the template engine, so camper-supplied values are escaped.
+The order lines appear only when something was actually ordered — the previous
+version always printed both hoodie lines, showing the literal text "null" to
+campers who ordered nothing.
+{% endcomment %}
+<div style="font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:15px; line-height:1.6; color:#2f2f2f; max-width:560px">
+
+    <p>Hello {{ camper.first_name }},</p>
+
+    <p>
+        You're registered for <strong>{{ season.name }}</strong> and your payment
+        has been received. Your spot is confirmed.
+    </p>
+
+    {% if season.starts_at %}
+    <p>
+        <strong>Camp starts:</strong>
+        {{ season.starts_at|date:"l, F jS, Y" }} at {{ season.starts_at|date:"g:i A" }}<br>
+        <strong>Where:</strong> {{ season.venue_name }}, {{ season.venue_address }}
+    </p>
+    {% endif %}
+
+    {% if merch %}
+    <p><strong>Your order</strong></p>
+    <ul style="padding-left:18px; margin-top:0">
+        {% for name, size in merch %}
+        <li>{{ name }}{% if size %} &mdash; size {{ size }}{% endif %}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p><strong>Total paid:</strong> ${{ camper.amount_due|floatformat:2 }}</p>
+
+    <p>
+        {% if telegram_url %}
+        Join our <a href="{{ telegram_url }}" style="color:#3a6060">Telegram group</a> to stay updated.<br>
+        {% endif %}
+        {% if instagram_url %}
+        Follow us on <a href="{{ instagram_url }}" style="color:#3a6060">Instagram</a>.
+        {% endif %}
+    </p>
+
+    <p style="color:#8a8a8a; font-size:13px; margin-top:28px">
+        See you at camp.<br>
+        The Fully Alive Retreat team
+    </p>
+</div>

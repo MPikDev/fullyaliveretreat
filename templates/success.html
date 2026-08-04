@@ -1,46 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Payment Complete</title>
-
-    {% load static %}
-    <!-- css link -->
-    <link rel="stylesheet" href="{% static 'registration/style.css' %}"/>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="https://img.icons8.com/color/50/000000/tent.png" type="image/x-icon">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135068928-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-135068928-1');
-    </script>
-<body class="wave-backgroud">
-<div class="container">
-    <div class="successBox col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1 class="paid-title">PAYMENT COMPLETE</h1>
-        <p class="center">
-            Thank you for your payment. Your transaction is complete. PayPal will send you an email containing the
-            receipt for your purchase. You have completed reserving a spot at Fully Alive Retreat.
-        </p>
-        <br>
-    </div>
-
-</div>
-<div class="button-row button-row-home">
-    <button class="home-button" onclick="window.location.href='/'">HOME</button>
-</div>
-</body>
-</html>
+{% extends "_message_base.html" %}
+{% block title %}Payment received — {{ site_name }}{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block message_icon %}<div class="message-card__icon" aria-hidden="true">🎉</div>{% endblock %}
+{% block message_title %}You're all set{% endblock %}
+{% block message_body %}
+    <p>Your payment went through and your spot is reserved. A confirmation email
+       is on its way — check your spam folder if you don't see it within a few minutes.</p>
+    {% if telegram_url %}
+    <p>Join the <a href="{{ telegram_url }}" rel="noopener" target="_blank">Telegram group</a>
+       to stay up to date before camp.</p>
+    {% endif %}
+{% endblock %}
