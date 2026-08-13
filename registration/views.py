@@ -145,11 +145,11 @@ def register(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=START_FIlTER_2026_SUMMER).exclude(invoice__in=refund_incoices).count()
     mugs_campers = Camper.objects.filter(camp_filter=WINTER_2026_CAMP, paid=True).count()
 
-    if settings.GLOBAL_OPEN_REG_FLAG:
+    if not settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
         # if datetime.datetime.now() > FIlTER_FALL_2025:
-        #     return render(request, 'closed.html')
+        return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
