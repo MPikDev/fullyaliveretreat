@@ -48,7 +48,7 @@ WEBSITE_THEME = 'summer'
 
 MAX_CAPACITY = 150
 CAMP_PRICE = 330
-GLOBAL_OPEN_REG_FLAG = True
+GLOBAL_OPEN_REG_FLAG = False
 
 DOMAIN = 'fullyaliveretreat.com'
 
