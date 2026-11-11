@@ -48,7 +48,7 @@ WINTER_2027_CAMP = 'winter 2027 camp'
 WEBSITE_THEME = 'summer'
 
 MAX_CAPACITY = 30
-CAMP_PRICE = 330
+CAMP_PRICE = 300
 GLOBAL_OPEN_REG_FLAG = False
 
 DOMAIN = 'fullyaliveretreat.com'
