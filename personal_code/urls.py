@@ -46,6 +46,8 @@ urlpatterns = [
     path(r'login', views.log_in, name='login'),
     path(r'logout', views.camper_logout),
     path(r'camper_info', views.camper_info),
+    path(r'camper_info/2027_winter_camper_info/', views.camper_info, kwargs=dict(camper_2027_info_winter=True)),
+    path(r'camper_info/2026_summer_camper_info/', views.camper_info, kwargs=dict(camper_2026_info_summer=True)),
     path(r'camper_info/2026_winter_camper_info/', views.camper_info, kwargs=dict(camper_2026_info_winter=True)),
     path(r'camper_info/2025_summer_camper_info/', views.camper_info, kwargs=dict(camper_2025_info_summer=True)),
     path(r'camper_info/2024_summer_camper_info/', views.camper_info, kwargs=dict(camper_2024_info_summer=True)),
