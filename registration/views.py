@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 import os
 import pdb
 import traceback
-
+import csv
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -52,6 +53,7 @@ START_FIlTER_2027_WINTER = datetime.datetime(2026, 10, 1)
 END_FIlTER_2027_WINTER = datetime.datetime(2026, 2, 1)
 
 # MERCH_DEAD_LINE_DATETIME = datetime.datetime(2026, 8, 4)
+
 
 FAR_EMAIL_PASS_CODE = os.getenv('FAR_EMAIL_PASS_CODE')
 
@@ -147,11 +149,11 @@ def register(request):
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=START_FIlTER_2027_WINTER).exclude(invoice__in=refund_incoices).count()
     mugs_campers = Camper.objects.filter(camp_filter=WINTER_2026_CAMP, paid=True).count()
 
-    if settings.GLOBAL_OPEN_REG_FLAG:
+    if not settings.GLOBAL_OPEN_REG_FLAG:
         if total_campers > settings.MAX_CAPACITY:
             return render(request, 'closed.html')
         # if datetime.datetime.now() > FIlTER_FALL_2025:
-        #     return render(request, 'closed.html')
+        return render(request, 'closed.html')
 
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
@@ -515,3 +517,52 @@ def filter_campers(all_campers, int_pks):
                     not_paid_email_info.append(camper)
 
     return paid_campers_info_2020, not_campers_info_2020, not_paid_email_info_2020, paid_campers_info, not_campers_info, not_paid_email_info
+
+
+def export_paid_campers_csv(request, **kwargs):
+    print(f'{kwargs=}')
+    filter_camp = request.GET.get("camp_filter")
+    print(f'{filter_camp=}')
+
+    # filter_camp = get_camp_filter(kwargs)
+    campers = Camper.objects.filter(camp_filter=filter_camp, paid=True).order_by('pk')
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="paid_campers {filter_camp}.csv"'
+
+    writer = csv.writer(response)
+
+    FIELDS = [
+        ("ID", "pk"),
+        ("First Name", "first_name"),
+        ("Last Name", "last_name"),
+        ("Date of Birth", "date_of_birth"),
+        ("Gender", "gender"),
+        ("Email", "email"),
+        ("Phone", "phone"),
+        ("City", "city"),
+        ("State", "state"),
+        ("Medical Notes", "med_notes"),
+        ("Church", "church"),
+        ("Pastor", "pastor"),
+        ("Pastor Number", "pastor_number"),
+        ("Church Member", "church_member"),
+        ("Not Married", "not_married"),
+        ("Mug", "mug"),
+        ("Region", "region"),
+        ("Activity", "activity"),
+        ("T-Shirt Size", "tshirt_size"),
+        ("Sweatshirt Size", "swshirt_size"),
+        ("Paid", "paid"),
+        ("Email Sent", "email_sent"),
+        ("Created", "created"),
+    ]
+    writer.writerow([header for header, _ in FIELDS])
+
+    for camper in campers:
+        writer.writerow([
+            getattr(camper, field)
+            for _, field in FIELDS
+        ])
+
+    return response
