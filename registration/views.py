@@ -346,7 +346,7 @@ def reg(request):
             camper["max_capacity"] = settings.MAX_CAPACITY
             # camper["remove_merch_date"] = datetime.datetime.now() > MERCH_DEAD_LINE_DATETIME
             return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
-        if total_female_camper >= 15 and camper['gender'] == 'f' or  total_male_camper >= 15 and camper['gender'] == 'm':
+        if total_female_camper >= 12 and camper['gender'] == 'f' or  total_male_camper >= 12 and camper['gender'] == 'm':
             return render(request,'gender_limit.html', status=status.HTTP_400_BAD_REQUEST)
 
         del camper['email_v']
