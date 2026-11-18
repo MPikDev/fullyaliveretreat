@@ -47,6 +47,7 @@ class Camper(models.Model):
     activity = models.CharField(
         max_length=4
         , choices=(
+            ('trip', 'Leavenworth'),
             ('ski', 'Ski/Snowboard'),
             ('tub', 'Tubing'),
             ('stay', 'Stay at the Cabin'),

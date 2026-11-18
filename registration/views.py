@@ -250,8 +250,8 @@ def reg(request):
         # mug = request.POST.get('camper_cap', False),
         mug = False,
         not_married = request.POST.get('camper_not_married'),
-        # activity = request.POST.get('camper_activity'),
-        activity = None,
+        activity = request.POST.get('camper_activity'),
+        # activity = None,
         #winter camp
         # region = request.POST.get('camper_region'),
         region = None,
