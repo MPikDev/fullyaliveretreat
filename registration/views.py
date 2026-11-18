@@ -143,7 +143,7 @@ def register(request):
     # return render(request, 'paypal_issues.html')
 
     # closed
-    return render(request, 'hasnt_opened.html')
+    # return render(request, 'hasnt_opened.html')
 
     refund_incoices = PayPalIPN.objects.filter(payment_status=ST_PP_REFUNDED, created_at__gte=START_FIlTER_2027_WINTER).values_list('invoice',flat=True)
     total_campers = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED, created_at__gte=START_FIlTER_2027_WINTER).exclude(invoice__in=refund_incoices).count()
@@ -158,7 +158,7 @@ def register(request):
     camper = {'total_campers': total_campers}
     camper["max_capacity"] = settings.MAX_CAPACITY
     camper["mugs_ordered_flag"] = mugs_campers >= 50 # when we get more than 50 to close the mugs
-    # camper["remove_merch_date"] = datetime.datetime.now() > MERCH_DEAD_LINE_DATETIME
+    camper["remove_merch_date"] = True
     # print(f'{camper=}')
     return render(request, 'register.html', camper)
 
@@ -219,11 +219,14 @@ def reg(request):
         total_camper_ids = PayPalIPN.objects.filter(payment_status=ST_PP_COMPLETED,
                                                                  created_at__gte=START_FIlTER_2027_WINTER).exclude(
             invoice__in=refund_incoices).values_list('invoice', flat=True)
+
         total_camper_ids = [int(x) for x in total_camper_ids]
         total_campers = len(total_camper_ids)
         print('total_camper_ids=',total_camper_ids)
         total_camper_objects = Camper.objects.filter(pk__in=total_camper_ids)
         print('total_camper_objects=',total_camper_objects)
+        total_male_camper = len([camper for camper in total_camper_objects if camper.gender == 'm'])
+        total_female_camper = len([camper for camper in total_camper_objects if camper.gender == 'f'])
 
         camper = dict(
         first_name = request.POST['camper_first_name'],
@@ -343,6 +346,8 @@ def reg(request):
             camper["max_capacity"] = settings.MAX_CAPACITY
             # camper["remove_merch_date"] = datetime.datetime.now() > MERCH_DEAD_LINE_DATETIME
             return render(request, 'register.html', camper, status=status.HTTP_400_BAD_REQUEST)
+        if total_female_camper >= 15 and camper['gender'] == 'f' or  total_male_camper >= 15 and camper['gender'] == 'm':
+            return render(request,'gender_limit.html', status=status.HTTP_400_BAD_REQUEST)
 
         del camper['email_v']
         # print(f'{camper=}')
