@@ -73,7 +73,7 @@ def send_registration_email(camper):
       <div>You have successfully registered for <strong>Fully Alive Winter Retreat 2027</strong>!</div>
 
       <div><strong>Camp starts:</strong> January 14th, 2027 at 4:00pm 
-      <br>Join our <a href="https://t.me/+Ky9V40c6bh0yMjMx" style="color: #007bff; text-decoration: none;">Telegram group</a> to stay updated.
+      <br>Join our <a href="https://t.me/+P9H4a6uuPtA1ZWZh" style="color: #007bff; text-decoration: none;">Telegram group</a> to stay updated.
       <br>
 
       <br>
